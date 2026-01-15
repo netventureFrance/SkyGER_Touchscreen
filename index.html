@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Sport Touchscreen - Visualisierung</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Gepunktetes Hintergrundmuster -->
+    <div class="dot-pattern"></div>
+
+    <!-- Eckrahmen UI-Elemente -->
+    <div class="corner-frame top-left"></div>
+    <div class="corner-frame top-right"></div>
+    <div class="corner-frame bottom-left"></div>
+    <div class="corner-frame bottom-right"></div>
+
+    <!-- Linke Sidebar -->
+    <aside class="sidebar left">
+        <button class="sidebar-btn" data-action="settings" title="Settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+        </button>
+        <button class="sidebar-btn" data-action="data" title="Datensätze">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+        </button>
+        <button class="sidebar-btn" data-action="bookmark" title="Bookmarks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+        </button>
+    </aside>
+
+    <!-- Rechte Sidebar -->
+    <aside class="sidebar right">
+        <button class="sidebar-btn" data-action="fullscreen" title="Vollbild">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 3 21 3 21 9"/>
+                <polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/>
+                <line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+        </button>
+        <button class="sidebar-btn" data-action="info" title="Info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+        </button>
+        <button class="sidebar-btn" data-action="help" title="Hilfe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+        </button>
+    </aside>
+
+    <!-- Hauptbereich -->
+    <main class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" id="breadcrumb">
+            <span class="breadcrumb-item active">Sky Touchscreen</span>
+        </nav>
+
+        <!-- Radiales Menü Container -->
+        <div class="radial-menu-container" id="radialMenuContainer">
+            <!-- Zentrales Logo -->
+            <div class="center-logo" id="centerLogo">
+                <div class="logo-inner">
+                    <span class="logo-text-sky">sky</span>
+                    <span class="logo-text-sport">sport</span>
+                </div>
+            </div>
+
+            <!-- Radiale Menüpunkte werden via JS generiert -->
+            <div class="radial-items" id="radialItems"></div>
+        </div>
+
+        <!-- Submenü Overlay -->
+        <div class="submenu-overlay" id="submenuOverlay">
+            <div class="submenu-container" id="submenuContainer">
+                <button class="back-btn" id="backBtn" title="Zurück (ESC)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                    <span>Zurück</span>
+                </button>
+                <h2 class="submenu-title" id="submenuTitle"></h2>
+                <div class="submenu-grid" id="submenuGrid"></div>
+            </div>
+        </div>
+
+        <!-- Detail Overlay (für tiefste Ebene) -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-container" id="detailContainer">
+                <button class="back-btn" id="detailBackBtn" title="Zurück (ESC)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                    <span>Zurück</span>
+                </button>
+                <div class="detail-content" id="detailContent"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <!-- Footer Info -->
+    <footer class="footer-info">
+        <span class="status-indicator"></span>
+        <span>Sky Touchscreen Dokumentation</span>
+        <span class="separator">|</span>
+        <span id="currentTime"></span>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/radial-menu.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

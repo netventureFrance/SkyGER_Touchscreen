@@ -1,0 +1,68 @@
+# Netlify Configuration
+# Sky Touchscreen Visualisierung
+
+[build]
+  # Build Command (optional, da statische Seite)
+  command = "echo 'No build required'"
+
+  # Publish Directory
+  publish = "."
+
+  # Functions Directory
+  functions = "netlify/functions"
+
+# Environment Variables (werden in Netlify UI gesetzt)
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirects für API Proxy
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/notion-proxy/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/notion/*"
+  to = "/.netlify/functions/notion-proxy/:splat"
+  status = 200
+  force = true
+
+# Headers für Security und Caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Development Settings
+[dev]
+  command = "echo 'Dev server ready'"
+  port = 8888
+  targetPort = 3000
+  autoLaunch = false
+
+# Functions Configuration
+[functions]
+  # Node.js bundling
+  node_bundler = "esbuild"
+
+  # Included files
+  included_files = ["netlify/functions/**"]

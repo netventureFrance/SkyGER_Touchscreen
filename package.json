@@ -1,0 +1,30 @@
+{
+  "name": "sky-touchscreen-viz",
+  "version": "1.0.0",
+  "description": "Interaktive Web-Visualisierung für das Sky Sport Touchscreen System",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve .",
+    "functions": "netlify functions:serve"
+  },
+  "keywords": [
+    "sky",
+    "sport",
+    "touchscreen",
+    "visualization",
+    "notion"
+  ],
+  "author": "Yan",
+  "license": "MIT",
+  "dependencies": {
+    "@notionhq/client": "^2.2.14"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
