@@ -1,0 +1,625 @@
+/* Sky Sport Touchscreen - Mindmap Styles */
+
+/* Header */
+.mindmap-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(2, 8, 16, 0.9) 100%);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.mindmap-header .header-left,
+.mindmap-header .header-right {
+    flex: 0 0 200px;
+}
+
+.mindmap-header .header-center {
+    flex: 1;
+    text-align: center;
+}
+
+.mindmap-header .logo-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.mindmap-header .logo-link .logo-text-sky {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 1px;
+}
+
+.mindmap-header .logo-link .logo-text-sport {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--accent-cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.mindmap-header .page-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-white);
+    margin: 0;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+/* View Toggle */
+.mindmap-header .view-toggle {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.mindmap-header .toggle-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.mindmap-header .toggle-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.mindmap-header .toggle-btn:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.mindmap-header .toggle-btn.active {
+    background: var(--box-bg-hover);
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+/* Mindmap Controls */
+.mindmap-controls {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 50;
+    background: rgba(2, 8, 16, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.mindmap-controls .control-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--accent-cyan);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mindmap-controls .control-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.mindmap-controls .control-btn:hover {
+    background: var(--box-bg-hover);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.mindmap-controls .control-btn.icon-only {
+    padding: 8px;
+}
+
+.mindmap-controls .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid var(--border-color);
+}
+
+.mindmap-controls .zoom-level {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 45px;
+    text-align: center;
+}
+
+/* Main Mindmap Area */
+.mindmap-main {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    overflow: hidden;
+}
+
+.mindmap-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    cursor: grab;
+}
+
+.mindmap-viewport:active {
+    cursor: grabbing;
+}
+
+.mindmap-viewport::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.mindmap-viewport::-webkit-scrollbar-track {
+    background: rgba(0, 20, 40, 0.5);
+}
+
+.mindmap-viewport::-webkit-scrollbar-thumb {
+    background: var(--accent-dark-blue);
+    border-radius: 5px;
+}
+
+.mindmap-viewport::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+.mindmap-canvas {
+    position: relative;
+    min-width: 3000px;
+    min-height: 2000px;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+/* SVG Lines Layer */
+.mindmap-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mindmap-lines path {
+    fill: none;
+    stroke: var(--accent-dark-blue);
+    stroke-width: 2;
+    transition: stroke 0.3s ease;
+}
+
+.mindmap-lines path.highlighted {
+    stroke: var(--accent-cyan);
+    stroke-width: 3;
+}
+
+/* Nodes Layer */
+.mindmap-nodes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* ============================================
+   MINDMAP NODES
+   ============================================ */
+
+.mindmap-node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.mindmap-node-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 168, 255, 0.15);
+    white-space: nowrap;
+}
+
+.mindmap-node-box:hover {
+    background: var(--box-bg-hover);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 25px var(--glow-color);
+    transform: scale(1.05);
+}
+
+.mindmap-node-box.expanded {
+    border-color: var(--accent-cyan);
+}
+
+/* Root Node (Center) */
+.mindmap-node.root .mindmap-node-box {
+    padding: 20px 30px;
+    background: linear-gradient(135deg, rgba(0, 60, 100, 0.9), rgba(0, 30, 60, 0.95));
+    border: 2px solid var(--accent-cyan);
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 40px var(--glow-color);
+}
+
+.mindmap-node.root .mindmap-node-box:hover {
+    transform: scale(1.08);
+}
+
+.mindmap-node.root .node-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.mindmap-node.root .node-label {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Level 1 Nodes */
+.mindmap-node.level-1 .mindmap-node-box {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(0, 50, 90, 0.85), rgba(0, 25, 50, 0.9));
+    border-radius: 30px;
+}
+
+.mindmap-node.level-1 .node-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Level 2+ Nodes */
+.mindmap-node.level-2 .mindmap-node-box,
+.mindmap-node.level-3 .mindmap-node-box {
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.mindmap-node.level-2 .node-label,
+.mindmap-node.level-3 .node-label {
+    font-size: 12px;
+}
+
+.mindmap-node.level-3 .mindmap-node-box {
+    background: linear-gradient(135deg, rgba(0, 30, 60, 0.8), rgba(0, 15, 30, 0.85));
+}
+
+/* Node Icon */
+.mindmap-node .node-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: var(--accent-cyan);
+}
+
+.mindmap-node .node-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Node Label */
+.mindmap-node .node-label {
+    color: var(--text-white);
+}
+
+/* Node Count Badge */
+.mindmap-node .node-count {
+    font-size: 10px;
+    color: var(--text-dim);
+    background: rgba(0, 168, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+/* Toggle Indicator */
+.mindmap-node .node-toggle {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    margin-left: 5px;
+}
+
+.mindmap-node .node-toggle svg {
+    width: 100%;
+    height: 100%;
+}
+
+.mindmap-node-box.expanded .node-toggle {
+    transform: rotate(90deg);
+}
+
+/* Left side nodes - flip icon direction */
+.mindmap-node.left .node-toggle {
+    transform: rotate(180deg);
+}
+
+.mindmap-node.left .mindmap-node-box.expanded .node-toggle {
+    transform: rotate(270deg);
+}
+
+/* ============================================
+   DETAIL PANEL (same as tree)
+   ============================================ */
+
+.detail-panel {
+    position: fixed;
+    top: 60px;
+    right: -400px;
+    width: 380px;
+    bottom: 50px;
+    background: linear-gradient(180deg, rgba(10, 22, 40, 0.98) 0%, rgba(2, 8, 16, 0.98) 100%);
+    border-left: 1px solid var(--border-color);
+    z-index: 200;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    backdrop-filter: blur(15px);
+}
+
+.detail-panel.open {
+    right: 0;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.panel-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.panel-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.panel-close:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.panel-content {
+    padding: 20px;
+}
+
+.panel-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 15px;
+    padding-right: 40px;
+}
+
+.panel-content p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.panel-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-white);
+    margin: 20px 0 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.panel-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.panel-content li {
+    padding: 8px 0;
+    padding-left: 18px;
+    position: relative;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.panel-content li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+}
+
+.panel-path {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    background: rgba(0, 168, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 20px;
+    word-break: break-all;
+}
+
+.panel-children {
+    margin-top: 15px;
+}
+
+.panel-child-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.panel-child-item:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.panel-child-item svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent-cyan);
+}
+
+.panel-child-item span {
+    font-size: 13px;
+    color: var(--text-white);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.mindmap-node {
+    animation: nodeAppear 0.4s ease backwards;
+}
+
+@keyframes nodeAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.mindmap-lines path {
+    animation: lineAppear 0.5s ease backwards;
+}
+
+@keyframes lineAppear {
+    from {
+        opacity: 0;
+        stroke-dashoffset: 100;
+    }
+    to {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .mindmap-header {
+        padding: 0 15px;
+    }
+
+    .mindmap-header .header-left,
+    .mindmap-header .header-right {
+        flex: 0 0 auto;
+    }
+
+    .mindmap-header .page-title {
+        font-size: 14px;
+    }
+
+    .mindmap-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .mindmap-controls .control-btn span {
+        display: none;
+    }
+
+    .mindmap-controls .control-btn {
+        padding: 8px;
+    }
+
+    .mindmap-controls .zoom-controls {
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+
+    .mindmap-node.root .mindmap-node-box {
+        width: 120px;
+        height: 120px;
+        padding: 15px;
+    }
+
+    .mindmap-node.root .node-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .mindmap-node.root .node-label {
+        font-size: 12px;
+    }
+
+    .detail-panel {
+        width: 100%;
+        right: -100%;
+    }
+}

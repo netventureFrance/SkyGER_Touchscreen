@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Sport Touchscreen - Tree View</title>
+    <title>Sky Sport Touchscreen - Mindmap</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/tree.css">
+    <link rel="stylesheet" href="css/mindmap.css">
 </head>
 <body>
     <!-- Gepunktetes Hintergrundmuster -->
@@ -18,7 +18,7 @@
     <div class="corner-frame bottom-right"></div>
 
     <!-- Header mit View Toggle -->
-    <header class="tree-header">
+    <header class="mindmap-header">
         <div class="header-left">
             <a href="index.html" class="logo-link">
                 <span class="logo-text-sky">sky</span>
@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="header-center">
-            <h1 class="page-title">System Struktur</h1>
+            <h1 class="page-title">Mindmap</h1>
         </div>
         <div class="header-right">
             <div class="view-toggle">
@@ -40,7 +40,7 @@
                         <line x1="18" y1="12" x2="22" y2="12"/>
                     </svg>
                 </a>
-                <a href="tree.html" class="toggle-btn active" title="Baum Ansicht">
+                <a href="tree.html" class="toggle-btn" title="Baum Ansicht">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="7" height="7"/>
                         <rect x="14" y="3" width="7" height="7"/>
@@ -48,21 +48,25 @@
                         <rect x="3" y="14" width="7" height="7"/>
                     </svg>
                 </a>
-                <a href="mindmap.html" class="toggle-btn" title="Mindmap Ansicht">
+                <a href="mindmap.html" class="toggle-btn active" title="Mindmap Ansicht">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="3"/>
                         <line x1="12" y1="9" x2="12" y2="2"/>
                         <line x1="12" y1="22" x2="12" y2="15"/>
                         <line x1="9" y1="12" x2="2" y2="12"/>
                         <line x1="22" y1="12" x2="15" y2="12"/>
+                        <line x1="9.5" y1="9.5" x2="5" y2="5"/>
+                        <line x1="19" y1="19" x2="14.5" y2="14.5"/>
+                        <line x1="9.5" y1="14.5" x2="5" y2="19"/>
+                        <line x1="19" y1="5" x2="14.5" y2="9.5"/>
                     </svg>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Tree Controls -->
-    <div class="tree-controls">
+    <!-- Mindmap Controls -->
+    <div class="mindmap-controls">
         <button class="control-btn" id="expandAllBtn" title="Alle aufklappen">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="15 3 21 3 21 9"/>
@@ -80,6 +84,13 @@
                 <line x1="3" y1="21" x2="10" y2="14"/>
             </svg>
             <span>Collapse All</span>
+        </button>
+        <button class="control-btn" id="centerBtn" title="Zentrieren">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>Center</span>
         </button>
         <div class="zoom-controls">
             <button class="control-btn icon-only" id="zoomOutBtn" title="Verkleinern">
@@ -101,11 +112,14 @@
         </div>
     </div>
 
-    <!-- Main Tree Container -->
-    <main class="tree-main">
-        <div class="tree-viewport" id="treeViewport">
-            <div class="tree-canvas" id="treeCanvas">
-                <!-- Tree wird via JS generiert -->
+    <!-- Main Mindmap Container -->
+    <main class="mindmap-main">
+        <div class="mindmap-viewport" id="mindmapViewport">
+            <div class="mindmap-canvas" id="mindmapCanvas">
+                <!-- SVG für Verbindungslinien -->
+                <svg class="mindmap-lines" id="mindmapLines"></svg>
+                <!-- Nodes werden via JS generiert -->
+                <div class="mindmap-nodes" id="mindmapNodes"></div>
             </div>
         </div>
     </main>
@@ -129,12 +143,12 @@
         <span class="status-indicator"></span>
         <span>Sky Touchscreen Dokumentation</span>
         <span class="separator">|</span>
-        <span>Tree View</span>
+        <span>Mindmap View</span>
         <span class="separator">|</span>
         <span id="currentTime"></span>
     </footer>
 
     <script src="js/data.js"></script>
-    <script src="js/tree-view.js"></script>
+    <script src="js/mindmap.js"></script>
 </body>
 </html>
