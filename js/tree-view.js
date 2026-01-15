@@ -70,6 +70,13 @@ class TreeView {
                 this.setZoom(this.zoom + delta);
             }
         }, { passive: false });
+
+        // Window resize - Linien neu berechnen
+        window.addEventListener('resize', () => {
+            requestAnimationFrame(() => {
+                this.updateConnectorLines();
+            });
+        });
     }
 
     /**
@@ -197,6 +204,38 @@ class TreeView {
         treeContainer.appendChild(rootNode);
 
         this.canvas.appendChild(treeContainer);
+
+        // Linien-Positionen nach dem Rendern berechnen
+        requestAnimationFrame(() => {
+            this.updateConnectorLines();
+        });
+    }
+
+    /**
+     * Berechnet und setzt die horizontalen Verbindungslinien
+     */
+    updateConnectorLines() {
+        const childrenContainers = this.canvas.querySelectorAll('.tree-children:not(.single)');
+
+        childrenContainers.forEach(container => {
+            const children = container.querySelectorAll(':scope > .tree-node');
+            if (children.length < 2) return;
+
+            const firstChild = children[0];
+            const lastChild = children[children.length - 1];
+
+            const containerRect = container.getBoundingClientRect();
+            const firstRect = firstChild.getBoundingClientRect();
+            const lastRect = lastChild.getBoundingClientRect();
+
+            // Berechne die Position relativ zum Container
+            const firstCenter = firstRect.left + firstRect.width / 2 - containerRect.left;
+            const lastCenter = lastRect.left + lastRect.width / 2 - containerRect.left;
+
+            // Setze CSS-Variablen für die horizontale Linie
+            container.style.setProperty('--line-left', `${firstCenter}px`);
+            container.style.setProperty('--line-right', `${containerRect.width - lastCenter}px`);
+        });
     }
 
     /**
@@ -271,7 +310,8 @@ class TreeView {
         // Kinder rendern (wenn erweitert)
         if (node.children && node.children.length > 0 && this.expandedNodes.has(node.id)) {
             const childrenContainer = document.createElement('div');
-            childrenContainer.className = `tree-children ${node.children.length > 1 ? 'multiple' : ''}`;
+            const childCount = node.children.length;
+            childrenContainer.className = `tree-children ${childCount === 1 ? 'single' : ''}`;
 
             node.children.forEach((child, index) => {
                 const childNode = this.renderNode(child, level + 1, currentPath);
@@ -404,6 +444,11 @@ class TreeView {
         this.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, level));
         this.canvas.style.transform = `scale(${this.zoom})`;
         document.getElementById('zoomLevel').textContent = `${Math.round(this.zoom * 100)}%`;
+
+        // Linien nach Zoom-Änderung neu berechnen
+        requestAnimationFrame(() => {
+            this.updateConnectorLines();
+        });
     }
 
     /**
