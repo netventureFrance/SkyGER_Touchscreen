@@ -1,0 +1,30 @@
+{
+  "name": "mcp-notion-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Notion API - Sky Touchscreen Project",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "mcp-notion-server": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@notionhq/client": "^2.2.14"
+  },
+  "keywords": [
+    "mcp",
+    "notion",
+    "claude",
+    "anthropic"
+  ],
+  "author": "Yan",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

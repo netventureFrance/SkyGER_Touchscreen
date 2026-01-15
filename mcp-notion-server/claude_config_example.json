@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "notion": {
+      "command": "node",
+      "args": ["/Users/yan/Documents/GitHub/SkyGER_Touchscreen/mcp-notion-server/src/index.js"],
+      "env": {
+        "NOTION_TOKEN": "secret_DEIN_TOKEN_HIER"
+      }
+    }
+  }
+}
