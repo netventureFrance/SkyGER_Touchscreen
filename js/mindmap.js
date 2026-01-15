@@ -34,10 +34,11 @@ class MindmapView {
         // Layout Konfiguration
         this.config = {
             rootRadius: 90,
-            level1Distance: 250,
-            level2Distance: 180,
-            level3Distance: 140,
-            minAngleSpacing: 15 // Minimum degrees between nodes
+            level1Distance: 320,
+            level2Distance: 280,
+            level3Distance: 220,
+            level4Distance: 180,
+            minNodeSpacing: 80 // Minimum pixels between nodes vertically
         };
 
         this.init();
@@ -241,7 +242,7 @@ class MindmapView {
     }
 
     /**
-     * Kinder-Nodes rendern
+     * Kinder-Nodes rendern - Horizontales Layout
      */
     renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle) {
         const children = parentNode.children;
@@ -252,30 +253,50 @@ class MindmapView {
         switch (childLevel) {
             case 1: distance = this.config.level1Distance; break;
             case 2: distance = this.config.level2Distance; break;
-            default: distance = this.config.level3Distance;
+            case 3: distance = this.config.level3Distance; break;
+            default: distance = this.config.level4Distance;
         }
 
-        // Winkelbereich für Kinder berechnen
-        const angleRange = endAngle - startAngle;
-        const angleStep = angleRange / children.length;
+        // Vertikaler Abstand zwischen Kindern
+        const verticalSpacing = this.config.minNodeSpacing;
+
+        // Berechne die Gesamthöhe aller Kinder
+        const totalHeight = (children.length - 1) * verticalSpacing;
+        const startY = parentY - totalHeight / 2;
+
+        // Bestimme ob links oder rechts vom Parent
+        const isRightSide = parentX >= this.centerX || parentLevel === 0;
+        const direction = isRightSide ? 1 : -1;
 
         children.forEach((child, index) => {
-            // Winkel für dieses Kind
-            const angle = startAngle + angleStep * (index + 0.5);
-            const radian = (angle * Math.PI) / 180;
-
             // Position berechnen
-            const x = parentX + distance * Math.cos(radian);
-            const y = parentY + distance * Math.sin(radian);
+            const x = parentX + distance * direction;
+            const y = startY + index * verticalSpacing;
 
-            // Kind-Winkelbereich
-            const childStartAngle = angle - angleStep / 2;
-            const childEndAngle = angle + angleStep / 2;
+            // Für Level 1: Abwechselnd links und rechts
+            let finalX = x;
+            let finalY = y;
+
+            if (parentLevel === 0) {
+                // Root-Kinder: Verteile auf beide Seiten
+                const halfCount = Math.ceil(children.length / 2);
+                if (index < halfCount) {
+                    // Rechte Seite
+                    finalX = parentX + distance;
+                    finalY = parentY - ((halfCount - 1) * verticalSpacing / 2) + index * verticalSpacing;
+                } else {
+                    // Linke Seite
+                    finalX = parentX - distance;
+                    const leftIndex = index - halfCount;
+                    const leftCount = children.length - halfCount;
+                    finalY = parentY - ((leftCount - 1) * verticalSpacing / 2) + leftIndex * verticalSpacing;
+                }
+            }
 
             this.renderNode(
-                child, x, y, childLevel,
+                child, finalX, finalY, childLevel,
                 { x: parentX, y: parentY },
-                childStartAngle, childEndAngle
+                startAngle, endAngle
             );
         });
     }
