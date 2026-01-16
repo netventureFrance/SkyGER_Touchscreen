@@ -224,15 +224,15 @@ class MindmapView {
     /**
      * Node rendern
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null, parentWidth = 180) {
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null) {
         // Generate unique ID to avoid duplicates in Map
         const uniqueId = `${node.id}-${this.nodePositions.size}`;
 
         // Determine color - inherit from parent if not set
         const nodeColor = node.color || parentColor;
 
-        // Position speichern with unique ID, color, parent reference, and parent width for line drawing
-        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId, parentWidth });
+        // Position speichern with unique ID, color, and parent reference
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
@@ -344,8 +344,7 @@ class MindmapView {
                 { x: parentX, y: parentY },
                 startAngle, endAngle,
                 parentColor, // Pass parent color for inheritance
-                parentId, // Pass parent ID for line drawing
-                parentWidth // Pass parent width for line drawing
+                parentId // Pass parent ID for line drawing
             );
 
             // Nächste Y-Position
