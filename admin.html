@@ -460,6 +460,8 @@
         }
 
         // Sync handler
+        let pollInterval = null;
+
         syncBtn.addEventListener('click', async () => {
             syncBtn.disabled = true;
             syncBtn.classList.add('syncing');
@@ -472,46 +474,91 @@
             try {
                 const response = await fetch('/.netlify/functions/sync', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ action: 'sync' })
                 });
 
                 const result = await response.json();
 
                 if (result.success) {
-                    addLogEntry(`Sync triggered successfully`, 'success');
-                    addLogEntry(`Workflow: ${result.workflowRun || 'Started'}`, 'info');
-                    if (result.actionsUrl) {
-                        addLogEntry(`View progress: ${result.actionsUrl}`, 'info');
+                    addLogEntry(`Workflow triggered successfully`, 'success');
+                    if (result.run) {
+                        addLogEntry(`Run #${result.run.id} - Status: ${result.run.status}`, 'info');
                     }
-                    lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
-                    saveSyncLog();
 
-                    // Reload info after a delay
-                    setTimeout(() => {
-                        loadInfo();
-                    }, 5000);
+                    // Start polling for status
+                    startStatusPolling();
+
                 } else {
                     addLogEntry(`Error: ${result.error}`, 'error');
                     if (result.help) {
                         addLogEntry(`Help: ${result.help}`, 'info');
                     }
-                    if (result.details) {
-                        addLogEntry(`Details: ${result.details}`, 'info');
-                    }
+                    resetSyncButton();
                 }
             } catch (e) {
                 addLogEntry(`Error: ${e.message}`, 'error');
+                resetSyncButton();
             }
+        });
 
+        function startStatusPolling() {
+            let pollCount = 0;
+            const maxPolls = 60; // 5 minutes max
+
+            pollInterval = setInterval(async () => {
+                pollCount++;
+
+                try {
+                    const response = await fetch('/.netlify/functions/sync?action=status');
+                    const result = await response.json();
+
+                    if (result.success && result.runs && result.runs.length > 0) {
+                        const latestRun = result.runs[0];
+
+                        if (latestRun.status === 'completed') {
+                            clearInterval(pollInterval);
+
+                            if (latestRun.conclusion === 'success') {
+                                addLogEntry(`Sync completed successfully!`, 'success');
+                                lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
+                                saveSyncLog();
+                                // Reload to get new version
+                                setTimeout(() => loadInfo(), 2000);
+                            } else {
+                                addLogEntry(`Sync finished with: ${latestRun.conclusion}`, 'error');
+                                addLogEntry(`Details: ${latestRun.url}`, 'info');
+                            }
+                            resetSyncButton();
+
+                        } else if (latestRun.status === 'in_progress' || latestRun.status === 'queued') {
+                            // Update status display
+                            syncBtn.innerHTML = `<span class="spinner"></span>${latestRun.status === 'queued' ? 'Queued...' : 'Running...'}`;
+
+                            if (pollCount % 4 === 0) { // Log every ~20 seconds
+                                addLogEntry(`Status: ${latestRun.status}...`, 'info');
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error('Poll error:', e);
+                }
+
+                if (pollCount >= maxPolls) {
+                    clearInterval(pollInterval);
+                    addLogEntry('Polling timeout - check GitHub Actions', 'info');
+                    resetSyncButton();
+                }
+            }, 5000); // Poll every 5 seconds
+        }
+
+        function resetSyncButton() {
             syncBtn.disabled = false;
             syncBtn.classList.remove('syncing');
             syncBtn.innerHTML = 'Sync from Notion';
             statusBadge.textContent = 'Online';
             statusBadge.className = 'status-badge online';
-        });
+        }
 
         // Log functions
         function addLogEntry(message, type = 'info') {
