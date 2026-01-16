@@ -579,12 +579,21 @@
 
 @media (max-width: 768px) {
     .mindmap-header {
-        padding: 0 15px;
+        padding: 0 10px;
+        height: 50px;
     }
 
-    .mindmap-header .header-left,
-    .mindmap-header .header-right {
+    .mindmap-header .header-left {
+        display: none;
+    }
+
+    .mindmap-header .header-center {
         flex: 0 0 auto;
+    }
+
+    .mindmap-header .header-right {
+        flex: 1;
+        justify-content: flex-end;
     }
 
     .mindmap-header .page-title {
@@ -592,10 +601,7 @@
     }
 
     .mindmap-controls {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 8px 12px;
-        gap: 8px;
+        gap: 5px;
     }
 
     .mindmap-controls .control-btn span {
@@ -604,35 +610,84 @@
 
     .mindmap-controls .control-btn {
         padding: 8px;
+        min-width: 36px;
+        min-height: 36px;
     }
 
     .mindmap-controls .zoom-controls {
-        margin-left: 10px;
-        padding-left: 10px;
+        margin-left: 5px;
+        padding-left: 5px;
+        gap: 3px;
+    }
+
+    .mindmap-controls .zoom-level {
+        min-width: 35px;
+        font-size: 10px;
+    }
+
+    .mindmap-main {
+        top: 50px;
     }
 
     .mindmap-node.root .mindmap-node-box {
-        width: 140px;
-        height: 140px;
-        padding: 15px;
-    }
-
-    .mindmap-node.root .node-icon {
-        width: 30px;
-        height: 30px;
+        width: 120px;
+        height: 120px;
+        padding: 12px;
     }
 
     .mindmap-node.root .node-label {
+        font-size: 10px;
+    }
+
+    .mindmap-node-box {
+        padding: 8px 12px;
         font-size: 11px;
     }
 
-    .mindmap-node.level-1 .node-label {
-        font-size: 12px;
+    .mindmap-node .node-count {
+        font-size: 9px;
+        padding: 2px 5px;
     }
 
     .detail-panel {
         width: 100%;
         right: -100%;
+    }
+
+    .detail-panel.open {
+        right: 0;
+    }
+
+    .footer-info {
+        font-size: 10px;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mindmap-header .page-title {
+        font-size: 12px;
+    }
+
+    .mindmap-controls .control-btn {
+        padding: 6px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    .mindmap-controls .control-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .mindmap-node.root .mindmap-node-box {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+
+    .mindmap-node.root .node-label {
+        font-size: 9px;
     }
 }
 
