@@ -320,14 +320,18 @@ class MindmapView {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
-        // Distanz basierend auf Level
-        let distance;
+        // Gap between nodes (edge to edge)
+        let gap;
         switch (childLevel) {
-            case 1: distance = this.config.level1Distance; break;
-            case 2: distance = this.config.level2Distance; break;
-            case 3: distance = this.config.level3Distance; break;
-            default: distance = this.config.level4Distance;
+            case 1: gap = 120; break;  // Gap after root
+            case 2: gap = 100; break;  // Gap after level 1
+            case 3: gap = 80; break;   // Gap after level 2
+            default: gap = 60;
         }
+
+        // Get actual parent width from DOM
+        const parentNodeEl = this.nodesContainer.querySelector(`[data-id="${parentId}"] .mindmap-node-box`);
+        const parentWidth = parentNodeEl ? parentNodeEl.offsetWidth : 180;
 
         // Berechne Höhe jedes Kindes (inkl. Subtree)
         const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
@@ -336,8 +340,8 @@ class MindmapView {
         // Start Y-Position (zentriert um Parent)
         let currentY = parentY - totalHeight / 2;
 
-        // Alle Kinder nach RECHTS positionieren
-        const childX = parentX + distance;
+        // Position children at parent right edge + gap
+        const childX = parentX + parentWidth + gap;
 
         children.forEach((child, index) => {
             // Y-Position: Mitte des zugewiesenen Bereichs
