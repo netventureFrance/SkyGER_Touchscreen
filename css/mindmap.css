@@ -271,13 +271,15 @@
 }
 
 .mindmap-node-box.expanded {
-    border-color: var(--accent-cyan);
+    /* No special styling for expanded - just shows children */
 }
 
 .mindmap-node-box.active {
-    border-color: var(--accent-cyan);
-    background: linear-gradient(135deg, rgba(0, 180, 220, 0.3), rgba(0, 100, 150, 0.4));
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4), inset 0 0 10px rgba(0, 200, 255, 0.1);
+    background: linear-gradient(135deg, rgba(0, 220, 255, 0.6), rgba(0, 180, 220, 0.7)) !important;
+    border-color: #00ffff !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.3) !important;
+    transform: scale(1.08);
 }
 
 /* Root Node (Center) */
