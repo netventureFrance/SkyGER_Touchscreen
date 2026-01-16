@@ -224,12 +224,15 @@ class MindmapView {
     /**
      * Node rendern
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle) {
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null) {
         // Generate unique ID to avoid duplicates in Map
         const uniqueId = `${node.id}-${this.nodePositions.size}`;
 
-        // Position speichern with unique ID
-        this.nodePositions.set(uniqueId, { x, y, level, parentPos });
+        // Determine color - inherit from parent if not set
+        const nodeColor = node.color || parentColor;
+
+        // Position speichern with unique ID and color
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
@@ -242,6 +245,11 @@ class MindmapView {
         // Node Box
         const boxEl = document.createElement('div');
         boxEl.className = 'mindmap-node-box';
+
+        // Apply Notion color if present
+        if (nodeColor && nodeColor !== 'default') {
+            boxEl.classList.add(`notion-${nodeColor}`);
+        }
 
         if (this.expandedNodes.has(node.id)) {
             boxEl.classList.add('expanded');
@@ -285,7 +293,7 @@ class MindmapView {
 
         // Kinder rendern (wenn erweitert)
         if (node.children && node.children.length > 0 && this.expandedNodes.has(node.id)) {
-            this.renderChildren(node, x, y, level, startAngle, endAngle);
+            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor);
         }
     }
 
@@ -308,7 +316,7 @@ class MindmapView {
     /**
      * Kinder-Nodes rendern - Alle nach rechts, kein Überlappen
      */
-    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle) {
+    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null) {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
@@ -339,7 +347,8 @@ class MindmapView {
             this.renderNode(
                 child, childX, finalY, childLevel,
                 { x: parentX, y: parentY },
-                startAngle, endAngle
+                startAngle, endAngle,
+                parentColor // Pass parent color for inheritance
             );
 
             // Nächste Y-Position
@@ -369,7 +378,10 @@ class MindmapView {
                     pos.parentPos.x + parentOffset, pos.parentPos.y,
                     pos.x + childOffset, pos.y
                 );
-                pathsHtml += `<path d="${path}" data-from="${nodeId}" />`;
+
+                // Add color class if present
+                const colorClass = pos.color && pos.color !== 'default' ? `notion-${pos.color}` : '';
+                pathsHtml += `<path d="${path}" data-from="${nodeId}" class="${colorClass}" />`;
             }
         });
 

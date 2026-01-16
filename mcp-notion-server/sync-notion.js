@@ -164,12 +164,15 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Toggle blocks - these contain nested content
         else if (type === 'toggle') {
-            console.log(`${indent}📂 Toggle: ${text}`);
+            // Extract color from toggle block
+            const color = block.toggle?.color || 'default';
+            console.log(`${indent}📂 Toggle: ${text} (${color})`);
 
             const newItem = {
                 id: block.id,
                 title: text,
                 description: '',
+                color: color, // Store the Notion color
                 images: [],
                 children: []
             };
@@ -387,6 +390,7 @@ function generateDataStructure(item, basePath = '', depth = 0) {
         id: sanitize(item.title || 'root'),
         label: item.title || 'Untitled',
         description: item.description || '',
+        color: item.color || null, // Notion background color
         screenshots: item.images.map((img, i) => {
             let ext = 'jpg';
             const urlLower = img.url.toLowerCase();

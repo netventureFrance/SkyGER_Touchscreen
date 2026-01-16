@@ -228,6 +228,35 @@
     stroke-width: 3;
 }
 
+/* Notion Color Styles - Lines */
+.mindmap-lines path.notion-blue_background {
+    stroke: #4A90D9;
+}
+.mindmap-lines path.notion-red_background {
+    stroke: #E03E3E;
+}
+.mindmap-lines path.notion-green_background {
+    stroke: #0F7B6C;
+}
+.mindmap-lines path.notion-yellow_background {
+    stroke: #DFAB01;
+}
+.mindmap-lines path.notion-orange_background {
+    stroke: #D9730D;
+}
+.mindmap-lines path.notion-pink_background {
+    stroke: #C14C8A;
+}
+.mindmap-lines path.notion-purple_background {
+    stroke: #6940A5;
+}
+.mindmap-lines path.notion-gray_background {
+    stroke: #787774;
+}
+.mindmap-lines path.notion-brown_background {
+    stroke: #9F6B53;
+}
+
 /* Nodes Layer */
 .mindmap-nodes {
     position: absolute;
@@ -280,6 +309,53 @@
     border-width: 3px !important;
     box-shadow: 0 0 35px rgba(0, 255, 255, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.3) !important;
     transform: scale(1.08);
+}
+
+/* Notion Color Styles - Nodes */
+.mindmap-node-box.notion-blue_background {
+    background: linear-gradient(135deg, rgba(74, 144, 217, 0.8), rgba(45, 100, 160, 0.9));
+    border-color: #4A90D9;
+    box-shadow: 0 0 20px rgba(74, 144, 217, 0.4);
+}
+.mindmap-node-box.notion-red_background {
+    background: linear-gradient(135deg, rgba(224, 62, 62, 0.8), rgba(160, 40, 40, 0.9));
+    border-color: #E03E3E;
+    box-shadow: 0 0 20px rgba(224, 62, 62, 0.4);
+}
+.mindmap-node-box.notion-green_background {
+    background: linear-gradient(135deg, rgba(15, 123, 108, 0.8), rgba(10, 90, 80, 0.9));
+    border-color: #0F7B6C;
+    box-shadow: 0 0 20px rgba(15, 123, 108, 0.4);
+}
+.mindmap-node-box.notion-yellow_background {
+    background: linear-gradient(135deg, rgba(223, 171, 1, 0.8), rgba(180, 140, 0, 0.9));
+    border-color: #DFAB01;
+    box-shadow: 0 0 20px rgba(223, 171, 1, 0.4);
+}
+.mindmap-node-box.notion-orange_background {
+    background: linear-gradient(135deg, rgba(217, 115, 13, 0.8), rgba(160, 85, 10, 0.9));
+    border-color: #D9730D;
+    box-shadow: 0 0 20px rgba(217, 115, 13, 0.4);
+}
+.mindmap-node-box.notion-pink_background {
+    background: linear-gradient(135deg, rgba(193, 76, 138, 0.8), rgba(140, 50, 100, 0.9));
+    border-color: #C14C8A;
+    box-shadow: 0 0 20px rgba(193, 76, 138, 0.4);
+}
+.mindmap-node-box.notion-purple_background {
+    background: linear-gradient(135deg, rgba(105, 64, 165, 0.8), rgba(75, 45, 120, 0.9));
+    border-color: #6940A5;
+    box-shadow: 0 0 20px rgba(105, 64, 165, 0.4);
+}
+.mindmap-node-box.notion-gray_background {
+    background: linear-gradient(135deg, rgba(120, 119, 116, 0.8), rgba(85, 85, 85, 0.9));
+    border-color: #787774;
+    box-shadow: 0 0 20px rgba(120, 119, 116, 0.4);
+}
+.mindmap-node-box.notion-brown_background {
+    background: linear-gradient(135deg, rgba(159, 107, 83, 0.8), rgba(115, 75, 55, 0.9));
+    border-color: #9F6B53;
+    box-shadow: 0 0 20px rgba(159, 107, 83, 0.4);
 }
 
 /* Root Node (Center) */
