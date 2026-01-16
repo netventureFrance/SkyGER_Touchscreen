@@ -469,6 +469,23 @@ async function main() {
     const dataPath = join(__dirname, '..', 'images', 'notion-data.json');
     writeFileSync(dataPath, JSON.stringify(dataStructure, null, 2));
     console.log(`📄 Data structure saved to: images/notion-data.json`);
+
+    // Increment version
+    const versionPath = join(__dirname, '..', 'version.json');
+    try {
+        const version = JSON.parse(readFileSync(versionPath, 'utf8'));
+        version.patch = (version.patch || 0) + 1;
+        if (version.patch >= 100) {
+            version.patch = 0;
+            version.minor = (version.minor || 0) + 1;
+        }
+        writeFileSync(versionPath, JSON.stringify(version, null, 2) + '\n');
+        console.log(`\n📦 Version updated to ${version.major}.${version.minor}.${version.patch}`);
+    } catch (e) {
+        console.log(`\n⚠️ Could not update version: ${e.message}`);
+    }
+
+    console.log(`\n✅ Sync completed! ${counts.children} items, ${counts.images} images`);
 }
 
 main().catch(console.error);
