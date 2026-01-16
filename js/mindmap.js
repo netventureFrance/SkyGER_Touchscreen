@@ -321,6 +321,11 @@ class MindmapView {
      * Verbindungslinien zeichnen
      */
     drawLines() {
+        // Set SVG viewBox to match canvas size
+        this.linesContainer.setAttribute('viewBox', `0 0 ${this.canvasWidth} ${this.canvasHeight}`);
+        this.linesContainer.setAttribute('width', this.canvasWidth);
+        this.linesContainer.setAttribute('height', this.canvasHeight);
+
         let pathsHtml = '';
 
         this.nodePositions.forEach((pos, nodeId) => {
