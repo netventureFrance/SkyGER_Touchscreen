@@ -320,9 +320,8 @@ class MindmapView {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
-        // Fixed distance based on level (wider at top levels)
-        const distances = [0, 280, 250, 220, 200, 180];
-        const distance = distances[Math.min(childLevel, 5)];
+        // Fixed distance - must be larger than widest node + gap
+        const distance = 450;
 
         // Berechne Höhe jedes Kindes (inkl. Subtree)
         const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
