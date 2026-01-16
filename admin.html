@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sky Touchscreen</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .admin-panel {
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(2, 8, 16, 0.98) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 150, 255, 0.1);
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            font-size: 24px;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+        }
+
+        .admin-header .subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .login-form, .admin-content {
+            display: none;
+        }
+
+        .login-form.active, .admin-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 20, 40, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, rgba(0, 100, 150, 0.8), rgba(0, 60, 100, 0.9));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 8px;
+            color: var(--accent-cyan);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, rgba(0, 120, 180, 0.9), rgba(0, 80, 120, 1));
+            box-shadow: 0 0 25px var(--glow-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn.syncing {
+            background: linear-gradient(135deg, rgba(255, 150, 0, 0.3), rgba(200, 100, 0, 0.4));
+            border-color: #ff9600;
+            color: #ff9600;
+        }
+
+        .error-msg {
+            background: rgba(255, 50, 50, 0.1);
+            border: 1px solid rgba(255, 50, 50, 0.3);
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+
+        .info-cards {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: rgba(0, 30, 60, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .info-card .label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-card .value {
+            font-size: 18px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .info-card .value.small {
+            font-size: 13px;
+            color: var(--text-white);
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .sync-log {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .sync-log h3 {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .log-entries {
+            max-height: 250px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 11px;
+            background: rgba(0, 10, 20, 0.5);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .log-entry {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-entry .time {
+            color: var(--accent-cyan);
+            margin-right: 10px;
+        }
+
+        .log-entry.success {
+            color: #4ade80;
+        }
+
+        .log-entry.error {
+            color: #f87171;
+        }
+
+        .log-entry.info {
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.online {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .status-badge.syncing {
+            background: rgba(255, 150, 0, 0.2);
+            color: #ff9600;
+            border: 1px solid rgba(255, 150, 0, 0.3);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            border-color: #f87171;
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="dot-pattern"></div>
+    <div class="corner-frame top-left"></div>
+    <div class="corner-frame top-right"></div>
+    <div class="corner-frame bottom-left"></div>
+    <div class="corner-frame bottom-right"></div>
+
+    <div class="admin-container">
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h1>Admin Panel</h1>
+                <div class="subtitle">Sky Touchscreen Mindmap</div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form active" id="loginForm">
+                <div class="error-msg" id="loginError">Invalid password</div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="passwordInput" placeholder="Enter admin password" autofocus>
+                </div>
+                <button class="btn" id="loginBtn">Login</button>
+            </div>
+
+            <!-- Admin Content -->
+            <div class="admin-content" id="adminContent">
+                <div class="info-cards">
+                    <div class="info-row">
+                        <div class="info-card">
+                            <div class="label">Version</div>
+                            <div class="value" id="versionDisplay">V. --</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="label">Status</div>
+                            <div class="value"><span class="status-badge online" id="statusBadge">Online</span></div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Last Sync</div>
+                        <div class="value small" id="lastSyncDisplay">--</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">Content Stats</div>
+                        <div class="value small" id="contentStats">-- items, -- images</div>
+                    </div>
+                </div>
+
+                <button class="btn" id="syncBtn">
+                    Sync from Notion
+                </button>
+
+                <div class="sync-log">
+                    <h3>Sync Log</h3>
+                    <div class="log-entries" id="logEntries">
+                        <div class="log-entry info">
+                            <span class="time">--:--:--</span>
+                            Waiting for sync...
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn logout-btn" id="logoutBtn">Logout</button>
+            </div>
+
+            <a href="/" class="back-link">Back to Mindmap</a>
+        </div>
+    </div>
+
+    <script>
+        // Simple hash function for password (not for high security, just basic protection)
+        const hashPassword = (str) => {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString();
+        };
+
+        // Password hash for "k0usk0us!"
+        const VALID_HASH = hashPassword('k0usk0us!');
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const adminContent = document.getElementById('adminContent');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const syncBtn = document.getElementById('syncBtn');
+        const statusBadge = document.getElementById('statusBadge');
+        const logEntries = document.getElementById('logEntries');
+        const versionDisplay = document.getElementById('versionDisplay');
+        const lastSyncDisplay = document.getElementById('lastSyncDisplay');
+        const contentStats = document.getElementById('contentStats');
+
+        // Check if already logged in
+        if (sessionStorage.getItem('adminAuth') === VALID_HASH) {
+            showAdmin();
+        }
+
+        // Login handler
+        loginBtn.addEventListener('click', attemptLogin);
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') attemptLogin();
+        });
+
+        function attemptLogin() {
+            const password = passwordInput.value;
+            if (hashPassword(password) === VALID_HASH) {
+                sessionStorage.setItem('adminAuth', VALID_HASH);
+                loginError.classList.remove('visible');
+                showAdmin();
+            } else {
+                loginError.classList.add('visible');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        function showAdmin() {
+            loginForm.classList.remove('active');
+            adminContent.classList.add('active');
+            loadInfo();
+        }
+
+        // Logout handler
+        logoutBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('adminAuth');
+            adminContent.classList.remove('active');
+            loginForm.classList.add('active');
+            passwordInput.value = '';
+        });
+
+        // Load version and stats
+        async function loadInfo() {
+            try {
+                // Load version
+                const versionRes = await fetch('version.json');
+                if (versionRes.ok) {
+                    const version = await versionRes.json();
+                    versionDisplay.textContent = `V. ${version.major}.${String(version.minor).padStart(2, '0')}`;
+                }
+
+                // Load notion data for stats
+                const dataRes = await fetch('images/notion-data.json');
+                if (dataRes.ok) {
+                    const data = await dataRes.json();
+                    const stats = countItems(data);
+                    contentStats.textContent = `${stats.items} items, ${stats.images} images`;
+                }
+
+                // Load sync log from localStorage
+                loadSyncLog();
+
+            } catch (e) {
+                console.error('Error loading info:', e);
+            }
+        }
+
+        function countItems(node) {
+            let items = 1;
+            let images = (node.screenshots || []).length;
+            if (node.children) {
+                for (const child of node.children) {
+                    const childStats = countItems(child);
+                    items += childStats.items;
+                    images += childStats.images;
+                }
+            }
+            return { items, images };
+        }
+
+        // Sync handler
+        syncBtn.addEventListener('click', async () => {
+            syncBtn.disabled = true;
+            syncBtn.classList.add('syncing');
+            syncBtn.innerHTML = '<span class="spinner"></span>Syncing...';
+            statusBadge.textContent = 'Syncing';
+            statusBadge.className = 'status-badge syncing';
+
+            addLogEntry('Starting Notion sync...', 'info');
+
+            try {
+                const response = await fetch('/.netlify/functions/sync', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'sync' })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    addLogEntry(`Sync triggered successfully`, 'success');
+                    addLogEntry(`Workflow: ${result.workflowRun || 'Started'}`, 'info');
+                    lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
+                    saveSyncLog();
+
+                    // Reload info after a delay
+                    setTimeout(() => {
+                        loadInfo();
+                    }, 5000);
+                } else {
+                    addLogEntry(`Sync failed: ${result.error}`, 'error');
+                }
+            } catch (e) {
+                addLogEntry(`Error: ${e.message}`, 'error');
+            }
+
+            syncBtn.disabled = false;
+            syncBtn.classList.remove('syncing');
+            syncBtn.innerHTML = 'Sync from Notion';
+            statusBadge.textContent = 'Online';
+            statusBadge.className = 'status-badge online';
+        });
+
+        // Log functions
+        function addLogEntry(message, type = 'info') {
+            const now = new Date();
+            const time = now.toLocaleTimeString('de-DE');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="time">${time}</span>${message}`;
+            logEntries.insertBefore(entry, logEntries.firstChild);
+
+            // Keep only last 20 entries
+            while (logEntries.children.length > 20) {
+                logEntries.removeChild(logEntries.lastChild);
+            }
+        }
+
+        function saveSyncLog() {
+            const entries = Array.from(logEntries.children).map(el => ({
+                html: el.innerHTML,
+                className: el.className
+            }));
+            localStorage.setItem('syncLog', JSON.stringify(entries.slice(0, 20)));
+            localStorage.setItem('lastSync', new Date().toISOString());
+        }
+
+        function loadSyncLog() {
+            const lastSync = localStorage.getItem('lastSync');
+            if (lastSync) {
+                lastSyncDisplay.textContent = new Date(lastSync).toLocaleString('de-DE');
+            }
+
+            const savedLog = localStorage.getItem('syncLog');
+            if (savedLog) {
+                try {
+                    const entries = JSON.parse(savedLog);
+                    logEntries.innerHTML = '';
+                    entries.forEach(entry => {
+                        const el = document.createElement('div');
+                        el.className = entry.className;
+                        el.innerHTML = entry.html;
+                        logEntries.appendChild(el);
+                    });
+                } catch (e) {
+                    console.error('Error loading sync log:', e);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
