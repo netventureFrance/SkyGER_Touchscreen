@@ -84,25 +84,38 @@ class NotionDataLoader {
 
     /**
      * Extrahiert Dateien/Screenshots
+     * Unterstützt: Notion-Uploads, externe URLs, und lokale Pfade
      */
     getFiles(prop) {
         if (!prop || !prop.files || prop.files.length === 0) return [];
 
         return prop.files.map(file => {
+            let url = '';
+            let name = file.name || '';
+            let isLocal = false;
+
             if (file.type === 'file') {
-                return {
-                    name: file.name,
-                    url: file.file.url,
-                    expiry: file.file.expiry_time
-                };
+                // Notion-Upload (temporäre URL)
+                url = file.file.url;
             } else if (file.type === 'external') {
-                return {
-                    name: file.name,
-                    url: file.external.url,
-                    expiry: null
-                };
+                url = file.external.url;
+
+                // Prüfen ob es ein lokaler Pfad ist (beginnt mit / oder images/)
+                if (url.startsWith('/') || url.startsWith('images/')) {
+                    isLocal = true;
+                    // Sicherstellen dass der Pfad mit / beginnt
+                    if (!url.startsWith('/')) {
+                        url = '/' + url;
+                    }
+                }
             }
-            return null;
+
+            return {
+                name: name,
+                url: url,
+                isLocal: isLocal,
+                expiry: file.type === 'file' ? file.file.expiry_time : null
+            };
         }).filter(Boolean);
     }
 
