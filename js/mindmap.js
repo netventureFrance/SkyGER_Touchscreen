@@ -325,12 +325,15 @@ class MindmapView {
 
         // Estimate parent width based on text length
         const parentText = parentNode.label || '';
+        const hasChildren = parentNode.children && parentNode.children.length > 0;
         let parentWidth;
         if (parentLevel === 0) {
             parentWidth = 180; // Root circle
         } else {
-            // Estimate: ~8px per character + padding
-            parentWidth = Math.max(100, parentText.length * 8 + 80);
+            // Text width + padding + count badge + chevron
+            // ~10px per char + 40px padding + 60px for badge/chevron
+            parentWidth = parentText.length * 10 + 100;
+            if (hasChildren) parentWidth += 60; // Badge and chevron
         }
 
         // Berechne Höhe jedes Kindes (inkl. Subtree)
