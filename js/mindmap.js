@@ -192,13 +192,16 @@ class MindmapView {
      * Node rendern
      */
     renderNode(node, x, y, level, parentPos, startAngle, endAngle) {
-        // Position speichern
-        this.nodePositions.set(node.id, { x, y, level, parentPos });
+        // Generate unique ID to avoid duplicates in Map
+        const uniqueId = `${node.id}-${this.nodePositions.size}`;
+
+        // Position speichern with unique ID
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
         nodeEl.className = `mindmap-node level-${level} ${level === 0 ? 'root' : ''}`;
-        nodeEl.dataset.id = node.id;
+        nodeEl.dataset.id = uniqueId;
         nodeEl.style.left = `${x}px`;
         nodeEl.style.top = `${y}px`;
         nodeEl.style.animationDelay = `${level * 0.1}s`;
