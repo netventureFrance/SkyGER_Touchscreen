@@ -46,6 +46,9 @@ class MindmapView {
     }
 
     async init() {
+        // Load version number
+        await this.loadVersion();
+
         // Try to load notion-data.json
         await this.loadNotionData();
 
@@ -64,6 +67,22 @@ class MindmapView {
         // Zeit
         this.updateTime();
         setInterval(() => this.updateTime(), 1000);
+    }
+
+    async loadVersion() {
+        try {
+            const response = await fetch('version.json');
+            if (response.ok) {
+                const version = await response.json();
+                const versionStr = `V. ${version.major}.${String(version.minor).padStart(2, '0')}`;
+                const versionEl = document.getElementById('versionNumber');
+                if (versionEl) {
+                    versionEl.textContent = versionStr;
+                }
+            }
+        } catch (e) {
+            console.log('Could not load version.json');
+        }
     }
 
     async loadNotionData() {
@@ -374,7 +393,7 @@ class MindmapView {
             this.updateActiveHighlight(uniqueId);
         }
 
-        this.showDetail(node);
+        this.showDetail(node, uniqueId);
     }
 
     /**
@@ -406,7 +425,10 @@ class MindmapView {
     /**
      * Detail Panel anzeigen
      */
-    showDetail(node) {
+    showDetail(node, currentUniqueId = null) {
+        // Store reference to current node for child navigation
+        this.currentDetailNode = node;
+
         let html = `<h2>${node.label}</h2>`;
 
         // Screenshots Carousel FIRST
@@ -454,7 +476,7 @@ class MindmapView {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
             node.children.forEach(child => {
                 html += `
-                    <div class="panel-child-item" data-id="${child.id}">
+                    <div class="panel-child-item" data-id="${child.id}" data-label="${child.label}">
                         <span>${child.label}</span>
                     </div>
                 `;
@@ -465,19 +487,83 @@ class MindmapView {
         this.panelContent.innerHTML = html;
         this.detailPanel.classList.add('open');
 
+        // Highlight active sidebar item if matches current node
+        this.updateSidebarHighlight(currentUniqueId);
+
         // Re-center mindmap in remaining space after sidebar animation
         setTimeout(() => this.centerView(), 350);
 
         // Carousel Event Handlers
         this.setupCarousel();
 
-        // Child click handler
+        // Child click handler - navigate to child node
         this.panelContent.querySelectorAll('.panel-child-item').forEach(item => {
             item.addEventListener('click', () => {
-                this.expandedNodes.add(node.id);
-                this.render();
+                const childId = item.dataset.id;
+                const child = node.children.find(c => c.id === childId);
+                if (child) {
+                    this.navigateToNode(node, child);
+                }
             });
         });
+    }
+
+    /**
+     * Navigate to a child node from sidebar click
+     */
+    navigateToNode(parentNode, childNode) {
+        // Expand parent to show child
+        this.expandedNodes.add(parentNode.id);
+
+        // Re-render to create the child nodes in canvas
+        this.render();
+
+        // Find the child's uniqueId in the rendered nodes
+        const childUniqueId = this.findUniqueIdByNodeId(childNode.id);
+        if (childUniqueId) {
+            // Update active node
+            this.activeNodeId = childUniqueId;
+
+            // Highlight in canvas
+            this.updateActiveHighlight(childUniqueId);
+
+            // Show child's detail panel
+            this.showDetail(childNode, childUniqueId);
+
+            // Center on the child node
+            setTimeout(() => this.centerView(), 100);
+        }
+    }
+
+    /**
+     * Find uniqueId by node.id in nodePositions
+     */
+    findUniqueIdByNodeId(nodeId) {
+        for (const [uniqueId, pos] of this.nodePositions) {
+            if (uniqueId.startsWith(nodeId + '-')) {
+                return uniqueId;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Update sidebar highlight to match active node
+     */
+    updateSidebarHighlight(uniqueId) {
+        // Remove all active states from sidebar items
+        this.panelContent.querySelectorAll('.panel-child-item.active').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // If we have a uniqueId, try to highlight matching sidebar item
+        if (uniqueId) {
+            const nodeId = uniqueId.split('-')[0];
+            const sidebarItem = this.panelContent.querySelector(`.panel-child-item[data-id="${nodeId}"]`);
+            if (sidebarItem) {
+                sidebarItem.classList.add('active');
+            }
+        }
     }
 
     /**
