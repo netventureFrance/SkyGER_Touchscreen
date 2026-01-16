@@ -167,6 +167,28 @@ const TOOLS = [
       required: ['page_id', 'content'],
     },
   },
+  {
+    name: 'notion_create_database',
+    description: 'Erstellt eine neue Datenbank in Notion',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        parent_page_id: {
+          type: 'string',
+          description: 'ID der übergeordneten Seite',
+        },
+        title: {
+          type: 'string',
+          description: 'Titel der Datenbank',
+        },
+        properties: {
+          type: 'object',
+          description: 'Schema der Datenbank-Eigenschaften',
+        },
+      },
+      required: ['parent_page_id', 'title'],
+    },
+  },
 ];
 
 // ============================================
@@ -334,6 +356,45 @@ async function handleAppendBlocks(pageId, content) {
   };
 }
 
+async function handleCreateDatabase(parentPageId, title, customProperties) {
+  // Default properties for SkyGER Touchscreen tree view
+  const defaultProperties = {
+    Name: { title: {} },
+    Description: { rich_text: {} },
+    Milestones: { rich_text: {} },
+    Days: { number: { format: 'number' } },
+    Status: {
+      select: {
+        options: [
+          { name: 'Draft', color: 'gray' },
+          { name: 'In Progress', color: 'yellow' },
+          { name: 'Complete', color: 'green' },
+        ],
+      },
+    },
+    Order: { number: { format: 'number' } },
+    Icon: { rich_text: {} },
+    VideoURL: { url: {} },
+    Screenshot: { files: {} },
+  };
+
+  const properties = customProperties || defaultProperties;
+
+  const response = await notion.databases.create({
+    parent: { page_id: formatId(parentPageId) },
+    title: [{ type: 'text', text: { content: title } }],
+    properties: properties,
+  });
+
+  return {
+    id: response.id,
+    url: response.url,
+    title: title,
+    created: true,
+    properties: Object.keys(response.properties),
+  };
+}
+
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
@@ -491,6 +552,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         break;
       case 'notion_append_blocks':
         result = await handleAppendBlocks(args.page_id, args.content);
+        break;
+      case 'notion_create_database':
+        result = await handleCreateDatabase(args.parent_page_id, args.title, args.properties);
         break;
       default:
         throw new Error(`Unknown tool: ${name}`);
