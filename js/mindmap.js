@@ -100,50 +100,50 @@ class MindmapView {
 
     /**
      * Datenstruktur aufbauen
+     * Verwendet Notion-Daten wenn verfügbar, sonst SKY_DATA
      */
     buildData() {
+        // Wenn Notion-Daten geladen wurden, diese verwenden
+        if (this.notionData) {
+            return this.convertNotionToMindmap(this.notionData);
+        }
+
+        // Fallback: Statische Daten - direkt aus mainMenu
         return {
             id: 'root',
-            label: 'Sky Touchscreen',
+            label: 'Sky Sport Design Bundesliga',
             icon: 'grid',
-            description: 'Komplettes RCS Touch System',
-            children: [
-                {
-                    id: 'rcs-touch',
-                    label: 'RCS Touch',
-                    icon: 'layout',
-                    description: 'Hauptsystem für Live-TV',
-                    children: SKY_DATA.mainMenu.slice(0, 5) // Erste 5 Items
-                },
-                {
-                    id: 'rcs-tools',
-                    label: 'Tools',
-                    icon: 'tool',
-                    description: 'Weitere RCS Tools',
-                    children: SKY_DATA.mainMenu.slice(5) // Rest der Items
-                },
-                {
-                    id: 'shows',
-                    label: 'Shows',
-                    icon: 'flag',
-                    description: 'Wettbewerbe',
-                    children: SKY_DATA.shows
-                },
-                {
-                    id: 'aki-paint',
-                    label: 'AKI Paint',
-                    icon: 'edit-2',
-                    description: SKY_DATA.akiPaint.description,
-                    children: SKY_DATA.akiPaint.sports
-                },
-                {
-                    id: 'data-sources',
-                    label: 'Daten',
-                    icon: 'database',
-                    description: 'Datenquellen',
-                    children: SKY_DATA.dataSources
-                }
-            ]
+            description: 'Komplettes RCS Touch System für Live-TV Produktion',
+            children: SKY_DATA.mainMenu
+        };
+    }
+
+    /**
+     * Konvertiert Notion-Daten zum Mindmap-Format
+     */
+    convertNotionToMindmap(notionItem) {
+        // Map emoji to icon name
+        const emojiToIcon = {
+            '📱': 'smartphone',
+            '🎮': 'grid',
+            '⚽': 'target',
+            '📊': 'bar-chart',
+            '📺': 'video',
+            '🏆': 'trophy',
+            '📁': 'folder',
+            '📄': 'file',
+            '🗂️': 'database',
+            '💾': 'database'
+        };
+
+        const icon = emojiToIcon[notionItem.icon] || notionItem.icon || 'circle';
+
+        return {
+            id: notionItem.id || notionItem.notionId,
+            label: notionItem.label || 'Untitled',
+            icon: icon,
+            description: notionItem.description || '',
+            children: (notionItem.children || []).map(child => this.convertNotionToMindmap(child))
         };
     }
 
@@ -370,18 +370,57 @@ class MindmapView {
         let html = `<h2>${node.label}</h2>`;
 
         if (node.description) {
-            html += `<p>${node.description}</p>`;
+            html += `<p class="panel-description">${node.description}</p>`;
         }
 
-        html += `
-            <h3>Informationen</h3>
-            <ul>
-                <li><strong>ID:</strong> ${node.id}</li>
-                <li><strong>Icon:</strong> ${node.icon}</li>
-                ${node.children ? `<li><strong>Unterelemente:</strong> ${node.children.length}</li>` : ''}
-            </ul>
-        `;
+        // Screenshots Carousel
+        const screenshots = node.screenshots || [];
+        if (screenshots.length > 0) {
+            html += `
+                <div class="screenshot-carousel" data-current="0">
+                    <div class="carousel-container">
+                        <div class="carousel-slides">
+                            ${screenshots.map((img, i) => `
+                                <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-index="${i}">
+                                    <img src="${img.url || img}" alt="${img.name || node.label}" loading="lazy">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ${screenshots.length > 1 ? `
+                        <button class="carousel-btn carousel-prev" title="Vorheriges Bild">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn carousel-next" title="Nächstes Bild">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                        <div class="carousel-dots">
+                            ${screenshots.map((_, i) => `
+                                <button class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        } else {
+            // Placeholder wenn keine Screenshots vorhanden
+            html += `
+                <div class="screenshot-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Kein Screenshot vorhanden</span>
+                </div>
+            `;
+        }
 
+        // Kinder anzeigen
         if (node.children && node.children.length > 0) {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
             node.children.forEach(child => {
@@ -398,6 +437,9 @@ class MindmapView {
         this.panelContent.innerHTML = html;
         this.detailPanel.classList.add('open');
 
+        // Carousel Event Handlers
+        this.setupCarousel();
+
         // Child click handler
         this.panelContent.querySelectorAll('.panel-child-item').forEach(item => {
             item.addEventListener('click', () => {
@@ -405,6 +447,142 @@ class MindmapView {
                 this.render();
             });
         });
+    }
+
+    /**
+     * Carousel Setup
+     */
+    setupCarousel() {
+        const carousel = this.panelContent.querySelector('.screenshot-carousel');
+        if (!carousel) return;
+
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+
+        if (slides.length <= 1) return;
+
+        let currentIndex = 0;
+
+        const showSlide = (index) => {
+            // Wrap around
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+
+            currentIndex = index;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+
+        // Keyboard navigation
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) showSlide(currentIndex + 1);
+                else showSlide(currentIndex - 1);
+            }
+        }, { passive: true });
+
+        // Click to open lightbox
+        slides.forEach((slide) => {
+            const img = slide.querySelector('img');
+            if (img) {
+                img.addEventListener('click', () => {
+                    this.openLightbox(img.src, img.alt);
+                });
+            }
+        });
+    }
+
+    /**
+     * Lightbox öffnen
+     */
+    openLightbox(src, alt) {
+        // Create lightbox if it doesn't exist
+        let lightbox = document.getElementById('imageLightbox');
+        if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'imageLightbox';
+            lightbox.className = 'image-lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-backdrop"></div>
+                <div class="lightbox-content">
+                    <img src="" alt="">
+                    <div class="lightbox-caption"></div>
+                    <button class="lightbox-close" title="Schließen (ESC)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+
+            // Close handlers
+            lightbox.querySelector('.lightbox-backdrop').addEventListener('click', () => this.closeLightbox());
+            lightbox.querySelector('.lightbox-close').addEventListener('click', () => this.closeLightbox());
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                    this.closeLightbox();
+                }
+            });
+        }
+
+        // Set content and open
+        const img = lightbox.querySelector('img');
+        const caption = lightbox.querySelector('.lightbox-caption');
+
+        img.src = src;
+        img.alt = alt || '';
+        caption.textContent = alt || '';
+
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Lightbox schließen
+     */
+    closeLightbox() {
+        const lightbox = document.getElementById('imageLightbox');
+        if (lightbox) {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
     }
 
     closePanel() {

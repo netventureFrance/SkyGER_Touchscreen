@@ -4,13 +4,17 @@
  */
 
 const SKY_DATA = {
-    // Hauptmenü (Radial)
+    // Hauptmenü - Reihenfolge wie in Notion (Sky Sport Design Bundesliga)
     mainMenu: [
         {
             id: 'spiele',
             label: 'Spiele',
             icon: 'calendar',
             description: 'Spielübersicht, Statistiken und Live-Daten',
+            screenshots: [
+                { url: 'images/screenshots/spiele/spiele-1.png', name: 'Spielübersicht' },
+                { url: 'images/screenshots/spiele/spiele-2.png', name: 'Spieldetails' }
+            ],
             children: [
                 {
                     id: 'spielstatistik',
@@ -44,6 +48,9 @@ const SKY_DATA = {
             label: 'Tabelle',
             icon: 'list',
             description: 'Liga-Tabelle, sortierbar nach verschiedenen Kriterien',
+            screenshots: [
+                { url: 'images/screenshots/tabelle/tabelle-1.png', name: 'Liga-Tabelle' }
+            ],
             children: [
                 { id: 'tabelle-sp', label: 'Nach Spielen', icon: 'hash', description: 'Sortiert nach Anzahl Spiele' },
                 { id: 'tabelle-s', label: 'Nach Siegen', icon: 'award', description: 'Sortiert nach Siegen' },
@@ -57,7 +64,7 @@ const SKY_DATA = {
         },
         {
             id: 'liga-info',
-            label: 'Liga Info',
+            label: 'Liga Information',
             icon: 'info',
             description: 'Liga-Informationen, Top Teams und Top Spieler',
             children: [
@@ -102,10 +109,21 @@ const SKY_DATA = {
             ]
         },
         {
+            id: 'telestrator',
+            label: 'Telestrator',
+            icon: 'edit-3',
+            description: 'Zeichenwerkzeug für Live-Analyse'
+        },
+        {
             id: 'analyse',
             label: 'Analyse',
             icon: 'pie-chart',
             description: 'Analyse-Tools für detaillierte Spielauswertung',
+            screenshots: [
+                { url: 'images/screenshots/analyse/analyse-1.png', name: 'Ballbesitz' },
+                { url: 'images/screenshots/analyse/analyse-2.png', name: 'Heatmap' },
+                { url: 'images/screenshots/analyse/analyse-3.png', name: 'Passmap' }
+            ],
             children: [
                 {
                     id: 'ballbesitz',
@@ -169,7 +187,11 @@ const SKY_DATA = {
             id: 'multiview',
             label: 'Multiview',
             icon: 'grid',
-            description: '4 Live-Input Fenster, Full HD, einzeln vergrößerbar'
+            description: '4 Live-Input Fenster, Full HD, einzeln vergrößerbar',
+            screenshots: [
+                { url: 'images/screenshots/multiview/multiview-1.png', name: 'Multiview 4-fach' },
+                { url: 'images/screenshots/multiview/multiview-2.png', name: 'Multiview vergrößert' }
+            ]
         },
         {
             id: 'live',
@@ -190,10 +212,14 @@ const SKY_DATA = {
             description: 'Tweet-Anzeige groß/klein animiert, Web-App gesteuert'
         },
         {
-            id: 'telestrator',
-            label: 'Telestrator',
-            icon: 'edit-3',
-            description: 'Zeichenwerkzeug (nicht mehr aktiv)'
+            id: 'sidebar',
+            label: 'Sidebar',
+            icon: 'sidebar',
+            description: 'Seitenleiste mit Einstellungen und Bookmarks',
+            children: [
+                { id: 'sidebar-settings', label: 'Einstellungen', icon: 'settings', description: 'Konfigurationsoptionen' },
+                { id: 'sidebar-bookmarks', label: 'Bookmarks', icon: 'bookmark', description: 'Gespeicherte Ansichten' }
+            ]
         }
     ],
 
@@ -322,7 +348,10 @@ const ICONS = {
     'database': '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
     'flag': '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>',
     'trophy': '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
-    'edit-2': '<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>'
+    'edit-2': '<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>',
+    'sidebar': '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/>',
+    'bookmark': '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+    'settings': '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>'
 };
 
 // Export für Module

@@ -202,8 +202,129 @@ class NotionDataLoader {
 
 // Globale Instanz mit Datenbank-ID
 // Die ID wird aus dem Environment oder direkt gesetzt
+// Workspace Page ID (Yan): 2e9f99a2be2281379653c6ba4b29400f
 const NOTION_DATABASE_ID = '2eaf99a2-be22-816d-8d01-d501ef32cc32';
+const NOTION_PAGE_ID = '2e9f99a2be2281379653c6ba4b29400f';
+
+// Data loader with fallback to page hierarchy
 const notionDataLoader = new NotionDataLoader(NOTION_DATABASE_ID);
+
+/**
+ * PageHierarchyLoader - Lädt Daten aus Notion Seitenhierarchie statt Datenbank
+ */
+class PageHierarchyLoader {
+    constructor(pageId) {
+        this.pageId = pageId;
+        this.apiBase = '/api';
+        this.cache = null;
+        this.cacheTime = null;
+        this.cacheDuration = 5 * 60 * 1000; // 5 Minuten
+    }
+
+    /**
+     * Lädt die Seitenhierarchie rekursiv
+     */
+    async loadAll() {
+        // Cache prüfen
+        if (this.cache && this.cacheTime && (Date.now() - this.cacheTime < this.cacheDuration)) {
+            return this.cache;
+        }
+
+        try {
+            const tree = await this.loadPage(this.pageId, 1);
+            this.cache = tree ? [tree] : [];
+            this.cacheTime = Date.now();
+            return this.cache;
+        } catch (error) {
+            console.error('Fehler beim Laden der Notion-Seitenhierarchie:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * Lädt eine einzelne Seite mit ihren Kindern
+     */
+    async loadPage(pageId, level) {
+        try {
+            // Hole Seiten-Info
+            const pageResponse = await fetch(`${this.apiBase}/page?id=${pageId}`);
+            if (!pageResponse.ok) throw new Error(`HTTP ${pageResponse.status}`);
+            const pageData = await pageResponse.json();
+
+            // Hole Kinder
+            const childrenResponse = await fetch(`${this.apiBase}/children?id=${pageId}`);
+            if (!childrenResponse.ok) throw new Error(`HTTP ${childrenResponse.status}`);
+            const childrenData = await childrenResponse.json();
+
+            // Konvertiere zu internem Format
+            const item = {
+                id: pageId,
+                notionId: pageId,
+                label: this.getTitle(pageData),
+                description: '',
+                icon: pageData.icon?.emoji || 'circle',
+                ebene: level,
+                reihenfolge: 0,
+                status: 'Aktiv',
+                children: []
+            };
+
+            // Lade Kinder rekursiv (max 3 Ebenen tief)
+            if (childrenData.children && level < 4) {
+                for (const child of childrenData.children) {
+                    if (child.type === 'child_page') {
+                        const childItem = await this.loadPage(child.id, level + 1);
+                        if (childItem) {
+                            childItem.label = child.child_page.title;
+                            item.children.push(childItem);
+                        }
+                    } else if (child.type === 'child_database') {
+                        // Datenbank gefunden - als Knoten hinzufügen
+                        item.children.push({
+                            id: child.id,
+                            notionId: child.id,
+                            label: child.child_database.title,
+                            description: 'Notion Datenbank',
+                            icon: 'database',
+                            ebene: level + 1,
+                            status: 'Datenbank',
+                            children: []
+                        });
+                    }
+                }
+            }
+
+            return item;
+        } catch (error) {
+            console.error(`Fehler beim Laden der Seite ${pageId}:`, error);
+            return null;
+        }
+    }
+
+    /**
+     * Extrahiert den Titel aus Seitendaten
+     */
+    getTitle(page) {
+        if (page.properties?.title?.title) {
+            return page.properties.title.title.map(t => t.plain_text).join('');
+        }
+        if (page.properties?.Name?.title) {
+            return page.properties.Name.title.map(t => t.plain_text).join('');
+        }
+        return 'Untitled';
+    }
+
+    /**
+     * Cache leeren
+     */
+    clearCache() {
+        this.cache = null;
+        this.cacheTime = null;
+    }
+}
+
+// Page Hierarchy Loader für Yan's Workspace
+const notionPageLoader = new PageHierarchyLoader(NOTION_PAGE_ID);
 
 // Export für Module
 if (typeof module !== 'undefined' && module.exports) {
