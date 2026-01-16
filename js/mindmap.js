@@ -369,9 +369,28 @@ class MindmapView {
                 this.expandedNodes.add(node.id);
             }
             this.render();
+        } else {
+            // For leaf nodes, just update the active highlighting
+            this.updateActiveHighlight(uniqueId);
         }
 
         this.showDetail(node);
+    }
+
+    /**
+     * Update active highlight without full re-render
+     */
+    updateActiveHighlight(uniqueId) {
+        // Remove active from all nodes
+        this.nodesContainer.querySelectorAll('.mindmap-node-box.active').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Add active to the selected node
+        const nodeEl = this.nodesContainer.querySelector(`[data-id="${uniqueId}"] .mindmap-node-box`);
+        if (nodeEl) {
+            nodeEl.classList.add('active');
+        }
     }
 
     /**
