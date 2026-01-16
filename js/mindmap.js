@@ -244,11 +244,6 @@ class MindmapView {
             this.handleNodeClick(node);
         });
 
-        boxEl.addEventListener('mouseenter', (e) => {
-            if (node.description) this.showTooltip(node.description, e);
-        });
-
-        boxEl.addEventListener('mouseleave', () => this.hideTooltip());
 
         nodeEl.appendChild(boxEl);
         this.nodesContainer.appendChild(nodeEl);
@@ -393,11 +388,7 @@ class MindmapView {
     showDetail(node) {
         let html = `<h2>${node.label}</h2>`;
 
-        if (node.description) {
-            html += `<p class="panel-description">${node.description}</p>`;
-        }
-
-        // Screenshots Carousel
+        // Screenshots Carousel FIRST
         const screenshots = node.screenshots || [];
         if (screenshots.length > 0) {
             html += `
@@ -431,7 +422,11 @@ class MindmapView {
                 </div>
             `;
         }
-        // No placeholder when no screenshots - just hide the section
+
+        // Description AFTER screenshots
+        if (node.description) {
+            html += `<p class="panel-description">${node.description}</p>`;
+        }
 
         // Kinder anzeigen
         if (node.children && node.children.length > 0) {
