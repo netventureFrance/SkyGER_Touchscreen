@@ -1047,11 +1047,106 @@
     height: 22px;
 }
 
+/* Lightbox Carousel */
+.lightbox-carousel {
+    position: relative;
+    max-width: 95vw;
+    max-height: 80vh;
+}
+
+.lightbox-slide {
+    display: none;
+}
+
+.lightbox-slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-slide img {
+    max-width: 95vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6),
+                0 0 150px rgba(0, 150, 255, 0.15);
+    border: 2px solid rgba(0, 150, 255, 0.3);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 30, 60, 0.8);
+    border: 1px solid var(--accent-cyan);
+    border-radius: 50%;
+    color: var(--accent-cyan);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(0, 60, 100, 0.9);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 25px var(--glow-color);
+}
+
+.lightbox-prev svg,
+.lightbox-next svg {
+    width: 24px;
+    height: 24px;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.lightbox-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0, 168, 255, 0.3);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.lightbox-dot:hover {
+    background: rgba(0, 168, 255, 0.5);
+}
+
+.lightbox-dot.active {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
 /* Responsive Lightbox */
 @media (max-width: 768px) {
-    .lightbox-content img {
+    .lightbox-slide img {
         max-width: 100vw;
-        max-height: 80vh;
+        max-height: 75vh;
         border-radius: 0;
     }
 
@@ -1065,5 +1160,34 @@
         right: 10px;
         width: 40px;
         height: 40px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+    .lightbox-prev svg,
+    .lightbox-next svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lightbox-dots {
+        gap: 8px;
+    }
+
+    .lightbox-dot {
+        width: 10px;
+        height: 10px;
     }
 }

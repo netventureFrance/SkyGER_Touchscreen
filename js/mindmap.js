@@ -501,61 +501,126 @@ class MindmapView {
             }
         }, { passive: true });
 
-        // Click to open lightbox
-        slides.forEach((slide) => {
+        // Collect all images for lightbox carousel
+        const allImages = [];
+        slides.forEach((slide, i) => {
             const img = slide.querySelector('img');
             if (img) {
+                allImages.push({ src: img.src, alt: img.alt });
                 img.addEventListener('click', () => {
-                    this.openLightbox(img.src, img.alt);
+                    this.openLightbox(allImages, i);
                 });
             }
         });
     }
 
     /**
-     * Lightbox öffnen
+     * Lightbox mit Carousel öffnen
      */
-    openLightbox(src, alt) {
-        // Create lightbox if it doesn't exist
+    openLightbox(images, startIndex = 0) {
+        // Remove existing lightbox
         let lightbox = document.getElementById('imageLightbox');
-        if (!lightbox) {
-            lightbox = document.createElement('div');
-            lightbox.id = 'imageLightbox';
-            lightbox.className = 'image-lightbox';
-            lightbox.innerHTML = `
-                <div class="lightbox-backdrop"></div>
-                <div class="lightbox-content">
-                    <img src="" alt="">
-                    <div class="lightbox-caption"></div>
-                    <button class="lightbox-close" title="Schließen (ESC)">
+        if (lightbox) {
+            lightbox.remove();
+        }
+
+        // Create new lightbox with carousel if multiple images
+        lightbox = document.createElement('div');
+        lightbox.id = 'imageLightbox';
+        lightbox.className = 'image-lightbox';
+
+        const hasMultiple = images.length > 1;
+
+        lightbox.innerHTML = `
+            <div class="lightbox-backdrop"></div>
+            <div class="lightbox-content">
+                <div class="lightbox-carousel">
+                    ${images.map((img, i) => `
+                        <div class="lightbox-slide ${i === startIndex ? 'active' : ''}" data-index="${i}">
+                            <img src="${img.src}" alt="${img.alt || ''}">
+                        </div>
+                    `).join('')}
+                </div>
+                ${hasMultiple ? `
+                    <button class="lightbox-prev" title="Vorheriges Bild">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
+                            <polyline points="15 18 9 12 15 6"/>
                         </svg>
                     </button>
-                </div>
-            `;
-            document.body.appendChild(lightbox);
+                    <button class="lightbox-next" title="Nächstes Bild">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                ` : ''}
+                <div class="lightbox-caption">${images[startIndex]?.alt || ''}</div>
+                ${hasMultiple ? `
+                    <div class="lightbox-dots">
+                        ${images.map((_, i) => `
+                            <button class="lightbox-dot ${i === startIndex ? 'active' : ''}" data-index="${i}"></button>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                <button class="lightbox-close" title="Schließen (ESC)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        `;
 
-            // Close handlers
-            lightbox.querySelector('.lightbox-backdrop').addEventListener('click', () => this.closeLightbox());
-            lightbox.querySelector('.lightbox-close').addEventListener('click', () => this.closeLightbox());
+        document.body.appendChild(lightbox);
 
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-                    this.closeLightbox();
-                }
+        // State
+        let currentIndex = startIndex;
+        const slides = lightbox.querySelectorAll('.lightbox-slide');
+        const dots = lightbox.querySelectorAll('.lightbox-dot');
+        const caption = lightbox.querySelector('.lightbox-caption');
+
+        const showSlide = (index) => {
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+            currentIndex = index;
+
+            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            caption.textContent = images[index]?.alt || '';
+        };
+
+        // Navigation handlers
+        if (hasMultiple) {
+            lightbox.querySelector('.lightbox-prev').addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(currentIndex - 1);
+            });
+            lightbox.querySelector('.lightbox-next').addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(currentIndex + 1);
+            });
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showSlide(i);
+                });
             });
         }
 
-        // Set content and open
-        const img = lightbox.querySelector('img');
-        const caption = lightbox.querySelector('.lightbox-caption');
+        // Close handlers
+        lightbox.querySelector('.lightbox-backdrop').addEventListener('click', () => this.closeLightbox());
+        lightbox.querySelector('.lightbox-close').addEventListener('click', () => this.closeLightbox());
 
-        img.src = src;
-        img.alt = alt || '';
-        caption.textContent = alt || '';
+        // Keyboard navigation
+        const keyHandler = (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') this.closeLightbox();
+            if (e.key === 'ArrowLeft' && hasMultiple) showSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight' && hasMultiple) showSlide(currentIndex + 1);
+        };
+        document.addEventListener('keydown', keyHandler);
+        lightbox._keyHandler = keyHandler;
 
+        // Open
         lightbox.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
@@ -568,6 +633,10 @@ class MindmapView {
         if (lightbox) {
             lightbox.classList.remove('open');
             document.body.style.overflow = '';
+            // Clean up key handler
+            if (lightbox._keyHandler) {
+                document.removeEventListener('keydown', lightbox._keyHandler);
+            }
         }
     }
 
