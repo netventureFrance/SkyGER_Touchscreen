@@ -218,11 +218,11 @@ class MindmapView {
         // First pass: render nodes with temporary positions
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-        // Second pass: measure actual widths and reposition
-        requestAnimationFrame(() => {
+        // Second pass: measure actual widths and reposition (after DOM renders)
+        setTimeout(() => {
             this.measureAndReposition();
             this.drawLines();
-        });
+        }, 50);
     }
 
     /**
@@ -364,22 +364,6 @@ class MindmapView {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
-        // Fixed gap between nodes
-        const gap = 80;
-
-        // Estimate parent width based on text length
-        const parentText = parentNode.label || '';
-        const hasChildren = parentNode.children && parentNode.children.length > 0;
-        let parentWidth;
-        if (parentLevel === 0) {
-            parentWidth = 180; // Root circle
-        } else {
-            // Text width + padding + count badge + chevron
-            // ~10px per char + 40px padding + 60px for badge/chevron
-            parentWidth = parentText.length * 10 + 100;
-            if (hasChildren) parentWidth += 60; // Badge and chevron
-        }
-
         // Berechne Höhe jedes Kindes (inkl. Subtree)
         const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
         const totalHeight = childHeights.reduce((sum, h) => sum + h, 0);
@@ -387,8 +371,8 @@ class MindmapView {
         // Start Y-Position (zentriert um Parent)
         let currentY = parentY - totalHeight / 2;
 
-        // Child X = parent X + parent width + gap
-        const childX = parentX + parentWidth + gap;
+        // Initial X (will be recalculated in measureAndReposition)
+        const childX = parentX + 350;
 
         children.forEach((child, index) => {
             // Y-Position: Mitte des zugewiesenen Bereichs
