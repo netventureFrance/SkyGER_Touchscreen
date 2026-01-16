@@ -214,17 +214,16 @@ class MindmapView {
             boxEl.classList.add('expanded');
         }
 
-        // Icon
-        const iconEl = document.createElement('div');
-        iconEl.className = 'node-icon';
-        iconEl.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[node.icon] || ICONS['circle']}</svg>`;
+        // Highlight active node
+        if (this.activeNodeId === node.id) {
+            boxEl.classList.add('active');
+        }
 
-        // Label
+        // Label (no icon)
         const labelEl = document.createElement('span');
         labelEl.className = 'node-label';
         labelEl.textContent = node.label;
 
-        boxEl.appendChild(iconEl);
         boxEl.appendChild(labelEl);
 
         // Count Badge (wenn Kinder vorhanden)
@@ -437,7 +436,6 @@ class MindmapView {
             node.children.forEach(child => {
                 html += `
                     <div class="panel-child-item" data-id="${child.id}">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[child.icon] || ICONS['circle']}</svg>
                         <span>${child.label}</span>
                     </div>
                 `;
