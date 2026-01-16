@@ -350,12 +350,14 @@
 
 /* Node Count Badge */
 .mindmap-node .node-count {
-    font-size: 10px;
-    color: var(--text-dim);
-    background: rgba(0, 168, 255, 0.2);
-    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(0, 40, 80, 0.9);
+    padding: 3px 8px;
     border-radius: 10px;
-    margin-left: 5px;
+    margin-left: 8px;
+    border: 1px solid rgba(0, 200, 255, 0.5);
 }
 
 /* Toggle Indicator */
