@@ -409,10 +409,13 @@ class MindmapView {
         let pathsHtml = '';
 
         this.nodePositions.forEach((pos, nodeId) => {
-            if (pos.parentPos) {
+            if (pos.parentId) {
+                // Get CURRENT parent position (after repositioning)
+                const parentPos = this.nodePositions.get(pos.parentId);
+                if (!parentPos) return;
+
                 // Get actual parent node width from DOM
                 const parentNodeEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-                const childNodeEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
 
                 let parentWidth = 160; // Default fallback
                 if (parentNodeEl) {
@@ -420,8 +423,8 @@ class MindmapView {
                 }
 
                 // Line starts at right edge of parent, ends at left edge of child
-                const startX = pos.parentPos.x + parentWidth;
-                const startY = pos.parentPos.y;
+                const startX = parentPos.x + parentWidth;
+                const startY = parentPos.y;
                 const endX = pos.x;
                 const endY = pos.y;
 
