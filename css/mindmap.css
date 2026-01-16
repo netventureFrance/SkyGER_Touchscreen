@@ -376,14 +376,6 @@
     transform: rotate(90deg);
 }
 
-/* Left side nodes - flip icon direction */
-.mindmap-node.left .node-toggle {
-    transform: rotate(180deg);
-}
-
-.mindmap-node.left .mindmap-node-box.expanded .node-toggle {
-    transform: rotate(270deg);
-}
 
 /* ============================================
    DETAIL PANEL (same as tree)
@@ -917,31 +909,6 @@
     box-shadow: 0 0 10px var(--glow-color);
 }
 
-/* Screenshot Placeholder */
-.screenshot-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 40px 20px;
-    background: rgba(0, 20, 40, 0.3);
-    border: 1px dashed var(--border-color);
-    border-radius: 10px;
-    margin: 15px 0;
-}
-
-.screenshot-placeholder svg {
-    width: 48px;
-    height: 48px;
-    color: var(--text-dim);
-    opacity: 0.5;
-}
-
-.screenshot-placeholder span {
-    font-size: 13px;
-    color: var(--text-dim);
-}
 
 /* Panel Description */
 .panel-description {

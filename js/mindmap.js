@@ -181,11 +181,6 @@ class MindmapView {
         nodeEl.style.top = `${y}px`;
         nodeEl.style.animationDelay = `${level * 0.1}s`;
 
-        // Seite bestimmen (links oder rechts vom Center)
-        if (x < this.centerX) {
-            nodeEl.classList.add('left');
-        }
-
         // Node Box
         const boxEl = document.createElement('div');
         boxEl.className = 'mindmap-node-box';
@@ -243,7 +238,23 @@ class MindmapView {
     }
 
     /**
-     * Kinder-Nodes rendern - Horizontales Layout
+     * Berechne die Höhe eines Subtrees (für Spacing)
+     */
+    calculateSubtreeHeight(node, level) {
+        if (!node.children || node.children.length === 0 || !this.expandedNodes.has(node.id)) {
+            return this.config.minNodeSpacing;
+        }
+
+        let totalHeight = 0;
+        for (const child of node.children) {
+            totalHeight += this.calculateSubtreeHeight(child, level + 1);
+        }
+
+        return Math.max(totalHeight, this.config.minNodeSpacing);
+    }
+
+    /**
+     * Kinder-Nodes rendern - Alle nach rechts, kein Überlappen
      */
     renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle) {
         const children = parentNode.children;
@@ -258,47 +269,29 @@ class MindmapView {
             default: distance = this.config.level4Distance;
         }
 
-        // Vertikaler Abstand zwischen Kindern
-        const verticalSpacing = this.config.minNodeSpacing;
+        // Berechne Höhe jedes Kindes (inkl. Subtree)
+        const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
+        const totalHeight = childHeights.reduce((sum, h) => sum + h, 0);
 
-        // Berechne die Gesamthöhe aller Kinder
-        const totalHeight = (children.length - 1) * verticalSpacing;
-        const startY = parentY - totalHeight / 2;
+        // Start Y-Position (zentriert um Parent)
+        let currentY = parentY - totalHeight / 2;
 
-        // Bestimme ob links oder rechts vom Parent
-        const isRightSide = parentX >= this.centerX || parentLevel === 0;
-        const direction = isRightSide ? 1 : -1;
+        // Alle Kinder nach RECHTS positionieren
+        const childX = parentX + distance;
 
         children.forEach((child, index) => {
-            // Position berechnen
-            const x = parentX + distance * direction;
-            const y = startY + index * verticalSpacing;
-
-            // Für Level 1: Abwechselnd links und rechts
-            let finalX = x;
-            let finalY = y;
-
-            if (parentLevel === 0) {
-                // Root-Kinder: Verteile auf beide Seiten
-                const halfCount = Math.ceil(children.length / 2);
-                if (index < halfCount) {
-                    // Rechte Seite
-                    finalX = parentX + distance;
-                    finalY = parentY - ((halfCount - 1) * verticalSpacing / 2) + index * verticalSpacing;
-                } else {
-                    // Linke Seite
-                    finalX = parentX - distance;
-                    const leftIndex = index - halfCount;
-                    const leftCount = children.length - halfCount;
-                    finalY = parentY - ((leftCount - 1) * verticalSpacing / 2) + leftIndex * verticalSpacing;
-                }
-            }
+            // Y-Position: Mitte des zugewiesenen Bereichs
+            const childHeight = childHeights[index];
+            const finalY = currentY + childHeight / 2;
 
             this.renderNode(
-                child, finalX, finalY, childLevel,
+                child, childX, finalY, childLevel,
                 { x: parentX, y: parentY },
                 startAngle, endAngle
             );
+
+            // Nächste Y-Position
+            currentY += childHeight;
         });
     }
 
@@ -407,19 +400,8 @@ class MindmapView {
                     ` : ''}
                 </div>
             `;
-        } else {
-            // Placeholder wenn keine Screenshots vorhanden
-            html += `
-                <div class="screenshot-placeholder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <polyline points="21 15 16 10 5 21"/>
-                    </svg>
-                    <span>Kein Screenshot vorhanden</span>
-                </div>
-            `;
         }
+        // No placeholder when no screenshots - just hide the section
 
         // Kinder anzeigen
         if (node.children && node.children.length > 0) {
