@@ -145,12 +145,16 @@ async function processBlocks(blocks, parentItem, depth = 0) {
 
         // Headings define new sections
         if (type.startsWith('heading_')) {
-            console.log(`${indent}📌 ${type}: ${text}`);
+            // Extract color from heading block (e.g., heading_1, heading_2, heading_3)
+            const headingData = block[type];
+            const color = headingData?.color || 'default';
+            console.log(`${indent}📌 ${type}: ${text} (${color})`);
 
             const newItem = {
                 id: block.id,
                 title: text,
                 description: '',
+                color: color, // Store the Notion color
                 images: [],
                 children: []
             };
@@ -185,12 +189,16 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Bulleted/numbered lists with children
         else if ((type === 'bulleted_list_item' || type === 'numbered_list_item') && text) {
-            console.log(`${indent}• ${text}`);
+            // Extract color from list item
+            const listData = block[type];
+            const color = listData?.color || 'default';
+            console.log(`${indent}• ${text} (${color})`);
 
             const newItem = {
                 id: block.id,
                 title: text,
                 description: '',
+                color: color, // Store the Notion color
                 images: [],
                 children: []
             };
