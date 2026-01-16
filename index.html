@@ -17,7 +17,7 @@
     <div class="corner-frame bottom-left"></div>
     <div class="corner-frame bottom-right"></div>
 
-    <!-- Header -->
+    <!-- Header with Controls -->
     <header class="mindmap-header">
         <div class="header-left">
             <div class="logo-link">
@@ -29,55 +29,53 @@
             <h1 class="page-title">Interaktive Mindmap</h1>
         </div>
         <div class="header-right">
+            <div class="mindmap-controls">
+                <button class="control-btn" id="expandAllBtn" title="Alle aufklappen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 3 21 3 21 9"/>
+                        <polyline points="9 21 3 21 3 15"/>
+                        <line x1="21" y1="3" x2="14" y2="10"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    <span>Expand</span>
+                </button>
+                <button class="control-btn" id="collapseAllBtn" title="Alle zuklappen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 14 10 14 10 20"/>
+                        <polyline points="20 10 14 10 14 4"/>
+                        <line x1="14" y1="10" x2="21" y2="3"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    <span>Collapse</span>
+                </button>
+                <button class="control-btn" id="centerBtn" title="Reset & Zentrieren">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <span>Reset</span>
+                </button>
+                <div class="zoom-controls">
+                    <button class="control-btn icon-only" id="zoomOutBtn" title="Verkleinern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </button>
+                    <span class="zoom-level" id="zoomLevel">100%</span>
+                    <button class="control-btn icon-only" id="zoomInBtn" title="Vergrößern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-
-    <!-- Mindmap Controls -->
-    <div class="mindmap-controls">
-        <button class="control-btn" id="expandAllBtn" title="Alle aufklappen">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 3 21 3 21 9"/>
-                <polyline points="9 21 3 21 3 15"/>
-                <line x1="21" y1="3" x2="14" y2="10"/>
-                <line x1="3" y1="21" x2="10" y2="14"/>
-            </svg>
-            <span>Expand All</span>
-        </button>
-        <button class="control-btn" id="collapseAllBtn" title="Alle zuklappen">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="4 14 10 14 10 20"/>
-                <polyline points="20 10 14 10 14 4"/>
-                <line x1="14" y1="10" x2="21" y2="3"/>
-                <line x1="3" y1="21" x2="10" y2="14"/>
-            </svg>
-            <span>Collapse All</span>
-        </button>
-        <button class="control-btn" id="centerBtn" title="Zentrieren">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="3"/>
-            </svg>
-            <span>Center</span>
-        </button>
-        <div class="zoom-controls">
-            <button class="control-btn icon-only" id="zoomOutBtn" title="Verkleinern">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    <line x1="8" y1="11" x2="14" y2="11"/>
-                </svg>
-            </button>
-            <span class="zoom-level" id="zoomLevel">100%</span>
-            <button class="control-btn icon-only" id="zoomInBtn" title="Vergrößern">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    <line x1="11" y1="8" x2="11" y2="14"/>
-                    <line x1="8" y1="11" x2="14" y2="11"/>
-                </svg>
-            </button>
-        </div>
-    </div>
 
     <!-- Main Mindmap Container -->
     <main class="mindmap-main">

@@ -214,8 +214,8 @@ class MindmapView {
             boxEl.classList.add('expanded');
         }
 
-        // Highlight active node
-        if (this.activeNodeId === node.id) {
+        // Highlight active node (use uniqueId to avoid duplicate ID issues)
+        if (this.activeNodeId === uniqueId) {
             boxEl.classList.add('active');
         }
 
@@ -243,7 +243,7 @@ class MindmapView {
         // Events
         boxEl.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.handleNodeClick(node);
+            this.handleNodeClick(node, uniqueId);
         });
 
 
@@ -357,9 +357,9 @@ class MindmapView {
     /**
      * Node Click Handler
      */
-    handleNodeClick(node) {
-        // Track active node for centering
-        this.activeNodeId = node.id;
+    handleNodeClick(node, uniqueId) {
+        // Track active node using uniqueId to handle duplicate IDs
+        this.activeNodeId = uniqueId;
 
         if (node.children && node.children.length > 0) {
             if (this.expandedNodes.has(node.id)) {
@@ -682,8 +682,8 @@ class MindmapView {
         // Collapse all nodes
         this.collapseAll();
 
-        // Reset active node to root
-        this.activeNodeId = 'root';
+        // Reset active node to root (root is always first, so uniqueId is 'root-0')
+        this.activeNodeId = 'root-0';
 
         // Close sidebar
         this.detailPanel.classList.remove('open');
@@ -717,13 +717,11 @@ class MindmapView {
         let targetX = this.centerX;
         let targetY = this.centerY;
 
-        // Find position by matching original node ID (unique IDs are "originalId-index")
-        for (const [uniqueId, pos] of this.nodePositions) {
-            if (uniqueId.startsWith(this.activeNodeId + '-') || uniqueId === this.activeNodeId) {
-                targetX = pos.x;
-                targetY = pos.y;
-                break;
-            }
+        // Direct lookup using uniqueId
+        const activePos = this.nodePositions.get(this.activeNodeId);
+        if (activePos) {
+            targetX = activePos.x;
+            targetY = activePos.y;
         }
 
         // Verfügbare Breite ist Window minus Sidebar

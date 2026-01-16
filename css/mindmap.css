@@ -19,7 +19,9 @@
 
 .mindmap-header .header-left,
 .mindmap-header .header-right {
-    flex: 0 0 200px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .mindmap-header .header-center {
@@ -99,19 +101,9 @@
 
 /* Mindmap Controls */
 .mindmap-controls {
-    position: fixed;
-    top: 70px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
-    z-index: 50;
-    background: rgba(2, 8, 16, 0.8);
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
 }
 
 .mindmap-controls .control-btn {
