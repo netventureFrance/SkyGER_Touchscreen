@@ -697,10 +697,13 @@ class MindmapView {
         let targetX = this.centerX;
         let targetY = this.centerY;
 
-        const activePos = this.nodePositions.get(this.activeNodeId);
-        if (activePos) {
-            targetX = activePos.x;
-            targetY = activePos.y;
+        // Find position by matching original node ID (unique IDs are "originalId-index")
+        for (const [uniqueId, pos] of this.nodePositions) {
+            if (uniqueId.startsWith(this.activeNodeId + '-') || uniqueId === this.activeNodeId) {
+                targetX = pos.x;
+                targetY = pos.y;
+                break;
+            }
         }
 
         // Verfügbare Breite ist Window minus Sidebar
