@@ -22,6 +22,7 @@ class MindmapView {
         // State
         this.expandedNodes = new Set();
         this.nodePositions = new Map();
+        this.activeNodeId = 'root'; // Track active/selected node
         this.zoom = 1;
         this.minZoom = 0.3;
         this.maxZoom = 1.5;
@@ -334,6 +335,9 @@ class MindmapView {
      * Node Click Handler
      */
     handleNodeClick(node) {
+        // Track active node for centering
+        this.activeNodeId = node.id;
+
         if (node.children && node.children.length > 0) {
             if (this.expandedNodes.has(node.id)) {
                 // Collapse: Auch alle Kinder schließen
@@ -647,7 +651,7 @@ class MindmapView {
     }
 
     /**
-     * View zentrieren
+     * View zentrieren auf aktiven Node
      * Berücksichtigt Sidebar wenn offen
      */
     centerView() {
@@ -667,16 +671,30 @@ class MindmapView {
             }
         }
 
+        // Get active node position, fallback to canvas center
+        let targetX = this.centerX;
+        let targetY = this.centerY;
+
+        const activePos = this.nodePositions.get(this.activeNodeId);
+        if (activePos) {
+            targetX = activePos.x;
+            targetY = activePos.y;
+        }
+
         // Verfügbare Breite ist Window minus Sidebar
         const availableWidth = window.innerWidth - sidebarWidth;
         const viewportHeight = this.viewport.clientHeight;
 
-        // Zentriere im verfügbaren Bereich
-        const targetScrollX = (this.centerX * this.zoom) - (availableWidth / 2);
-        const targetScrollY = (this.centerY * this.zoom) - (viewportHeight / 2);
+        // Zentriere auf aktiven Node im verfügbaren Bereich
+        const targetScrollX = (targetX * this.zoom) - (availableWidth / 2);
+        const targetScrollY = (targetY * this.zoom) - (viewportHeight / 2);
 
-        this.viewport.scrollLeft = targetScrollX;
-        this.viewport.scrollTop = targetScrollY;
+        // Smooth scroll
+        this.viewport.scrollTo({
+            left: targetScrollX,
+            top: targetScrollY,
+            behavior: 'smooth'
+        });
     }
 
     expandAll() {
