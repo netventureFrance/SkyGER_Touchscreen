@@ -469,6 +469,8 @@
             statusBadge.textContent = 'Syncing';
             statusBadge.className = 'status-badge syncing';
 
+            // Clear log for new sync
+            logEntries.innerHTML = '';
             addLogEntry('Starting Notion sync...', 'info');
 
             try {
@@ -567,11 +569,14 @@
             const entry = document.createElement('div');
             entry.className = `log-entry ${type}`;
             entry.innerHTML = `<span class="time">${time}</span>${message}`;
-            logEntries.insertBefore(entry, logEntries.firstChild);
+            logEntries.appendChild(entry);
+
+            // Auto-scroll to bottom
+            logEntries.scrollTop = logEntries.scrollHeight;
 
             // Keep only last 20 entries
             while (logEntries.children.length > 20) {
-                logEntries.removeChild(logEntries.lastChild);
+                logEntries.removeChild(logEntries.firstChild);
             }
         }
 
