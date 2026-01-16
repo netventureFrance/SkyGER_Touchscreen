@@ -87,7 +87,7 @@ class MindmapView {
         // Controls
         document.getElementById('expandAllBtn').addEventListener('click', () => this.expandAll());
         document.getElementById('collapseAllBtn').addEventListener('click', () => this.collapseAll());
-        document.getElementById('centerBtn').addEventListener('click', () => this.centerView());
+        document.getElementById('centerBtn').addEventListener('click', () => this.resetView());
 
         // Zoom
         document.getElementById('zoomInBtn').addEventListener('click', () => this.setZoom(this.zoom + 0.1));
@@ -670,6 +670,26 @@ class MindmapView {
         this.detailPanel.classList.remove('open');
         // Re-center after sidebar closes
         setTimeout(() => this.centerView(), 350);
+    }
+
+    /**
+     * Reset view: zoom 100%, collapse all, center on root
+     */
+    resetView() {
+        // Reset zoom to 100%
+        this.setZoom(1);
+
+        // Collapse all nodes
+        this.collapseAll();
+
+        // Reset active node to root
+        this.activeNodeId = 'root';
+
+        // Close sidebar
+        this.detailPanel.classList.remove('open');
+
+        // Center on root after a short delay for render
+        setTimeout(() => this.centerView(), 100);
     }
 
     /**
