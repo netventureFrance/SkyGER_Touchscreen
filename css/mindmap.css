@@ -361,14 +361,14 @@
 /* Root Node (Center) */
 .mindmap-node.root .mindmap-node-box {
     padding: 20px 30px;
-    background: linear-gradient(135deg, rgba(0, 60, 100, 0.9), rgba(0, 30, 60, 0.95));
-    border: 2px solid var(--accent-cyan);
+    background: linear-gradient(135deg, rgba(80, 80, 90, 0.9), rgba(50, 50, 60, 0.95));
+    border: 2px solid rgba(150, 150, 160, 0.8);
     border-radius: 50%;
     width: 180px;
     height: 180px;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 0 40px var(--glow-color);
+    box-shadow: 0 0 30px rgba(100, 100, 110, 0.4);
 }
 
 .mindmap-node.root .mindmap-node-box:hover {
