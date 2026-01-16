@@ -65,45 +65,13 @@
               "children": []
             },
             {
-              "id": "spielstatistik",
-              "label": "Spielstatistik",
-              "description": "\nTitel: Vereins Statistik\nTitel: Verein Vergleich Statistiken\nTitel: Verein vergleich Saisonstatistiken\nTitel: Vergleich Spieler Saisonstatistiken \nTitel: Vergleich Spieler Statistiken \nTitel: Spieler Statistik\nTitel: Spieler Saisonstatistik",
+              "id": "teamstatistik",
+              "label": "TEAMSTATISTIK",
+              "description": "",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-1.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-2.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-3.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-4.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-5.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-6.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-7.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-8.png",
-                  "name": "Spielstatistik"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-9.png",
-                  "name": "Spielstatistik"
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/teamstatistik/image-1.png",
+                  "name": "TEAMSTATISTIK"
                 }
               ],
               "children": [
@@ -122,6 +90,30 @@
                   "children": []
                 }
               ]
+            },
+            {
+              "id": "teamvergleich",
+              "label": "TEAMVERGLEICH",
+              "description": "",
+              "screenshots": [
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/teamvergleich/image-1.png",
+                  "name": "TEAMVERGLEICH"
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "spielerstatistik",
+              "label": "SPIELERSTATISTIK",
+              "description": "",
+              "screenshots": [
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielerstatistik/image-1.png",
+                  "name": "SPIELERSTATISTIK"
+                }
+              ],
+              "children": []
             },
             {
               "id": "aufstellung",
