@@ -367,10 +367,11 @@ class MindmapView {
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Fixed parent width based on level (root is circle, others are pills)
-                const parentWidth = parentPos.level === 0 ? 180 : 150;
+                // Measure actual parent width from DOM
+                const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
+                const parentWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
 
-                // Line: parent right edge → child left edge
+                // Line: parent RIGHT edge → child LEFT edge
                 const startX = parentPos.x + parentWidth;
                 const startY = parentPos.y;
                 const endX = pos.x;
