@@ -99,6 +99,15 @@
                 </svg>
             </button>
         </div>
+        <div class="data-source-controls">
+            <button class="control-btn notion-btn" id="loadNotionBtn" title="Daten aus Notion laden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22 6 12 13 2 6"/>
+                </svg>
+                <span>Notion Daten</span>
+            </button>
+        </div>
     </div>
 
     <!-- Main Tree Container -->
@@ -135,6 +144,35 @@
     </footer>
 
     <script src="js/data.js"></script>
+    <script src="js/notion-data-loader.js"></script>
     <script src="js/tree-view.js"></script>
+    <script>
+        // Notion Button Handler
+        document.getElementById('loadNotionBtn').addEventListener('click', async function() {
+            const btn = this;
+            const originalText = btn.querySelector('span').textContent;
+
+            btn.disabled = true;
+            btn.querySelector('span').textContent = 'Lädt...';
+
+            try {
+                const success = await window.treeView.loadFromNotion();
+                if (success) {
+                    btn.classList.add('active');
+                    btn.querySelector('span').textContent = 'Notion ✓';
+                } else {
+                    btn.querySelector('span').textContent = originalText;
+                }
+            } catch (error) {
+                console.error('Fehler:', error);
+                btn.querySelector('span').textContent = 'Fehler!';
+                setTimeout(() => {
+                    btn.querySelector('span').textContent = originalText;
+                }, 2000);
+            }
+
+            btn.disabled = false;
+        });
+    </script>
 </body>
 </html>

@@ -194,7 +194,7 @@ class TreeView {
      * Baum rendern
      */
     render() {
-        const treeData = this.buildTreeData();
+        const treeData = this.useNotionData ? this.buildTreeDataFromNotion() : this.buildTreeData();
         this.canvas.innerHTML = '';
 
         const treeContainer = document.createElement('div');
@@ -355,6 +355,57 @@ class TreeView {
 
         // Pfad
         html += `<div class="panel-path">Pfad: ${path.join(' → ')}</div>`;
+
+        // Screenshots anzeigen (aus Notion)
+        if (node.screenshots && node.screenshots.length > 0) {
+            html += `<h3>Screenshots</h3><div class="panel-screenshots">`;
+            node.screenshots.forEach((screenshot, index) => {
+                html += `
+                    <div class="screenshot-item">
+                        <img src="${screenshot.url}" alt="${screenshot.name || 'Screenshot ' + (index + 1)}" loading="lazy" onclick="window.open('${screenshot.url}', '_blank')">
+                        <span class="screenshot-name">${screenshot.name || 'Screenshot ' + (index + 1)}</span>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+        }
+
+        // Video anzeigen (aus Notion)
+        if (node.videoUrl) {
+            html += `<h3>Video</h3>`;
+            // YouTube/Vimeo Embed
+            if (node.videoUrl.includes('youtube.com') || node.videoUrl.includes('youtu.be')) {
+                const videoId = this.extractYouTubeId(node.videoUrl);
+                if (videoId) {
+                    html += `<div class="panel-video"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div>`;
+                }
+            } else if (node.videoUrl.includes('vimeo.com')) {
+                const videoId = node.videoUrl.split('/').pop();
+                html += `<div class="panel-video"><iframe src="https://player.vimeo.com/video/${videoId}" frameborder="0" allowfullscreen></iframe></div>`;
+            } else {
+                html += `<div class="panel-video"><a href="${node.videoUrl}" target="_blank" class="video-link">🎬 Video öffnen</a></div>`;
+            }
+        }
+
+        // Status, Tage, Meilensteine (aus Notion)
+        if (node.status || node.tage || node.meilensteine || node.aufgaben) {
+            html += `<h3>Projektinfo</h3><ul class="project-info">`;
+            if (node.status) {
+                const statusClass = node.status.toLowerCase().replace(/\s+/g, '-');
+                html += `<li><strong>Status:</strong> <span class="status-badge ${statusClass}">${node.status}</span></li>`;
+            }
+            if (node.tage) {
+                html += `<li><strong>Aufwand:</strong> ${node.tage} Tage</li>`;
+            }
+            html += `</ul>`;
+
+            if (node.meilensteine) {
+                html += `<h4>Meilensteine</h4><div class="milestones">${node.meilensteine.replace(/\n/g, '<br>')}</div>`;
+            }
+            if (node.aufgaben) {
+                html += `<h4>Aufgaben</h4><div class="tasks">${node.aufgaben.replace(/\n/g, '<br>')}</div>`;
+            }
+        }
 
         // Metadaten
         html += `
@@ -531,6 +582,55 @@ class TreeView {
             second: '2-digit'
         });
         document.getElementById('currentTime').textContent = timeStr;
+    }
+
+    /**
+     * YouTube Video ID extrahieren
+     */
+    extractYouTubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    /**
+     * Daten aus Notion laden und Baum aktualisieren
+     */
+    async loadFromNotion() {
+        if (typeof notionDataLoader === 'undefined') {
+            console.warn('NotionDataLoader nicht verfügbar');
+            return false;
+        }
+
+        try {
+            const notionData = await notionDataLoader.loadAll();
+            this.notionData = notionData;
+            this.useNotionData = true;
+            this.render();
+            console.log('Notion-Daten geladen:', notionData.length, 'Elemente');
+            return true;
+        } catch (error) {
+            console.error('Fehler beim Laden der Notion-Daten:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Baumstruktur aus Notion-Daten oder statischen Daten generieren
+     */
+    buildTreeDataFromNotion() {
+        if (!this.useNotionData || !this.notionData) {
+            return this.buildTreeData();
+        }
+
+        // Notion-Daten als Hauptmenü verwenden
+        return {
+            id: 'root',
+            label: 'Sky Touchscreen',
+            icon: 'grid',
+            description: 'Komplettes RCS Touch System für Live-TV Produktion (Daten aus Notion)',
+            children: this.notionData
+        };
     }
 }
 
