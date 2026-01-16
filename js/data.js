@@ -5,12 +5,23 @@
 
 const SKY_DATA = {
     // Hauptmenü - Reihenfolge wie in Notion (Sky Sport Design Bundesliga)
+    // Root screenshot for the main node
+    rootScreenshots: [
+        { url: 'images/screenshots/startseite/overview.png', name: 'Startseite' }
+    ],
     mainMenu: [
         {
             id: 'spiele',
             label: 'Spiele',
             icon: 'calendar',
             description: 'Spielübersicht, Statistiken und Live-Daten',
+            screenshots: [
+                { url: 'images/screenshots/spiele/spieltag-1.png', name: 'Spieltag Übersicht' },
+                { url: 'images/screenshots/spiele/spieltag-2.png', name: 'Spieltag Details' },
+                { url: 'images/screenshots/spiele/spieltag-3.png', name: 'Spieltag Ergebnisse' },
+                { url: 'images/screenshots/spiele/team-spielplan.png', name: 'Team Spielplan' },
+                { url: 'images/screenshots/spiele/team-ergebnisse.png', name: 'Team Ergebnisse' }
+            ],
             children: [
                 {
                     id: 'spielstatistik',
@@ -60,6 +71,9 @@ const SKY_DATA = {
             label: 'Liga Information',
             icon: 'info',
             description: 'Liga-Informationen, Top Teams und Top Spieler',
+            screenshots: [
+                { url: 'images/screenshots/statistik/vereinsstatistik.png', name: 'Vereinsstatistik' }
+            ],
             children: [
                 {
                     id: 'top-teams',
@@ -112,6 +126,13 @@ const SKY_DATA = {
             label: 'Analyse',
             icon: 'pie-chart',
             description: 'Analyse-Tools für detaillierte Spielauswertung',
+            screenshots: [
+                { url: 'images/screenshots/statistik/spielstatistik-1.png', name: 'Spielstatistik' },
+                { url: 'images/screenshots/statistik/spielstatistik-2.png', name: 'Detaillierte Statistik' },
+                { url: 'images/screenshots/statistik/saisonstatistik-1.png', name: 'Saisonstatistik' },
+                { url: 'images/screenshots/statistik/saisonstatistik-2.png', name: 'Saisonvergleich' },
+                { url: 'images/screenshots/statistik/torwart-vergleich.png', name: 'Torwart Vergleich' }
+            ],
             children: [
                 {
                     id: 'ballbesitz',

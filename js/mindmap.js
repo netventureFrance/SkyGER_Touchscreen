@@ -114,6 +114,7 @@ class MindmapView {
             label: 'Sky Sport Design Bundesliga',
             icon: 'grid',
             description: 'Komplettes RCS Touch System für Live-TV Produktion',
+            screenshots: SKY_DATA.rootScreenshots || [],
             children: SKY_DATA.mainMenu
         };
     }
