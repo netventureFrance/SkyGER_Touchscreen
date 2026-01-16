@@ -166,12 +166,6 @@
     right: 0;
     bottom: 50px;
     overflow: hidden;
-    transition: right 0.3s ease;
-}
-
-/* Shift mindmap area when sidebar is open */
-.mindmap-main.sidebar-open {
-    right: 380px;
 }
 
 .mindmap-viewport {
@@ -577,21 +571,12 @@
    ============================================ */
 
 @media (max-width: 1200px) {
-    .mindmap-main.sidebar-open {
-        right: 350px;
-    }
-
     .detail-panel {
         width: 350px;
     }
 }
 
 @media (max-width: 900px) {
-    /* Sidebar overlays on smaller screens instead of pushing content */
-    .mindmap-main.sidebar-open {
-        right: 0;
-    }
-
     .detail-panel {
         width: 320px;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
@@ -654,10 +639,6 @@
     .detail-panel {
         width: 100%;
         right: -100%;
-    }
-
-    .mindmap-main.sidebar-open {
-        right: 0;
     }
 }
 

@@ -437,8 +437,7 @@ class MindmapView {
         this.panelContent.innerHTML = html;
         this.detailPanel.classList.add('open');
 
-        // Shift mindmap area to center in remaining space
-        document.querySelector('.mindmap-main').classList.add('sidebar-open');
+        // Re-center mindmap in remaining space after sidebar animation
         setTimeout(() => this.centerView(), 350);
 
         // Carousel Event Handlers
@@ -591,19 +590,41 @@ class MindmapView {
 
     closePanel() {
         this.detailPanel.classList.remove('open');
-        document.querySelector('.mindmap-main').classList.remove('sidebar-open');
+        // Re-center after sidebar closes
         setTimeout(() => this.centerView(), 350);
     }
 
     /**
      * View zentrieren
+     * Berücksichtigt Sidebar wenn offen
      */
     centerView() {
-        const viewportWidth = this.viewport.clientWidth;
+        const sidebarOpen = this.detailPanel.classList.contains('open');
+
+        // Responsive sidebar width
+        let sidebarWidth = 0;
+        if (sidebarOpen) {
+            if (window.innerWidth <= 768) {
+                sidebarWidth = 0; // Full overlay on mobile, don't adjust
+            } else if (window.innerWidth <= 900) {
+                sidebarWidth = 320;
+            } else if (window.innerWidth <= 1200) {
+                sidebarWidth = 350;
+            } else {
+                sidebarWidth = 380;
+            }
+        }
+
+        // Verfügbare Breite ist Window minus Sidebar
+        const availableWidth = window.innerWidth - sidebarWidth;
         const viewportHeight = this.viewport.clientHeight;
 
-        this.viewport.scrollLeft = (this.centerX * this.zoom) - viewportWidth / 2;
-        this.viewport.scrollTop = (this.centerY * this.zoom) - viewportHeight / 2;
+        // Zentriere im verfügbaren Bereich
+        const targetScrollX = (this.centerX * this.zoom) - (availableWidth / 2);
+        const targetScrollY = (this.centerY * this.zoom) - (viewportHeight / 2);
+
+        this.viewport.scrollLeft = targetScrollX;
+        this.viewport.scrollTop = targetScrollY;
     }
 
     expandAll() {
