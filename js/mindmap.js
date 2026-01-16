@@ -213,12 +213,56 @@ class MindmapView {
         this.nodesContainer.innerHTML = '';
         this.linesContainer.innerHTML = '';
         this.nodePositions.clear();
+        this.nodeWidths = new Map(); // Store measured widths
 
-        // Root Node
+        // First pass: render nodes with temporary positions
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-        // Draw lines
-        this.drawLines();
+        // Second pass: measure actual widths and reposition
+        requestAnimationFrame(() => {
+            this.measureAndReposition();
+            this.drawLines();
+        });
+    }
+
+    /**
+     * Measure actual node widths and reposition everything
+     */
+    measureAndReposition() {
+        const gap = 80;
+
+        // Measure all node widths
+        this.nodePositions.forEach((pos, nodeId) => {
+            const el = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
+            if (el) {
+                this.nodeWidths.set(nodeId, el.offsetWidth);
+            }
+        });
+
+        // Reposition nodes level by level
+        const nodesByLevel = new Map();
+        this.nodePositions.forEach((pos, nodeId) => {
+            if (!nodesByLevel.has(pos.level)) nodesByLevel.set(pos.level, []);
+            nodesByLevel.get(pos.level).push({ nodeId, pos });
+        });
+
+        const maxLevel = Math.max(...nodesByLevel.keys());
+        for (let level = 1; level <= maxLevel; level++) {
+            const nodes = nodesByLevel.get(level) || [];
+            for (const { nodeId, pos } of nodes) {
+                if (!pos.parentId) continue;
+
+                const parentPos = this.nodePositions.get(pos.parentId);
+                const parentWidth = this.nodeWidths.get(pos.parentId) || 180;
+
+                const newX = parentPos.x + parentWidth + gap;
+                pos.x = newX;
+
+                // Update DOM
+                const el = this.nodesContainer.querySelector(`[data-id="${nodeId}"]`);
+                if (el) el.style.left = `${newX}px`;
+            }
+        }
     }
 
     /**
@@ -378,14 +422,13 @@ class MindmapView {
 
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentId) {
-                // Get parent position
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Use stored parent width (same as used for positioning)
-                const parentWidth = pos.parentWidth || 180;
+                // Use measured parent width
+                const parentWidth = this.nodeWidths.get(pos.parentId) || 180;
 
-                // Line starts at right edge of parent, ends at left edge of child
+                // Line: parent right edge → child left edge
                 const startX = parentPos.x + parentWidth;
                 const startY = parentPos.y;
                 const endX = pos.x;
@@ -393,7 +436,6 @@ class MindmapView {
 
                 const path = this.createBezierPath(startX, startY, endX, endY);
 
-                // Add color class if present
                 const colorClass = pos.color && pos.color !== 'default' ? `notion-${pos.color}` : '';
                 pathsHtml += `<path d="${path}" data-from="${nodeId}" class="${colorClass}" />`;
             }
