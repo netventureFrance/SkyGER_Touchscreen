@@ -166,6 +166,12 @@
     right: 0;
     bottom: 50px;
     overflow: hidden;
+    transition: right 0.3s ease;
+}
+
+/* Shift mindmap area when sidebar is open */
+.mindmap-main.sidebar-open {
+    right: 380px;
 }
 
 .mindmap-viewport {
@@ -249,10 +255,10 @@
 }
 
 .mindmap-node-box {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 16px;
+    padding: 10px 18px;
     background: var(--box-bg);
     border: 1px solid var(--border-color);
     border-radius: 25px;
@@ -260,6 +266,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(0, 168, 255, 0.15);
     white-space: nowrap;
+    min-width: fit-content;
 }
 
 .mindmap-node-box:hover {
@@ -569,6 +576,28 @@
    RESPONSIVE
    ============================================ */
 
+@media (max-width: 1200px) {
+    .mindmap-main.sidebar-open {
+        right: 350px;
+    }
+
+    .detail-panel {
+        width: 350px;
+    }
+}
+
+@media (max-width: 900px) {
+    /* Sidebar overlays on smaller screens instead of pushing content */
+    .mindmap-main.sidebar-open {
+        right: 0;
+    }
+
+    .detail-panel {
+        width: 320px;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+    }
+}
+
 @media (max-width: 768px) {
     .mindmap-header {
         padding: 0 15px;
@@ -604,8 +633,8 @@
     }
 
     .mindmap-node.root .mindmap-node-box {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         padding: 15px;
     }
 
@@ -615,12 +644,20 @@
     }
 
     .mindmap-node.root .node-label {
+        font-size: 11px;
+    }
+
+    .mindmap-node.level-1 .node-label {
         font-size: 12px;
     }
 
     .detail-panel {
         width: 100%;
         right: -100%;
+    }
+
+    .mindmap-main.sidebar-open {
+        right: 0;
     }
 }
 

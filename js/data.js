@@ -11,10 +11,6 @@ const SKY_DATA = {
             label: 'Spiele',
             icon: 'calendar',
             description: 'Spielübersicht, Statistiken und Live-Daten',
-            screenshots: [
-                { url: 'images/screenshots/spiele/spiele-1.png', name: 'Spielübersicht' },
-                { url: 'images/screenshots/spiele/spiele-2.png', name: 'Spieldetails' }
-            ],
             children: [
                 {
                     id: 'spielstatistik',
@@ -48,9 +44,6 @@ const SKY_DATA = {
             label: 'Tabelle',
             icon: 'list',
             description: 'Liga-Tabelle, sortierbar nach verschiedenen Kriterien',
-            screenshots: [
-                { url: 'images/screenshots/tabelle/tabelle-1.png', name: 'Liga-Tabelle' }
-            ],
             children: [
                 { id: 'tabelle-sp', label: 'Nach Spielen', icon: 'hash', description: 'Sortiert nach Anzahl Spiele' },
                 { id: 'tabelle-s', label: 'Nach Siegen', icon: 'award', description: 'Sortiert nach Siegen' },
@@ -119,11 +112,6 @@ const SKY_DATA = {
             label: 'Analyse',
             icon: 'pie-chart',
             description: 'Analyse-Tools für detaillierte Spielauswertung',
-            screenshots: [
-                { url: 'images/screenshots/analyse/analyse-1.png', name: 'Ballbesitz' },
-                { url: 'images/screenshots/analyse/analyse-2.png', name: 'Heatmap' },
-                { url: 'images/screenshots/analyse/analyse-3.png', name: 'Passmap' }
-            ],
             children: [
                 {
                     id: 'ballbesitz',
@@ -187,11 +175,7 @@ const SKY_DATA = {
             id: 'multiview',
             label: 'Multiview',
             icon: 'grid',
-            description: '4 Live-Input Fenster, Full HD, einzeln vergrößerbar',
-            screenshots: [
-                { url: 'images/screenshots/multiview/multiview-1.png', name: 'Multiview 4-fach' },
-                { url: 'images/screenshots/multiview/multiview-2.png', name: 'Multiview vergrößert' }
-            ]
+            description: '4 Live-Input Fenster, Full HD, einzeln vergrößerbar'
         },
         {
             id: 'live',

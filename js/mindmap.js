@@ -437,6 +437,10 @@ class MindmapView {
         this.panelContent.innerHTML = html;
         this.detailPanel.classList.add('open');
 
+        // Shift mindmap area to center in remaining space
+        document.querySelector('.mindmap-main').classList.add('sidebar-open');
+        setTimeout(() => this.centerView(), 350);
+
         // Carousel Event Handlers
         this.setupCarousel();
 
@@ -587,6 +591,8 @@ class MindmapView {
 
     closePanel() {
         this.detailPanel.classList.remove('open');
+        document.querySelector('.mindmap-main').classList.remove('sidebar-open');
+        setTimeout(() => this.centerView(), 350);
     }
 
     /**
