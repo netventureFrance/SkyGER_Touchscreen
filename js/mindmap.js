@@ -90,11 +90,25 @@ class MindmapView {
             const response = await fetch('images/notion-data.json');
             if (response.ok) {
                 const data = await response.json();
-                // Find "Sky Sport Design Bundesliga" node
-                const skyNode = data.children?.find(c => c.label === 'Sky Sport Design Bundesliga');
+                // Recursively find "Sky Sport Design Bundesliga" node
+                const findNode = (node, label) => {
+                    if (node.label === label) return node;
+                    if (node.children) {
+                        for (const child of node.children) {
+                            const found = findNode(child, label);
+                            if (found) return found;
+                        }
+                    }
+                    return null;
+                };
+                const skyNode = findNode(data, 'Sky Sport Design Bundesliga');
                 if (skyNode) {
                     this.notionData = skyNode;
                     console.log('Loaded Notion data:', skyNode.children?.length, 'items');
+                } else {
+                    // Use root data if specific node not found
+                    this.notionData = data;
+                    console.log('Using root Notion data');
                 }
             }
         } catch (e) {
