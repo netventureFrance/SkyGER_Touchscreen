@@ -36,32 +36,41 @@
           "screenshots": [],
           "children": [
             {
-              "id": "spiele",
-              "label": "Spiele",
-              "description": "Text: Spiele – 14. Spieltag\n1–3 Spieltage auswählbar\nEinzelne Teams auswählbar\nButton 1: Clubprofil öffnen\nButton 2: Vereinsstatistik (scrollbar)\nButton 3: Spielübersicht des Vereins – jedes Spiel anklickbar für Statistik, Aufstellung und Analyse\nTitel:Fahrplan",
+              "id": "spieletag",
+              "label": "Spieletag",
+              "description": "Text: Spiele – 14. Spieltag\n1–3 Spieltage auswählbar\nEinzelne Teams auswählbar\nButton 1: Clubprofil öffnen\nButton 2: Vereinsstatistik (scrollbar)\nButton 3: Spielübersicht des Vereins – jedes Spiel anklickbar für Statistik, Aufstellung und Analyse",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-1.png",
-                  "name": "Spiele"
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spieletag/image-1.png",
+                  "name": "Spieletag"
                 },
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-2.png",
-                  "name": "Spiele"
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spieletag/image-2.png",
+                  "name": "Spieletag"
                 },
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-3.png",
-                  "name": "Spiele"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-4.png",
-                  "name": "Spiele"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-5.png",
-                  "name": "Spiele"
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spieletag/image-3.png",
+                  "name": "Spieletag"
                 }
               ],
-              "children": []
+              "children": [
+                {
+                  "id": "fahrplan",
+                  "label": "Fahrplan",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spieletag/fahrplan/image-1.png",
+                      "name": "Fahrplan"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spieletag/fahrplan/image-2.png",
+                      "name": "Fahrplan"
+                    }
+                  ],
+                  "children": []
+                }
+              ]
             },
             {
               "id": "spielstatistik",
