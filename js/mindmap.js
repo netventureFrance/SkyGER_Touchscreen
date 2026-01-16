@@ -224,15 +224,15 @@ class MindmapView {
     /**
      * Node rendern
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null) {
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null) {
         // Generate unique ID to avoid duplicates in Map
         const uniqueId = `${node.id}-${this.nodePositions.size}`;
 
         // Determine color - inherit from parent if not set
         const nodeColor = node.color || parentColor;
 
-        // Position speichern with unique ID and color
-        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor });
+        // Position speichern with unique ID, color, and parent reference
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
@@ -293,7 +293,7 @@ class MindmapView {
 
         // Kinder rendern (wenn erweitert)
         if (node.children && node.children.length > 0 && this.expandedNodes.has(node.id)) {
-            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor);
+            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId);
         }
     }
 
@@ -316,7 +316,7 @@ class MindmapView {
     /**
      * Kinder-Nodes rendern - Alle nach rechts, kein Überlappen
      */
-    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null) {
+    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null) {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
@@ -348,7 +348,8 @@ class MindmapView {
                 child, childX, finalY, childLevel,
                 { x: parentX, y: parentY },
                 startAngle, endAngle,
-                parentColor // Pass parent color for inheritance
+                parentColor, // Pass parent color for inheritance
+                parentId // Pass parent ID for line drawing
             );
 
             // Nächste Y-Position
@@ -369,15 +370,22 @@ class MindmapView {
 
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentPos) {
-                // Offset line start to right edge of parent node
-                const parentLevel = pos.level - 1;
-                const parentOffset = parentLevel === 0 ? 90 : 80; // Root is bigger
-                const childOffset = 0; // Start at left edge of child
+                // Get actual parent node width from DOM
+                const parentNodeEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
+                const childNodeEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
 
-                const path = this.createBezierPath(
-                    pos.parentPos.x + parentOffset, pos.parentPos.y,
-                    pos.x + childOffset, pos.y
-                );
+                let parentWidth = 160; // Default fallback
+                if (parentNodeEl) {
+                    parentWidth = parentNodeEl.offsetWidth;
+                }
+
+                // Line starts at right edge of parent, ends at left edge of child
+                const startX = pos.parentPos.x + parentWidth;
+                const startY = pos.parentPos.y;
+                const endX = pos.x;
+                const endY = pos.y;
+
+                const path = this.createBezierPath(startX, startY, endX, endY);
 
                 // Add color class if present
                 const colorClass = pos.color && pos.color !== 'default' ? `notion-${pos.color}` : '';
