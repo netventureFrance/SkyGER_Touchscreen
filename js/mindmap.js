@@ -218,11 +218,11 @@ class MindmapView {
         // First pass: render nodes with temporary positions
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-        // Second pass: measure actual widths and reposition (after DOM renders)
+        // Second pass: measure actual widths and reposition (after DOM fully renders)
         setTimeout(() => {
             this.measureAndReposition();
             this.drawLines();
-        }, 50);
+        }, 100);
     }
 
     /**
@@ -231,11 +231,13 @@ class MindmapView {
     measureAndReposition() {
         const gap = 80;
 
-        // Measure all node widths
+        // Measure all node widths from DOM
         this.nodePositions.forEach((pos, nodeId) => {
             const el = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
             if (el) {
-                this.nodeWidths.set(nodeId, el.offsetWidth);
+                // Force layout calculation
+                const width = el.getBoundingClientRect().width;
+                this.nodeWidths.set(nodeId, width);
             }
         });
 
@@ -253,14 +255,18 @@ class MindmapView {
                 if (!pos.parentId) continue;
 
                 const parentPos = this.nodePositions.get(pos.parentId);
-                const parentWidth = this.nodeWidths.get(pos.parentId) || 180;
+                if (!parentPos) continue;
+
+                const parentWidth = this.nodeWidths.get(pos.parentId) || 200;
 
                 const newX = parentPos.x + parentWidth + gap;
                 pos.x = newX;
 
-                // Update DOM
+                // Update DOM position
                 const el = this.nodesContainer.querySelector(`[data-id="${nodeId}"]`);
-                if (el) el.style.left = `${newX}px`;
+                if (el) {
+                    el.style.left = `${newX}px`;
+                }
             }
         }
     }
@@ -372,7 +378,7 @@ class MindmapView {
         let currentY = parentY - totalHeight / 2;
 
         // Initial X (will be recalculated in measureAndReposition)
-        const childX = parentX + 350;
+        const childX = parentX + 400;
 
         children.forEach((child, index) => {
             // Y-Position: Mitte des zugewiesenen Bereichs
