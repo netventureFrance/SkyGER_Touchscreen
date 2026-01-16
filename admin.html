@@ -483,6 +483,9 @@
                 if (result.success) {
                     addLogEntry(`Sync triggered successfully`, 'success');
                     addLogEntry(`Workflow: ${result.workflowRun || 'Started'}`, 'info');
+                    if (result.actionsUrl) {
+                        addLogEntry(`View progress: ${result.actionsUrl}`, 'info');
+                    }
                     lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
                     saveSyncLog();
 
@@ -491,7 +494,13 @@
                         loadInfo();
                     }, 5000);
                 } else {
-                    addLogEntry(`Sync failed: ${result.error}`, 'error');
+                    addLogEntry(`Error: ${result.error}`, 'error');
+                    if (result.help) {
+                        addLogEntry(`Help: ${result.help}`, 'info');
+                    }
+                    if (result.details) {
+                        addLogEntry(`Details: ${result.details}`, 'info');
+                    }
                 }
             } catch (e) {
                 addLogEntry(`Error: ${e.message}`, 'error');
