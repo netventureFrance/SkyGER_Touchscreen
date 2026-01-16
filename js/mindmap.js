@@ -360,9 +360,14 @@ class MindmapView {
 
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentPos) {
+                // Offset line start to right edge of parent node
+                const parentLevel = pos.level - 1;
+                const parentOffset = parentLevel === 0 ? 90 : 80; // Root is bigger
+                const childOffset = 0; // Start at left edge of child
+
                 const path = this.createBezierPath(
-                    pos.parentPos.x, pos.parentPos.y,
-                    pos.x, pos.y
+                    pos.parentPos.x + parentOffset, pos.parentPos.y,
+                    pos.x + childOffset, pos.y
                 );
                 pathsHtml += `<path d="${path}" data-from="${nodeId}" />`;
             }
