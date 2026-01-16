@@ -214,71 +214,25 @@ class MindmapView {
         this.linesContainer.innerHTML = '';
         this.nodePositions.clear();
 
-        // Root Node - first pass creates nodes
+        // Root Node
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-        // Wait for DOM to render, then reposition and draw lines
-        requestAnimationFrame(() => {
-            this.repositionNodes();
-            this.drawLines();
-        });
-    }
-
-    /**
-     * Reposition nodes based on actual measured widths
-     */
-    repositionNodes() {
-        const gap = 80; // Consistent gap between all nodes
-        const processedNodes = new Set();
-
-        // Process nodes level by level, adjusting x positions
-        const nodesByLevel = new Map();
-        this.nodePositions.forEach((pos, nodeId) => {
-            if (!nodesByLevel.has(pos.level)) {
-                nodesByLevel.set(pos.level, []);
-            }
-            nodesByLevel.get(pos.level).push({ nodeId, pos });
-        });
-
-        // Start from level 0 and propagate adjustments
-        for (let level = 0; level <= Math.max(...nodesByLevel.keys()); level++) {
-            const nodesAtLevel = nodesByLevel.get(level) || [];
-
-            for (const { nodeId, pos } of nodesAtLevel) {
-                if (level === 0) continue; // Root stays at center
-
-                // Get parent's actual position and width
-                if (pos.parentId) {
-                    const parentPos = this.nodePositions.get(pos.parentId);
-                    const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-                    const parentWidth = parentEl ? parentEl.offsetWidth : 180;
-
-                    // New x position: parent's x + parent width + gap
-                    const newX = parentPos.x + parentWidth + gap;
-                    pos.x = newX;
-
-                    // Update DOM element position
-                    const nodeEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"]`);
-                    if (nodeEl) {
-                        nodeEl.style.left = `${newX}px`;
-                    }
-                }
-            }
-        }
+        // Draw lines
+        this.drawLines();
     }
 
     /**
      * Node rendern
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null) {
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null, parentWidth = 180) {
         // Generate unique ID to avoid duplicates in Map
         const uniqueId = `${node.id}-${this.nodePositions.size}`;
 
         // Determine color - inherit from parent if not set
         const nodeColor = node.color || parentColor;
 
-        // Position speichern with unique ID, color, and parent reference
-        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId });
+        // Position speichern with unique ID, color, parent reference, and parent width for line drawing
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId, parentWidth });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
@@ -366,8 +320,18 @@ class MindmapView {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
-        // Initial placement distance (will be adjusted in repositionNodes)
-        const initialDistance = 300;
+        // Fixed gap between nodes
+        const gap = 80;
+
+        // Estimate parent width based on text length
+        const parentText = parentNode.label || '';
+        let parentWidth;
+        if (parentLevel === 0) {
+            parentWidth = 180; // Root circle
+        } else {
+            // Estimate: ~8px per character + padding
+            parentWidth = Math.max(100, parentText.length * 8 + 80);
+        }
 
         // Berechne Höhe jedes Kindes (inkl. Subtree)
         const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
@@ -376,8 +340,8 @@ class MindmapView {
         // Start Y-Position (zentriert um Parent)
         let currentY = parentY - totalHeight / 2;
 
-        // Initial X position (will be corrected after DOM renders)
-        const childX = parentX + initialDistance;
+        // Child X = parent X + parent width + gap
+        const childX = parentX + parentWidth + gap;
 
         children.forEach((child, index) => {
             // Y-Position: Mitte des zugewiesenen Bereichs
@@ -389,7 +353,8 @@ class MindmapView {
                 { x: parentX, y: parentY },
                 startAngle, endAngle,
                 parentColor, // Pass parent color for inheritance
-                parentId // Pass parent ID for line drawing
+                parentId, // Pass parent ID for line drawing
+                parentWidth // Pass parent width for line drawing
             );
 
             // Nächste Y-Position
@@ -410,17 +375,12 @@ class MindmapView {
 
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentId) {
-                // Get CURRENT parent position (after repositioning)
+                // Get parent position
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Get actual parent node width from DOM
-                const parentNodeEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-
-                let parentWidth = 160; // Default fallback
-                if (parentNodeEl) {
-                    parentWidth = parentNodeEl.offsetWidth;
-                }
+                // Use stored parent width (same as used for positioning)
+                const parentWidth = pos.parentWidth || 180;
 
                 // Line starts at right edge of parent, ends at left edge of child
                 const startX = parentPos.x + parentWidth;
