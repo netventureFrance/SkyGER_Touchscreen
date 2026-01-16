@@ -74,7 +74,7 @@ class MindmapView {
             const response = await fetch('version.json');
             if (response.ok) {
                 const version = await response.json();
-                const versionStr = `V. ${version.major}.${String(version.minor).padStart(2, '0')}`;
+                const versionStr = `V. ${version.major}.${version.minor}.${version.patch || 0}`;
                 const versionEl = document.getElementById('versionNumber');
                 if (versionEl) {
                     versionEl.textContent = versionStr;
@@ -101,10 +101,10 @@ class MindmapView {
                     }
                     return null;
                 };
-                const skyNode = findNode(data, 'Sky Sport Design Bundesliga');
-                if (skyNode) {
-                    this.notionData = skyNode;
-                    console.log('Loaded Notion data:', skyNode.children?.length, 'items');
+                const touchNode = findNode(data, 'Touch Sport');
+                if (touchNode) {
+                    this.notionData = touchNode;
+                    console.log('Loaded Notion data:', touchNode.children?.length, 'items');
                 } else {
                     // Use root data if specific node not found
                     this.notionData = data;
