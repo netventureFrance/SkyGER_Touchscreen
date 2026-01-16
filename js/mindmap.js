@@ -14,8 +14,8 @@ class MindmapView {
         this.tooltip = document.getElementById('tooltip');
 
         // Canvas Größe
-        this.canvasWidth = 3000;
-        this.canvasHeight = 2000;
+        this.canvasWidth = 5000;
+        this.canvasHeight = 5000;
         this.centerX = this.canvasWidth / 2;
         this.centerY = this.canvasHeight / 2;
 
