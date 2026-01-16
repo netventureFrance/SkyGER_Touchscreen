@@ -1,16 +1,9 @@
 {
-  "id": "shotplot-tor-vorbei-paraden-abgeblockt-nur-auf",
-  "label": "Shotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierendInteraktive Mindmap",
-  "description": "Eine interaktive Übersicht des gesamten Sky Touchscreen Systems.",
+  "id": "sky-sport-supertouch-dokumentation",
+  "label": "SKY Sport Supertouch Dokumentation",
+  "description": "",
   "screenshots": [],
   "children": [
-    {
-      "id": "sky-touchscreen-interaktive-mindmap",
-      "label": "Sky Touchscreen - Interaktive Mindmap",
-      "description": "",
-      "screenshots": [],
-      "children": []
-    },
     {
       "id": "https-skyger-touchscreen-netlify-app",
       "label": "https://skyger-touchscreen.netlify.app/",
@@ -21,10 +14,10 @@
     {
       "id": "sky-sport-design-bundesliga",
       "label": "Sky Sport Design Bundesliga",
-      "description": "Titel: Startseite ",
+      "description": "",
       "screenshots": [
         {
-          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/image-1.png",
+          "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/image-1.png",
           "name": "Sky Sport Design Bundesliga"
         }
       ],
@@ -32,18 +25,18 @@
         {
           "id": "spiele",
           "label": "Spiele",
-          "description": "Text: Spiele – 14. Spieltag\n1–3 Spieltage auswählbar\nEinzelne Teams auswählbar\nButton 1: Clubprofil öffnen\nButton 2: Vereinsstatistik (scrollbar)\nButton 3: Spielübersicht des Vereins – jedes Spiel anklickbar für Statistik, Aufstellung und Analyse",
+          "description": "",
           "screenshots": [
             {
-              "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/image-1.png",
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/image-1.png",
               "name": "Spiele"
             },
             {
-              "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/image-2.png",
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/image-2.png",
               "name": "Spiele"
             },
             {
-              "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/image-3.png",
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/image-3.png",
               "name": "Spiele"
             }
           ],
@@ -54,11 +47,11 @@
               "description": "",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/fahrplan/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/fahrplan/image-1.png",
                   "name": "Fahrplan"
                 },
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/fahrplan/image-2.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/fahrplan/image-2.png",
                   "name": "Fahrplan"
                 }
               ],
@@ -70,26 +63,11 @@
               "description": "",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/teamstatistik/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/teamstatistik/image-1.png",
                   "name": "TEAMSTATISTIK"
                 }
               ],
-              "children": [
-                {
-                  "id": "aktuelle-spielstatistik-beider-mannschaften",
-                  "label": "Aktuelle Spielstatistik beider Mannschaften (Informationen und Zeilenanzahl sind fix und nicht redaktionell editierbar)",
-                  "description": "",
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "spielerstatistik-spieler-beider-mannschaften",
-                  "label": "Spielerstatistik: Spieler beider Mannschaften können miteinander verglichen werden",
-                  "description": "",
-                  "screenshots": [],
-                  "children": []
-                }
-              ]
+              "children": []
             },
             {
               "id": "teamvergleich",
@@ -97,7 +75,7 @@
               "description": "",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/teamvergleich/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/teamvergleich/image-1.png",
                   "name": "TEAMVERGLEICH"
                 }
               ],
@@ -109,7 +87,7 @@
               "description": "",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielerstatistik/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/spielerstatistik/image-1.png",
                   "name": "SPIELERSTATISTIK"
                 }
               ],
@@ -118,38 +96,43 @@
             {
               "id": "aufstellung",
               "label": "Aufstellung",
-              "description": "man kann auf das Touchscreen klicken und leicht herunterziehen, da sieht man eine Übersicht Zeile oben mit der Auflistung:\nSpiele / Spielzusammenfassung /Aufstellung / Spielanalyse\nTitel: Aufstellung\nÜbersicht der Aufstellung, eine Grafik mit einem Spielfeld mit 22 Spielern zu sehen, rechts und links sind wieder die Leiste mit verschieden Buttons\nTitel: Spieler kann man auswechseln\nTitel: Spieler kann man highlighten\nTitel: Spieler kann man bewegen",
+              "description": "man kann auf das Touchscreen klicken und leicht herunterziehen, da sieht man eine Übersicht Zeile oben mit der Auflistung:\nSpiele / Spielzusammenfassung /Aufstellung / Spielanalyse",
               "screenshots": [
                 {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-1.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-2.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-3.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-4.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-5.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-6.png",
-                  "name": "Aufstellung"
-                },
-                {
-                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-7.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/image-1.png",
                   "name": "Aufstellung"
                 }
               ],
-              "children": []
+              "children": [
+                {
+                  "id": "aufstellung",
+                  "label": "Aufstellung",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/aufstellung/image-1.png",
+                      "name": "Aufstellung"
+                    },
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/aufstellung/image-2.png",
+                      "name": "Aufstellung"
+                    },
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/aufstellung/image-3.png",
+                      "name": "Aufstellung"
+                    },
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/aufstellung/image-4.png",
+                      "name": "Aufstellung"
+                    },
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/aufstellung/aufstellung/image-5.png",
+                      "name": "Aufstellung"
+                    }
+                  ],
+                  "children": []
+                }
+              ]
             },
             {
               "id": "analyse",
@@ -159,32 +142,32 @@
               "children": [
                 {
                   "id": "aktionszone",
-                  "label": "Aktionszone\n",
-                  "description": "Titel:  Wechseln zwischen Teams in der Angriffszone möglich\nAuswahl: 1. Halbzeit, 2. Halbzeit oder gesamtes Spiel ",
+                  "label": "Aktionszone",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-1.png",
-                      "name": "Aktionszone\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-1.png",
+                      "name": "Aktionszone"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-2.png",
-                      "name": "Aktionszone\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-2.png",
+                      "name": "Aktionszone"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-3.png",
-                      "name": "Aktionszone\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-3.png",
+                      "name": "Aktionszone"
                     }
                   ],
                   "children": []
                 },
                 {
                   "id": "tackle-map",
-                  "label": "Tackle Map",
-                  "description": "Titel: Tacklings Statistik ",
+                  "label": "Tackle Map ",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map/image-1.png",
-                      "name": "Tackle Map"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/tackle-map/image-1.png",
+                      "name": "Tackle Map "
                     }
                   ],
                   "children": []
@@ -192,14 +175,14 @@
                 {
                   "id": "heatmap",
                   "label": "Heatmap",
-                  "description": "Titel: Verein oder einzelne Spieler auswählen\nHeatmap der einzelnen Spieler anzeigen\nAuswahl: 1. Halbzeit, 2. Halbzeit oder gesamtes Spiel ",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/heatmap/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/heatmap/image-1.png",
                       "name": "Heatmap"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/heatmap/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/heatmap/image-2.png",
                       "name": "Heatmap"
                     }
                   ],
@@ -207,68 +190,68 @@
                 },
                 {
                   "id": "shotplot",
-                  "label": "Shotplot\n",
-                  "description": "Titel: Tor, vorbei, Paraden, abgeblockt\nBasiert nur auf Schüssen\nAuswahl: 1. Halbzeit, 2. Halbzeit oder gesamtes Spiel\nJeweils teambasierten",
+                  "label": "Shotplot",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/shotplot/image-1.png",
-                      "name": "Shotplot\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/shotplot/image-1.png",
+                      "name": "Shotplot"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/shotplot/image-2.png",
-                      "name": "Shotplot\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/shotplot/image-2.png",
+                      "name": "Shotplot"
                     }
                   ],
                   "children": []
                 },
                 {
                   "id": "angriffszonen",
-                  "label": "Angriffszonen\n ",
-                  "description": "Titel: Wechseln zwischen Teams in der Angriffszone möglich\nAuswahl: 1. Halbzeit, 2. Halbzeit oder gesamtes Spiel",
+                  "label": "Angriffszonen",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/angriffszonen/image-1.png",
-                      "name": "Angriffszonen\n "
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/angriffszonen/image-1.png",
+                      "name": "Angriffszonen"
                     }
                   ],
                   "children": []
                 },
                 {
                   "id": "passmap",
-                  "label": "Passmap\n",
-                  "description": "Titel: Angekommene Pässe, Fehlpässe und Torschussvorlagen werden chronologisch durch Pfeile animiert",
+                  "label": "Passmap",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/passmap/image-1.png",
-                      "name": "Passmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/passmap/image-1.png",
+                      "name": "Passmap"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/passmap/image-2.png",
-                      "name": "Passmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/passmap/image-2.png",
+                      "name": "Passmap"
                     }
                   ],
                   "children": []
                 },
                 {
                   "id": "touchmap",
-                  "label": "Touchmap\n",
-                  "description": "Titel: Man wählt ein Team aus und zeigt die Ballberührungen an. Die Anzeige funktioniert für einzelne Spieler oder das gesamte Team – ein Vergleich ist nicht möglich. Die Ballberührungen werden chronologisch animiert.",
+                  "label": "Touchmap",
+                  "description": "",
                   "screenshots": [
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-1.png",
-                      "name": "Touchmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-1.png",
+                      "name": "Touchmap"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-2.png",
-                      "name": "Touchmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-2.png",
+                      "name": "Touchmap"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-3.png",
-                      "name": "Touchmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-3.png",
+                      "name": "Touchmap"
                     },
                     {
-                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-4.png",
-                      "name": "Touchmap\n"
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/sky-sport-design-bundesliga/spiele/analyse/touchmap/image-4.png",
+                      "name": "Touchmap"
                     }
                   ],
                   "children": []
