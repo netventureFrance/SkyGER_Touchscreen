@@ -320,14 +320,8 @@ class MindmapView {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
-        // Gap between nodes (edge to edge)
-        let gap;
-        switch (childLevel) {
-            case 1: gap = 120; break;  // Gap after root
-            case 2: gap = 100; break;  // Gap after level 1
-            case 3: gap = 80; break;   // Gap after level 2
-            default: gap = 60;
-        }
+        // Consistent gap between nodes (edge to edge)
+        const gap = 100;
 
         // Get actual parent width from DOM
         const parentNodeEl = this.nodesContainer.querySelector(`[data-id="${parentId}"] .mindmap-node-box`);
