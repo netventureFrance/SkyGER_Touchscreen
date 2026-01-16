@@ -45,7 +45,10 @@ class MindmapView {
         this.init();
     }
 
-    init() {
+    async init() {
+        // Try to load notion-data.json
+        await this.loadNotionData();
+
         // Initial erweiterte Nodes
         this.expandedNodes.add('root');
 
@@ -61,6 +64,23 @@ class MindmapView {
         // Zeit
         this.updateTime();
         setInterval(() => this.updateTime(), 1000);
+    }
+
+    async loadNotionData() {
+        try {
+            const response = await fetch('images/notion-data.json');
+            if (response.ok) {
+                const data = await response.json();
+                // Find "Sky Sport Design Bundesliga" node
+                const skyNode = data.children?.find(c => c.label === 'Sky Sport Design Bundesliga');
+                if (skyNode) {
+                    this.notionData = skyNode;
+                    console.log('Loaded Notion data:', skyNode.children?.length, 'items');
+                }
+            }
+        } catch (e) {
+            console.log('No notion-data.json found, using fallback data');
+        }
     }
 
     setupEventListeners() {
@@ -145,6 +165,7 @@ class MindmapView {
             label: notionItem.label || 'Untitled',
             icon: icon,
             description: notionItem.description || '',
+            screenshots: notionItem.screenshots || [],
             children: (notionItem.children || []).map(child => this.convertNotionToMindmap(child))
         };
     }

@@ -1,6 +1,6 @@
 {
-  "id": "interaktive-mindmap",
-  "label": "Interaktive Mindmap",
+  "id": "shotplot-tor-vorbei-paraden-abgeblockt-nur-auf",
+  "label": "Shotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierendInteraktive Mindmap",
   "description": "Eine interaktive Übersicht des gesamten Sky Touchscreen Systems.",
   "screenshots": [],
   "children": [
@@ -24,7 +24,7 @@
       "description": "Titel: Startseite ",
       "screenshots": [
         {
-          "url": "images/screenshots/sky-sport-design-bundesliga/image-1.png",
+          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/image-1.png",
           "name": "Sky Sport Design Bundesliga"
         }
       ],
@@ -41,23 +41,23 @@
               "description": "Titel: Spiele - 14. Spieltag\nTitel:Fahrplan\nSpiele - 14. Spieltag\n1-3 Spieltage kann man auswählen\neinzelne Teams kann man auswählen - \nButton 1von jedem Team kann man auf ein Club Profil gehen\nButton 2 Vereinsstatistik - scrollen \nButton 3 Spiel Übersicht von dem jeweiligen Verein - in der Übersicht kann man auf jedes Spiel klicken und bekommst wieder eine eigene Statistik, Aufstellung und Analyse\n\nStartseite\nÜbersicht: Torschützen und die Minuten \nSpielstatistik, Aufstellung und Analyse",
               "screenshots": [
                 {
-                  "url": "images/screenshots/spiele/image-1.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-1.png",
                   "name": "Spiele"
                 },
                 {
-                  "url": "images/screenshots/spiele/image-2.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-2.png",
                   "name": "Spiele"
                 },
                 {
-                  "url": "images/screenshots/spiele/image-3.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-3.png",
                   "name": "Spiele"
                 },
                 {
-                  "url": "images/screenshots/spiele/image-4.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-4.png",
                   "name": "Spiele"
                 },
                 {
-                  "url": "images/screenshots/spiele/image-5.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spiele/image-5.png",
                   "name": "Spiele"
                 }
               ],
@@ -66,30 +66,42 @@
             {
               "id": "spielstatistik",
               "label": "Spielstatistik",
-              "description": "Übersicht oben ist dem Spiel Paar Verein 1, Spielstand, Verein 2\nStatistiken als Vergleich zwischen den Vereinen\nrechts und links sind jeweils Buttons um weitere Aktionen auf der Seite zu wechseln\nButton Design als kleines Kalender\n - Saisonstatistik\n- Aktuelle Spielstatistik der beiden Mannschaften \n(für beide sind die Informationen und Zeilenanzahl fix und nicht redaktionell editierbar)\n- Spielerstatistik\nman kann bei jeden Spieler der einzelnen Mannschaften von der Partie miteinander vergleichen\n\nTitel: Vereins Statistik\nTitel: Verein Vergleich Statistiken\nTitel: Verein vergleich Saisonstatistiken\nTitel: Vergleich Spieler Statistiken",
+              "description": "Übersicht oben ist dem Spiel Paar Verein 1, Spielstand, Verein 2\nStatistiken als Vergleich zwischen den Vereinen\nrechts und links sind jeweils Buttons um weitere Aktionen auf der Seite zu wechseln\nButton Design als kleines Kalender\n - Saisonstatistik\n- Aktuelle Spielstatistik der beiden Mannschaften \n(für beide sind die Informationen und Zeilenanzahl fix und nicht redaktionell editierbar)\n- Spielerstatistik\nman kann bei jeden Spieler der einzelnen Mannschaften von der Partie miteinander vergleichen\n\nTitel: Vereins Statistik\nTitel: Verein Vergleich Statistiken\nTitel: Verein vergleich Saisonstatistiken\nTitel: Vergleich Spieler Saisonstatistiken \nTitel: Vergleich Spieler Statistiken \nTitel: Spieler Statistik\nTitel: Spieler Saisonstatistik",
               "screenshots": [
                 {
-                  "url": "images/screenshots/spielstatistik/image-1.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-1.png",
                   "name": "Spielstatistik"
                 },
                 {
-                  "url": "images/screenshots/spielstatistik/image-2.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-2.png",
                   "name": "Spielstatistik"
                 },
                 {
-                  "url": "images/screenshots/spielstatistik/image-3.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-3.png",
                   "name": "Spielstatistik"
                 },
                 {
-                  "url": "images/screenshots/spielstatistik/image-4.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-4.png",
                   "name": "Spielstatistik"
                 },
                 {
-                  "url": "images/screenshots/spielstatistik/image-5.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-5.png",
                   "name": "Spielstatistik"
                 },
                 {
-                  "url": "images/screenshots/spielstatistik/image-6.png",
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-6.png",
+                  "name": "Spielstatistik"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-7.png",
+                  "name": "Spielstatistik"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-8.png",
+                  "name": "Spielstatistik"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/spielstatistik/image-9.png",
                   "name": "Spielstatistik"
                 }
               ],
@@ -98,16 +110,179 @@
             {
               "id": "aufstellung",
               "label": "Aufstellung",
-              "description": "Übersicht der Aufstellung, eine Grafik mit einem Spielfeld mit 22 Spielern zu sehen\nrechts und links sind wieder die Leiste mit verschieden Buttons\n\nman kann auf das Touchscreen klicken und leicht herunterziehen, da sieht man eine Übersicht Zeile oben mit der Auflistung:\nSpiele / Spielzusammenfassung /Aufstellung / Spielanalyse\n\nAlle Spieler sind manuell verschiebbar\nes gibt ein Reset-Button für die Positionen\nmit jeden einzelnen Spieler kann man mit einem Auswechselspieler austauschen\nReset-Button für die Auswechselspieler\nHighlight Button (kannst alle highlighten, wieder draufklicken ist das Highlight weg)\nlaufweg einzeichnen von spielern\nlaufweg reset button\n1 button icon mit einem spieler im feld drücken\n   - spiel statistik von dem aktuellen spieler\n   - saisonstatistiken vom spieler\n2 button icon Spielervergleich\n    - Saisonstatistik\n    - Saisonstatistik von 2 Spielern als vergleich jeweils einer mannschaften\nman kann auch innerhalb eines teams vergleichen\n\nbutton ein Fußball\n- den ball kann man bewegen, frei bewegbarer fußball\n\nbutton logo team 1\n- von 22er auf 11er aufstellung switchen, sowie heim als auf gastmannschaft\n\nButton logo team 2\n- ist identisch wie 1\n\nrechte Leiste sind drei striche da kann man die vorraussitliche aufstellung bauen\n- switchen zwischen einzelnen reihen sowie Torwart, verteidigung, mittelfeld und angriff\nin diesem menu kann man die vorraustliche aufstellung manuel selber bauen\nin dieser aufstellung kann man speichern\n— in der funktion hast du die option auf highlight, spielerstatistik, spieler vergleich und den ball\n\n",
-              "screenshots": [],
+              "description": "Übersicht der Aufstellung, eine Grafik mit einem Spielfeld mit 22 Spielern zu sehen\nrechts und links sind wieder die Leiste mit verschieden Buttons\n\nman kann auf das Touchscreen klicken und leicht herunterziehen, da sieht man eine Übersicht Zeile oben mit der Auflistung:\nSpiele / Spielzusammenfassung /Aufstellung / Spielanalyse\n\nAlle Spieler sind manuell verschiebbar\nes gibt ein Reset-Button für die Positionen\nmit jeden einzelnen Spieler kann man mit einem Auswechselspieler austauschen\nReset-Button für die Auswechselspieler\nHighlight Button (kannst alle highlighten, wieder draufklicken ist das Highlight weg)\nlaufweg einzeichnen von spielern\nlaufweg reset button\n1 button icon mit einem spieler im feld drücken\n   - spiel statistik von dem aktuellen spieler\n   - saisonstatistiken vom spieler\n2 button icon Spielervergleich\n    - Saisonstatistik\n    - Saisonstatistik von 2 Spielern als vergleich jeweils einer mannschaften\nman kann auch innerhalb eines teams vergleichen\n\nbutton ein Fußball\n- den ball kann man bewegen, frei bewegbarer fußball\n\nbutton logo team 1\n- von 22er auf 11er aufstellung switchen, sowie heim als auf gastmannschaft\n\nButton logo team 2\n- ist identisch wie 1\n\nrechte Leiste sind drei striche da kann man die vorraussitliche aufstellung bauen\n- switchen zwischen einzelnen reihen sowie Torwart, verteidigung, mittelfeld und angriff\nin diesem menu kann man die vorraustliche aufstellung manuel selber bauen\nin dieser aufstellung kann man speichern\n— in der funktion hast du die option auf highlight, spielerstatistik, spieler vergleich und den ball\n\n\nTitel: Aufstellung\nTitel: Spieler kann man auswechseln\nTitel: Spieler kann man highlighten\nTitel: Spieler kann man bewegen",
+              "screenshots": [
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-1.png",
+                  "name": "Aufstellung"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-2.png",
+                  "name": "Aufstellung"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-3.png",
+                  "name": "Aufstellung"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-4.png",
+                  "name": "Aufstellung"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-5.png",
+                  "name": "Aufstellung"
+                },
+                {
+                  "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/aufstellung/image-6.png",
+                  "name": "Aufstellung"
+                }
+              ],
               "children": []
             },
             {
               "id": "analyse",
               "label": "Analyse",
-              "description": "anzeigen auf die drei striche\nballbesitz \n - komplette spielzeit\n - 1. halbzeit\n - 2.halbzeit\n\ndurschnittliche positionen / real taktiken\n    - real taktiken aufstellungen auf der jeweiligen mannschaften mit der startaufstellung vergleichen\nalle spieler sind frei positionierbar und mann kann sie auch wieder reseten die positionen\nman kann auf den jeweileigen teams anzeigen wer eingewechselt werden kann man switchen\ndie position des auswächselsspieler ändert sich automatisch\n\nTouchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein\n\nPassmap\n - angekommene, fehlpässe, torschussvorlagen \nwerden durch pfeilen chronologisch rein animiert\n\nAngriffszonen\n - attackinzone zwischen teams wechseln\n1.halbzeit, 2.halbzeit oder gesamtes spiel \n\nShotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierend\nTackle Map\n- Tacklings statistik gleiche funktionen wie touchmap nur es geht über tackel,\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein\n\nHeatmap\n- verein oder einzelne spieler anwählen\nheatmap der einzelne spieler an \n1.halbzeit, 2.halbzeit oder gesamtes spiel \n",
+              "description": "anzeigen auf die drei striche\nballbesitz \n - komplette spielzeit\n - 1. halbzeit\n - 2.halbzeit\n\ndurschnittliche positionen / real taktiken\n    - real taktiken aufstellungen auf der jeweiligen mannschaften mit der startaufstellung vergleichen\nalle spieler sind frei positionierbar und mann kann sie auch wieder reseten die positionen\nman kann auf den jeweileigen teams anzeigen wer eingewechselt werden kann man switchen\ndie position des auswächselsspieler ändert sich automatisch",
               "screenshots": [],
-              "children": []
+              "children": [
+                {
+                  "id": "aktionszone",
+                  "label": "Aktionszone",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-1.png",
+                      "name": "Aktionszone"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-2.png",
+                      "name": "Aktionszone"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/aktionszone/image-3.png",
+                      "name": "Aktionszone"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "tackle-map-tacklings-statistik-gleiche-funktionen",
+                  "label": "Tackle Map\n- Tacklings statistik gleiche funktionen wie touchmap nur es geht über tackel,",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map-tacklings-statistik-gleiche-funktionen/image-1.png",
+                      "name": "Tackle Map\n- Tacklings statistik gleiche funktionen wie touchmap nur es geht über tackel,"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "ballberuehrungen-man-waehlt-aus-einem-team-aus",
+                      "label": "Ballberührungen\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nBall Berührungen animieren sich chronologisch rein",
+                      "description": "",
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map-tacklings-statistik-gleiche-funktionen/ballberuehrungen-man-waehlt-aus-einem-team-aus/image-1.png",
+                          "name": "Ballberührungen\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nBall Berührungen animieren sich chronologisch rein"
+                        },
+                        {
+                          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map-tacklings-statistik-gleiche-funktionen/ballberuehrungen-man-waehlt-aus-einem-team-aus/image-2.png",
+                          "name": "Ballberührungen\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nBall Berührungen animieren sich chronologisch rein"
+                        },
+                        {
+                          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map-tacklings-statistik-gleiche-funktionen/ballberuehrungen-man-waehlt-aus-einem-team-aus/image-3.png",
+                          "name": "Ballberührungen\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nBall Berührungen animieren sich chronologisch rein"
+                        },
+                        {
+                          "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/tackle-map-tacklings-statistik-gleiche-funktionen/ballberuehrungen-man-waehlt-aus-einem-team-aus/image-4.png",
+                          "name": "Ballberührungen\nman wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nBall Berührungen animieren sich chronologisch rein"
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "heatmap-verein-oder-einzelne-spieler-anwaehlen",
+                  "label": "Heatmap\n- verein oder einzelne spieler anwählen\nheatmap der einzelne spieler an \n1.halbzeit, 2.halbzeit oder gesamtes spiel \n",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/heatmap-verein-oder-einzelne-spieler-anwaehlen/image-1.png",
+                      "name": "Heatmap\n- verein oder einzelne spieler anwählen\nheatmap der einzelne spieler an \n1.halbzeit, 2.halbzeit oder gesamtes spiel \n"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/heatmap-verein-oder-einzelne-spieler-anwaehlen/image-2.png",
+                      "name": "Heatmap\n- verein oder einzelne spieler anwählen\nheatmap der einzelne spieler an \n1.halbzeit, 2.halbzeit oder gesamtes spiel \n"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "shotplot-tor-vorbei-paraden-abgeblockt-nur-auf",
+                  "label": "Shotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierend",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/image-1.png",
+                      "name": "Shotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierend"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/image-2.png",
+                      "name": "Shotplot\n- Tor, Vorbei, Paraden, Abgeblockt\nnur auf Schüsse basierend\n1.halbzeit, 2.halbzeit oder gesamtes spiel \njeweils teams basierend"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "angriffszonen-attackinzone-zwischen-teams",
+                  "label": "Angriffszonen\n - attackinzone zwischen teams wechseln\n1.halbzeit, 2.halbzeit oder gesamtes spiel",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/angriffszonen-attackinzone-zwischen-teams/image-1.png",
+                      "name": "Angriffszonen\n - attackinzone zwischen teams wechseln\n1.halbzeit, 2.halbzeit oder gesamtes spiel"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "passmap-angekommene-fehlpaesse-torschussvorlagen",
+                  "label": "Passmap\n - angekommene, fehlpässe, torschussvorlagen \nwerden durch pfeilen chronologisch rein animiert",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/passmap-angekommene-fehlpaesse-torschussvorlagen/image-1.png",
+                      "name": "Passmap\n - angekommene, fehlpässe, torschussvorlagen \nwerden durch pfeilen chronologisch rein animiert"
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "touchmap-man-waehlt-aus-einem-team-aus-und-zeigt",
+                  "label": "Touchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein",
+                  "description": "",
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap-man-waehlt-aus-einem-team-aus-und-zeigt/image-1.png",
+                      "name": "Touchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap-man-waehlt-aus-einem-team-aus-und-zeigt/image-2.png",
+                      "name": "Touchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap-man-waehlt-aus-einem-team-aus-und-zeigt/image-3.png",
+                      "name": "Touchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein"
+                    },
+                    {
+                      "url": "images/screenshots/shotplot-tor-vorbei-paraden-abgeblockt-nur-auf/sky-sport-design-bundesliga/spiele/analyse/touchmap-man-waehlt-aus-einem-team-aus-und-zeigt/image-4.png",
+                      "name": "Touchmap\n - man wählt aus einem team aus und zeigt die ballposition berührungen\nentweder einzelnen spieler oder gesammtes team, kein vergleich möglich\nball berührungen anniemieren sich chronologisch rein"
+                    }
+                  ],
+                  "children": []
+                }
+              ]
             }
           ]
         },
@@ -233,7 +408,7 @@
               "children": []
             },
             {
-              "id": "verschiedene-kameraperspektiven-die-ueber-libero-vor-programmiert-werden-muessen",
+              "id": "verschiedene-kameraperspektiven-die-ueber-libero",
               "label": "verschiedene Kameraperspektiven die über Libero vor programmiert werden müssen",
               "description": "",
               "screenshots": [],

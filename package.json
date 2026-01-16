@@ -9,7 +9,8 @@
     "build": "echo 'Static site - no build needed'",
     "start": "npx serve .",
     "functions": "netlify functions:serve",
-    "setup-db": "node scripts/setup-notion-db.js"
+    "setup-db": "node scripts/setup-notion-db.js",
+    "sync-notion": "node mcp-notion-server/sync-notion.js"
   },
   "keywords": [
     "sky",

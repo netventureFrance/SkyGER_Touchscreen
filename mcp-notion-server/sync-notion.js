@@ -72,12 +72,18 @@ function downloadFile(url, filepath) {
 /**
  * Sanitize filename
  */
-function sanitize(name) {
-    return name.toLowerCase()
+function sanitize(name, maxLength = 50) {
+    const sanitized = name.toLowerCase()
         .replace(/[äöüß]/g, c => ({ 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss' }[c]))
         .replace(/[^a-z0-9]/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '') || 'unnamed';
+
+    // Truncate to maxLength, but don't cut in middle of word
+    if (sanitized.length <= maxLength) return sanitized;
+    const truncated = sanitized.substring(0, maxLength);
+    const lastDash = truncated.lastIndexOf('-');
+    return lastDash > 10 ? truncated.substring(0, lastDash) : truncated;
 }
 
 /**
@@ -371,18 +377,33 @@ async function downloadAllImages(item, basePath = '') {
 }
 
 /**
- * Generate data.js compatible structure
+ * Generate data.js compatible structure with correct paths
  */
-function generateDataStructure(item, depth = 0) {
+function generateDataStructure(item, basePath = '', depth = 0) {
+    const folderName = sanitize(item.title || 'root');
+    const currentPath = basePath ? `${basePath}/${folderName}` : folderName;
+
     const result = {
         id: sanitize(item.title || 'root'),
         label: item.title || 'Untitled',
         description: item.description || '',
-        screenshots: item.images.map((img, i) => ({
-            url: `images/screenshots/${sanitize(item.title || 'root')}/${img.caption ? sanitize(img.caption) : `image-${i+1}`}.${img.url.includes('.png') ? 'png' : 'jpg'}`,
-            name: img.caption || item.title
-        })),
-        children: item.children.map(child => generateDataStructure(child, depth + 1))
+        screenshots: item.images.map((img, i) => {
+            let ext = 'jpg';
+            const urlLower = img.url.toLowerCase();
+            if (urlLower.includes('.png')) ext = 'png';
+            else if (urlLower.includes('.gif')) ext = 'gif';
+            else if (urlLower.includes('.webp')) ext = 'webp';
+
+            const filename = img.caption ?
+                `${sanitize(img.caption)}.${ext}` :
+                `image-${i + 1}.${ext}`;
+
+            return {
+                url: `images/screenshots/${currentPath}/${filename}`,
+                name: img.caption || item.title
+            };
+        }),
+        children: item.children.map(child => generateDataStructure(child, currentPath, depth + 1))
     };
 
     return result;
