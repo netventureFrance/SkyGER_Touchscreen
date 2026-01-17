@@ -267,6 +267,7 @@
 body.fullscreen .mindmap-header {
     transform: translateY(-100%);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 }
 
