@@ -789,11 +789,6 @@ class MindmapView {
         // Title with node color
         html += `<h2 ${titleStyle}>${escapeHtml(node.label)}</h2>`;
 
-        // Description AFTER screenshots
-        if (node.description) {
-            html += `<p class="panel-description">${escapeHtml(node.description)}</p>`;
-        }
-
         // Kinder anzeigen
         if (node.children && node.children.length > 0) {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
@@ -811,6 +806,11 @@ class MindmapView {
                 `;
             });
             html += `</div>`;
+        }
+
+        // Description at the end
+        if (node.description) {
+            html += `<p class="panel-description">${escapeHtml(node.description)}</p>`;
         }
 
         this.panelContent.innerHTML = html;
