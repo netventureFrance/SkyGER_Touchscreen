@@ -392,9 +392,10 @@ class MindmapView {
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Measure actual parent width from DOM
+                // Measure actual parent width from DOM (divide by zoom to get unscaled width)
                 const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-                const parentWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
+                const scaledWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
+                const parentWidth = scaledWidth / this.zoom;
 
                 // Calculate startX based on parent type
                 // Root node is centered (transform: translate(-50%, -50%)) so position is CENTER
@@ -988,6 +989,9 @@ class MindmapView {
         if (this.zoom !== oldZoom) {
             this.canvas.style.transform = `scale(${this.zoom})`;
             document.getElementById('zoomLevel').textContent = `${Math.round(this.zoom * 100)}%`;
+
+            // Redraw lines with correct measurements for new zoom
+            this.drawLines();
 
             // Recenter view after zoom change
             setTimeout(() => this.centerView(), 50);
