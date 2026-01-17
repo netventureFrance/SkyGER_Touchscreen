@@ -1,37 +1,72 @@
 # Sky Sport Touchscreen - Visualisierung
 
+**Version 1.39.3**
+
 Interaktive Web-Visualisierung für das Sky Sport Touchscreen System.
 
 ## Übersicht
 
-Diese Anwendung dokumentiert die komplette Struktur des RCS Touch Systems, das bei Sky Deutschland für Live-TV-Produktionen eingesetzt wird.
+Diese Anwendung dokumentiert die komplette Struktur des RCS Touch Systems, das bei Sky Deutschland für Live-TV-Produktionen eingesetzt wird. Die Daten werden aus einer Notion-Datenbank synchronisiert und als interaktive Mindmap dargestellt.
 
 ## Features
 
-- **Radiales Hauptmenü** - 9 Kategorien im Sky Sport Design
-- **Mehrstufige Navigation** - Bis zu 4 Ebenen tief
-- **Notion Integration** - Live-Daten aus Notion
+- **Interaktive Mindmap** - Hierarchische Navigation durch alle Funktionen
+- **Screenshot-Vorschau** - Bilder direkt in der Visualisierung
+- **Notion Integration** - Automatische Synchronisierung via GitHub Actions
+- **Admin Panel** - Manuelles Auslösen der Synchronisierung
 - **Responsive Design** - Optimiert für verschiedene Bildschirmgrößen
 - **Sky Design System** - Authentisches Look & Feel
 
 ## Projektstruktur
 
 ```
-sky-touchscreen-viz/
-├── index.html              # Hauptseite
+SkyGER_Touchscreen/
+├── index.html                 # Hauptseite (Mindmap)
+├── admin.html                 # Admin Panel für Sync
+├── version.json               # Versionsnummer
+├── favicon.ico
+│
 ├── css/
-│   └── styles.css          # Sky Design System
+│   ├── styles.css             # Sky Design System (Basis)
+│   └── mindmap.css            # Mindmap-spezifische Styles
+│
 ├── js/
-│   ├── app.js              # Hauptanwendung
-│   ├── data.js             # Datenstruktur
-│   ├── radial-menu.js      # Radiales Menü Komponente
-│   └── notion-api.js       # Notion API Client
+│   ├── data.js                # Generierte Datenstruktur (SKY_DATA)
+│   └── mindmap.js             # MindmapView Klasse
+│
+├── images/
+│   ├── screenshots/           # Lokale Screenshots (151 Bilder)
+│   ├── notion-data.json       # Exportierte Notion-Daten
+│   ├── screenshot-mapping.json# Screenshot-Zuordnung
+│   └── README.md              # Dokumentation der Bildverwaltung
+│
 ├── netlify/
 │   └── functions/
-│       └── notion-proxy.js # API Proxy
-├── netlify.toml            # Netlify Konfiguration
-├── package.json            # Dependencies
-└── .env.example            # Umgebungsvariablen Vorlage
+│       └── sync.js            # Netlify Function für Sync-Trigger
+│
+├── scripts/
+│   └── setup-notion-db.js     # Notion Datenbank Setup
+│
+├── mcp-notion-server/         # Notion Synchronisierung
+│   ├── sync-notion.js         # Haupt-Sync-Skript (GitHub Actions)
+│   ├── download-images.js     # Screenshot-Download
+│   ├── explore-notion.js      # Notion-Struktur erkunden
+│   ├── src/index.js           # MCP Server Entry Point
+│   ├── utils/                 # Einmalige Utility-Skripte
+│   │   ├── setup-db.js
+│   │   ├── populate-db.js
+│   │   ├── check-db.js
+│   │   └── ...
+│   └── package.json           # Dependencies
+│
+├── .github/
+│   └── workflows/
+│       └── sync-notion.yml    # GitHub Actions Workflow
+│
+├── netlify.toml               # Netlify Konfiguration
+├── package.json               # Projekt Dependencies
+├── .env.example               # Umgebungsvariablen Vorlage
+└── .gitignore
 ```
 
 ## Installation
@@ -40,15 +75,16 @@ sky-touchscreen-viz/
 
 ```bash
 # Repository klonen
-git clone https://github.com/[username]/sky-touchscreen-viz.git
-cd sky-touchscreen-viz
+git clone https://github.com/[username]/SkyGER_Touchscreen.git
+cd SkyGER_Touchscreen
 
 # Dependencies installieren
 npm install
+cd mcp-notion-server && npm install && cd ..
 
 # .env Datei erstellen
 cp .env.example .env
-# Notion Token eintragen
+# NOTION_TOKEN eintragen
 
 # Entwicklungsserver starten
 npm run dev
@@ -59,44 +95,39 @@ npm run dev
 1. Repository mit Netlify verbinden
 2. Environment Variables setzen:
    - `NOTION_TOKEN` - Notion Integration Token
-   - `NOTION_PAGE_ID` - Haupt-Page ID (optional)
+   - `GITHUB_TOKEN` - GitHub Personal Access Token (für Sync)
 3. Deploy auslösen
 
-## Notion Setup
+## Notion Synchronisierung
 
-### Integration erstellen
+### Automatische Sync
 
-1. Gehe zu [notion.so/my-integrations](https://www.notion.so/my-integrations)
-2. Neue Integration erstellen
-3. Token kopieren und als `NOTION_TOKEN` speichern
+Die Synchronisierung läuft über GitHub Actions:
+1. Admin Panel öffnen (`/admin.html`)
+2. Anmelden
+3. "Sync from Notion" klicken
+4. GitHub Actions Workflow wird ausgelöst
+5. `sync-notion.js` holt Daten und Screenshots
+6. Änderungen werden automatisch committed
 
-### Seite verbinden
+### Manuelle Sync (lokal)
 
-1. Öffne die Sky Touchscreen Seite in Notion
-2. "Share" → "Invite" → Integration hinzufügen
-3. Page ID aus der URL kopieren
+```bash
+cd mcp-notion-server
+node sync-notion.js
+```
 
-**Page IDs:**
-- Projekt: `2b9f99a2be228098a506e3621bf4d538`
-- Dokumentation: `2caf99a2be228014a094ec591bad7089`
-- Arbeitsbereich: `2e9f99a2be2281379653c6ba4b29400f`
+## Admin Panel
 
-## API Endpoints
-
-Die Netlify Function stellt folgende Endpoints bereit:
-
-| Endpoint | Parameter | Beschreibung |
-|----------|-----------|--------------|
-| `/api/page` | `id` | Seite abrufen |
-| `/api/blocks` | `id` | Blocks einer Seite |
-| `/api/children` | `id` | Kinder-Seiten |
-| `/api/database` | `id` | Datenbank abfragen |
-| `/api/search` | `query` | Seiten durchsuchen |
-| `/api/health` | - | Status Check |
+Zugriff über `/admin.html`:
+- **Sync Status** - Zeigt letzte Synchronisierung
+- **Sync Trigger** - Manuelles Auslösen
+- **Sync Log** - Protokoll der Aktionen
+- **Version Info** - Aktuelle Version
 
 ## Datenstruktur
 
-Die komplette Struktur des RCS Touch Systems:
+Die Mindmap zeigt folgende Struktur:
 
 ```
 Sky Touchscreen
@@ -117,15 +148,14 @@ Sky Touchscreen
 
 ## Technologie
 
-- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
-- **Backend:** Netlify Functions (Node.js)
-- **API:** Notion API v1
-- **Hosting:** Netlify
-
-## Termine
-
-- **08.01.2026** - Workshop II mit Sky
-- **Phase I** - Ablösung RCS für Fußball
+| Komponente | Technologie |
+|------------|-------------|
+| Frontend | HTML5, CSS3, JavaScript (ES6+) |
+| Hosting | Netlify |
+| Functions | Netlify Functions (Node.js) |
+| Sync | GitHub Actions |
+| Datenquelle | Notion API v1 |
+| MCP Server | Node.js |
 
 ## Lizenz
 
