@@ -199,8 +199,8 @@
 
 .mindmap-canvas {
     position: relative;
-    min-width: 5000px;
-    min-height: 5000px;
+    min-width: 10000px;
+    min-height: 8000px;
     transform-origin: top left;
     transition: transform 0.3s ease;
 }

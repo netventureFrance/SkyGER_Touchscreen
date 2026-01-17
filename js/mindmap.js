@@ -21,9 +21,9 @@ class MindmapView {
         this.panelContent = document.getElementById('panelContent');
         this.tooltip = document.getElementById('tooltip');
 
-        // Canvas Größe
-        this.canvasWidth = 5000;
-        this.canvasHeight = 5000;
+        // Canvas Größe (larger to accommodate expanded trees at high zoom)
+        this.canvasWidth = 10000;
+        this.canvasHeight = 8000;
         this.centerX = this.canvasWidth / 2;
         this.centerY = this.canvasHeight / 2;
 
@@ -62,6 +62,9 @@ class MindmapView {
 
         // Initial erweiterte Nodes
         this.expandedNodes.add('root');
+
+        // Initialize selected node with root
+        this.selectedNode = this.buildData();
 
         // Rendern
         this.render();
@@ -137,9 +140,16 @@ class MindmapView {
         // Panel
         document.getElementById('panelClose').addEventListener('click', () => this.closePanel());
 
+        // Sidebar toggle button
+        const toggleBtn = document.getElementById('toggleSidebarBtn');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => this.toggleSidebar());
+        }
+
         // Keyboard
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.closePanel();
+            if (e.key === 'i' || e.key === 'I') this.toggleSidebar(); // 'i' for info
         });
 
         // Drag
@@ -453,6 +463,7 @@ class MindmapView {
     handleNodeClick(node, uniqueId) {
         // Track active node using uniqueId to handle duplicate IDs
         this.activeNodeId = uniqueId;
+        this.selectedNode = node; // Store for sidebar toggle
 
         if (node.children && node.children.length > 0) {
             if (this.expandedNodes.has(node.id)) {
@@ -467,7 +478,24 @@ class MindmapView {
             this.updateActiveHighlight(uniqueId);
         }
 
-        this.showDetail(node, uniqueId);
+        // Only update sidebar content if already open (don't auto-open)
+        if (this.detailPanel.classList.contains('open')) {
+            this.showDetail(node, uniqueId);
+        }
+    }
+
+    /**
+     * Toggle sidebar open/closed
+     */
+    toggleSidebar() {
+        if (this.detailPanel.classList.contains('open')) {
+            this.closePanel();
+        } else {
+            // Open with current selected node
+            if (this.selectedNode) {
+                this.showDetail(this.selectedNode, this.activeNodeId);
+            }
+        }
     }
 
     /**
