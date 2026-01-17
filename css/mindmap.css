@@ -266,7 +266,7 @@ body.fullscreen .breadcrumb-bar {
 body.fullscreen .mindmap-main {
     top: 0;
     bottom: 0;
-    border-top: 2px solid var(--border-color);
+    border: 2px solid var(--border-color);
 }
 
 body.fullscreen .footer-info {
@@ -284,7 +284,8 @@ body.fullscreen .corner-frame {
 body.fullscreen .detail-panel {
     top: 0;
     bottom: 0;
-    border-top: 2px solid var(--border-color);
+    border: 2px solid var(--border-color);
+    border-right: none;
 }
 
 /* Floating controls in fullscreen */
