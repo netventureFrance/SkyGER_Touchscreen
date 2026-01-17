@@ -311,14 +311,14 @@
             {
               "id": "tabelle",
               "label": "Tabelle",
-              "description": "\n",
+              "description": "",
               "color": "#4ADE80",
               "screenshots": [],
               "children": [
                 {
                   "id": "tabelle",
                   "label": "Tabelle",
-                  "description": "übersicht der aktuellen Tabelle, man kann hoch und runter scrollen\nsortieren nach den einzelenen infospalten SP S U N T GT TD PKT, dies ändert sich auch sofort live\nman kann über die team logos auf drei verschiedenen sub details gehen\n1. Clubprofil\n2. Vereinstatistik\n3. Spiele aufrufen, die sind gespielt und die noch kommen (fahrplan) - in diesem zustand kommst du wieder zurück auf die Spiele und hast alle aktionen von ober container SPIELE\n",
+                  "description": "übersicht der aktuellen Tabelle, man kann hoch und runter scrollen\nsortieren nach den einzelenen infospalten SP S U N T GT TD PKT, dies ändert sich auch sofort live\nman kann über die team logos auf drei verschiedenen sub details gehen\n1. Clubprofil\n2. Vereinstatistik\n3. Spiele aufrufen, die sind gespielt und die noch kommen (fahrplan) - in diesem zustand kommst du wieder zurück auf die Spiele und hast alle aktionen von ober container SPIELE",
                   "color": null,
                   "screenshots": [],
                   "children": []
