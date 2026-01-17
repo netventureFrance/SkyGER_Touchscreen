@@ -44,6 +44,43 @@ const structure = {
     children: []
 };
 
+// Import marker - everything before this line in Notion is ignored
+const IMPORT_MARKER = '+++ Ab hier startet der Import Bereich';
+
+/**
+ * Find the import marker and return blocks after it
+ * If no marker found, returns all blocks
+ */
+function filterBlocksFromMarker(blocks) {
+    let markerFound = false;
+    let markerIndex = -1;
+
+    for (let i = 0; i < blocks.length; i++) {
+        const block = blocks[i];
+        const text = getBlockText(block);
+
+        if (text && text.includes(IMPORT_MARKER)) {
+            markerFound = true;
+            markerIndex = i;
+            console.log(`\n🎯 Import marker found at block ${i + 1}`);
+            console.log(`   "${text.substring(0, 60)}..."\n`);
+            break;
+        }
+    }
+
+    if (markerFound) {
+        const skipped = markerIndex + 1;
+        const remaining = blocks.length - skipped;
+        console.log(`📋 Skipping ${skipped} blocks before marker`);
+        console.log(`📋 Processing ${remaining} blocks after marker\n`);
+        return blocks.slice(markerIndex + 1); // Return blocks AFTER the marker
+    } else {
+        console.log('⚠️  No import marker found - processing all blocks');
+        console.log(`   Add "${IMPORT_MARKER}" in Notion to skip content above it\n`);
+        return blocks;
+    }
+}
+
 /**
  * Download file from URL
  */
@@ -116,7 +153,7 @@ function extractHexColor(text) {
  * Get rich text content
  */
 function getRichText(richTextArray) {
-    if (!richTextArray) return '';
+    if (!richTextArray || !Array.isArray(richTextArray)) return '';
     return richTextArray.map(t => t.plain_text).join('');
 }
 
@@ -484,7 +521,10 @@ async function main() {
 
     // Get all blocks
     console.log('📖 Reading page structure...\n');
-    const blocks = await getBlocks(PAGE_ID);
+    const allBlocks = await getBlocks(PAGE_ID);
+
+    // Filter to only process blocks after the import marker
+    const blocks = filterBlocksFromMarker(allBlocks);
     await processBlocks(blocks, structure, 0);
 
     // Count totals
