@@ -561,7 +561,10 @@
                                 addLogEntry('Downloading screenshots...', 'success');
                                 addLogEntry('Deploying to Netlify...', 'success');
                                 addLogEntry(`Next version: V. ${formatVersion(nextVersion)}`, 'success');
-                                addLogEntry('Refresh page to see changes', 'info');
+
+                                // Start 45 second countdown for Netlify deploy
+                                startDeployCountdown(45);
+
                                 lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
                                 saveSyncLog();
                                 // Update version display to show next
@@ -620,6 +623,39 @@
             syncBtn.innerHTML = 'Sync from Notion';
             statusBadge.textContent = 'Online';
             statusBadge.className = 'status-badge online';
+        }
+
+        // Netlify deploy countdown (typically ~45 seconds)
+        function startDeployCountdown(seconds) {
+            let remaining = seconds;
+            const countdownEntry = document.createElement('div');
+            countdownEntry.className = 'log-entry info';
+            countdownEntry.id = 'deployCountdown';
+            logEntries.appendChild(countdownEntry);
+
+            const updateCountdown = () => {
+                const time = new Date().toLocaleTimeString('de-DE');
+                if (remaining > 0) {
+                    countdownEntry.innerHTML = `<span class="time">${time}</span>Netlify deploy in progress... ${remaining}s remaining`;
+                    remaining--;
+                    logEntries.scrollTop = logEntries.scrollHeight;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownEntry.className = 'log-entry success';
+                    countdownEntry.innerHTML = `<span class="time">${time}</span>✓ Deploy complete! You can reload the page now.`;
+
+                    // Add reload button entry
+                    const reloadEntry = document.createElement('div');
+                    reloadEntry.className = 'log-entry';
+                    reloadEntry.innerHTML = `<span class="time">${time}</span><a href="#" onclick="location.reload(); return false;" style="color: var(--accent-cyan); text-decoration: underline;">→ Click here to reload</a>`;
+                    logEntries.appendChild(reloadEntry);
+                    logEntries.scrollTop = logEntries.scrollHeight;
+                    saveSyncLog();
+                }
+            };
+
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
         }
 
         // Log functions
