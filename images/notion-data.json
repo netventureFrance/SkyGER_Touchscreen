@@ -9,7 +9,7 @@
       "id": "touch-sport",
       "label": "Touch Sport",
       "description": "",
-      "color": null,
+      "color": "#00A0D2",
       "screenshots": [
         {
           "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/image-1.png",
@@ -21,7 +21,7 @@
           "id": "premier-league",
           "label": "Premier League",
           "description": "",
-          "color": null,
+          "color": "#3D195B",
           "screenshots": [
             {
               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/premier-league/image-1.png",
@@ -34,7 +34,7 @@
           "id": "sky-sport-design-bundesliga",
           "label": "Sky Sport Design Bundesliga",
           "description": "",
-          "color": null,
+          "color": "#D20515",
           "screenshots": [
             {
               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-design-bundesliga/image-1.png",
@@ -46,7 +46,7 @@
               "id": "spiele",
               "label": "Spiele",
               "description": "",
-              "color": null,
+              "color": "#00A0D2",
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-design-bundesliga/spiele/image-1.png",
@@ -299,7 +299,7 @@
               "id": "tabelle",
               "label": "Tabelle",
               "description": "\n",
-              "color": null,
+              "color": "#4ADE80",
               "screenshots": [],
               "children": [
                 {
@@ -316,7 +316,7 @@
               "id": "liga-information",
               "label": "Liga Information",
               "description": "",
-              "color": null,
+              "color": "#FB923C",
               "screenshots": [],
               "children": [
                 {
@@ -349,7 +349,7 @@
               "id": "telestrator",
               "label": "Telestrator",
               "description": "",
-              "color": null,
+              "color": "#FACC15",
               "screenshots": [],
               "children": [
                 {
@@ -366,7 +366,7 @@
               "id": "analyse",
               "label": "Analyse",
               "description": "vor und zurück spulen des clips\nclipauswahl von verschiedenen clips mit verbindung zur libero , local auf der liebero maschine\nFarbpalette\nVordefinierte Libero Elemente, diese können über Libero geändert oder gesetzt werden",
-              "color": null,
+              "color": "#06B6D4",
               "screenshots": [],
               "children": [
                 {
@@ -463,7 +463,7 @@
               "id": "multiview",
               "label": "Multiview",
               "description": "Full HD einzelne 4 verschiedene Live Input fenster\nman kann die jeweils groß animieren und einzeilige Bauchbinde",
-              "color": null,
+              "color": "#EC4899",
               "screenshots": [],
               "children": []
             },
@@ -471,7 +471,7 @@
               "id": "live",
               "label": "Live",
               "description": "Fullscreen Live Input für EVS, Schalten",
-              "color": null,
+              "color": "#EF4444",
               "screenshots": [],
               "children": []
             },
@@ -479,7 +479,7 @@
               "id": "headlines",
               "label": "Headlines",
               "description": "Info Grafiken mit Team Logo editierbar und Free Text editierbar mit mehreren Seiten\nverschiedene Layouts möglich",
-              "color": null,
+              "color": "#F97316",
               "screenshots": [],
               "children": []
             },
@@ -487,7 +487,7 @@
               "id": "twitter",
               "label": "Twitter",
               "description": "Twitter Tweet kann man groß und klein animiert\nwird über die Web Applikation gesteuert\n",
-              "color": null,
+              "color": "#1DA1F2",
               "screenshots": [],
               "children": []
             },
@@ -495,7 +495,7 @@
               "id": "sidebar",
               "label": "Sidebar",
               "description": "",
-              "color": null,
+              "color": "#8B5CF6",
               "screenshots": [],
               "children": [
                 {
