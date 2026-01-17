@@ -205,6 +205,7 @@ class MindmapView {
             id: notionItem.id || notionItem.notionId,
             label: notionItem.label || 'Untitled',
             icon: icon,
+            color: notionItem.color || null,
             description: notionItem.description || '',
             screenshots: notionItem.screenshots || [],
             children: (notionItem.children || []).map(child => this.convertNotionToMindmap(child))
