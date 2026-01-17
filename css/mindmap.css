@@ -235,6 +235,7 @@
     gap: 6px;
     font-size: 11px;
     padding: 12px 0;
+    padding-right: 50px; /* Space for close button */
     margin-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
     overflow-x: auto;
@@ -1287,8 +1288,6 @@ body.fullscreen .fullscreen-hint {
     border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent-cyan);
     border-radius: 6px;
-    max-height: 300px;
-    overflow-y: auto;
 }
 
 /* Responsive Carousel */
