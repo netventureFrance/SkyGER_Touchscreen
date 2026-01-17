@@ -368,9 +368,13 @@
     transform: scale(1.05);
 }
 
+/* Custom color active state - uses node's own color via inline styles */
 .mindmap-node-box.custom-color.active {
-    filter: brightness(1.2);
-    transform: scale(1.08);
+    /* Override the default cyan active with node's own color */
+    /* box-shadow is set inline via JS using node's color */
+    filter: brightness(1.25) !important;
+    transform: scale(1.08) !important;
+    border-width: 3px !important;
 }
 
 /* Root Node (Center) - Oval like other nodes but gray */

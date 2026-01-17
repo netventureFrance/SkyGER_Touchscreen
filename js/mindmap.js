@@ -263,6 +263,8 @@ class MindmapView {
                 boxEl.style.borderColor = nodeColor;
                 boxEl.style.boxShadow = `0 0 20px ${nodeColor}66`;
                 boxEl.classList.add('custom-color');
+                // Store color for active state enhancement
+                boxEl.dataset.nodeColor = nodeColor;
             } else {
                 // Notion color name - use CSS class
                 boxEl.classList.add(`notion-${nodeColor}`);
@@ -276,6 +278,10 @@ class MindmapView {
         // Highlight active node (use uniqueId to avoid duplicate ID issues)
         if (this.activeNodeId === uniqueId) {
             boxEl.classList.add('active');
+            // Enhance glow for custom-color nodes
+            if (nodeColor && nodeColor.startsWith('#')) {
+                boxEl.style.boxShadow = `0 0 35px ${nodeColor}AA, inset 0 0 20px ${nodeColor}44`;
+            }
         }
 
         // Label (no icon)
@@ -466,15 +472,25 @@ class MindmapView {
      * Update active highlight without full re-render
      */
     updateActiveHighlight(uniqueId) {
-        // Remove active from all nodes
+        // Remove active from all nodes and reset their box-shadow
         this.nodesContainer.querySelectorAll('.mindmap-node-box.active').forEach(el => {
             el.classList.remove('active');
+            // Reset to normal glow if it has a custom color
+            const nodeColor = el.dataset.nodeColor;
+            if (nodeColor) {
+                el.style.boxShadow = `0 0 20px ${nodeColor}66`;
+            }
         });
 
         // Add active to the selected node
         const nodeEl = this.nodesContainer.querySelector(`[data-id="${uniqueId}"] .mindmap-node-box`);
         if (nodeEl) {
             nodeEl.classList.add('active');
+            // Enhance glow for custom-color nodes
+            const nodeColor = nodeEl.dataset.nodeColor;
+            if (nodeColor) {
+                nodeEl.style.boxShadow = `0 0 35px ${nodeColor}AA, inset 0 0 20px ${nodeColor}44`;
+            }
         }
     }
 
