@@ -20,6 +20,7 @@ class MindmapView {
         this.detailPanel = document.getElementById('detailPanel');
         this.panelContent = document.getElementById('panelContent');
         this.tooltip = document.getElementById('tooltip');
+        this.breadcrumbContainer = document.getElementById('breadcrumbContainer');
 
         // Canvas Größe (larger to accommodate expanded trees at high zoom)
         this.canvasWidth = 10000;
@@ -34,6 +35,8 @@ class MindmapView {
         this.zoom = 1;
         this.minZoom = 0.3;
         this.maxZoom = 1.5;
+        this.isFullscreen = false;
+        this.nodePath = []; // Path from root to current node for breadcrumbs
 
         // Drag
         this.isDragging = false;
@@ -68,6 +71,9 @@ class MindmapView {
 
         // Rendern
         this.render();
+
+        // Initialize breadcrumbs
+        this.updateBreadcrumbs();
 
         // Event Listeners
         this.setupEventListeners();
@@ -146,10 +152,20 @@ class MindmapView {
             toggleBtn.addEventListener('click', () => this.toggleSidebar());
         }
 
+        // Fullscreen button
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+        }
+
         // Keyboard
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.closePanel();
-            if (e.key === 'i' || e.key === 'I') this.toggleSidebar(); // 'i' for info
+            if (e.key === 'Escape') {
+                if (this.isFullscreen) this.toggleFullscreen();
+                else this.closePanel();
+            }
+            if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
+            if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
         });
 
         // Drag
@@ -482,6 +498,9 @@ class MindmapView {
         if (this.detailPanel.classList.contains('open')) {
             this.showDetail(node, uniqueId);
         }
+
+        // Update breadcrumb navigation
+        this.updateBreadcrumbs();
     }
 
     /**
@@ -1063,6 +1082,106 @@ class MindmapView {
         const now = new Date();
         document.getElementById('currentTime').textContent = now.toLocaleTimeString('de-DE', {
             hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
+    }
+
+    /**
+     * Toggle fullscreen mode
+     */
+    toggleFullscreen() {
+        this.isFullscreen = !this.isFullscreen;
+        document.body.classList.toggle('fullscreen', this.isFullscreen);
+
+        // Update button icon
+        const btn = document.getElementById('fullscreenBtn');
+        if (btn) {
+            const span = btn.querySelector('span');
+            if (span) {
+                span.textContent = this.isFullscreen ? 'Beenden' : 'Vollbild';
+            }
+        }
+
+        // Recenter after layout change
+        setTimeout(() => this.centerView(), 350);
+    }
+
+    /**
+     * Find path from root to a node
+     */
+    findPathToNode(targetId, node = null, path = []) {
+        if (!node) {
+            node = this.buildData();
+        }
+
+        const currentPath = [...path, { id: node.id, label: node.label, node: node }];
+
+        if (node.id === targetId || this.activeNodeId?.startsWith(node.id + '-')) {
+            return currentPath;
+        }
+
+        if (node.children) {
+            for (const child of node.children) {
+                const result = this.findPathToNode(targetId, child, currentPath);
+                if (result) return result;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Update breadcrumb navigation
+     */
+    updateBreadcrumbs() {
+        if (!this.breadcrumbContainer || !this.selectedNode) return;
+
+        // Find path to selected node
+        const nodeId = this.selectedNode.id;
+        const path = this.findPathToNode(nodeId);
+
+        if (!path || path.length === 0) return;
+
+        this.nodePath = path;
+
+        // Build breadcrumb HTML
+        let html = '';
+        path.forEach((item, index) => {
+            const isLast = index === path.length - 1;
+            const isFirst = index === 0;
+
+            if (!isFirst) {
+                html += '<span class="breadcrumb-separator">›</span>';
+            }
+
+            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${index}">${escapeHtml(item.label)}</span>`;
+        });
+
+        this.breadcrumbContainer.innerHTML = html;
+
+        // Add click handlers
+        this.breadcrumbContainer.querySelectorAll('.breadcrumb-item:not(.active)').forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.dataset.index);
+                const pathItem = this.nodePath[index];
+                if (pathItem && pathItem.node) {
+                    // Navigate to this node
+                    this.selectedNode = pathItem.node;
+                    this.activeNodeId = pathItem.id + '-0';
+
+                    // Expand path to this node
+                    for (let i = 0; i <= index; i++) {
+                        this.expandedNodes.add(this.nodePath[i].id);
+                    }
+
+                    this.render();
+                    this.updateBreadcrumbs();
+
+                    // Update sidebar if open
+                    if (this.detailPanel.classList.contains('open')) {
+                        this.showDetail(pathItem.node, this.activeNodeId);
+                    }
+                }
+            });
         });
     }
 }

@@ -101,9 +101,25 @@
                         </svg>
                     </button>
                 </div>
+                <button class="control-btn" id="fullscreenBtn" title="Vollbild (F)" aria-label="Vollbildmodus umschalten">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="15 3 21 3 21 9"/>
+                        <polyline points="9 21 3 21 3 15"/>
+                        <line x1="21" y1="3" x2="14" y2="10"/>
+                        <line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                    <span>Vollbild</span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-bar" id="breadcrumbBar" aria-label="Navigationspfad">
+        <div class="breadcrumb-container" id="breadcrumbContainer">
+            <span class="breadcrumb-item active">Touch Sport</span>
+        </div>
+    </nav>
 
     <!-- Main Mindmap Container -->
     <main class="mindmap-main" role="application" aria-label="Interaktive Mindmap Visualisierung">
