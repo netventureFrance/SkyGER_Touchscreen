@@ -15,19 +15,6 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirects für API Proxy
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/notion-proxy/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/notion/*"
-  to = "/.netlify/functions/notion-proxy/:splat"
-  status = 200
-  force = true
-
 # Headers für Security und Caching
 [[headers]]
   for = "/*"
@@ -36,6 +23,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.github.com; frame-ancestors 'none';"
 
 [[headers]]
   for = "/css/*"

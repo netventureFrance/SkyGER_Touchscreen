@@ -3,6 +3,14 @@
  * Radiale Mindmap-Darstellung mit zentralem Node
  */
 
+// HTML escape helper to prevent XSS
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 class MindmapView {
     constructor() {
         this.canvas = document.getElementById('mindmapCanvas');
@@ -469,7 +477,7 @@ class MindmapView {
         // Store reference to current node for child navigation
         this.currentDetailNode = node;
 
-        let html = `<h2>${node.label}</h2>`;
+        let html = `<h2>${escapeHtml(node.label)}</h2>`;
 
         // Screenshots Carousel FIRST
         const screenshots = node.screenshots || [];
@@ -480,7 +488,7 @@ class MindmapView {
                         <div class="carousel-slides">
                             ${screenshots.map((img, i) => `
                                 <div class="carousel-slide ${i === 0 ? 'active' : ''}" data-index="${i}">
-                                    <img src="${img.url || img}" alt="${img.name || node.label}" loading="lazy">
+                                    <img src="${escapeHtml(img.url || img)}" alt="${escapeHtml(img.name || node.label)}" loading="lazy">
                                 </div>
                             `).join('')}
                         </div>
@@ -508,7 +516,7 @@ class MindmapView {
 
         // Description AFTER screenshots
         if (node.description) {
-            html += `<p class="panel-description">${node.description}</p>`;
+            html += `<p class="panel-description">${escapeHtml(node.description)}</p>`;
         }
 
         // Kinder anzeigen
@@ -516,8 +524,8 @@ class MindmapView {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
             node.children.forEach(child => {
                 html += `
-                    <div class="panel-child-item" data-id="${child.id}" data-label="${child.label}">
-                        <span>${child.label}</span>
+                    <div class="panel-child-item" data-id="${escapeHtml(child.id)}" data-label="${escapeHtml(child.label)}">
+                        <span>${escapeHtml(child.label)}</span>
                     </div>
                 `;
             });
@@ -708,7 +716,7 @@ class MindmapView {
                 <div class="lightbox-carousel">
                     ${images.map((img, i) => `
                         <div class="lightbox-slide ${i === startIndex ? 'active' : ''}" data-index="${i}">
-                            <img src="${img.src}" alt="${img.alt || ''}">
+                            <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt || '')}">
                         </div>
                     `).join('')}
                 </div>
@@ -724,7 +732,7 @@ class MindmapView {
                         </svg>
                     </button>
                 ` : ''}
-                <div class="lightbox-caption">${images[startIndex]?.alt || ''}</div>
+                <div class="lightbox-caption">${escapeHtml(images[startIndex]?.alt || '')}</div>
                 ${hasMultiple ? `
                     <div class="lightbox-dots">
                         ${images.map((_, i) => `

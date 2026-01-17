@@ -1,0 +1,9 @@
+# Robots.txt for Sky Sport Touchscreen
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /netlify/
+Disallow: /mcp-notion-server/
+Disallow: /scripts/
+
+Sitemap: /sitemap.xml

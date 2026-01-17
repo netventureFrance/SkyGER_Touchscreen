@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sky Sport Touchscreen - Interaktive Mindmap</title>
+    <meta name="description" content="Interaktive Mindmap für das Sky Sport Touchscreen System. Erkunden Sie Spielstatistiken, Aufstellungen und Analysen für die Bundesliga.">
+    <meta name="language" content="de">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sky Sport Touchscreen - Interaktive Mindmap">
+    <meta property="og:description" content="Interaktive Mindmap für das Sky Sport Touchscreen System mit Spielstatistiken und Analysen.">
+    <meta property="og:locale" content="de_DE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sky Sport Touchscreen - Interaktive Mindmap">
+    <meta name="twitter:description" content="Interaktive Mindmap für das Sky Sport Touchscreen System.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mindmap.css">
 </head>
@@ -29,9 +47,9 @@
             <h1 class="page-title">Interaktive Mindmap <span class="version-number" id="versionNumber"></span></h1>
         </div>
         <div class="header-right">
-            <div class="mindmap-controls">
-                <button class="control-btn" id="expandAllBtn" title="Alle aufklappen">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="mindmap-controls" role="toolbar" aria-label="Mindmap Steuerung">
+                <button class="control-btn" id="expandAllBtn" title="Alle aufklappen" aria-label="Alle Knoten aufklappen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <polyline points="15 3 21 3 21 9"/>
                         <polyline points="9 21 3 21 3 15"/>
                         <line x1="21" y1="3" x2="14" y2="10"/>
@@ -39,8 +57,8 @@
                     </svg>
                     <span>Expand</span>
                 </button>
-                <button class="control-btn" id="collapseAllBtn" title="Alle zuklappen">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="control-btn" id="collapseAllBtn" title="Alle zuklappen" aria-label="Alle Knoten zuklappen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <polyline points="4 14 10 14 10 20"/>
                         <polyline points="20 10 14 10 14 4"/>
                         <line x1="14" y1="10" x2="21" y2="3"/>
@@ -48,24 +66,24 @@
                     </svg>
                     <span>Collapse</span>
                 </button>
-                <button class="control-btn" id="centerBtn" title="Reset & Zentrieren">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="control-btn" id="centerBtn" title="Reset & Zentrieren" aria-label="Ansicht zurücksetzen und zentrieren">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/>
                         <circle cx="12" cy="12" r="3"/>
                     </svg>
                     <span>Reset</span>
                 </button>
-                <div class="zoom-controls">
-                    <button class="control-btn icon-only" id="zoomOutBtn" title="Verkleinern">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="zoom-controls" role="group" aria-label="Zoom Steuerung">
+                    <button class="control-btn icon-only" id="zoomOutBtn" title="Verkleinern" aria-label="Verkleinern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="8"/>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                             <line x1="8" y1="11" x2="14" y2="11"/>
                         </svg>
                     </button>
-                    <span class="zoom-level" id="zoomLevel">100%</span>
-                    <button class="control-btn icon-only" id="zoomInBtn" title="Vergrößern">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <span class="zoom-level" id="zoomLevel" aria-live="polite">100%</span>
+                    <button class="control-btn icon-only" id="zoomInBtn" title="Vergrößern" aria-label="Vergrößern">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="8"/>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                             <line x1="11" y1="8" x2="11" y2="14"/>
@@ -78,25 +96,25 @@
     </header>
 
     <!-- Main Mindmap Container -->
-    <main class="mindmap-main">
+    <main class="mindmap-main" role="application" aria-label="Interaktive Mindmap Visualisierung">
         <div class="mindmap-viewport" id="mindmapViewport">
             <div class="mindmap-canvas" id="mindmapCanvas">
                 <!-- SVG für Verbindungslinien -->
-                <svg class="mindmap-lines" id="mindmapLines"></svg>
+                <svg class="mindmap-lines" id="mindmapLines" aria-hidden="true"></svg>
                 <!-- Nodes werden via JS generiert -->
-                <div class="mindmap-nodes" id="mindmapNodes"></div>
+                <div class="mindmap-nodes" id="mindmapNodes" role="tree" aria-label="Mindmap Struktur"></div>
             </div>
         </div>
 
     </main>
 
     <!-- Tooltip -->
-    <div class="tooltip" id="tooltip"></div>
+    <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
 
     <!-- Detail Panel (Slide-in) -->
-    <aside class="detail-panel" id="detailPanel">
-        <button class="panel-close" id="panelClose">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <aside class="detail-panel" id="detailPanel" role="complementary" aria-label="Detail Ansicht" aria-hidden="true">
+        <button class="panel-close" id="panelClose" aria-label="Detail Panel schließen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="18" y1="6" x2="6" y2="18"/>
                 <line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
