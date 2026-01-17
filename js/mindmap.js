@@ -267,6 +267,92 @@ class MindmapView {
     }
 
     /**
+     * Smooth render with fade transition
+     * Returns a Promise that resolves when render and centering are complete
+     */
+    smoothRender(nodeId = null) {
+        return new Promise((resolve) => {
+            // Fade out
+            this.canvas.classList.add('transitioning');
+
+            // Wait for fade out, then render
+            setTimeout(() => {
+                this.render();
+
+                // Update activeNodeId if provided
+                if (nodeId) {
+                    const newUniqueId = this.findUniqueIdByNodeId(nodeId);
+                    if (newUniqueId) {
+                        this.activeNodeId = newUniqueId;
+                    }
+                }
+
+                // Draw lines and prepare view
+                this.drawLines();
+
+                // Center without smooth scroll (we'll animate the fade instead)
+                this.centerViewInstant();
+
+                // Fade back in
+                requestAnimationFrame(() => {
+                    this.canvas.classList.remove('transitioning');
+                    resolve();
+                });
+            }, 150); // Match CSS transition time
+        });
+    }
+
+    /**
+     * Center view instantly (no smooth scroll) - used during transitions
+     */
+    centerViewInstant() {
+        const sidebarOpen = this.detailPanel.classList.contains('open');
+
+        let sidebarWidth = 0;
+        if (sidebarOpen) {
+            if (window.innerWidth <= 768) {
+                sidebarWidth = 0;
+            } else if (window.innerWidth <= 900) {
+                sidebarWidth = 320;
+            } else if (window.innerWidth <= 1200) {
+                sidebarWidth = 350;
+            } else {
+                sidebarWidth = 380;
+            }
+        }
+
+        let targetX = this.centerX;
+        let targetY = this.centerY;
+
+        const activePos = this.nodePositions.get(this.activeNodeId);
+        if (activePos) {
+            targetX = activePos.x;
+            targetY = activePos.y;
+        }
+
+        const availableWidth = window.innerWidth - sidebarWidth;
+        const viewportHeight = this.viewport.clientHeight;
+
+        const scaledTargetX = targetX * this.zoom;
+        const scaledTargetY = targetY * this.zoom;
+
+        let targetScrollX = scaledTargetX - (availableWidth / 2);
+        let targetScrollY = scaledTargetY - (viewportHeight / 2);
+
+        const scaledCanvasWidth = this.canvasWidth * this.zoom;
+        const scaledCanvasHeight = this.canvasHeight * this.zoom;
+        const maxScrollX = Math.max(0, scaledCanvasWidth - availableWidth);
+        const maxScrollY = Math.max(0, scaledCanvasHeight - viewportHeight);
+
+        targetScrollX = Math.max(0, Math.min(targetScrollX, maxScrollX));
+        targetScrollY = Math.max(0, Math.min(targetScrollY, maxScrollY));
+
+        // Instant scroll (no animation - the fade handles the visual transition)
+        this.viewport.scrollLeft = targetScrollX;
+        this.viewport.scrollTop = targetScrollY;
+    }
+
+    /**
      * Node rendern
      */
     renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null) {
@@ -498,28 +584,30 @@ class MindmapView {
             } else {
                 this.expandedNodes.add(node.id);
             }
-            this.render();
 
-            // After render, uniqueIds change - find the new uniqueId for this node
-            const newUniqueId = this.findUniqueIdByNodeId(node.id);
-            if (newUniqueId) {
-                this.activeNodeId = newUniqueId;
-            }
+            // Use smooth render with fade transition
+            this.smoothRender(node.id).then(() => {
+                // Update sidebar and breadcrumbs after render completes
+                if (this.detailPanel.classList.contains('open')) {
+                    this.showDetail(node, this.activeNodeId);
+                }
+                this.updateBreadcrumbs();
+            });
         } else {
-            // For leaf nodes, just update the active highlighting
+            // For leaf nodes, just update the active highlighting and center smoothly
             this.updateActiveHighlight(uniqueId);
+
+            // Update sidebar content if already open
+            if (this.detailPanel.classList.contains('open')) {
+                this.showDetail(node, this.activeNodeId);
+            }
+
+            // Update breadcrumb navigation
+            this.updateBreadcrumbs();
+
+            // Smooth center for leaf nodes
+            setTimeout(() => this.centerView(), 50);
         }
-
-        // Only update sidebar content if already open (don't auto-open)
-        if (this.detailPanel.classList.contains('open')) {
-            this.showDetail(node, this.activeNodeId);
-        }
-
-        // Update breadcrumb navigation
-        this.updateBreadcrumbs();
-
-        // Center view on clicked node
-        setTimeout(() => this.centerView(), 100);
     }
 
     /**
@@ -673,24 +761,11 @@ class MindmapView {
         // Expand parent to show child
         this.expandedNodes.add(parentNode.id);
 
-        // Re-render to create the child nodes in canvas
-        this.render();
-
-        // Find the child's uniqueId in the rendered nodes
-        const childUniqueId = this.findUniqueIdByNodeId(childNode.id);
-        if (childUniqueId) {
-            // Update active node
-            this.activeNodeId = childUniqueId;
-
-            // Highlight in canvas
-            this.updateActiveHighlight(childUniqueId);
-
+        // Smooth render and center on child
+        this.smoothRender(childNode.id).then(() => {
             // Show child's detail panel
-            this.showDetail(childNode, childUniqueId);
-
-            // Center on the child node
-            setTimeout(() => this.centerView(), 100);
-        }
+            this.showDetail(childNode, this.activeNodeId);
+        });
     }
 
     /**
@@ -954,17 +1029,13 @@ class MindmapView {
         // Reset zoom to 100%
         this.setZoom(1);
 
-        // Collapse all nodes
-        this.collapseAll();
-
-        // Reset active node to root (root is always first, so uniqueId is 'root-0')
-        this.activeNodeId = 'root-0';
-
         // Close sidebar
         this.detailPanel.classList.remove('open');
 
-        // Center on root after a short delay for render
-        setTimeout(() => this.centerView(), 100);
+        // Collapse all nodes and center on root (smoothRender handles centering)
+        this.expandedNodes.clear();
+        this.expandedNodes.add('root');
+        this.smoothRender('root');
     }
 
     /**
@@ -1038,13 +1109,13 @@ class MindmapView {
             }
         };
         addAll(this.buildData());
-        this.render();
+        this.smoothRender();
     }
 
     collapseAll() {
         this.expandedNodes.clear();
         this.expandedNodes.add('root');
-        this.render();
+        this.smoothRender('root');
     }
 
     setZoom(level) {
@@ -1208,7 +1279,6 @@ class MindmapView {
                 if (pathItem && pathItem.node) {
                     // Navigate to this node
                     this.selectedNode = pathItem.node;
-                    this.activeNodeId = pathItem.id + '-0';
 
                     // Expand path to this node, collapse everything else
                     this.expandedNodes.clear();
@@ -1216,16 +1286,15 @@ class MindmapView {
                         this.expandedNodes.add(this.nodePath[i].id);
                     }
 
-                    this.render();
-                    this.updateBreadcrumbs();
+                    // Smooth render and center on selected node
+                    this.smoothRender(pathItem.id).then(() => {
+                        this.updateBreadcrumbs();
 
-                    // Center view on the selected node
-                    setTimeout(() => this.centerView(), 100);
-
-                    // Update sidebar if open
-                    if (this.detailPanel.classList.contains('open')) {
-                        this.showDetail(pathItem.node, this.activeNodeId);
-                    }
+                        // Update sidebar if open
+                        if (this.detailPanel.classList.contains('open')) {
+                            this.showDetail(pathItem.node, this.activeNodeId);
+                        }
+                    });
                 }
             });
         });

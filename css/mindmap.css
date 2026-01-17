@@ -302,7 +302,11 @@ body.fullscreen::after {
     min-width: 10000px;
     min-height: 8000px;
     transform-origin: top left;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.15s ease;
+}
+
+.mindmap-canvas.transitioning {
+    opacity: 0.3;
 }
 
 /* SVG Lines Layer */
