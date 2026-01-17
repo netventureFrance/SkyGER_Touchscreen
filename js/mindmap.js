@@ -556,9 +556,15 @@ class MindmapView {
         // Kinder anzeigen
         if (node.children && node.children.length > 0) {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
+            // Get parent color for inheritance
+            const parentColor = node.color || null;
             node.children.forEach(child => {
+                // Child uses its own color or inherits from parent
+                const childColor = child.color || parentColor;
+                const colorStyle = childColor ? `border-left: 3px solid ${childColor}; background: linear-gradient(90deg, ${childColor}22 0%, transparent 100%);` : '';
+                const colorAttr = childColor ? `data-color="${escapeHtml(childColor)}"` : '';
                 html += `
-                    <div class="panel-child-item" data-id="${escapeHtml(child.id)}" data-label="${escapeHtml(child.label)}">
+                    <div class="panel-child-item" data-id="${escapeHtml(child.id)}" data-label="${escapeHtml(child.label)}" ${colorAttr} style="${colorStyle}">
                         <span>${escapeHtml(child.label)}</span>
                     </div>
                 `;
@@ -633,9 +639,15 @@ class MindmapView {
      * Update sidebar highlight to match active node
      */
     updateSidebarHighlight(uniqueId) {
-        // Remove all active states from sidebar items
+        // Remove all active states from sidebar items and reset their styles
         this.panelContent.querySelectorAll('.panel-child-item.active').forEach(el => {
             el.classList.remove('active');
+            // Reset to normal style
+            const color = el.dataset.color;
+            if (color) {
+                el.style.background = `linear-gradient(90deg, ${color}22 0%, transparent 100%)`;
+                el.style.boxShadow = 'none';
+            }
         });
 
         // If we have a uniqueId, try to highlight matching sidebar item
@@ -644,6 +656,12 @@ class MindmapView {
             const sidebarItem = this.panelContent.querySelector(`.panel-child-item[data-id="${nodeId}"]`);
             if (sidebarItem) {
                 sidebarItem.classList.add('active');
+                // Enhance with node's color
+                const color = sidebarItem.dataset.color;
+                if (color) {
+                    sidebarItem.style.background = `linear-gradient(90deg, ${color}44 0%, ${color}11 100%)`;
+                    sidebarItem.style.boxShadow = `inset 0 0 10px ${color}33`;
+                }
             }
         }
     }
