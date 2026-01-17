@@ -20,6 +20,7 @@ class MindmapView {
         this.detailPanel = document.getElementById('detailPanel');
         this.panelContent = document.getElementById('panelContent');
         this.tooltip = document.getElementById('tooltip');
+        this.breadcrumbBar = document.getElementById('breadcrumbBar');
         this.breadcrumbContainer = document.getElementById('breadcrumbContainer');
 
         // Canvas Größe (larger to accommodate expanded trees at high zoom)
@@ -663,13 +664,48 @@ class MindmapView {
     }
 
     /**
+     * Generate breadcrumb HTML for given path
+     */
+    buildBreadcrumbHtml(path, forSidebar = false) {
+        if (!path || path.length === 0) return '';
+
+        let html = '';
+        path.forEach((item, index) => {
+            const isLast = index === path.length - 1;
+            const isFirst = index === 0;
+
+            if (!isFirst) {
+                html += '<span class="breadcrumb-separator">›</span>';
+            }
+
+            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${index}">${escapeHtml(item.label)}</span>`;
+        });
+
+        return html;
+    }
+
+    /**
      * Detail Panel anzeigen
      */
     showDetail(node, currentUniqueId = null) {
         // Store reference to current node for child navigation
         this.currentDetailNode = node;
 
+        // Hide top breadcrumb bar when sidebar is open
+        this.breadcrumbBar.classList.add('hidden');
+
+        // Build breadcrumb path for sidebar
+        const nodeId = node.id;
+        const path = this.findPathToNode(nodeId);
+        this.nodePath = path;
+        const breadcrumbHtml = this.buildBreadcrumbHtml(path, true);
+
         let html = `<h2>${escapeHtml(node.label)}</h2>`;
+
+        // Add breadcrumb navigation in sidebar
+        if (breadcrumbHtml) {
+            html += `<nav class="panel-breadcrumb" aria-label="Navigationspfad">${breadcrumbHtml}</nav>`;
+        }
 
         // Screenshots Carousel FIRST
         const screenshots = node.screenshots || [];
@@ -749,6 +785,31 @@ class MindmapView {
                 const child = node.children.find(c => c.id === childId);
                 if (child) {
                     this.navigateToNode(node, child);
+                }
+            });
+        });
+
+        // Sidebar breadcrumb click handler
+        this.panelContent.querySelectorAll('.panel-breadcrumb .breadcrumb-item:not(.active)').forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.dataset.index);
+                const pathItem = this.nodePath[index];
+                if (pathItem && pathItem.node) {
+                    // Navigate to this node
+                    this.selectedNode = pathItem.node;
+
+                    // Expand path to this node, collapse everything else
+                    this.expandedNodes.clear();
+                    for (let i = 0; i <= index; i++) {
+                        this.expandedNodes.add(this.nodePath[i].id);
+                    }
+
+                    // Smooth render and center on selected node
+                    this.smoothRender(pathItem.id).then(() => {
+                        this.updateBreadcrumbs();
+                        // Update sidebar with the selected node
+                        this.showDetail(pathItem.node, this.activeNodeId);
+                    });
                 }
             });
         });
@@ -1018,6 +1079,8 @@ class MindmapView {
 
     closePanel() {
         this.detailPanel.classList.remove('open');
+        // Show top breadcrumb bar when sidebar closes
+        this.breadcrumbBar.classList.remove('hidden');
         // Re-center after sidebar closes
         setTimeout(() => this.centerView(), 350);
     }
@@ -1243,7 +1306,7 @@ class MindmapView {
     }
 
     /**
-     * Update breadcrumb navigation
+     * Update breadcrumb navigation (top bar only)
      */
     updateBreadcrumbs() {
         if (!this.breadcrumbContainer || !this.selectedNode) return;
@@ -1256,22 +1319,10 @@ class MindmapView {
 
         this.nodePath = path;
 
-        // Build breadcrumb HTML
-        let html = '';
-        path.forEach((item, index) => {
-            const isLast = index === path.length - 1;
-            const isFirst = index === 0;
+        // Build and update top bar breadcrumb using shared method
+        this.breadcrumbContainer.innerHTML = this.buildBreadcrumbHtml(path);
 
-            if (!isFirst) {
-                html += '<span class="breadcrumb-separator">›</span>';
-            }
-
-            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${index}">${escapeHtml(item.label)}</span>`;
-        });
-
-        this.breadcrumbContainer.innerHTML = html;
-
-        // Add click handlers
+        // Add click handlers for top bar breadcrumb
         this.breadcrumbContainer.querySelectorAll('.breadcrumb-item:not(.active)').forEach(item => {
             item.addEventListener('click', () => {
                 const index = parseInt(item.dataset.index);
