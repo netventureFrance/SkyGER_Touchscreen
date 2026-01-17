@@ -1340,23 +1340,32 @@ class MindmapView {
 
     /**
      * Find path from root to a node, including inherited colors
+     * Uses position counter to match exact uniqueId (handles duplicate node IDs)
+     * Only traverses expanded nodes to match render traversal order
      */
-    findPathToNode(targetId, node = null, path = [], parentColor = null) {
+    findPathToNode(targetId, node = null, path = [], parentColor = null, counter = { value: 0 }) {
         if (!node) {
             node = this.buildData();
+            counter = { value: 0 }; // Reset counter for fresh search
         }
+
+        // Generate uniqueId the same way renderNode does (using counter as nodePositions.size)
+        const uniqueId = `${node.id}-${counter.value}`;
+        counter.value++;
 
         // Inherit color from parent if not set
         const nodeColor = node.color || parentColor;
-        const currentPath = [...path, { id: node.id, label: node.label, node: node, color: nodeColor }];
+        const currentPath = [...path, { id: node.id, label: node.label, node: node, color: nodeColor, uniqueId: uniqueId }];
 
-        if (node.id === targetId || this.activeNodeId?.startsWith(node.id + '-')) {
+        // Check for exact uniqueId match
+        if (uniqueId === this.activeNodeId) {
             return currentPath;
         }
 
-        if (node.children) {
+        // Only recurse into expanded nodes (same as renderNode)
+        if (node.children && this.expandedNodes.has(node.id)) {
             for (const child of node.children) {
-                const result = this.findPathToNode(targetId, child, currentPath, nodeColor);
+                const result = this.findPathToNode(targetId, child, currentPath, nodeColor, counter);
                 if (result) return result;
             }
         }
