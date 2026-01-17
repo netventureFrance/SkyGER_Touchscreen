@@ -2,8 +2,8 @@
 # Sky Touchscreen Visualisierung
 
 [build]
-  # Build Command (optional, da statische Seite)
-  command = "echo 'No build required'"
+  # Build Command - increment version on every deploy
+  command = "node scripts/increment-version.js"
 
   # Publish Directory
   publish = "."
