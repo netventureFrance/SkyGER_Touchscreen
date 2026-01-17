@@ -161,11 +161,21 @@ class MindmapView {
         // Keyboard
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                if (this.isFullscreen) this.toggleFullscreen();
-                else this.closePanel();
+                // Browser handles ESC for fullscreen, just close panel if not fullscreen
+                if (!document.fullscreenElement) this.closePanel();
             }
             if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
             if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+        });
+
+        // Sync state when browser exits fullscreen (e.g., user presses ESC)
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && this.isFullscreen) {
+                this.isFullscreen = false;
+                document.body.classList.remove('fullscreen');
+                this.updateFullscreenButton();
+                setTimeout(() => this.centerView(), 350);
+            }
         });
 
         // Drag
@@ -1086,13 +1096,39 @@ class MindmapView {
     }
 
     /**
-     * Toggle fullscreen mode
+     * Toggle fullscreen mode (uses browser Fullscreen API)
      */
     toggleFullscreen() {
-        this.isFullscreen = !this.isFullscreen;
-        document.body.classList.toggle('fullscreen', this.isFullscreen);
+        if (!document.fullscreenElement) {
+            // Enter fullscreen
+            document.documentElement.requestFullscreen().then(() => {
+                this.isFullscreen = true;
+                document.body.classList.add('fullscreen');
+                this.updateFullscreenButton();
+                setTimeout(() => this.centerView(), 350);
+            }).catch(err => {
+                console.warn('Fullscreen not available:', err);
+                // Fallback to CSS-only fullscreen
+                this.isFullscreen = true;
+                document.body.classList.add('fullscreen');
+                this.updateFullscreenButton();
+                setTimeout(() => this.centerView(), 350);
+            });
+        } else {
+            // Exit fullscreen
+            document.exitFullscreen().then(() => {
+                this.isFullscreen = false;
+                document.body.classList.remove('fullscreen');
+                this.updateFullscreenButton();
+                setTimeout(() => this.centerView(), 350);
+            });
+        }
+    }
 
-        // Update button icon
+    /**
+     * Update fullscreen button text
+     */
+    updateFullscreenButton() {
         const btn = document.getElementById('fullscreenBtn');
         if (btn) {
             const span = btn.querySelector('span');
@@ -1100,9 +1136,6 @@ class MindmapView {
                 span.textContent = this.isFullscreen ? 'Beenden' : 'Vollbild';
             }
         }
-
-        // Recenter after layout change
-        setTimeout(() => this.centerView(), 350);
     }
 
     /**
