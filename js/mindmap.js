@@ -511,6 +511,9 @@ class MindmapView {
 
         // Update breadcrumb navigation
         this.updateBreadcrumbs();
+
+        // Center view on clicked node
+        setTimeout(() => this.centerView(), 100);
     }
 
     /**
