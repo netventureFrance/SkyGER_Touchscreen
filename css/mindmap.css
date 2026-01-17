@@ -17,11 +17,23 @@
     backdrop-filter: blur(10px);
 }
 
-.mindmap-header .header-left,
+.mindmap-header .header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
 .mindmap-header .header-right {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+}
+
+.netventure-logo {
+    height: 36px;
+    width: auto;
 }
 
 .mindmap-header .header-center {
