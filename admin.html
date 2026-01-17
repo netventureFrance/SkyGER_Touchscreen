@@ -385,6 +385,9 @@
         const lastSyncDisplay = document.getElementById('lastSyncDisplay');
         const contentStats = document.getElementById('contentStats');
 
+        // Store current version for next version calculation
+        let currentVersion = { major: 1, minor: 0, patch: 0 };
+
         // Check if already logged in
         if (sessionStorage.getItem('adminAuth') === VALID_HASH) {
             showAdmin();
@@ -427,10 +430,11 @@
         async function loadInfo() {
             try {
                 // Load version
-                const versionRes = await fetch('version.json');
+                const versionRes = await fetch('version.json?t=' + Date.now()); // Cache bust
                 if (versionRes.ok) {
                     const version = await versionRes.json();
-                    versionDisplay.textContent = `V. ${version.major}.${String(version.minor).padStart(2, '0')}`;
+                    currentVersion = version;
+                    versionDisplay.textContent = `V. ${version.major}.${version.minor}.${version.patch || 0}`;
                 }
 
                 // Load notion data for stats
@@ -462,6 +466,25 @@
             return { items, images };
         }
 
+        // Calculate next version (patch +1, or minor +1 if patch >= 99)
+        function getNextVersion(v) {
+            const next = { ...v };
+            next.patch = (next.patch || 0) + 1;
+            if (next.patch >= 100) {
+                next.patch = 0;
+                next.minor = (next.minor || 0) + 1;
+            }
+            if (next.minor >= 100) {
+                next.minor = 0;
+                next.major = (next.major || 1) + 1;
+            }
+            return next;
+        }
+
+        function formatVersion(v) {
+            return `${v.major}.${v.minor}.${v.patch || 0}`;
+        }
+
         // Sync handler
         let pollInterval = null;
 
@@ -475,8 +498,10 @@
             // Clear log for new sync
             logEntries.innerHTML = '';
             addLogEntry('Starting Notion sync...', 'info');
+            addLogEntry(`Current version: V. ${formatVersion(currentVersion)}`, 'info');
 
             try {
+                addLogEntry('Triggering GitHub Actions workflow...', 'info');
                 const response = await fetch('/.netlify/functions/sync', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -486,10 +511,12 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    addLogEntry(`Workflow triggered successfully`, 'success');
+                    addLogEntry('Workflow triggered successfully', 'success');
                     if (result.run) {
-                        addLogEntry(`Run #${result.run.id} - Status: ${result.run.status}`, 'info');
+                        addLogEntry(`Run #${result.run.id} created`, 'info');
+                        addLogEntry(`Initial status: ${result.run.status}`, 'info');
                     }
+                    addLogEntry('Polling for workflow status...', 'info');
 
                     // Start polling for status
                     startStatusPolling();
@@ -497,12 +524,13 @@
                 } else {
                     addLogEntry(`Error: ${result.error}`, 'error');
                     if (result.help) {
-                        addLogEntry(`Help: ${result.help}`, 'info');
+                        addLogEntry(`Tip: ${result.help}`, 'info');
                     }
                     resetSyncButton();
                 }
             } catch (e) {
-                addLogEntry(`Error: ${e.message}`, 'error');
+                addLogEntry(`Network error: ${e.message}`, 'error');
+                addLogEntry('Check your internet connection', 'info');
                 resetSyncButton();
             }
         });
@@ -510,9 +538,11 @@
         function startStatusPolling() {
             let pollCount = 0;
             const maxPolls = 60; // 5 minutes max
+            let lastStatus = '';
 
             pollInterval = setInterval(async () => {
                 pollCount++;
+                const elapsedSec = pollCount * 5;
 
                 try {
                     const response = await fetch('/.netlify/functions/sync?action=status');
@@ -525,33 +555,60 @@
                             clearInterval(pollInterval);
 
                             if (latestRun.conclusion === 'success') {
-                                addLogEntry(`Sync completed successfully!`, 'success');
+                                const nextVersion = getNextVersion(currentVersion);
+                                addLogEntry('Workflow completed successfully!', 'success');
+                                addLogEntry('Syncing Notion data...', 'success');
+                                addLogEntry('Downloading screenshots...', 'success');
+                                addLogEntry('Deploying to Netlify...', 'success');
+                                addLogEntry(`Next version: V. ${formatVersion(nextVersion)}`, 'success');
+                                addLogEntry('Refresh page to see changes', 'info');
                                 lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
                                 saveSyncLog();
-                                // Reload to get new version
-                                setTimeout(() => loadInfo(), 2000);
+                                // Update version display to show next
+                                versionDisplay.textContent = `V. ${formatVersion(nextVersion)} (pending)`;
                             } else {
-                                addLogEntry(`Sync finished with: ${latestRun.conclusion}`, 'error');
-                                addLogEntry(`Details: ${latestRun.url}`, 'info');
+                                addLogEntry(`Workflow failed: ${latestRun.conclusion}`, 'error');
+                                addLogEntry('Check GitHub Actions for details', 'info');
                             }
                             resetSyncButton();
 
-                        } else if (latestRun.status === 'in_progress' || latestRun.status === 'queued') {
-                            // Update status display
-                            syncBtn.innerHTML = `<span class="spinner"></span>${latestRun.status === 'queued' ? 'Queued...' : 'Running...'}`;
+                        } else if (latestRun.status === 'in_progress') {
+                            syncBtn.innerHTML = `<span class="spinner"></span>Running...`;
 
-                            if (pollCount % 4 === 0) { // Log every ~20 seconds
-                                addLogEntry(`Status: ${latestRun.status}...`, 'info');
+                            // Log status changes and progress
+                            if (lastStatus !== 'in_progress') {
+                                addLogEntry('Workflow started running', 'info');
+                                lastStatus = 'in_progress';
+                            }
+
+                            // Show progress updates
+                            if (elapsedSec === 15) addLogEntry('Checking out repository...', 'info');
+                            if (elapsedSec === 25) addLogEntry('Installing dependencies...', 'info');
+                            if (elapsedSec === 40) addLogEntry('Running Notion sync script...', 'info');
+                            if (elapsedSec === 60) addLogEntry('Processing screenshots...', 'info');
+                            if (elapsedSec === 90) addLogEntry('Committing changes...', 'info');
+                            if (elapsedSec % 30 === 0 && elapsedSec > 90) {
+                                addLogEntry(`Still running... (${Math.floor(elapsedSec/60)}m ${elapsedSec%60}s)`, 'info');
+                            }
+
+                        } else if (latestRun.status === 'queued') {
+                            syncBtn.innerHTML = `<span class="spinner"></span>Queued...`;
+                            if (lastStatus !== 'queued') {
+                                addLogEntry('Workflow queued, waiting for runner...', 'info');
+                                lastStatus = 'queued';
                             }
                         }
                     }
                 } catch (e) {
-                    console.error('Poll error:', e);
+                    if (pollCount % 6 === 0) { // Log error every 30 seconds
+                        addLogEntry(`Poll error: ${e.message}`, 'error');
+                    }
                 }
 
                 if (pollCount >= maxPolls) {
                     clearInterval(pollInterval);
-                    addLogEntry('Polling timeout - check GitHub Actions', 'info');
+                    addLogEntry('Timeout after 5 minutes', 'error');
+                    addLogEntry('Check GitHub Actions manually', 'info');
                     resetSyncButton();
                 }
             }, 5000); // Poll every 5 seconds
