@@ -10,7 +10,11 @@
     "start": "npx serve .",
     "functions": "netlify functions:serve",
     "setup-db": "node scripts/setup-notion-db.js",
-    "sync-notion": "node mcp-notion-server/sync-notion.js"
+    "sync-notion": "node mcp-notion-server/sync-notion.js",
+    "lint": "eslint js/*.js",
+    "lint:fix": "eslint js/*.js --fix",
+    "format": "prettier --write 'js/**/*.js' 'css/**/*.css' '*.html'",
+    "format:check": "prettier --check 'js/**/*.js' 'css/**/*.css' '*.html'"
   },
   "keywords": [
     "sky",
@@ -26,6 +30,8 @@
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
     "netlify-cli": "^17.0.0"
   },
   "engines": {

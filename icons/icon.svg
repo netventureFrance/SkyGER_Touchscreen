@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#001428"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#00a0d2" stroke-width="8"/>
+  <circle cx="256" cy="256" r="40" fill="#00a0d2"/>
+  <line x1="256" y1="256" x2="156" y2="156" stroke="#00a0d2" stroke-width="6"/>
+  <line x1="256" y1="256" x2="356" y2="156" stroke="#00a0d2" stroke-width="6"/>
+  <line x1="256" y1="256" x2="156" y2="356" stroke="#00a0d2" stroke-width="6"/>
+  <line x1="256" y1="256" x2="356" y2="356" stroke="#00a0d2" stroke-width="6"/>
+  <circle cx="156" cy="156" r="25" fill="#00a0d2"/>
+  <circle cx="356" cy="156" r="25" fill="#00a0d2"/>
+  <circle cx="156" cy="356" r="25" fill="#00a0d2"/>
+  <circle cx="356" cy="356" r="25" fill="#00a0d2"/>
+  <text x="256" y="470" text-anchor="middle" fill="#00a0d2" font-family="Arial, sans-serif" font-size="48" font-weight="bold">SKY</text>
+</svg>

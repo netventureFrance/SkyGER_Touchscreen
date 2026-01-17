@@ -1,0 +1,25 @@
+{
+  "name": "Sky Sport Touchscreen - Interaktive Mindmap",
+  "short_name": "Sky Touchscreen",
+  "description": "Interaktive Mindmap für das Sky Sport Touchscreen System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#001428",
+  "theme_color": "#00a0d2",
+  "orientation": "landscape",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}
