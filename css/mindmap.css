@@ -1403,8 +1403,8 @@ body.fullscreen .fullscreen-hint {
 
 .lightbox-logo {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 12px;
+    left: 12px;
     height: 36px;
     width: auto;
     z-index: 10;

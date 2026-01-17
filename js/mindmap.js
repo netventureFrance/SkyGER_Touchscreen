@@ -931,6 +931,20 @@ class MindmapView {
         const prevBtn = carousel.querySelector('.carousel-prev');
         const nextBtn = carousel.querySelector('.carousel-next');
 
+        // Collect all images for lightbox (works for single or multiple images)
+        const allImages = [];
+        slides.forEach((slide, i) => {
+            const img = slide.querySelector('img');
+            if (img) {
+                allImages.push({ src: img.src, alt: img.alt });
+                img.addEventListener('click', () => {
+                    this.openLightbox(allImages, i);
+                });
+                img.style.cursor = 'pointer';
+            }
+        });
+
+        // Skip carousel navigation setup if only one image
         if (slides.length <= 1) return;
 
         let currentIndex = 0;
@@ -984,18 +998,6 @@ class MindmapView {
                 else showSlide(currentIndex - 1);
             }
         }, { passive: true });
-
-        // Collect all images for lightbox carousel
-        const allImages = [];
-        slides.forEach((slide, i) => {
-            const img = slide.querySelector('img');
-            if (img) {
-                allImages.push({ src: img.src, alt: img.alt });
-                img.addEventListener('click', () => {
-                    this.openLightbox(allImages, i);
-                });
-            }
-        });
     }
 
     /**
