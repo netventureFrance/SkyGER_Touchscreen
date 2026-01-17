@@ -31,6 +31,19 @@
           "children": []
         },
         {
+          "id": "twitter",
+          "label": "Twitter",
+          "description": "",
+          "color": null,
+          "screenshots": [
+            {
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/twitter/image-1.png",
+              "name": "Twitter"
+            }
+          ],
+          "children": []
+        },
+        {
           "id": "sky-sport-design-bundesliga",
           "label": "Sky Sport Design Bundesliga",
           "description": "",
