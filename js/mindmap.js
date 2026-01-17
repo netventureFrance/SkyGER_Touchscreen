@@ -278,9 +278,10 @@ class MindmapView {
         // Highlight active node (use uniqueId to avoid duplicate ID issues)
         if (this.activeNodeId === uniqueId) {
             boxEl.classList.add('active');
-            // Enhance glow for custom-color nodes
+            // Enhance glow and background for custom-color nodes
             if (nodeColor && nodeColor.startsWith('#')) {
-                boxEl.style.boxShadow = `0 0 35px ${nodeColor}AA, inset 0 0 20px ${nodeColor}44`;
+                boxEl.style.background = `linear-gradient(135deg, ${nodeColor}DD, ${nodeColor}BB)`;
+                boxEl.style.boxShadow = `0 0 40px ${nodeColor}BB, inset 0 0 25px ${nodeColor}55`;
             }
         }
 
@@ -472,12 +473,13 @@ class MindmapView {
      * Update active highlight without full re-render
      */
     updateActiveHighlight(uniqueId) {
-        // Remove active from all nodes and reset their box-shadow
+        // Remove active from all nodes and reset their styles
         this.nodesContainer.querySelectorAll('.mindmap-node-box.active').forEach(el => {
             el.classList.remove('active');
-            // Reset to normal glow if it has a custom color
+            // Reset to normal style if it has a custom color
             const nodeColor = el.dataset.nodeColor;
             if (nodeColor) {
+                el.style.background = `linear-gradient(135deg, ${nodeColor}CC, ${nodeColor}99)`;
                 el.style.boxShadow = `0 0 20px ${nodeColor}66`;
             }
         });
@@ -486,10 +488,11 @@ class MindmapView {
         const nodeEl = this.nodesContainer.querySelector(`[data-id="${uniqueId}"] .mindmap-node-box`);
         if (nodeEl) {
             nodeEl.classList.add('active');
-            // Enhance glow for custom-color nodes
+            // Enhance glow and background for custom-color nodes
             const nodeColor = nodeEl.dataset.nodeColor;
             if (nodeColor) {
-                nodeEl.style.boxShadow = `0 0 35px ${nodeColor}AA, inset 0 0 20px ${nodeColor}44`;
+                nodeEl.style.background = `linear-gradient(135deg, ${nodeColor}DD, ${nodeColor}BB)`;
+                nodeEl.style.boxShadow = `0 0 40px ${nodeColor}BB, inset 0 0 25px ${nodeColor}55`;
             }
         }
     }

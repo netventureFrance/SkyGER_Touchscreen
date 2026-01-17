@@ -304,11 +304,15 @@
 }
 
 .mindmap-node-box.active {
+    border-width: 3px !important;
+    transform: scale(1.08);
+}
+
+/* Default active state for nodes without custom color */
+.mindmap-node-box.active:not(.custom-color) {
     background: linear-gradient(135deg, rgba(0, 220, 255, 0.6), rgba(0, 180, 220, 0.7)) !important;
     border-color: #00ffff !important;
-    border-width: 3px !important;
     box-shadow: 0 0 35px rgba(0, 255, 255, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.3) !important;
-    transform: scale(1.08);
 }
 
 /* Notion Color Styles - Nodes */
@@ -370,11 +374,10 @@
 
 /* Custom color active state - uses node's own color via inline styles */
 .mindmap-node-box.custom-color.active {
-    /* Override the default cyan active with node's own color */
-    /* box-shadow is set inline via JS using node's color */
-    filter: brightness(1.25) !important;
-    transform: scale(1.08) !important;
-    border-width: 3px !important;
+    /* box-shadow and background are set inline via JS using node's color */
+    filter: brightness(1.15);
+    transform: scale(1.08);
+    border-width: 3px;
 }
 
 /* Root Node (Center) - Oval like other nodes but gray */
