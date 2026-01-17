@@ -159,6 +159,16 @@ class MindmapView {
             fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
         }
 
+        // Fullscreen floating controls
+        const fsZoomIn = document.getElementById('fsZoomInBtn');
+        const fsZoomOut = document.getElementById('fsZoomOutBtn');
+        const fsCenter = document.getElementById('fsCenterBtn');
+        const fsExit = document.getElementById('fsExitBtn');
+        if (fsZoomIn) fsZoomIn.addEventListener('click', () => this.setZoom(this.zoom + 0.1));
+        if (fsZoomOut) fsZoomOut.addEventListener('click', () => this.setZoom(this.zoom - 0.1));
+        if (fsCenter) fsCenter.addEventListener('click', () => this.centerView());
+        if (fsExit) fsExit.addEventListener('click', () => this.toggleFullscreen());
+
         // Keyboard
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -665,20 +675,46 @@ class MindmapView {
 
     /**
      * Generate breadcrumb HTML for given path
+     * For sidebar: truncates from left with "..." if path is too long
      */
     buildBreadcrumbHtml(path, forSidebar = false) {
         if (!path || path.length === 0) return '';
 
-        let html = '';
-        path.forEach((item, index) => {
-            const isLast = index === path.length - 1;
-            const isFirst = index === 0;
+        let itemsToShow = path;
+        let showEllipsis = false;
 
-            if (!isFirst) {
+        // For sidebar, limit to last 3 items if path is longer
+        if (forSidebar && path.length > 3) {
+            itemsToShow = path.slice(-3);
+            showEllipsis = true;
+        }
+
+        let html = '';
+
+        // Add ellipsis if truncated
+        if (showEllipsis) {
+            html += '<span class="breadcrumb-ellipsis">...</span>';
+            html += '<span class="breadcrumb-separator">›</span>';
+        }
+
+        itemsToShow.forEach((item, index) => {
+            const originalIndex = showEllipsis ? path.length - 3 + index : index;
+            const isLast = originalIndex === path.length - 1;
+            const isFirst = index === 0 && !showEllipsis;
+
+            if (!isFirst && index > 0) {
                 html += '<span class="breadcrumb-separator">›</span>';
             }
 
-            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${index}">${escapeHtml(item.label)}</span>`;
+            // Add color styling if available
+            let colorStyle = '';
+            if (item.color && item.color.startsWith('#')) {
+                colorStyle = isLast
+                    ? `style="color: ${item.color};"`
+                    : `style="color: ${item.color}99;"`;
+            }
+
+            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${originalIndex}" ${colorStyle}>${escapeHtml(item.label)}</span>`;
         });
 
         return html;
@@ -1188,7 +1224,11 @@ class MindmapView {
         // Only update if zoom actually changed
         if (this.zoom !== oldZoom) {
             this.canvas.style.transform = `scale(${this.zoom})`;
-            document.getElementById('zoomLevel').textContent = `${Math.round(this.zoom * 100)}%`;
+            const zoomText = `${Math.round(this.zoom * 100)}%`;
+            document.getElementById('zoomLevel').textContent = zoomText;
+            // Also update fullscreen zoom display
+            const fsZoomLevel = document.getElementById('fsZoomLevel');
+            if (fsZoomLevel) fsZoomLevel.textContent = zoomText;
 
             // Redraw lines with correct measurements for new zoom
             this.drawLines();
@@ -1248,6 +1288,7 @@ class MindmapView {
                 this.isFullscreen = true;
                 document.body.classList.add('fullscreen');
                 this.updateFullscreenButton();
+                this.showFullscreenHint();
                 setTimeout(() => this.centerView(), 350);
             }).catch(err => {
                 console.warn('Fullscreen not available:', err);
@@ -1255,6 +1296,7 @@ class MindmapView {
                 this.isFullscreen = true;
                 document.body.classList.add('fullscreen');
                 this.updateFullscreenButton();
+                this.showFullscreenHint();
                 setTimeout(() => this.centerView(), 350);
             });
         } else {
@@ -1265,6 +1307,21 @@ class MindmapView {
                 this.updateFullscreenButton();
                 setTimeout(() => this.centerView(), 350);
             });
+        }
+    }
+
+    /**
+     * Show fullscreen hint briefly
+     */
+    showFullscreenHint() {
+        const hint = document.getElementById('fullscreenHint');
+        if (hint) {
+            hint.style.display = 'block';
+            // Force reflow to restart animation
+            hint.offsetHeight;
+            setTimeout(() => {
+                hint.style.display = 'none';
+            }, 2000);
         }
     }
 
@@ -1282,14 +1339,16 @@ class MindmapView {
     }
 
     /**
-     * Find path from root to a node
+     * Find path from root to a node, including inherited colors
      */
-    findPathToNode(targetId, node = null, path = []) {
+    findPathToNode(targetId, node = null, path = [], parentColor = null) {
         if (!node) {
             node = this.buildData();
         }
 
-        const currentPath = [...path, { id: node.id, label: node.label, node: node }];
+        // Inherit color from parent if not set
+        const nodeColor = node.color || parentColor;
+        const currentPath = [...path, { id: node.id, label: node.label, node: node, color: nodeColor }];
 
         if (node.id === targetId || this.activeNodeId?.startsWith(node.id + '-')) {
             return currentPath;
@@ -1297,7 +1356,7 @@ class MindmapView {
 
         if (node.children) {
             for (const child of node.children) {
-                const result = this.findPathToNode(targetId, child, currentPath);
+                const result = this.findPathToNode(targetId, child, currentPath, nodeColor);
                 if (result) return result;
             }
         }
