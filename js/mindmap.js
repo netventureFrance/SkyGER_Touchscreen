@@ -902,7 +902,7 @@ class MindmapView {
 
     /**
      * View zentrieren auf aktiven Node
-     * Berücksichtigt Sidebar wenn offen
+     * Berücksichtigt Sidebar wenn offen und Zoom-Level
      */
     centerView() {
         const sidebarOpen = this.detailPanel.classList.contains('open');
@@ -936,9 +936,24 @@ class MindmapView {
         const availableWidth = window.innerWidth - sidebarWidth;
         const viewportHeight = this.viewport.clientHeight;
 
-        // Zentriere auf aktiven Node im verfügbaren Bereich
-        const targetScrollX = (targetX * this.zoom) - (availableWidth / 2);
-        const targetScrollY = (targetY * this.zoom) - (viewportHeight / 2);
+        // Berechne Scroll-Position (transform-origin ist top-left)
+        // Target position in scaled coordinates
+        const scaledTargetX = targetX * this.zoom;
+        const scaledTargetY = targetY * this.zoom;
+
+        // Zentriere auf aktiven Node
+        let targetScrollX = scaledTargetX - (availableWidth / 2);
+        let targetScrollY = scaledTargetY - (viewportHeight / 2);
+
+        // Berechne maximale Scroll-Werte basierend auf skalierter Canvas-Größe
+        const scaledCanvasWidth = this.canvasWidth * this.zoom;
+        const scaledCanvasHeight = this.canvasHeight * this.zoom;
+        const maxScrollX = Math.max(0, scaledCanvasWidth - availableWidth);
+        const maxScrollY = Math.max(0, scaledCanvasHeight - viewportHeight);
+
+        // Clamp scroll values to valid range
+        targetScrollX = Math.max(0, Math.min(targetScrollX, maxScrollX));
+        targetScrollY = Math.max(0, Math.min(targetScrollY, maxScrollY));
 
         // Smooth scroll
         this.viewport.scrollTo({
@@ -966,9 +981,17 @@ class MindmapView {
     }
 
     setZoom(level) {
+        const oldZoom = this.zoom;
         this.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, level));
-        this.canvas.style.transform = `scale(${this.zoom})`;
-        document.getElementById('zoomLevel').textContent = `${Math.round(this.zoom * 100)}%`;
+
+        // Only update if zoom actually changed
+        if (this.zoom !== oldZoom) {
+            this.canvas.style.transform = `scale(${this.zoom})`;
+            document.getElementById('zoomLevel').textContent = `${Math.round(this.zoom * 100)}%`;
+
+            // Recenter view after zoom change
+            setTimeout(() => this.centerView(), 50);
+        }
     }
 
     // Drag handlers
