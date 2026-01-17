@@ -2,8 +2,8 @@
 # Sky Touchscreen Visualisierung
 
 [build]
-  # Build Command - increment version on every deploy
-  command = "node scripts/increment-version.js"
+  # No build command needed - version is incremented by pre-commit hook
+  command = "echo 'Deploying version'"
 
   # Publish Directory
   publish = "."
