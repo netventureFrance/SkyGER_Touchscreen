@@ -36,3 +36,4 @@ try {
     console.error(`❌ Could not increment version: ${e.message}`);
     process.exit(1);
 }
+# Auto-version: pre-commit hook increments patch on every commit
