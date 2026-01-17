@@ -1401,6 +1401,15 @@ body.fullscreen .fullscreen-hint {
     visibility: visible;
 }
 
+.lightbox-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 36px;
+    width: auto;
+    z-index: 10;
+}
+
 .lightbox-backdrop {
     position: absolute;
     top: 0;

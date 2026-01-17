@@ -1017,6 +1017,7 @@ class MindmapView {
 
         lightbox.innerHTML = `
             <div class="lightbox-backdrop"></div>
+            <img src="images/netventure-logo.png" alt="netventure" class="lightbox-logo">
             <div class="lightbox-content">
                 <div class="lightbox-carousel">
                     ${images.map((img, i) => `
