@@ -499,6 +499,12 @@ class MindmapView {
                 this.expandedNodes.add(node.id);
             }
             this.render();
+
+            // After render, uniqueIds change - find the new uniqueId for this node
+            const newUniqueId = this.findUniqueIdByNodeId(node.id);
+            if (newUniqueId) {
+                this.activeNodeId = newUniqueId;
+            }
         } else {
             // For leaf nodes, just update the active highlighting
             this.updateActiveHighlight(uniqueId);
@@ -506,7 +512,7 @@ class MindmapView {
 
         // Only update sidebar content if already open (don't auto-open)
         if (this.detailPanel.classList.contains('open')) {
-            this.showDetail(node, uniqueId);
+            this.showDetail(node, this.activeNodeId);
         }
 
         // Update breadcrumb navigation
