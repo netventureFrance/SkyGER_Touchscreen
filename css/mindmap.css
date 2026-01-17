@@ -260,10 +260,13 @@ body.fullscreen .mindmap-header {
 body.fullscreen .breadcrumb-bar {
     top: 0;
     background: linear-gradient(180deg, rgba(5, 15, 30, 0.98) 0%, rgba(2, 8, 16, 0.95) 100%);
+    border-top: 2px solid var(--border-color);
 }
 
 body.fullscreen .mindmap-main {
-    top: 36px;
+    top: 0;
+    bottom: 0;
+    border-top: 2px solid var(--border-color);
 }
 
 body.fullscreen .footer-info {
@@ -277,10 +280,17 @@ body.fullscreen .corner-frame {
     pointer-events: none;
 }
 
+/* Detail panel in fullscreen - extend to top */
+body.fullscreen .detail-panel {
+    top: 0;
+    bottom: 0;
+    border-top: 2px solid var(--border-color);
+}
+
 /* Floating controls in fullscreen */
 .fullscreen-controls {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: none;
@@ -299,8 +309,27 @@ body.fullscreen .fullscreen-controls {
 }
 
 .fullscreen-controls .control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 6px 10px;
     min-width: auto;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--accent-cyan);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-controls .control-btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--accent-cyan);
+}
+
+.fullscreen-controls .control-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .fullscreen-controls .zoom-level {
