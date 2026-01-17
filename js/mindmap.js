@@ -1168,13 +1168,17 @@ class MindmapView {
                     this.selectedNode = pathItem.node;
                     this.activeNodeId = pathItem.id + '-0';
 
-                    // Expand path to this node
+                    // Expand path to this node, collapse everything else
+                    this.expandedNodes.clear();
                     for (let i = 0; i <= index; i++) {
                         this.expandedNodes.add(this.nodePath[i].id);
                     }
 
                     this.render();
                     this.updateBreadcrumbs();
+
+                    // Center view on the selected node
+                    setTimeout(() => this.centerView(), 100);
 
                     // Update sidebar if open
                     if (this.detailPanel.classList.contains('open')) {
