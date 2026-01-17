@@ -746,15 +746,7 @@ class MindmapView {
 
         let html = '';
 
-        // Breadcrumb ABOVE title (showing path to current node)
-        if (breadcrumbHtml) {
-            html += `<nav class="panel-breadcrumb" aria-label="Navigationspfad">${breadcrumbHtml}</nav>`;
-        }
-
-        // Title with node color
-        html += `<h2 ${titleStyle}>${escapeHtml(node.label)}</h2>`;
-
-        // Screenshots Carousel FIRST
+        // Screenshots Carousel FIRST (above navigation)
         const screenshots = node.screenshots || [];
         if (screenshots.length > 0) {
             html += `
@@ -788,6 +780,14 @@ class MindmapView {
                 </div>
             `;
         }
+
+        // Breadcrumb (showing path to current node)
+        if (breadcrumbHtml) {
+            html += `<nav class="panel-breadcrumb" aria-label="Navigationspfad">${breadcrumbHtml}</nav>`;
+        }
+
+        // Title with node color
+        html += `<h2 ${titleStyle}>${escapeHtml(node.label)}</h2>`;
 
         // Description AFTER screenshots
         if (node.description) {
