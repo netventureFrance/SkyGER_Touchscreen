@@ -1276,12 +1276,19 @@ body.fullscreen .fullscreen-hint {
 }
 
 
-/* Panel Description */
+/* Panel Description - styled frame */
 .panel-description {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(0, 160, 210, 0.05);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-cyan);
+    border-radius: 6px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 /* Responsive Carousel */

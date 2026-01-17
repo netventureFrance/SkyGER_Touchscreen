@@ -675,7 +675,7 @@ class MindmapView {
 
     /**
      * Generate breadcrumb HTML for given path
-     * For sidebar: truncates from left with "..." if path is too long
+     * For sidebar: excludes current node (shown as title) and truncates from left
      */
     buildBreadcrumbHtml(path, forSidebar = false) {
         if (!path || path.length === 0) return '';
@@ -683,10 +683,16 @@ class MindmapView {
         let itemsToShow = path;
         let showEllipsis = false;
 
-        // For sidebar, limit to last 3 items if path is longer
-        if (forSidebar && path.length > 3) {
-            itemsToShow = path.slice(-3);
-            showEllipsis = true;
+        if (forSidebar) {
+            // Exclude last item (current node) - it's shown as the title
+            itemsToShow = path.slice(0, -1);
+            if (itemsToShow.length === 0) return ''; // Only root, no breadcrumb needed
+
+            // Truncate from left if more than 3 parent items
+            if (itemsToShow.length > 3) {
+                itemsToShow = itemsToShow.slice(-3);
+                showEllipsis = true;
+            }
         }
 
         let html = '';
@@ -698,8 +704,11 @@ class MindmapView {
         }
 
         itemsToShow.forEach((item, index) => {
-            const originalIndex = showEllipsis ? path.length - 3 + index : index;
-            const isLast = originalIndex === path.length - 1;
+            // Calculate original index for click handling
+            const originalIndex = forSidebar
+                ? (showEllipsis ? path.length - 4 + index : index)
+                : (showEllipsis ? path.length - 3 + index : index);
+            const isLast = index === itemsToShow.length - 1;
             const isFirst = index === 0 && !showEllipsis;
 
             if (!isFirst && index > 0) {
@@ -709,12 +718,10 @@ class MindmapView {
             // Add color styling if available
             let colorStyle = '';
             if (item.color && item.color.startsWith('#')) {
-                colorStyle = isLast
-                    ? `style="color: ${item.color};"`
-                    : `style="color: ${item.color}99;"`;
+                colorStyle = `style="color: ${item.color};"`;
             }
 
-            html += `<span class="breadcrumb-item${isLast ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${originalIndex}" ${colorStyle}>${escapeHtml(item.label)}</span>`;
+            html += `<span class="breadcrumb-item${isLast && !forSidebar ? ' active' : ''}" data-id="${escapeHtml(item.id)}" data-index="${originalIndex}" ${colorStyle}>${escapeHtml(item.label)}</span>`;
         });
 
         return html;
@@ -730,18 +737,25 @@ class MindmapView {
         // Hide top breadcrumb bar when sidebar is open
         this.breadcrumbBar.classList.add('hidden');
 
-        // Build breadcrumb path for sidebar
+        // Build breadcrumb path for sidebar (exclude current node)
         const nodeId = node.id;
         const path = this.findPathToNode(nodeId);
         this.nodePath = path;
         const breadcrumbHtml = this.buildBreadcrumbHtml(path, true);
 
-        let html = `<h2>${escapeHtml(node.label)}</h2>`;
+        // Get node color for title
+        const nodeColor = path && path.length > 0 ? path[path.length - 1].color : null;
+        const titleStyle = nodeColor ? `style="color: ${nodeColor};"` : '';
 
-        // Add breadcrumb navigation in sidebar
+        let html = '';
+
+        // Breadcrumb ABOVE title (showing path to current node)
         if (breadcrumbHtml) {
             html += `<nav class="panel-breadcrumb" aria-label="Navigationspfad">${breadcrumbHtml}</nav>`;
         }
+
+        // Title with node color
+        html += `<h2 ${titleStyle}>${escapeHtml(node.label)}</h2>`;
 
         // Screenshots Carousel FIRST
         const screenshots = node.screenshots || [];
