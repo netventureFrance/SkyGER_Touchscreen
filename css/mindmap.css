@@ -303,7 +303,7 @@ body.fullscreen .detail-panel {
 /* Fullscreen logo (top left) */
 .fullscreen-logo {
     position: fixed;
-    top: 8px;
+    top: 5px;
     left: 12px;
     display: none;
     z-index: 1000;
