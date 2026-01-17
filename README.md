@@ -1,7 +1,5 @@
 # Sky Sport Touchscreen - Visualisierung
 
-**Version 1.39.3**
-
 Interaktive Web-Visualisierung für das Sky Sport Touchscreen System.
 
 ## Übersicht
@@ -10,12 +8,31 @@ Diese Anwendung dokumentiert die komplette Struktur des RCS Touch Systems, das b
 
 ## Features
 
+### Mindmap
 - **Interaktive Mindmap** - Hierarchische Navigation durch alle Funktionen
-- **Screenshot-Vorschau** - Bilder direkt in der Visualisierung
-- **Notion Integration** - Automatische Synchronisierung via GitHub Actions
-- **Admin Panel** - Manuelles Auslösen der Synchronisierung
+- **Screenshot-Vorschau** - Bilder direkt in der Visualisierung mit Carousel und Lightbox
+- **Farbige Nodes** - Hex-Farbcodes `[#RRGGBB]` im Notion-Titel für individuelle Farben
+- **Farbvererbung** - Kind-Nodes erben die Farbe vom Eltern-Node
+- **Farbige Highlights** - Aktive Nodes glühen in ihrer eigenen Farbe
 - **Responsive Design** - Optimiert für verschiedene Bildschirmgrößen
 - **Sky Design System** - Authentisches Look & Feel
+
+### Notion Integration
+- **Automatische Synchronisierung** via GitHub Actions
+- **Import-Marker** - Inhalt vor `+++ Ab hier startet der Import Bereich` wird ignoriert
+- **Screenshot-Download** - Bilder werden lokal gespeichert
+
+### Admin Panel
+- **Sync-Trigger** - Manuelles Auslösen der Synchronisierung
+- **Version-Anzeige** - Aktuelle Version mit Patch-Nummer (z.B. V. 1.39.12)
+- **45s Countdown** - Zeigt Netlify-Deploy-Fortschritt
+- **Detailliertes Logging** - Fortschrittsmeldungen während des Sync
+
+### Sicherheit & Performance
+- **Content-Security-Policy** Header
+- **XSS-Schutz** via HTML-Escaping
+- **SEO-optimiert** mit Meta-Tags, robots.txt, sitemap.xml
+- **PWA-fähig** mit Manifest
 
 ## Projektstruktur
 
@@ -146,6 +163,39 @@ Sky Touchscreen
 └── RCS Webapplikation
 ```
 
+## Farbsystem für Nodes
+
+Nodes können durch Hinzufügen eines Hex-Farbcodes am Ende des Titels in Notion eingefärbt werden.
+
+### Format
+```
+Titel [#RRGGBB]
+Titel [#RGB]
+```
+
+### Beispiele
+| Notion-Titel | Farbe | Hex-Code |
+|--------------|-------|----------|
+| `Spiele [#00A0D2]` | Sky Cyan | #00A0D2 |
+| `Bundesliga [#D20515]` | Rot | #D20515 |
+| `Premier League [#3D195B]` | Violett | #3D195B |
+| `Tabelle [#4ADE80]` | Grün | #4ADE80 |
+
+### Farbvererbung
+- Kind-Nodes ohne eigenen Farbcode erben die Farbe ihres Eltern-Nodes
+- Der Farbcode wird automatisch aus dem angezeigten Titel entfernt
+- Nodes und Verbindungslinien zeigen die Farbe an
+- Aktive Nodes glühen verstärkt in ihrer eigenen Farbe
+
+## Import-Marker
+
+Der Sync-Prozess ignoriert allen Inhalt **vor** dem Marker:
+```
++++ Ab hier startet der Import Bereich
+```
+
+Dies ermöglicht es, Dokumentation und Anleitungen oberhalb des Markers in Notion zu platzieren, ohne dass diese in die Mindmap importiert werden.
+
 ## Technologie
 
 | Komponente | Technologie |
@@ -156,6 +206,19 @@ Sky Touchscreen
 | Sync | GitHub Actions |
 | Datenquelle | Notion API v1 |
 | MCP Server | Node.js |
+
+## Scripts
+
+```bash
+# Notion-Sync manuell ausführen
+node mcp-notion-server/sync-notion.js
+
+# Farbdokumentation zu Notion hinzufügen
+node mcp-notion-server/add-color-info.js
+
+# Farben zu Top-Level Nodes hinzufügen
+node mcp-notion-server/add-colors-to-nodes.js
+```
 
 ## Lizenz
 
