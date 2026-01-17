@@ -303,14 +303,14 @@ body.fullscreen .detail-panel {
 /* Fullscreen logo (top left) */
 .fullscreen-logo {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 8px;
+    left: 12px;
     display: none;
     z-index: 1000;
 }
 
 .fullscreen-logo img {
-    height: 36px;
+    height: 28px;
     width: auto;
 }
 
