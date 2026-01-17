@@ -144,9 +144,6 @@ class MindmapView {
         document.getElementById('zoomInBtn').addEventListener('click', () => this.setZoom(this.zoom + 0.1));
         document.getElementById('zoomOutBtn').addEventListener('click', () => this.setZoom(this.zoom - 0.1));
 
-        // Panel
-        document.getElementById('panelClose').addEventListener('click', () => this.closePanel());
-
         // Sidebar toggle button
         const toggleBtn = document.getElementById('toggleSidebarBtn');
         if (toggleBtn) {
