@@ -304,7 +304,7 @@ body.fullscreen .detail-panel {
 .fullscreen-logo {
     position: fixed;
     top: 12px;
-    left: 12px;
+    left: 30px;
     display: none;
     z-index: 1000;
 }
@@ -1404,7 +1404,7 @@ body.fullscreen .fullscreen-hint {
 .lightbox-logo {
     position: absolute;
     top: 12px;
-    left: 12px;
+    left: 30px;
     height: 36px;
     width: auto;
     z-index: 10;
