@@ -371,8 +371,18 @@ class MindmapView {
                 const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
                 const parentWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
 
-                // Line: parent RIGHT edge → child LEFT edge
-                const startX = parentPos.x + parentWidth;
+                // Calculate startX based on parent type
+                // Root node is centered (transform: translate(-50%, -50%)) so position is CENTER
+                // Other nodes have only translateY(-50%) so position is LEFT edge
+                let startX;
+                if (parentPos.level === 0) {
+                    // Root node: position is center, so add half width to get right edge
+                    startX = parentPos.x + (parentWidth / 2);
+                } else {
+                    // Non-root: position is left edge, so add full width to get right edge
+                    startX = parentPos.x + parentWidth;
+                }
+
                 const startY = parentPos.y;
                 const endX = pos.x;
                 const endY = pos.y;
