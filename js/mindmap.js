@@ -254,9 +254,18 @@ class MindmapView {
         const boxEl = document.createElement('div');
         boxEl.className = 'mindmap-node-box';
 
-        // Apply Notion color if present
+        // Apply color if present (hex or Notion color name)
         if (nodeColor && nodeColor !== 'default') {
-            boxEl.classList.add(`notion-${nodeColor}`);
+            if (nodeColor.startsWith('#')) {
+                // Hex color - apply inline styles
+                boxEl.style.background = `linear-gradient(135deg, ${nodeColor}CC, ${nodeColor}99)`;
+                boxEl.style.borderColor = nodeColor;
+                boxEl.style.boxShadow = `0 0 20px ${nodeColor}66`;
+                boxEl.classList.add('custom-color');
+            } else {
+                // Notion color name - use CSS class
+                boxEl.classList.add(`notion-${nodeColor}`);
+            }
         }
 
         if (this.expandedNodes.has(node.id)) {
@@ -397,8 +406,16 @@ class MindmapView {
 
                 const path = this.createBezierPath(startX, startY, endX, endY);
 
-                const colorClass = pos.color && pos.color !== 'default' ? `notion-${pos.color}` : '';
-                pathsHtml += `<path d="${path}" data-from="${nodeId}" class="${colorClass}" />`;
+                // Apply color to path (hex or Notion color)
+                let pathAttrs = `d="${path}" data-from="${nodeId}"`;
+                if (pos.color && pos.color !== 'default') {
+                    if (pos.color.startsWith('#')) {
+                        pathAttrs += ` style="stroke: ${escapeHtml(pos.color)}"`;
+                    } else {
+                        pathAttrs += ` class="notion-${escapeHtml(pos.color)}"`;
+                    }
+                }
+                pathsHtml += `<path ${pathAttrs} />`;
             }
         });
 

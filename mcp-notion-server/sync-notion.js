@@ -87,6 +87,32 @@ function sanitize(name, maxLength = 50) {
 }
 
 /**
+ * Extract hex color from title text
+ * Supports format: "Title [#RRGGBB]" or "Title [#RGB]"
+ * Returns { title: "clean title", color: "#RRGGBB" or null }
+ */
+function extractHexColor(text) {
+    if (!text) return { title: '', color: null };
+
+    // Match [#RRGGBB] or [#RGB] at end of string (with optional spaces)
+    const hexMatch = text.match(/\s*\[#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]\s*$/);
+
+    if (hexMatch) {
+        let color = hexMatch[1];
+        // Expand 3-digit hex to 6-digit
+        if (color.length === 3) {
+            color = color.split('').map(c => c + c).join('');
+        }
+        return {
+            title: text.replace(hexMatch[0], '').trim(),
+            color: '#' + color.toUpperCase()
+        };
+    }
+
+    return { title: text, color: null };
+}
+
+/**
  * Get rich text content
  */
 function getRichText(richTextArray) {
@@ -145,16 +171,20 @@ async function processBlocks(blocks, parentItem, depth = 0) {
 
         // Headings define new sections
         if (type.startsWith('heading_')) {
-            // Extract color from heading block (e.g., heading_1, heading_2, heading_3)
+            // Extract hex color from title text [#RRGGBB]
+            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Fall back to Notion block color if no hex color specified
             const headingData = block[type];
-            const color = headingData?.color || 'default';
-            console.log(`${indent}📌 ${type}: ${text} (${color})`);
+            const notionColor = headingData?.color || 'default';
+            const color = hexColor || (notionColor !== 'default' ? notionColor : null);
+
+            console.log(`${indent}📌 ${type}: ${cleanTitle}${color ? ` [${color}]` : ''}`);
 
             const newItem = {
                 id: block.id,
-                title: text,
+                title: cleanTitle,
                 description: '',
-                color: color, // Store the Notion color
+                color: color, // Hex color or Notion color
                 images: [],
                 children: []
             };
@@ -168,15 +198,19 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Toggle blocks - these contain nested content
         else if (type === 'toggle') {
-            // Extract color from toggle block
-            const color = block.toggle?.color || 'default';
-            console.log(`${indent}📂 Toggle: ${text} (${color})`);
+            // Extract hex color from title text [#RRGGBB]
+            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Fall back to Notion block color if no hex color specified
+            const notionColor = block.toggle?.color || 'default';
+            const color = hexColor || (notionColor !== 'default' ? notionColor : null);
+
+            console.log(`${indent}📂 Toggle: ${cleanTitle}${color ? ` [${color}]` : ''}`);
 
             const newItem = {
                 id: block.id,
-                title: text,
+                title: cleanTitle,
                 description: '',
-                color: color, // Store the Notion color
+                color: color, // Hex color or Notion color
                 images: [],
                 children: []
             };
@@ -189,16 +223,20 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Bulleted/numbered lists with children
         else if ((type === 'bulleted_list_item' || type === 'numbered_list_item') && text) {
-            // Extract color from list item
+            // Extract hex color from title text [#RRGGBB]
+            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Fall back to Notion block color if no hex color specified
             const listData = block[type];
-            const color = listData?.color || 'default';
-            console.log(`${indent}• ${text} (${color})`);
+            const notionColor = listData?.color || 'default';
+            const color = hexColor || (notionColor !== 'default' ? notionColor : null);
+
+            console.log(`${indent}• ${cleanTitle}${color ? ` [${color}]` : ''}`);
 
             const newItem = {
                 id: block.id,
-                title: text,
+                title: cleanTitle,
                 description: '',
-                color: color, // Store the Notion color
+                color: color, // Hex color or Notion color
                 images: [],
                 children: []
             };

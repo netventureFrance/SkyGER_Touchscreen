@@ -358,6 +358,21 @@
     box-shadow: 0 0 20px rgba(159, 107, 83, 0.4);
 }
 
+/* Custom Hex Color Styles - applied via inline styles + this class */
+.mindmap-node-box.custom-color {
+    /* Base styles are inline, this ensures consistent hover/active behavior */
+}
+
+.mindmap-node-box.custom-color:hover {
+    filter: brightness(1.15);
+    transform: scale(1.05);
+}
+
+.mindmap-node-box.custom-color.active {
+    filter: brightness(1.2);
+    transform: scale(1.08);
+}
+
 /* Root Node (Center) - Oval like other nodes but gray */
 .mindmap-node.root .mindmap-node-box {
     padding: 14px 24px;
