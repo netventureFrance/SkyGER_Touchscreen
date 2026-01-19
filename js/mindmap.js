@@ -618,8 +618,10 @@ class MindmapView {
 
                 // Check if this is a left-positioned node
                 const isLeft = pos.direction === 'left';
+                const isParentLeft = parentPos.direction === 'left';
 
                 // Calculate startX and endX based on direction
+                // With translateX(-100%), left-side nodes have their right edge at pos.x
                 let startX, endX;
                 if (parentPos.level === 0) {
                     // Root node: position is center
@@ -628,8 +630,16 @@ class MindmapView {
                     } else {
                         startX = parentPos.x + (parentWidth / 2); // Right edge of root
                     }
+                } else if (isParentLeft) {
+                    // Parent is a left-side node (uses translateX(-100%))
+                    // Right edge is at parentPos.x, left edge is at parentPos.x - parentWidth
+                    if (isLeft) {
+                        startX = parentPos.x - parentWidth; // Left edge of left parent
+                    } else {
+                        startX = parentPos.x; // Right edge of left parent
+                    }
                 } else {
-                    // Non-root: position is left edge
+                    // Parent is a right-side node (position is left edge)
                     if (isLeft) {
                         startX = parentPos.x; // Left edge
                     } else {
@@ -637,13 +647,9 @@ class MindmapView {
                     }
                 }
 
-                if (isLeft) {
-                    // For left nodes: line ends at right edge of child
-                    endX = pos.x + childWidth;
-                } else {
-                    // For right nodes: line ends at left edge of child
-                    endX = pos.x;
-                }
+                // Child endpoint: right edge for left nodes, left edge for right nodes
+                // With translateX(-100%), left-side nodes have right edge at pos.x
+                endX = pos.x;
 
                 const startY = parentPos.y;
                 const endY = pos.y;
