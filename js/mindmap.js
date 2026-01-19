@@ -1747,23 +1747,24 @@ class MindmapView {
         const viewportWidth = this.viewport.clientWidth;
         const viewportHeight = this.viewport.clientHeight;
 
-        // Current scroll position (accounting for zoom)
+        // Current scroll position in canvas coordinates (accounting for zoom)
         const scrollX = this.viewport.scrollLeft / this.zoom;
         const scrollY = this.viewport.scrollTop / this.zoom;
         const visibleWidth = viewportWidth / this.zoom;
         const visibleHeight = viewportHeight / this.zoom;
 
-        // Convert to minimap coordinates
-        const x = scrollX * bounds.scale + bounds.offsetX;
-        const y = scrollY * bounds.scale + bounds.offsetY;
+        // Convert scroll position to minimap coordinates (relative to node bounds)
+        // The minimap shows nodes from minX to maxX, scaled to fit in minimap width
+        const x = (scrollX - bounds.minX) * bounds.scale + (bounds.width - (bounds.maxX - bounds.minX) * bounds.scale) / 2;
+        const y = (scrollY - bounds.minY) * bounds.scale + (bounds.height - (bounds.maxY - bounds.minY) * bounds.scale) / 2;
         const w = visibleWidth * bounds.scale;
         const h = visibleHeight * bounds.scale;
 
-        // Apply to viewport element
+        // Apply to viewport element (clamp to minimap bounds)
         this.minimapViewport.style.left = `${Math.max(0, x)}px`;
         this.minimapViewport.style.top = `${Math.max(0, y)}px`;
-        this.minimapViewport.style.width = `${Math.min(w, bounds.width - x)}px`;
-        this.minimapViewport.style.height = `${Math.min(h, bounds.height - y)}px`;
+        this.minimapViewport.style.width = `${Math.min(w, bounds.width - Math.max(0, x))}px`;
+        this.minimapViewport.style.height = `${Math.min(h, bounds.height - Math.max(0, y))}px`;
     }
 
     /**
@@ -1817,13 +1818,15 @@ class MindmapView {
         if (e.target === this.minimapViewport) return; // Don't handle viewport clicks
 
         const rect = this.minimapContent.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
 
-        // Convert to canvas coordinates
+        // Convert minimap click to canvas coordinates (reverse of viewport calculation)
         const bounds = this.minimapBounds;
-        const canvasX = (x - bounds.offsetX) / bounds.scale;
-        const canvasY = (y - bounds.offsetY) / bounds.scale;
+        const centerOffsetX = (bounds.width - (bounds.maxX - bounds.minX) * bounds.scale) / 2;
+        const centerOffsetY = (bounds.height - (bounds.maxY - bounds.minY) * bounds.scale) / 2;
+        const canvasX = (clickX - centerOffsetX) / bounds.scale + bounds.minX;
+        const canvasY = (clickY - centerOffsetY) / bounds.scale + bounds.minY;
 
         // Scroll to center this point
         const targetScrollX = (canvasX * this.zoom) - (this.viewport.clientWidth / 2);
