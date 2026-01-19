@@ -552,6 +552,20 @@ class MindmapView {
                 leftCountEl.className = 'node-count left-indicator';
                 leftCountEl.textContent = leftCount;
 
+                // Left count click handler - toggle left side
+                leftCountEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleSideToggle(node, uniqueId, 'left');
+                });
+
+                // Left count hover - highlight left indicator
+                leftCountEl.addEventListener('mouseenter', () => {
+                    leftToggle.classList.add('hover-highlight');
+                });
+                leftCountEl.addEventListener('mouseleave', () => {
+                    leftToggle.classList.remove('hover-highlight');
+                });
+
                 boxEl.appendChild(leftToggle);
                 boxEl.appendChild(leftCountEl);
                 boxEl.appendChild(labelEl);
@@ -569,6 +583,20 @@ class MindmapView {
                 rightToggle.addEventListener('click', (e) => {
                     e.stopPropagation();
                     this.handleSideToggle(node, uniqueId, 'right');
+                });
+
+                // Right count click handler - toggle right side
+                rightCountEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleSideToggle(node, uniqueId, 'right');
+                });
+
+                // Right count hover - highlight right indicator
+                rightCountEl.addEventListener('mouseenter', () => {
+                    rightToggle.classList.add('hover-highlight');
+                });
+                rightCountEl.addEventListener('mouseleave', () => {
+                    rightToggle.classList.remove('hover-highlight');
                 });
 
                 boxEl.appendChild(rightCountEl);
