@@ -130,23 +130,11 @@ class MindmapView {
             const response = await fetch('images/notion-data.json');
             if (response.ok) {
                 const data = await response.json();
-                // Recursively find "Sky Sport Design Bundesliga" node
-                const findNode = (node, label) => {
-                    if (node.label === label) return node;
-                    if (node.children) {
-                        for (const child of node.children) {
-                            const found = findNode(child, label);
-                            if (found) return found;
-                        }
-                    }
-                    return null;
-                };
-                const touchNode = findNode(data, 'TOUCHSCREEN SKY DEUTSCHLAND');
-                if (touchNode) {
-                    this.notionData = touchNode;
-                    console.log('Loaded Notion data:', touchNode.children?.length, 'items');
+                // Use first child as root (skips the Notion page title level)
+                if (data.children && data.children.length > 0) {
+                    this.notionData = data.children[0];
+                    console.log('Loaded Notion data:', this.notionData.label, '-', this.notionData.children?.length, 'items');
                 } else {
-                    // Use root data if specific node not found
                     this.notionData = data;
                     console.log('Using root Notion data');
                 }
