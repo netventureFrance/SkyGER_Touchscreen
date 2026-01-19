@@ -498,7 +498,6 @@ class MindmapView {
         nodeEl.dataset.id = uniqueId;
         nodeEl.style.left = `${x}px`;
         nodeEl.style.top = `${y}px`;
-        nodeEl.style.animationDelay = `${level * 0.1}s`;
 
         // Node Box
         const boxEl = document.createElement('div');
