@@ -284,6 +284,7 @@ class MindmapView {
         this.nodesContainer.innerHTML = '';
         this.linesContainer.innerHTML = '';
         this.nodePositions.clear();
+        if (this.nodeWidthCache) this.nodeWidthCache.clear();
 
         // Render nodes with fixed distances
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
@@ -608,13 +609,31 @@ class MindmapView {
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Measure actual parent and child width from DOM (divide by zoom to get unscaled width)
-                const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-                const childEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
-                const scaledParentWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
-                const scaledChildWidth = childEl ? childEl.getBoundingClientRect().width : 180;
-                const parentWidth = scaledParentWidth / this.zoom;
-                const childWidth = scaledChildWidth / this.zoom;
+                // Get node widths - use cached values or measure from DOM
+                // Cache prevents issues during zoom/transitions where getBoundingClientRect returns intermediate values
+                let parentWidth = this.nodeWidthCache?.get(pos.parentId);
+                let childWidth = this.nodeWidthCache?.get(nodeId);
+
+                if (!parentWidth || !childWidth) {
+                    // Initialize cache if needed
+                    if (!this.nodeWidthCache) this.nodeWidthCache = new Map();
+
+                    const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
+                    const childEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
+
+                    if (parentEl && !parentWidth) {
+                        parentWidth = parentEl.getBoundingClientRect().width / this.zoom;
+                        this.nodeWidthCache.set(pos.parentId, parentWidth);
+                    }
+                    if (childEl && !childWidth) {
+                        childWidth = childEl.getBoundingClientRect().width / this.zoom;
+                        this.nodeWidthCache.set(nodeId, childWidth);
+                    }
+                }
+
+                // Fallback to default width
+                parentWidth = parentWidth || 180;
+                childWidth = childWidth || 180;
 
                 // Check if this is a left-positioned node
                 const isLeft = pos.direction === 'left';
