@@ -461,11 +461,12 @@ body.fullscreen .fullscreen-hint {
     min-width: 20000px;
     min-height: 16000px;
     transform-origin: top left;
-    transition: transform 0.3s ease, opacity 0.15s ease;
+    transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .mindmap-canvas.transitioning {
-    opacity: 0.3;
+    opacity: 0;
+    transition: opacity 0.1s ease;
 }
 
 /* SVG Lines Layer */

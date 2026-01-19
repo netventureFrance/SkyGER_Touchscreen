@@ -298,23 +298,35 @@ class MindmapView {
     render() {
         const data = this.buildData();
 
-        // Clear
-        this.nodesContainer.innerHTML = '';
-        this.linesContainer.innerHTML = '';
-        this.nodePositions.clear();
-        if (this.nodeWidthCache) this.nodeWidthCache.clear();
+        // Fade out for smooth transition
+        this.canvas.classList.add('transitioning');
 
-        // Render nodes with fixed distances
-        this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
+        // Wait for fade out, then render everything together
+        requestAnimationFrame(() => {
+            // Clear
+            this.nodesContainer.innerHTML = '';
+            this.linesContainer.innerHTML = '';
+            this.nodePositions.clear();
+            if (this.nodeWidthCache) this.nodeWidthCache.clear();
 
-        // Adjust canvas size if needed
-        this.adjustCanvasSize();
+            // Render nodes with fixed distances
+            this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-        // Draw lines after short delay
-        setTimeout(() => this.drawLines(), 50);
+            // Adjust canvas size if needed
+            this.adjustCanvasSize();
 
-        // Update minimap
-        setTimeout(() => this.updateMinimap(), 100);
+            // Draw lines immediately after nodes
+            requestAnimationFrame(() => {
+                this.drawLines();
+
+                // Fade in together
+                requestAnimationFrame(() => {
+                    this.canvas.classList.remove('transitioning');
+                    // Update minimap after visible
+                    this.updateMinimap();
+                });
+            });
+        });
     }
 
     /**
