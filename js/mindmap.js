@@ -23,6 +23,13 @@ class MindmapView {
         this.breadcrumbBar = document.getElementById('breadcrumbBar');
         this.breadcrumbContainer = document.getElementById('breadcrumbContainer');
 
+        // Minimap elements
+        this.minimap = document.getElementById('minimap');
+        this.minimapCanvas = document.getElementById('minimapCanvas');
+        this.minimapCtx = this.minimapCanvas ? this.minimapCanvas.getContext('2d') : null;
+        this.minimapViewport = document.getElementById('minimapViewport');
+        this.minimapContent = document.getElementById('minimapContent');
+
         // Canvas Größe (larger to accommodate expanded trees at high zoom)
         this.canvasWidth = 10000;
         this.canvasHeight = 8000;
@@ -78,6 +85,9 @@ class MindmapView {
 
         // Event Listeners
         this.setupEventListeners();
+
+        // Minimap setup
+        this.setupMinimap();
 
         // Zentrieren
         this.centerView();
@@ -272,6 +282,9 @@ class MindmapView {
 
         // Draw lines after short delay
         setTimeout(() => this.drawLines(), 50);
+
+        // Update minimap
+        setTimeout(() => this.updateMinimap(), 100);
     }
 
     /**
@@ -1477,6 +1490,230 @@ class MindmapView {
                 }
             });
         });
+    }
+
+    // ==================== MINIMAP ====================
+
+    /**
+     * Setup minimap canvas and event listeners
+     */
+    setupMinimap() {
+        if (!this.minimapCanvas || !this.minimapCtx) return;
+
+        // Set canvas size
+        const rect = this.minimapContent.getBoundingClientRect();
+        this.minimapCanvas.width = rect.width * 2; // 2x for retina
+        this.minimapCanvas.height = rect.height * 2;
+        this.minimapCtx.scale(2, 2);
+
+        // Calculate scale factor
+        this.minimapScale = Math.min(
+            rect.width / this.canvasWidth,
+            rect.height / this.canvasHeight
+        );
+
+        // Toggle button
+        const toggleBtn = document.getElementById('minimapToggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                this.minimap.classList.toggle('collapsed');
+                toggleBtn.textContent = this.minimap.classList.contains('collapsed') ? '+' : '−';
+            });
+        }
+
+        // Click on minimap to navigate
+        this.minimapContent.addEventListener('click', (e) => this.handleMinimapClick(e));
+
+        // Drag on minimap viewport
+        this.minimapViewport.addEventListener('mousedown', (e) => this.startMinimapDrag(e));
+        document.addEventListener('mousemove', (e) => this.handleMinimapDrag(e));
+        document.addEventListener('mouseup', () => this.endMinimapDrag());
+
+        // Update on scroll
+        this.viewport.addEventListener('scroll', () => this.updateMinimapViewport());
+
+        // Initial render
+        this.updateMinimap();
+    }
+
+    /**
+     * Render the minimap canvas
+     */
+    updateMinimap() {
+        if (!this.minimapCtx || !this.minimapContent) return;
+
+        const ctx = this.minimapCtx;
+        const rect = this.minimapContent.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Calculate bounds of all nodes
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        this.nodePositions.forEach((pos) => {
+            minX = Math.min(minX, pos.x - 100);
+            minY = Math.min(minY, pos.y - 30);
+            maxX = Math.max(maxX, pos.x + 100);
+            maxY = Math.max(maxY, pos.y + 30);
+        });
+
+        // Add padding
+        const padding = 50;
+        minX -= padding;
+        minY -= padding;
+        maxX += padding;
+        maxY += padding;
+
+        // Calculate scale to fit all nodes
+        const nodesWidth = maxX - minX;
+        const nodesHeight = maxY - minY;
+        const scale = Math.min(width / nodesWidth, height / nodesHeight);
+
+        // Calculate offset to center
+        const offsetX = (width - nodesWidth * scale) / 2 - minX * scale;
+        const offsetY = (height - nodesHeight * scale) / 2 - minY * scale;
+
+        // Store for viewport calculations
+        this.minimapBounds = { minX, minY, maxX, maxY, scale, offsetX, offsetY, width, height };
+
+        // Draw lines first
+        ctx.strokeStyle = 'rgba(0, 160, 210, 0.3)';
+        ctx.lineWidth = 1;
+        this.nodePositions.forEach((pos, nodeId) => {
+            if (pos.parentId) {
+                const parentPos = this.nodePositions.get(pos.parentId);
+                if (parentPos) {
+                    ctx.beginPath();
+                    ctx.moveTo(parentPos.x * scale + offsetX, parentPos.y * scale + offsetY);
+                    ctx.lineTo(pos.x * scale + offsetX, pos.y * scale + offsetY);
+                    ctx.stroke();
+                }
+            }
+        });
+
+        // Draw nodes
+        this.nodePositions.forEach((pos, nodeId) => {
+            const x = pos.x * scale + offsetX;
+            const y = pos.y * scale + offsetY;
+            const isActive = nodeId === this.activeNodeId;
+            const nodeColor = pos.color || '#00a0d2';
+
+            // Node dot
+            ctx.beginPath();
+            ctx.arc(x, y, isActive ? 4 : 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = isActive ? nodeColor : (pos.level === 0 ? '#00a0d2' : 'rgba(255, 255, 255, 0.6)');
+            ctx.fill();
+
+            // Active node ring
+            if (isActive) {
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, Math.PI * 2);
+                ctx.strokeStyle = nodeColor;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+        });
+
+        // Update viewport rectangle
+        this.updateMinimapViewport();
+    }
+
+    /**
+     * Update the viewport rectangle on the minimap
+     */
+    updateMinimapViewport() {
+        if (!this.minimapViewport || !this.minimapBounds) return;
+
+        const bounds = this.minimapBounds;
+        const viewportWidth = this.viewport.clientWidth;
+        const viewportHeight = this.viewport.clientHeight;
+
+        // Current scroll position (accounting for zoom)
+        const scrollX = this.viewport.scrollLeft / this.zoom;
+        const scrollY = this.viewport.scrollTop / this.zoom;
+        const visibleWidth = viewportWidth / this.zoom;
+        const visibleHeight = viewportHeight / this.zoom;
+
+        // Convert to minimap coordinates
+        const x = scrollX * bounds.scale + bounds.offsetX;
+        const y = scrollY * bounds.scale + bounds.offsetY;
+        const w = visibleWidth * bounds.scale;
+        const h = visibleHeight * bounds.scale;
+
+        // Apply to viewport element
+        this.minimapViewport.style.left = `${Math.max(0, x)}px`;
+        this.minimapViewport.style.top = `${Math.max(0, y)}px`;
+        this.minimapViewport.style.width = `${Math.min(w, bounds.width - x)}px`;
+        this.minimapViewport.style.height = `${Math.min(h, bounds.height - y)}px`;
+    }
+
+    /**
+     * Handle click on minimap to navigate
+     */
+    handleMinimapClick(e) {
+        if (!this.minimapBounds) return;
+        if (e.target === this.minimapViewport) return; // Don't handle viewport clicks
+
+        const rect = this.minimapContent.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Convert to canvas coordinates
+        const bounds = this.minimapBounds;
+        const canvasX = (x - bounds.offsetX) / bounds.scale;
+        const canvasY = (y - bounds.offsetY) / bounds.scale;
+
+        // Scroll to center this point
+        const targetScrollX = (canvasX * this.zoom) - (this.viewport.clientWidth / 2);
+        const targetScrollY = (canvasY * this.zoom) - (this.viewport.clientHeight / 2);
+
+        this.viewport.scrollTo({
+            left: targetScrollX,
+            top: targetScrollY,
+            behavior: 'smooth'
+        });
+    }
+
+    /**
+     * Start dragging the minimap viewport
+     */
+    startMinimapDrag(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.isMinimapDragging = true;
+        this.minimapDragStart = { x: e.clientX, y: e.clientY };
+        this.minimapScrollStart = { x: this.viewport.scrollLeft, y: this.viewport.scrollTop };
+        this.minimapViewport.style.cursor = 'grabbing';
+    }
+
+    /**
+     * Handle minimap viewport drag
+     */
+    handleMinimapDrag(e) {
+        if (!this.isMinimapDragging || !this.minimapBounds) return;
+
+        const bounds = this.minimapBounds;
+        const dx = e.clientX - this.minimapDragStart.x;
+        const dy = e.clientY - this.minimapDragStart.y;
+
+        // Convert minimap movement to canvas movement
+        const canvasDx = (dx / bounds.scale) * this.zoom;
+        const canvasDy = (dy / bounds.scale) * this.zoom;
+
+        this.viewport.scrollLeft = this.minimapScrollStart.x + canvasDx;
+        this.viewport.scrollTop = this.minimapScrollStart.y + canvasDy;
+    }
+
+    /**
+     * End minimap viewport drag
+     */
+    endMinimapDrag() {
+        this.isMinimapDragging = false;
+        if (this.minimapViewport) {
+            this.minimapViewport.style.cursor = 'move';
+        }
     }
 }
 

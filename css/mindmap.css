@@ -1632,3 +1632,103 @@ body.fullscreen .fullscreen-hint {
         height: 10px;
     }
 }
+
+/* ==================== */
+/* Minimap              */
+/* ==================== */
+
+.minimap {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    background: rgba(10, 22, 40, 0.95);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    z-index: 90;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.minimap.collapsed {
+    width: 120px;
+}
+
+.minimap.collapsed .minimap-content {
+    display: none;
+}
+
+.minimap.collapsed .minimap-toggle {
+    transform: rotate(0deg);
+}
+
+.minimap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(0, 160, 210, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sky-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.minimap-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.minimap-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.minimap-content {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+
+#minimapCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.minimap-viewport {
+    position: absolute;
+    border: 2px solid var(--sky-cyan);
+    background: rgba(0, 160, 210, 0.15);
+    border-radius: 2px;
+    cursor: move;
+    transition: border-color 0.2s;
+}
+
+.minimap-viewport:hover {
+    border-color: var(--sky-blue);
+    background: rgba(0, 160, 210, 0.25);
+}
+
+/* Hide minimap on mobile */
+@media (max-width: 768px) {
+    .minimap {
+        display: none;
+    }
+}
+
+/* Fullscreen adjustments */
+body.fullscreen .minimap {
+    bottom: 80px;
+}
