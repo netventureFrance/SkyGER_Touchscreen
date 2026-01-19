@@ -579,6 +579,16 @@ class MindmapView {
                     e.stopPropagation();
                     this.handleDualSideToggle(node, uniqueId);
                 });
+
+                // Label hover - highlight both indicators
+                labelEl.addEventListener('mouseenter', () => {
+                    leftToggle.classList.add('hover-highlight');
+                    rightToggle.classList.add('hover-highlight');
+                });
+                labelEl.addEventListener('mouseleave', () => {
+                    leftToggle.classList.remove('hover-highlight');
+                    rightToggle.classList.remove('hover-highlight');
+                });
             } else {
                 // Single side - show indicator on appropriate side
                 const countEl = document.createElement('span');

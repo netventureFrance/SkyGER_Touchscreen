@@ -770,6 +770,41 @@ body.fullscreen .fullscreen-hint {
     margin-right: 5px;
 }
 
+/* Hover effects for indicators */
+.mindmap-node .node-toggle:hover,
+.mindmap-node .node-toggle.hover-highlight {
+    transform: scale(1.4);
+    color: var(--accent-primary);
+}
+
+.mindmap-node .node-toggle:hover svg circle,
+.mindmap-node .node-toggle.hover-highlight svg circle {
+    stroke: var(--accent-primary);
+    fill: var(--accent-primary);
+}
+
+/* Keep border style for expanded indicators on hover */
+.mindmap-node-box.expanded .node-toggle:hover svg circle,
+.mindmap-node-box.expanded .node-toggle.hover-highlight svg circle,
+.mindmap-node-box.expanded-left .node-toggle.left-indicator:hover svg circle,
+.mindmap-node-box.expanded-left .node-toggle.left-indicator.hover-highlight svg circle,
+.mindmap-node-box.expanded-right .node-toggle:not(.left-indicator):hover svg circle,
+.mindmap-node-box.expanded-right .node-toggle:not(.left-indicator).hover-highlight svg circle {
+    fill: transparent;
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+}
+
+/* Label hover effect for dual-side nodes */
+.mindmap-node-box[data-dual-side="true"] .node-label {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.mindmap-node-box[data-dual-side="true"] .node-label:hover {
+    color: var(--accent-primary);
+}
+
 
 /* ============================================
    DETAIL PANEL (same as tree)
