@@ -641,10 +641,6 @@ body.fullscreen .fullscreen-hint {
     transform: scale(1.05);
 }
 
-.mindmap-node.root .node-label {
-    font-size: 13px;
-    font-weight: 500;
-}
 
 /* Level 1 Nodes */
 .mindmap-node.level-1 .mindmap-node-box {
@@ -653,10 +649,6 @@ body.fullscreen .fullscreen-hint {
     border-radius: 30px;
 }
 
-.mindmap-node.level-1 .node-label {
-    font-size: 13px;
-    font-weight: 500;
-}
 
 /* Level 2+ Nodes */
 .mindmap-node.level-2 .mindmap-node-box,
@@ -665,10 +657,6 @@ body.fullscreen .fullscreen-hint {
     border-radius: 20px;
 }
 
-.mindmap-node.level-2 .node-label,
-.mindmap-node.level-3 .node-label {
-    font-size: 13px;
-}
 
 .mindmap-node.level-3 .mindmap-node-box {
     background: linear-gradient(135deg, rgba(0, 30, 60, 0.8), rgba(0, 15, 30, 0.85));
@@ -689,6 +677,8 @@ body.fullscreen .fullscreen-hint {
 
 /* Node Label */
 .mindmap-node .node-label {
+    font-size: 13px;
+    font-weight: 500;
     color: var(--text-white);
 }
 
