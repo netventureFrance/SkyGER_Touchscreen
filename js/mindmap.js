@@ -1412,8 +1412,23 @@ class MindmapView {
             const canvasCenterX = viewportCenterX / oldZoom;
             const canvasCenterY = viewportCenterY / oldZoom;
 
+            // Disable transition for instant zoom
+            this.canvas.style.transition = 'none';
+
             // Apply zoom transform
             this.canvas.style.transform = `scale(${this.zoom})`;
+
+            // Adjust scroll to keep the same canvas point centered (before reflow)
+            const newScrollX = canvasCenterX * this.zoom - this.viewport.clientWidth / 2;
+            const newScrollY = canvasCenterY * this.zoom - this.viewport.clientHeight / 2;
+            this.viewport.scrollLeft = Math.max(0, newScrollX);
+            this.viewport.scrollTop = Math.max(0, newScrollY);
+
+            // Force reflow then restore transition
+            this.canvas.offsetHeight;
+            this.canvas.style.transition = '';
+
+            // Update zoom display
             const zoomText = `${Math.round(this.zoom * 100)}%`;
             document.getElementById('zoomLevel').textContent = zoomText;
             const fsZoomLevel = document.getElementById('fsZoomLevel');
@@ -1421,12 +1436,6 @@ class MindmapView {
 
             // Redraw lines with correct measurements for new zoom
             this.drawLines();
-
-            // Adjust scroll to keep the same canvas point centered
-            const newScrollX = canvasCenterX * this.zoom - this.viewport.clientWidth / 2;
-            const newScrollY = canvasCenterY * this.zoom - this.viewport.clientHeight / 2;
-            this.viewport.scrollLeft = Math.max(0, newScrollX);
-            this.viewport.scrollTop = Math.max(0, newScrollY);
 
             // Update minimap viewport
             this.updateMinimapViewport();
