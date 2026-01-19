@@ -24,7 +24,7 @@
           "label": "DESIGNS",
           "description": "",
           "color": "#FF8A1F",
-          "direction": null,
+          "direction": "left",
           "screenshots": [],
           "children": [
             {
