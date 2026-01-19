@@ -124,29 +124,45 @@ function sanitize(name, maxLength = 50) {
 }
 
 /**
- * Extract hex color from title text
- * Supports format: "Title [#RRGGBB]" or "Title [#RGB]"
- * Returns { title: "clean title", color: "#RRGGBB" or null }
+ * Extract metadata from title text
+ * Supports formats:
+ *   - Color: "Title [#RRGGBB]" or "Title [#RGB]"
+ *   - Direction: "[L] Title" or "[R] Title" (Left/Right)
+ * Returns { title: "clean title", color: "#RRGGBB" or null, direction: "left"/"right" or null }
  */
-function extractHexColor(text) {
-    if (!text) return { title: '', color: null };
+function extractTitleMetadata(text) {
+    if (!text) return { title: '', color: null, direction: null };
 
-    // Match [#RRGGBB] or [#RGB] at end of string (with optional spaces)
-    const hexMatch = text.match(/\s*\[#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]\s*$/);
+    let title = text;
+    let color = null;
+    let direction = null;
 
-    if (hexMatch) {
-        let color = hexMatch[1];
-        // Expand 3-digit hex to 6-digit
-        if (color.length === 3) {
-            color = color.split('').map(c => c + c).join('');
-        }
-        return {
-            title: text.replace(hexMatch[0], '').trim(),
-            color: '#' + color.toUpperCase()
-        };
+    // Extract direction [L] or [R] from start of string
+    const dirMatch = title.match(/^\s*\[([LlRr])\]\s*/);
+    if (dirMatch) {
+        direction = dirMatch[1].toLowerCase() === 'l' ? 'left' : 'right';
+        title = title.replace(dirMatch[0], '');
     }
 
-    return { title: text, color: null };
+    // Extract hex color [#RRGGBB] or [#RGB] from end of string
+    const hexMatch = title.match(/\s*\[#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]\s*$/);
+    if (hexMatch) {
+        let hexColor = hexMatch[1];
+        // Expand 3-digit hex to 6-digit
+        if (hexColor.length === 3) {
+            hexColor = hexColor.split('').map(c => c + c).join('');
+        }
+        color = '#' + hexColor.toUpperCase();
+        title = title.replace(hexMatch[0], '');
+    }
+
+    return { title: title.trim(), color, direction };
+}
+
+// Backwards compatibility alias
+function extractHexColor(text) {
+    const { title, color } = extractTitleMetadata(text);
+    return { title, color };
 }
 
 /**
@@ -208,20 +224,22 @@ async function processBlocks(blocks, parentItem, depth = 0) {
 
         // Headings define new sections
         if (type.startsWith('heading_')) {
-            // Extract hex color from title text [#RRGGBB]
-            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Extract metadata (color, direction) from title text
+            const { title: cleanTitle, color: hexColor, direction } = extractTitleMetadata(text);
             // Fall back to Notion block color if no hex color specified
             const headingData = block[type];
             const notionColor = headingData?.color || 'default';
             const color = hexColor || (notionColor !== 'default' ? notionColor : null);
 
-            console.log(`${indent}📌 ${type}: ${cleanTitle}${color ? ` [${color}]` : ''}`);
+            const dirInfo = direction ? ` [${direction}]` : '';
+            console.log(`${indent}📌 ${type}: ${cleanTitle}${color ? ` [${color}]` : ''}${dirInfo}`);
 
             const newItem = {
                 id: block.id,
                 title: cleanTitle,
                 description: '',
                 color: color, // Hex color or Notion color
+                direction: direction, // 'left', 'right', or null
                 images: [],
                 children: []
             };
@@ -235,19 +253,21 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Toggle blocks - these contain nested content
         else if (type === 'toggle') {
-            // Extract hex color from title text [#RRGGBB]
-            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Extract metadata (color, direction) from title text
+            const { title: cleanTitle, color: hexColor, direction } = extractTitleMetadata(text);
             // Fall back to Notion block color if no hex color specified
             const notionColor = block.toggle?.color || 'default';
             const color = hexColor || (notionColor !== 'default' ? notionColor : null);
 
-            console.log(`${indent}📂 Toggle: ${cleanTitle}${color ? ` [${color}]` : ''}`);
+            const dirInfo = direction ? ` [${direction}]` : '';
+            console.log(`${indent}📂 Toggle: ${cleanTitle}${color ? ` [${color}]` : ''}${dirInfo}`);
 
             const newItem = {
                 id: block.id,
                 title: cleanTitle,
                 description: '',
                 color: color, // Hex color or Notion color
+                direction: direction, // 'left', 'right', or null
                 images: [],
                 children: []
             };

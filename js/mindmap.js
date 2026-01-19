@@ -279,6 +279,7 @@ class MindmapView {
             label: notionItem.label || 'Untitled',
             icon: icon,
             color: notionItem.color || null,
+            direction: notionItem.direction || null, // 'left', 'right', or null
             description: notionItem.description || '',
             screenshots: notionItem.screenshots || [],
             children: (notionItem.children || []).map(child => this.convertNotionToMindmap(child))
@@ -393,16 +394,20 @@ class MindmapView {
     /**
      * Node rendern
      * @param {string} pathId - Stable path-based ID (e.g., "root", "root-0", "root-0-2")
+     * @param {string} direction - 'left' or null (right is default)
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null, pathId = 'root') {
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null, pathId = 'root', direction = null) {
         // Use path-based ID for stable identification across renders
         const uniqueId = pathId;
 
         // Determine color - inherit from parent if not set
         const nodeColor = node.color || parentColor;
 
-        // Position speichern with unique ID, color, and parent reference
-        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId });
+        // Determine direction - use node's own direction or passed direction
+        const nodeDirection = node.direction || direction;
+
+        // Position speichern with unique ID, color, direction, and parent reference
+        this.nodePositions.set(uniqueId, { x, y, level, parentPos, color: nodeColor, parentId, direction: nodeDirection });
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
@@ -479,7 +484,7 @@ class MindmapView {
 
         // Kinder rendern (wenn erweitert)
         if (node.children && node.children.length > 0 && this.expandedNodes.has(uniqueId)) {
-            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId);
+            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId, nodeDirection);
         }
     }
 
@@ -503,10 +508,11 @@ class MindmapView {
     }
 
     /**
-     * Kinder-Nodes rendern - Alle nach rechts, kein Überlappen
+     * Kinder-Nodes rendern - Links oder Rechts basierend auf direction
      * @param {string} parentPathId - Parent's path-based ID for generating child pathIds
+     * @param {string} inheritedDirection - Direction inherited from parent ('left' or null)
      */
-    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null) {
+    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null, inheritedDirection = null) {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
@@ -516,39 +522,73 @@ class MindmapView {
         // Fixed distance - must be larger than widest node + gap
         const distance = 450;
 
-        // Berechne Höhe jedes Kindes (inkl. Subtree) - pass path-based IDs
-        const childHeights = children.map((child, index) => {
-            const childPathId = `${parentPathId}-${index}`;
-            return this.calculateSubtreeHeight(child, childLevel, childPathId);
-        });
-        const totalHeight = childHeights.reduce((sum, h) => sum + h, 0);
-
-        // Start Y-Position (zentriert um Parent)
-        let currentY = parentY - totalHeight / 2;
-
-        // Child X position
-        const childX = parentX + distance;
-
+        // Separate children by direction
+        // Children inherit parent's direction unless they specify their own
+        const leftChildren = [];
+        const rightChildren = [];
         children.forEach((child, index) => {
-            // Y-Position: Mitte des zugewiesenen Bereichs
-            const childHeight = childHeights[index];
-            const finalY = currentY + childHeight / 2;
-
-            // Generate stable path-based ID for child (parent path + child index)
-            const childPathId = `${parentPathId}-${index}`;
-
-            this.renderNode(
-                child, childX, finalY, childLevel,
-                { x: parentX, y: parentY },
-                startAngle, endAngle,
-                parentColor, // Pass parent color for inheritance
-                parentId, // Pass parent ID for line drawing
-                childPathId // Pass path-based ID for stable identification
-            );
-
-            // Nächste Y-Position
-            currentY += childHeight;
+            const childDirection = child.direction || inheritedDirection;
+            if (childDirection === 'left') {
+                leftChildren.push({ child, index, direction: 'left' });
+            } else {
+                rightChildren.push({ child, index, direction: null });
+            }
         });
+
+        // Render right children
+        if (rightChildren.length > 0) {
+            const rightHeights = rightChildren.map(({ child, index }) => {
+                const childPathId = `${parentPathId}-${index}`;
+                return this.calculateSubtreeHeight(child, childLevel, childPathId);
+            });
+            const rightTotalHeight = rightHeights.reduce((sum, h) => sum + h, 0);
+            let rightCurrentY = parentY - rightTotalHeight / 2;
+
+            rightChildren.forEach(({ child, index }, i) => {
+                const childHeight = rightHeights[i];
+                const finalY = rightCurrentY + childHeight / 2;
+                const childPathId = `${parentPathId}-${index}`;
+                const childX = parentX + distance;
+
+                this.renderNode(
+                    child, childX, finalY, childLevel,
+                    { x: parentX, y: parentY },
+                    startAngle, endAngle,
+                    parentColor,
+                    parentId,
+                    childPathId
+                );
+                rightCurrentY += childHeight;
+            });
+        }
+
+        // Render left children
+        if (leftChildren.length > 0) {
+            const leftHeights = leftChildren.map(({ child, index }) => {
+                const childPathId = `${parentPathId}-${index}`;
+                return this.calculateSubtreeHeight(child, childLevel, childPathId);
+            });
+            const leftTotalHeight = leftHeights.reduce((sum, h) => sum + h, 0);
+            let leftCurrentY = parentY - leftTotalHeight / 2;
+
+            leftChildren.forEach(({ child, index }, i) => {
+                const childHeight = leftHeights[i];
+                const finalY = leftCurrentY + childHeight / 2;
+                const childPathId = `${parentPathId}-${index}`;
+                const childX = parentX - distance; // Left side
+
+                this.renderNode(
+                    child, childX, finalY, childLevel,
+                    { x: parentX, y: parentY },
+                    startAngle, endAngle,
+                    parentColor,
+                    parentId,
+                    childPathId,
+                    'left' // Pass direction for line drawing
+                );
+                leftCurrentY += childHeight;
+            });
+        }
     }
 
     /**
@@ -567,25 +607,44 @@ class MindmapView {
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (!parentPos) return;
 
-                // Measure actual parent width from DOM (divide by zoom to get unscaled width)
+                // Measure actual parent and child width from DOM (divide by zoom to get unscaled width)
                 const parentEl = this.nodesContainer.querySelector(`[data-id="${pos.parentId}"] .mindmap-node-box`);
-                const scaledWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
-                const parentWidth = scaledWidth / this.zoom;
+                const childEl = this.nodesContainer.querySelector(`[data-id="${nodeId}"] .mindmap-node-box`);
+                const scaledParentWidth = parentEl ? parentEl.getBoundingClientRect().width : 180;
+                const scaledChildWidth = childEl ? childEl.getBoundingClientRect().width : 180;
+                const parentWidth = scaledParentWidth / this.zoom;
+                const childWidth = scaledChildWidth / this.zoom;
 
-                // Calculate startX based on parent type
-                // Root node is centered (transform: translate(-50%, -50%)) so position is CENTER
-                // Other nodes have only translateY(-50%) so position is LEFT edge
-                let startX;
+                // Check if this is a left-positioned node
+                const isLeft = pos.direction === 'left';
+
+                // Calculate startX and endX based on direction
+                let startX, endX;
                 if (parentPos.level === 0) {
-                    // Root node: position is center, so add half width to get right edge
-                    startX = parentPos.x + (parentWidth / 2);
+                    // Root node: position is center
+                    if (isLeft) {
+                        startX = parentPos.x - (parentWidth / 2); // Left edge of root
+                    } else {
+                        startX = parentPos.x + (parentWidth / 2); // Right edge of root
+                    }
                 } else {
-                    // Non-root: position is left edge, so add full width to get right edge
-                    startX = parentPos.x + parentWidth;
+                    // Non-root: position is left edge
+                    if (isLeft) {
+                        startX = parentPos.x; // Left edge
+                    } else {
+                        startX = parentPos.x + parentWidth; // Right edge
+                    }
+                }
+
+                if (isLeft) {
+                    // For left nodes: line ends at right edge of child
+                    endX = pos.x + childWidth;
+                } else {
+                    // For right nodes: line ends at left edge of child
+                    endX = pos.x;
                 }
 
                 const startY = parentPos.y;
-                const endX = pos.x;
                 const endY = pos.y;
 
                 const path = this.createBezierPath(startX, startY, endX, endY);
