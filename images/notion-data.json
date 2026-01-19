@@ -6,64 +6,99 @@
   "screenshots": [],
   "children": [
     {
-      "id": "touch-sport",
-      "label": "Touch Sport",
+      "id": "touchscreen-sky-deutschland",
+      "label": "TOUCHSCREEN SKY DEUTSCHLAND",
       "description": "",
       "color": "#00A0D2",
       "screenshots": [
         {
-          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/image-1.png",
-          "name": "Touch Sport"
+          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/image-1.png",
+          "name": "TOUCHSCREEN SKY DEUTSCHLAND"
         }
       ],
       "children": [
         {
-          "id": "premier-league",
-          "label": "Premier League",
+          "id": "designs",
+          "label": "DESIGNS",
           "description": "",
-          "color": "#3D195B",
-          "screenshots": [
+          "color": "#00A0D2",
+          "screenshots": [],
+          "children": [
             {
-              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/premier-league/image-1.png",
-              "name": "Premier League"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "twitter",
-          "label": "Twitter",
-          "description": "",
-          "color": null,
-          "screenshots": [
+              "id": "generic",
+              "label": "GENERIC",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/generic/image-1.png",
+                  "name": "GENERIC"
+                }
+              ],
+              "children": []
+            },
             {
-              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/twitter/image-1.png",
-              "name": "Twitter"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "formel-1",
-          "label": "Formel 1",
-          "description": "",
-          "color": null,
-          "screenshots": [
+              "id": "champions-league",
+              "label": "CHAMPIONS LEAGUE",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/champions-league/image-1.png",
+                  "name": "CHAMPIONS LEAGUE"
+                }
+              ],
+              "children": []
+            },
             {
-              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/formel-1/image-1.png",
-              "name": "Formel 1"
+              "id": "europa-league-conference-league",
+              "label": "EUROPA LEAGUE & CONFERENCE LEAGUE",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/europa-league-conference-league/image-1.png",
+                  "name": "EUROPA LEAGUE & CONFERENCE LEAGUE"
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "premiere-league",
+              "label": "PREMIERE LEAGUE",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/premiere-league/image-1.png",
+                  "name": "PREMIERE LEAGUE"
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "match-plan",
+              "label": "MATCH PLAN ",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/match-plan/image-1.png",
+                  "name": "MATCH PLAN "
+                }
+              ],
+              "children": []
             }
-          ],
-          "children": []
+          ]
         },
         {
           "id": "sky-sport-bundesliga",
           "label": "SKY SPORT BUNDESLIGA",
           "description": "",
-          "color": "#D20515",
+          "color": "#00A0D2",
           "screenshots": [
             {
-              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/image-1.png",
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/image-1.png",
               "name": "SKY SPORT BUNDESLIGA"
             }
           ],
@@ -75,15 +110,15 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/image-1.png",
                   "name": "SPIELTAG"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/image-2.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/image-2.png",
                   "name": "SPIELTAG"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/image-3.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/image-3.png",
                   "name": "SPIELTAG"
                 }
               ],
@@ -95,7 +130,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/clubprofile/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/clubprofile/image-1.png",
                       "name": "CLUBPROFILE"
                     }
                   ],
@@ -108,7 +143,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/teamstatistik/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/teamstatistik/image-1.png",
                       "name": "TEAMSTATISTIK"
                     }
                   ],
@@ -121,11 +156,11 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/image-1.png",
                       "name": "FAHRPLAN"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/image-2.png",
                       "name": "FAHRPLAN"
                     }
                   ],
@@ -137,19 +172,19 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-1.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-2.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-3.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-3.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-4.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-4.png",
                           "name": "VERGLEICH"
                         }
                       ],
@@ -162,7 +197,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/image-1.png",
                           "name": "AUFSTELLUNG"
                         }
                       ],
@@ -174,11 +209,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/reservebank/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/reservebank/image-1.png",
                               "name": "RESERVEBANK"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/reservebank/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/reservebank/image-2.png",
                               "name": "RESERVEBANK"
                             }
                           ],
@@ -191,7 +226,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/highlight-funktion/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/highlight-funktion/image-1.png",
                               "name": "HIGHLIGHT FUNKTION"
                             }
                           ],
@@ -204,7 +239,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/laufweg-spieler/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/laufweg-spieler/image-1.png",
                               "name": "LAUFWEG SPIELER"
                             }
                           ],
@@ -217,11 +252,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-1.png",
                               "name": "SPIELER STATISTK "
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-2.png",
                               "name": "SPIELER STATISTK "
                             }
                           ],
@@ -234,11 +269,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-vergleich/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-vergleich/image-1.png",
                               "name": "SPIELER VERGLEICH"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-vergleich/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-vergleich/image-2.png",
                               "name": "SPIELER VERGLEICH"
                             }
                           ],
@@ -251,7 +286,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/virtueller-ball/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/virtueller-ball/image-1.png",
                               "name": "VIRTUELLER BALL"
                             }
                           ],
@@ -264,11 +299,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             }
                           ],
@@ -283,7 +318,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/image-1.png",
                           "name": "ANALYSE"
                         }
                       ],
@@ -295,11 +330,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/aktionszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/aktionszone/image-1.png",
                               "name": "AKTIONSZONE"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/aktionszone/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/aktionszone/image-2.png",
                               "name": "AKTIONSZONE"
                             }
                           ],
@@ -312,11 +347,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/durschnittliche-position/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durschnittliche-position/image-1.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/durschnittliche-position/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durschnittliche-position/image-2.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             }
                           ],
@@ -329,15 +364,15 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-1.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-2.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-3.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-3.png",
                               "name": "TOUCH MAP"
                             }
                           ],
@@ -350,11 +385,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/pass-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/pass-map/image-1.png",
                               "name": "PASS MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/pass-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/pass-map/image-2.png",
                               "name": "PASS MAP"
                             }
                           ],
@@ -367,7 +402,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/angriffszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/angriffszone/image-1.png",
                               "name": "ANGRIFFSZONE"
                             }
                           ],
@@ -380,11 +415,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/shot-plot/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/shot-plot/image-1.png",
                               "name": "SHOT PLOT"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/shot-plot/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/shot-plot/image-2.png",
                               "name": "SHOT PLOT"
                             }
                           ],
@@ -397,7 +432,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/tackle-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/tackle-map/image-1.png",
                               "name": "TACKLE MAP"
                             }
                           ],
@@ -410,11 +445,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/heat-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/heat-map/image-1.png",
                               "name": "HEAT MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/fahrplan/analyse/heat-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/heat-map/image-2.png",
                               "name": "HEAT MAP"
                             }
                           ],
@@ -431,19 +466,19 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/vergleich/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/vergleich/image-1.png",
                       "name": "VERGLEICH"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/vergleich/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/vergleich/image-2.png",
                       "name": "VERGLEICH"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/vergleich/image-3.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/vergleich/image-3.png",
                       "name": "VERGLEICH"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/vergleich/image-4.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/vergleich/image-4.png",
                       "name": "VERGLEICH"
                     }
                   ],
@@ -456,7 +491,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/image-1.png",
                       "name": "AUFSTELLUNG"
                     }
                   ],
@@ -468,11 +503,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/reservebank/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/reservebank/image-1.png",
                           "name": "RESERVEBANK"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/reservebank/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/reservebank/image-2.png",
                           "name": "RESERVEBANK"
                         }
                       ],
@@ -485,7 +520,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/highlight-funktion/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/highlight-funktion/image-1.png",
                           "name": "HIGHLIGHT FUNKTION"
                         }
                       ],
@@ -498,7 +533,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/laufweg-spieler/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/laufweg-spieler/image-1.png",
                           "name": "LAUFWEG SPIELER"
                         }
                       ],
@@ -511,11 +546,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-1.png",
                           "name": "SPIELER STATISTK "
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-2.png",
                           "name": "SPIELER STATISTK "
                         }
                       ],
@@ -528,11 +563,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/spieler-vergleich/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-vergleich/image-1.png",
                           "name": "SPIELER VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/spieler-vergleich/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-vergleich/image-2.png",
                           "name": "SPIELER VERGLEICH"
                         }
                       ],
@@ -545,7 +580,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/virtueller-ball/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/virtueller-ball/image-1.png",
                           "name": "VIRTUELLER BALL"
                         }
                       ],
@@ -558,11 +593,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/aufstellung-team-einzel/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/aufstellung-team-einzel/image-1.png",
                           "name": "AUFSTELLUNG TEAM EINZEL"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/aufstellung/aufstellung-team-einzel/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/aufstellung-team-einzel/image-2.png",
                           "name": "AUFSTELLUNG TEAM EINZEL"
                         }
                       ],
@@ -584,7 +619,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/taktik/aufstellung-einzelner-partien/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellung-einzelner-partien/image-1.png",
                           "name": "AUFSTELLUNG EINZELNER PARTIEN"
                         }
                       ],
@@ -597,19 +632,19 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-1.png",
                           "name": "AUFSTELLUNGS EDITOR"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-2.png",
                           "name": "AUFSTELLUNGS EDITOR"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-3.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-3.png",
                           "name": "AUFSTELLUNGS EDITOR"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-4.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellungs-editor/image-4.png",
                           "name": "AUFSTELLUNGS EDITOR"
                         }
                       ],
@@ -624,7 +659,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/image-1.png",
                       "name": "ANALYSE"
                     }
                   ],
@@ -636,11 +671,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/aktionszone/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/aktionszone/image-1.png",
                           "name": "AKTIONSZONE"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/aktionszone/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/aktionszone/image-2.png",
                           "name": "AKTIONSZONE"
                         }
                       ],
@@ -653,11 +688,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-1.png",
                           "name": "DURSCHNITTLICHE POSITION"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-2.png",
                           "name": "DURSCHNITTLICHE POSITION"
                         }
                       ],
@@ -670,15 +705,15 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/touch-map/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/touch-map/image-1.png",
                           "name": "TOUCH MAP"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/touch-map/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/touch-map/image-2.png",
                           "name": "TOUCH MAP"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/touch-map/image-3.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/touch-map/image-3.png",
                           "name": "TOUCH MAP"
                         }
                       ],
@@ -691,11 +726,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/pass-map/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/pass-map/image-1.png",
                           "name": "PASS MAP"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/pass-map/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/pass-map/image-2.png",
                           "name": "PASS MAP"
                         }
                       ],
@@ -708,7 +743,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/angriffszone/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/angriffszone/image-1.png",
                           "name": "ANGRIFFSZONE"
                         }
                       ],
@@ -721,11 +756,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/shot-plot/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/shot-plot/image-1.png",
                           "name": "SHOT PLOT"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/shot-plot/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/shot-plot/image-2.png",
                           "name": "SHOT PLOT"
                         }
                       ],
@@ -738,7 +773,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/tackle-map/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/tackle-map/image-1.png",
                           "name": "TACKLE MAP"
                         }
                       ],
@@ -751,11 +786,11 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/heat-map/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/heat-map/image-1.png",
                           "name": "HEAT MAP"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/spieltag/analyse/heat-map/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/heat-map/image-2.png",
                           "name": "HEAT MAP"
                         }
                       ],
@@ -772,15 +807,15 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/twitter/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/twitter/image-1.png",
                   "name": "TWITTER"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/twitter/image-2.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/twitter/image-2.png",
                   "name": "TWITTER"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/twitter/image-3.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/twitter/image-3.png",
                   "name": "TWITTER"
                 }
               ],
@@ -793,7 +828,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/headlines/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/headlines/image-1.png",
                   "name": "HEADLINES"
                 }
               ],
@@ -806,7 +841,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/live/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/live/image-1.png",
                   "name": "LIVE"
                 }
               ],
@@ -819,7 +854,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/analyse/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/image-1.png",
                   "name": "ANALYSE"
                 }
               ],
@@ -831,7 +866,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/analyse/clip/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/clip/image-1.png",
                       "name": "CLIP"
                     }
                   ],
@@ -844,15 +879,15 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/analyse/telestrator/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/telestrator/image-1.png",
                       "name": "TELESTRATOR"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/analyse/telestrator/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/telestrator/image-2.png",
                       "name": "TELESTRATOR"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/analyse/telestrator/image-3.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/telestrator/image-3.png",
                       "name": "TELESTRATOR"
                     }
                   ],
@@ -867,7 +902,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/multiview/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/multiview/image-1.png",
                   "name": "MULTIVIEW"
                 }
               ],
@@ -880,19 +915,19 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/telestrator/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/telestrator/image-1.png",
                   "name": "TELESTRATOR"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/telestrator/image-2.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/telestrator/image-2.png",
                   "name": "TELESTRATOR"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/telestrator/image-3.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/telestrator/image-3.png",
                   "name": "TELESTRATOR"
                 },
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/telestrator/image-4.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/telestrator/image-4.png",
                   "name": "TELESTRATOR"
                 }
               ],
@@ -905,7 +940,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/image-1.png",
                   "name": "LIGA INFORMATION"
                 }
               ],
@@ -917,7 +952,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/image-1.png",
                       "name": "TOP TEAMS"
                     }
                   ],
@@ -929,7 +964,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/geschossene-tore/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/geschossene-tore/image-1.png",
                           "name": "GESCHOSSENE TORE"
                         }
                       ],
@@ -942,7 +977,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/schussversuche/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/schussversuche/image-1.png",
                           "name": "SCHUSSVERSUCHE"
                         }
                       ],
@@ -955,7 +990,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/schuesse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/schuesse/image-1.png",
                           "name": "SCHÜSSE"
                         }
                       ],
@@ -968,7 +1003,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/paesse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/paesse/image-1.png",
                           "name": "PÄSSE"
                         }
                       ],
@@ -981,7 +1016,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/karten/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/karten/image-1.png",
                           "name": "KARTEN"
                         }
                       ],
@@ -994,7 +1029,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/tackles/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/tackles/image-1.png",
                           "name": "TACKLES"
                         }
                       ],
@@ -1007,7 +1042,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-teams/flanken/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/flanken/image-1.png",
                           "name": "FLANKEN"
                         }
                       ],
@@ -1022,11 +1057,11 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/image-1.png",
                       "name": "TOP SPIELER"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/image-2.png",
                       "name": "TOP SPIELER"
                     }
                   ],
@@ -1038,7 +1073,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/tore/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/tore/image-1.png",
                           "name": "TORE"
                         }
                       ],
@@ -1051,7 +1086,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/torversuche/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/torversuche/image-1.png",
                           "name": "TORVERSUCHE"
                         }
                       ],
@@ -1064,7 +1099,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/chances-created/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/chances-created/image-1.png",
                           "name": "CHANCES CREATED"
                         }
                       ],
@@ -1077,7 +1112,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/passing/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/passing/image-1.png",
                           "name": "PASSING"
                         }
                       ],
@@ -1090,7 +1125,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/karten/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/karten/image-1.png",
                           "name": "KARTEN"
                         }
                       ],
@@ -1103,7 +1138,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/tackles/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/tackles/image-1.png",
                           "name": "TACKLES"
                         }
                       ],
@@ -1116,7 +1151,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/zweikampf/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/zweikampf/image-1.png",
                           "name": "ZWEIKAMPF"
                         }
                       ],
@@ -1129,7 +1164,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/flanken/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/flanken/image-1.png",
                           "name": "FLANKEN"
                         }
                       ],
@@ -1142,7 +1177,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/freistoss/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/freistoss/image-1.png",
                           "name": "FREISTOSS"
                         }
                       ],
@@ -1155,7 +1190,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/gehaltene-baelle/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/gehaltene-baelle/image-1.png",
                           "name": "GEHALTENE BÄLLE"
                         }
                       ],
@@ -1168,7 +1203,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/top-spieler/spielzeit/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/spielzeit/image-1.png",
                           "name": "SPIELZEIT"
                         }
                       ],
@@ -1183,7 +1218,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/image-1.png",
                       "name": "TEAMS"
                     }
                   ],
@@ -1195,7 +1230,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/geschossene-tore/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/geschossene-tore/image-1.png",
                           "name": "GESCHOSSENE TORE"
                         }
                       ],
@@ -1208,7 +1243,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/schussversuche/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/schussversuche/image-1.png",
                           "name": "SCHUSSVERSUCHE"
                         }
                       ],
@@ -1221,7 +1256,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/schuesse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/schuesse/image-1.png",
                           "name": "SCHÜSSE"
                         }
                       ],
@@ -1234,7 +1269,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/paesse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/paesse/image-1.png",
                           "name": "PÄSSE"
                         }
                       ],
@@ -1247,7 +1282,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/karten/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/karten/image-1.png",
                           "name": "KARTEN"
                         }
                       ],
@@ -1260,7 +1295,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/tackles/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/tackles/image-1.png",
                           "name": "TACKLES"
                         }
                       ],
@@ -1273,7 +1308,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teams/flanken/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/flanken/image-1.png",
                           "name": "FLANKEN"
                         }
                       ],
@@ -1288,7 +1323,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/clubprofile/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/clubprofile/image-1.png",
                       "name": "CLUBPROFILE"
                     }
                   ],
@@ -1301,7 +1336,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/teamstatistik/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teamstatistik/image-1.png",
                       "name": "TEAMSTATISTIK"
                     }
                   ],
@@ -1314,11 +1349,11 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/image-1.png",
                       "name": "FAHRPLAN"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/image-2.png",
                       "name": "FAHRPLAN"
                     }
                   ],
@@ -1330,19 +1365,19 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-1.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-2.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-3.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-3.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-4.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/vergleich/image-4.png",
                           "name": "VERGLEICH"
                         }
                       ],
@@ -1355,7 +1390,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/image-1.png",
                           "name": "AUFSTELLUNG"
                         }
                       ],
@@ -1367,11 +1402,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/reservebank/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/reservebank/image-1.png",
                               "name": "RESERVEBANK"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/reservebank/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/reservebank/image-2.png",
                               "name": "RESERVEBANK"
                             }
                           ],
@@ -1384,7 +1419,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/highlight-funktion/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/highlight-funktion/image-1.png",
                               "name": "HIGHLIGHT FUNKTION"
                             }
                           ],
@@ -1397,7 +1432,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/laufweg-spieler/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/laufweg-spieler/image-1.png",
                               "name": "LAUFWEG SPIELER"
                             }
                           ],
@@ -1410,11 +1445,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-1.png",
                               "name": "SPIELER STATISTK "
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-2.png",
                               "name": "SPIELER STATISTK "
                             }
                           ],
@@ -1427,11 +1462,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-vergleich/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-vergleich/image-1.png",
                               "name": "SPIELER VERGLEICH"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-vergleich/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-vergleich/image-2.png",
                               "name": "SPIELER VERGLEICH"
                             }
                           ],
@@ -1444,7 +1479,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/virtueller-ball/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/virtueller-ball/image-1.png",
                               "name": "VIRTUELLER BALL"
                             }
                           ],
@@ -1457,11 +1492,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             }
                           ],
@@ -1476,7 +1511,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/image-1.png",
                           "name": "ANALYSE"
                         }
                       ],
@@ -1488,11 +1523,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/aktionszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/aktionszone/image-1.png",
                               "name": "AKTIONSZONE"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/aktionszone/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/aktionszone/image-2.png",
                               "name": "AKTIONSZONE"
                             }
                           ],
@@ -1505,11 +1540,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-1.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-2.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             }
                           ],
@@ -1522,15 +1557,15 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-1.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-2.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-3.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/touch-map/image-3.png",
                               "name": "TOUCH MAP"
                             }
                           ],
@@ -1543,11 +1578,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/pass-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/pass-map/image-1.png",
                               "name": "PASS MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/pass-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/pass-map/image-2.png",
                               "name": "PASS MAP"
                             }
                           ],
@@ -1560,7 +1595,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/angriffszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/angriffszone/image-1.png",
                               "name": "ANGRIFFSZONE"
                             }
                           ],
@@ -1573,11 +1608,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/shot-plot/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/shot-plot/image-1.png",
                               "name": "SHOT PLOT"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/shot-plot/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/shot-plot/image-2.png",
                               "name": "SHOT PLOT"
                             }
                           ],
@@ -1590,7 +1625,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/tackle-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/tackle-map/image-1.png",
                               "name": "TACKLE MAP"
                             }
                           ],
@@ -1603,11 +1638,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/heat-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/heat-map/image-1.png",
                               "name": "HEAT MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/liga-information/fahrplan/analyse/heat-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/heat-map/image-2.png",
                               "name": "HEAT MAP"
                             }
                           ],
@@ -1626,7 +1661,7 @@
               "color": "#00A0D2",
               "screenshots": [
                 {
-                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/image-1.png",
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/image-1.png",
                   "name": "TABELLE"
                 }
               ],
@@ -1638,7 +1673,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/clubprofile/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/clubprofile/image-1.png",
                       "name": "CLUBPROFILE"
                     }
                   ],
@@ -1651,7 +1686,7 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/teamstatistik/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/teamstatistik/image-1.png",
                       "name": "TEAMSTATISTIK"
                     }
                   ],
@@ -1664,11 +1699,11 @@
                   "color": null,
                   "screenshots": [
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/image-1.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/image-1.png",
                       "name": "FAHRPLAN"
                     },
                     {
-                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/image-2.png",
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/image-2.png",
                       "name": "FAHRPLAN"
                     }
                   ],
@@ -1680,19 +1715,19 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-1.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-2.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-2.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-3.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-3.png",
                           "name": "VERGLEICH"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-4.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/vergleich/image-4.png",
                           "name": "VERGLEICH"
                         }
                       ],
@@ -1705,7 +1740,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/image-1.png",
                           "name": "AUFSTELLUNG"
                         }
                       ],
@@ -1717,11 +1752,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/reservebank/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/reservebank/image-1.png",
                               "name": "RESERVEBANK"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/reservebank/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/reservebank/image-2.png",
                               "name": "RESERVEBANK"
                             }
                           ],
@@ -1734,7 +1769,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/highlight-funktion/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/highlight-funktion/image-1.png",
                               "name": "HIGHLIGHT FUNKTION"
                             }
                           ],
@@ -1747,7 +1782,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/laufweg-spieler/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/laufweg-spieler/image-1.png",
                               "name": "LAUFWEG SPIELER"
                             }
                           ],
@@ -1760,11 +1795,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-1.png",
                               "name": "SPIELER STATISTK "
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-2.png",
                               "name": "SPIELER STATISTK "
                             }
                           ],
@@ -1777,11 +1812,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-vergleich/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-vergleich/image-1.png",
                               "name": "SPIELER VERGLEICH"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-vergleich/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-vergleich/image-2.png",
                               "name": "SPIELER VERGLEICH"
                             }
                           ],
@@ -1794,7 +1829,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/virtueller-ball/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/virtueller-ball/image-1.png",
                               "name": "VIRTUELLER BALL"
                             }
                           ],
@@ -1807,11 +1842,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/aufstellung-team-einzel/image-2.png",
                               "name": "AUFSTELLUNG TEAM EINZEL"
                             }
                           ],
@@ -1826,7 +1861,7 @@
                       "color": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/image-1.png",
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/image-1.png",
                           "name": "ANALYSE"
                         }
                       ],
@@ -1838,11 +1873,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/aktionszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/aktionszone/image-1.png",
                               "name": "AKTIONSZONE"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/aktionszone/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/aktionszone/image-2.png",
                               "name": "AKTIONSZONE"
                             }
                           ],
@@ -1855,11 +1890,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-1.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-2.png",
                               "name": "DURSCHNITTLICHE POSITION"
                             }
                           ],
@@ -1872,15 +1907,15 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-1.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-2.png",
                               "name": "TOUCH MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-3.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/touch-map/image-3.png",
                               "name": "TOUCH MAP"
                             }
                           ],
@@ -1893,11 +1928,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/pass-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/pass-map/image-1.png",
                               "name": "PASS MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/pass-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/pass-map/image-2.png",
                               "name": "PASS MAP"
                             }
                           ],
@@ -1910,7 +1945,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/angriffszone/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/angriffszone/image-1.png",
                               "name": "ANGRIFFSZONE"
                             }
                           ],
@@ -1923,11 +1958,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/shot-plot/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/shot-plot/image-1.png",
                               "name": "SHOT PLOT"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/shot-plot/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/shot-plot/image-2.png",
                               "name": "SHOT PLOT"
                             }
                           ],
@@ -1940,7 +1975,7 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/tackle-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/tackle-map/image-1.png",
                               "name": "TACKLE MAP"
                             }
                           ],
@@ -1953,11 +1988,11 @@
                           "color": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/heat-map/image-1.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/heat-map/image-1.png",
                               "name": "HEAT MAP"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/sky-sport-bundesliga/tabelle/fahrplan/analyse/heat-map/image-2.png",
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/heat-map/image-2.png",
                               "name": "HEAT MAP"
                             }
                           ],
@@ -2075,139 +2110,263 @@
                   "children": []
                 }
               ]
+            }
+          ]
+        },
+        {
+          "id": "rcs-websteuerung",
+          "label": "RCS WEBSTEUERUNG",
+          "description": "",
+          "color": null,
+          "screenshots": [],
+          "children": [
+            {
+              "id": "shows",
+              "label": "SHOWS",
+              "description": "",
+              "color": null,
+              "screenshots": [
+                {
+                  "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/image-1.png",
+                  "name": "SHOWS"
+                }
+              ],
+              "children": [
+                {
+                  "id": "settings",
+                  "label": "SETTINGS",
+                  "description": "",
+                  "color": null,
+                  "screenshots": [],
+                  "children": [
+                    {
+                      "id": "show-info",
+                      "label": "SHOW INFO",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/show-info/image-1.png",
+                          "name": "SHOW INFO"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "data-time",
+                      "label": "DATA/TIME",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/data-time/image-1.png",
+                          "name": "DATA/TIME"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "display",
+                      "label": "DISPLAY",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/display/image-1.png",
+                          "name": "DISPLAY"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "rights",
+                      "label": "RIGHTS",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/rights/image-1.png",
+                          "name": "RIGHTS"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "navigation",
+                      "label": "NAVIGATION",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/navigation/image-1.png",
+                          "name": "NAVIGATION"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "sponsor",
+                      "label": "SPONSOR",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/sponsor/image-1.png",
+                          "name": "SPONSOR"
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "content",
+                  "label": "CONTENT",
+                  "description": "",
+                  "color": null,
+                  "screenshots": [],
+                  "children": [
+                    {
+                      "id": "headlines",
+                      "label": "HEADLINES",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/headlines/image-1.png",
+                          "name": "HEADLINES"
+                        },
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/headlines/image-2.png",
+                          "name": "HEADLINES"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "multiview",
+                      "label": "MULTIVIEW",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/multiview/image-1.png",
+                          "name": "MULTIVIEW"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "bookmarks",
+                      "label": "BOOKMARKS",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/bookmarks/image-1.png",
+                          "name": "BOOKMARKS"
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "social-media",
+                      "label": "SOCIAL MEDIA",
+                      "description": "",
+                      "color": null,
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/social-media/image-1.png",
+                          "name": "SOCIAL MEDIA"
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "id": "old",
-              "label": "OLD",
+              "id": "sports",
+              "label": "SPORTS",
               "description": "",
               "color": null,
               "screenshots": [],
               "children": [
                 {
-                  "id": "teams",
-                  "label": "Teams",
-                  "description": "Club Profile\nStatistik\nSpiele\nMannschaft\n- das ist der Kader in der jeweiligen Mannschaft",
-                  "color": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "top-spieler",
-                  "label": "Top Spieler",
-                  "description": "Tore\nfür alle sind 50 Zeilen\n\n- Tore / Assists\n - Über das Logo kommt man auf die Team Information\n\nTorversuche\n- Über das Logo kommt man auf die Team Information\n\nChances Created\nTorschussvorl. assists tore\n- Über das Logo kommt man auf die Team Information\nPassing\nPässe Angek. Pässe Torschussvorl.\nKarten\nGelb Rot Fouls\n\nTackles\nTacklings Gewonnen Tacklings Fouls\n\nZweikampf\nGewonnen / Verlorene\n\nFlanken\nFlanken Angek. Flanken\n\nFreistoss\nSchüsse Aufs Tor / Tore\nGehaltene Bälle\nParaden Zu Null Gegentore\n\nSpielzeit\nSpiele / Gespielte Minuten\n",
-                  "color": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "top-teams",
-                  "label": "Top Teams",
-                  "description": "Geschossene Tore\n- Tore und Gegentore\n+ drei Informationen : Clubprofile, Statistik, Fahrplan\nDiese einzelnen Spalten informationen kann man das sortieren\n\nSchussversuche\n- Schüsse, Auftor, Tore\nLogo klicken mit mehreren unterfunktionen,\nDiese einzelnen Spalten informationen kann man das sortieren\nSchüsse\n- Schüsse Auftor, Abgeblockt, Tore \nDiese einzelnen Spalten informationen kann man das sortieren\nPässe\n- Pässe, Angek.Pässe, Angek. Pässe in %\nDiese einzelnen Spalten informationen kann man das sortieren\n\nKarten\nRot Gelbe\nDiese einzelnen Spalten informationen kann man das sortieren\n\nTackless\nTacklings GEW.Tacklings % Fouls\nDiese einzelnen Spalten informationen kann man das sortieren\n\nFlanken\nFlanken Angek. Flanken Angek.Flanken %\nDiese einzelnen Spalten informationen kann man das sortieren\n",
-                  "color": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "funktionier-nicht-mehr-das-system",
-                  "label": "Funktionier nicht mehr das System",
+                  "id": "soccer",
+                  "label": "SOCCER",
                   "description": "",
                   "color": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "analyse",
-                  "label": "ANALYSE",
-                  "description": "vor und zurück spulen des clips\nclipauswahl von verschiedenen clips mit verbindung zur libero , local auf der liebero maschine\nFarbpalette\nVordefinierte Libero Elemente, diese können über Libero geändert oder gesetzt werden",
-                  "color": null,
-                  "screenshots": [],
+                  "screenshots": [
+                    {
+                      "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/image-1.png",
+                      "name": "SOCCER"
+                    }
+                  ],
                   "children": [
                     {
-                      "id": "pfeile",
-                      "label": "Pfeile",
+                      "id": "soccer",
+                      "label": "SOCCER",
                       "description": "",
                       "color": null,
-                      "screenshots": [],
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/soccer/image-1.png",
+                          "name": "SOCCER"
+                        }
+                      ],
                       "children": []
                     },
                     {
-                      "id": "spielermarker",
-                      "label": "Spielermarker",
+                      "id": "teams",
+                      "label": "TEAMS",
                       "description": "",
                       "color": null,
-                      "screenshots": [],
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/teams/image-1.png",
+                          "name": "TEAMS"
+                        },
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/teams/image-2.png",
+                          "name": "TEAMS"
+                        },
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/teams/image-3.png",
+                          "name": "TEAMS"
+                        }
+                      ],
                       "children": []
                     },
                     {
-                      "id": "linie",
-                      "label": "Linie",
+                      "id": "vanues",
+                      "label": "VANUES",
                       "description": "",
                       "color": null,
-                      "screenshots": [],
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/vanues/image-1.png",
+                          "name": "VANUES"
+                        },
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/vanues/image-2.png",
+                          "name": "VANUES"
+                        }
+                      ],
                       "children": []
                     },
                     {
-                      "id": "spot",
-                      "label": " Spot",
+                      "id": "labels",
+                      "label": "LABELS",
                       "description": "",
                       "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "lupe",
-                      "label": " Lupe",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "alles-rueckgaengig-machen-einzeln",
-                      "label": "alles rückgängig machen einzeln",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "oder-alles-loeschen",
-                      "label": "oder alles löschen",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "bildschirmschonder-logo",
-                      "label": "Bildschirmschonder / Logo",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "verschiedene-kameraperspektiven-die-ueber-libero",
-                      "label": "verschiedene Kameraperspektiven die über Libero vor programmiert werden müssen",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "play-button-und-reset-button",
-                      "label": "play button und reset button",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "man-kann-alles-in-fullscreen-machen",
-                      "label": "man kann alles in fullscreen machen",
-                      "description": "",
-                      "color": null,
-                      "screenshots": [],
+                      "screenshots": [
+                        {
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/labels/image-1.png",
+                          "name": "LABELS"
+                        }
+                      ],
                       "children": []
                     }
                   ]
@@ -2215,6 +2374,14 @@
               ]
             }
           ]
+        },
+        {
+          "id": "aki-paint",
+          "label": "AKI PAINT",
+          "description": "",
+          "color": null,
+          "screenshots": [],
+          "children": []
         }
       ]
     }
