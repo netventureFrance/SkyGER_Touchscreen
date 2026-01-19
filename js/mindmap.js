@@ -719,6 +719,9 @@ class MindmapView {
             // For leaf nodes, just update the active highlighting and center smoothly
             this.updateActiveHighlight(uniqueId);
 
+            // Update minimap to show new active node
+            this.updateMinimap();
+
             // Update sidebar content if already open
             if (this.detailPanel.classList.contains('open')) {
                 this.showDetail(node, this.activeNodeId);
