@@ -203,6 +203,13 @@
     font-size: 12px;
     overflow-x: auto;
     white-space: nowrap;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.breadcrumb-container::-webkit-scrollbar {
+    display: none;
 }
 
 .breadcrumb-item {
@@ -252,6 +259,13 @@
     border-bottom: 1px solid var(--border-color);
     overflow-x: auto;
     white-space: nowrap;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.panel-breadcrumb::-webkit-scrollbar {
+    display: none;
 }
 
 .panel-breadcrumb .breadcrumb-item {

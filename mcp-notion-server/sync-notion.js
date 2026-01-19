@@ -291,20 +291,22 @@ async function processBlocks(blocks, parentItem, depth = 0) {
         }
         // Bulleted/numbered lists with children
         else if ((type === 'bulleted_list_item' || type === 'numbered_list_item') && text) {
-            // Extract hex color from title text [#RRGGBB]
-            const { title: cleanTitle, color: hexColor } = extractHexColor(text);
+            // Extract metadata (color, direction) from title text
+            const { title: cleanTitle, color: hexColor, direction } = extractTitleMetadata(text);
             // Fall back to Notion block color if no hex color specified
             const listData = block[type];
             const notionColor = listData?.color || 'default';
             const color = hexColor || (notionColor !== 'default' ? notionColor : null);
 
-            console.log(`${indent}• ${cleanTitle}${color ? ` [${color}]` : ''}`);
+            const dirInfo = direction ? ` [${direction}]` : '';
+            console.log(`${indent}• ${cleanTitle}${color ? ` [${color}]` : ''}${dirInfo}`);
 
             const newItem = {
                 id: block.id,
                 title: cleanTitle,
                 description: '',
                 color: color, // Hex color or Notion color
+                direction: direction, // 'left', 'right', or null
                 images: [],
                 children: []
             };
