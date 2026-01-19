@@ -1046,8 +1046,8 @@ class MindmapView {
         // Highlight active sidebar item if matches current node
         this.updateSidebarHighlight(currentUniqueId);
 
-        // Re-center mindmap in remaining space after sidebar animation
-        setTimeout(() => this.centerView(), 350);
+        // Update minimap after sidebar opens (don't re-center, user controls the view)
+        setTimeout(() => this.updateMinimapViewport(), 350);
 
         // Carousel Event Handlers
         this.setupCarousel();
@@ -1361,8 +1361,8 @@ class MindmapView {
         this.detailPanel.classList.remove('open');
         // Show top breadcrumb bar when sidebar closes
         this.breadcrumbBar.classList.remove('hidden');
-        // Re-center after sidebar closes
-        setTimeout(() => this.centerView(), 350);
+        // Update minimap after sidebar closes (don't re-center, user controls the view)
+        setTimeout(() => this.updateMinimapViewport(), 350);
     }
 
     /**
