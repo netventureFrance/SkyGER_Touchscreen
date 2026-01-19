@@ -509,21 +509,25 @@ class MindmapView {
         labelEl.className = 'node-label';
         labelEl.textContent = node.label;
 
-        // For root node (level 0), show indicators on both sides if it has children on both sides
-        if (level === 0 && node.children && node.children.length > 0) {
-            // Count left and right children
+        // Check if node has children on both sides
+        if (node.children && node.children.length > 0) {
+            // Count left and right children (children inherit parent direction unless specified)
             let leftCount = 0;
             let rightCount = 0;
             node.children.forEach(child => {
-                if (child.direction === 'left') {
+                const childDir = child.direction || nodeDirection;
+                if (childDir === 'left') {
                     leftCount++;
                 } else {
                     rightCount++;
                 }
             });
 
-            // Left indicator (if there are left children)
-            if (leftCount > 0) {
+            const hasBothSides = leftCount > 0 && rightCount > 0;
+
+            if (hasBothSides) {
+                // Show indicators on both sides
+                // Left indicator
                 const leftToggle = document.createElement('div');
                 leftToggle.className = 'node-toggle left-indicator';
                 leftToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
@@ -534,13 +538,9 @@ class MindmapView {
 
                 boxEl.appendChild(leftToggle);
                 boxEl.appendChild(leftCountEl);
-            }
+                boxEl.appendChild(labelEl);
 
-            // Label in the middle
-            boxEl.appendChild(labelEl);
-
-            // Right indicator (if there are right children)
-            if (rightCount > 0) {
+                // Right indicator
                 const rightCountEl = document.createElement('span');
                 rightCountEl.className = 'node-count';
                 rightCountEl.textContent = rightCount;
@@ -551,28 +551,28 @@ class MindmapView {
 
                 boxEl.appendChild(rightCountEl);
                 boxEl.appendChild(rightToggle);
-            }
-        } else if (node.children && node.children.length > 0) {
-            // Non-root nodes: single indicator based on direction
-            const countEl = document.createElement('span');
-            countEl.className = 'node-count';
-            countEl.textContent = node.children.length;
-
-            const toggleEl = document.createElement('div');
-            toggleEl.className = 'node-toggle';
-            toggleEl.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
-
-            // For left-side nodes, prepend indicator and count before label
-            if (nodeDirection === 'left') {
-                toggleEl.classList.add('left-indicator');
-                countEl.classList.add('left-indicator');
-                boxEl.appendChild(toggleEl);
-                boxEl.appendChild(countEl);
-                boxEl.appendChild(labelEl);
             } else {
-                boxEl.appendChild(labelEl);
-                boxEl.appendChild(countEl);
-                boxEl.appendChild(toggleEl);
+                // Single side - show indicator on appropriate side
+                const countEl = document.createElement('span');
+                countEl.className = 'node-count';
+                countEl.textContent = node.children.length;
+
+                const toggleEl = document.createElement('div');
+                toggleEl.className = 'node-toggle';
+                toggleEl.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
+
+                // For left-side nodes, prepend indicator before label
+                if (nodeDirection === 'left') {
+                    toggleEl.classList.add('left-indicator');
+                    countEl.classList.add('left-indicator');
+                    boxEl.appendChild(toggleEl);
+                    boxEl.appendChild(countEl);
+                    boxEl.appendChild(labelEl);
+                } else {
+                    boxEl.appendChild(labelEl);
+                    boxEl.appendChild(countEl);
+                    boxEl.appendChild(toggleEl);
+                }
             }
         } else {
             // Leaf nodes: just the label
