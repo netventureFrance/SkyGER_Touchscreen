@@ -125,9 +125,10 @@ function sanitize(name, maxLength = 50) {
 
 /**
  * Extract metadata from title text
- * Supports formats:
+ * Supports formats (all at end of title):
  *   - Color: "Title [#RRGGBB]" or "Title [#RGB]"
- *   - Direction: "[L] Title" or "[R] Title" (Left/Right)
+ *   - Direction: "Title [L]" or "Title [R]" (Left/Right)
+ *   - Combined: "Title [L][#RRGGBB]" or "Title [#RRGGBB][L]" (any order)
  * Returns { title: "clean title", color: "#RRGGBB" or null, direction: "left"/"right" or null }
  */
 function extractTitleMetadata(text) {
@@ -137,23 +138,33 @@ function extractTitleMetadata(text) {
     let color = null;
     let direction = null;
 
-    // Extract direction [L] or [R] from start of string
-    const dirMatch = title.match(/^\s*\[([LlRr])\]\s*/);
-    if (dirMatch) {
-        direction = dirMatch[1].toLowerCase() === 'l' ? 'left' : 'right';
-        title = title.replace(dirMatch[0], '');
-    }
+    // Extract all bracketed tags from end of string (loop to handle multiple)
+    let hasMore = true;
+    while (hasMore) {
+        hasMore = false;
 
-    // Extract hex color [#RRGGBB] or [#RGB] from end of string
-    const hexMatch = title.match(/\s*\[#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]\s*$/);
-    if (hexMatch) {
-        let hexColor = hexMatch[1];
-        // Expand 3-digit hex to 6-digit
-        if (hexColor.length === 3) {
-            hexColor = hexColor.split('').map(c => c + c).join('');
+        // Try to match direction [L] or [R] at end
+        const dirMatch = title.match(/\s*\[([LlRr])\]\s*$/);
+        if (dirMatch) {
+            direction = dirMatch[1].toLowerCase() === 'l' ? 'left' : 'right';
+            title = title.replace(dirMatch[0], '');
+            hasMore = true;
+            continue;
         }
-        color = '#' + hexColor.toUpperCase();
-        title = title.replace(hexMatch[0], '');
+
+        // Try to match hex color [#RRGGBB] or [#RGB] at end
+        const hexMatch = title.match(/\s*\[#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]\s*$/);
+        if (hexMatch) {
+            let hexColor = hexMatch[1];
+            // Expand 3-digit hex to 6-digit
+            if (hexColor.length === 3) {
+                hexColor = hexColor.split('').map(c => c + c).join('');
+            }
+            color = '#' + hexColor.toUpperCase();
+            title = title.replace(hexMatch[0], '');
+            hasMore = true;
+            continue;
+        }
     }
 
     return { title: title.trim(), color, direction };
