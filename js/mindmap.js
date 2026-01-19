@@ -277,8 +277,9 @@ class MindmapView {
     /**
      * Smooth render with fade transition
      * Returns a Promise that resolves when render and centering are complete
+     * @param {string} pathId - Path-based unique ID to center on after render
      */
-    smoothRender(nodeId = null) {
+    smoothRender(pathId = null) {
         return new Promise((resolve) => {
             // Fade out
             this.canvas.classList.add('transitioning');
@@ -287,12 +288,9 @@ class MindmapView {
             setTimeout(() => {
                 this.render();
 
-                // Update activeNodeId if provided
-                if (nodeId) {
-                    const newUniqueId = this.findUniqueIdByNodeId(nodeId);
-                    if (newUniqueId) {
-                        this.activeNodeId = newUniqueId;
-                    }
+                // Update activeNodeId if provided (already a path-based ID)
+                if (pathId) {
+                    this.activeNodeId = pathId;
                 }
 
                 // Draw lines and prepare view
@@ -362,10 +360,11 @@ class MindmapView {
 
     /**
      * Node rendern
+     * @param {string} pathId - Stable path-based ID (e.g., "root", "root-0", "root-0-2")
      */
-    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null) {
-        // Generate unique ID to avoid duplicates in Map
-        const uniqueId = `${node.id}-${this.nodePositions.size}`;
+    renderNode(node, x, y, level, parentPos, startAngle, endAngle, parentColor = null, parentId = null, pathId = 'root') {
+        // Use path-based ID for stable identification across renders
+        const uniqueId = pathId;
 
         // Determine color - inherit from parent if not set
         const nodeColor = node.color || parentColor;
@@ -401,7 +400,7 @@ class MindmapView {
             }
         }
 
-        if (this.expandedNodes.has(node.id)) {
+        if (this.expandedNodes.has(uniqueId)) {
             boxEl.classList.add('expanded');
         }
 
@@ -447,22 +446,25 @@ class MindmapView {
         this.nodesContainer.appendChild(nodeEl);
 
         // Kinder rendern (wenn erweitert)
-        if (node.children && node.children.length > 0 && this.expandedNodes.has(node.id)) {
+        if (node.children && node.children.length > 0 && this.expandedNodes.has(uniqueId)) {
             this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId);
         }
     }
 
     /**
      * Berechne die Höhe eines Subtrees (für Spacing)
+     * @param {string} pathId - Path-based ID for this node
      */
-    calculateSubtreeHeight(node, level) {
-        if (!node.children || node.children.length === 0 || !this.expandedNodes.has(node.id)) {
+    calculateSubtreeHeight(node, level, pathId = 'root') {
+        if (!node.children || node.children.length === 0 || !this.expandedNodes.has(pathId)) {
             return this.config.minNodeSpacing;
         }
 
         let totalHeight = 0;
-        for (const child of node.children) {
-            totalHeight += this.calculateSubtreeHeight(child, level + 1);
+        for (let i = 0; i < node.children.length; i++) {
+            const child = node.children[i];
+            const childPathId = `${pathId}-${i}`;
+            totalHeight += this.calculateSubtreeHeight(child, level + 1, childPathId);
         }
 
         return Math.max(totalHeight, this.config.minNodeSpacing);
@@ -470,16 +472,23 @@ class MindmapView {
 
     /**
      * Kinder-Nodes rendern - Alle nach rechts, kein Überlappen
+     * @param {string} parentPathId - Parent's path-based ID for generating child pathIds
      */
     renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null) {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
+        // Extract parentPathId from parentId (which is now the uniqueId/pathId)
+        const parentPathId = parentId;
+
         // Fixed distance - must be larger than widest node + gap
         const distance = 450;
 
-        // Berechne Höhe jedes Kindes (inkl. Subtree)
-        const childHeights = children.map(child => this.calculateSubtreeHeight(child, childLevel));
+        // Berechne Höhe jedes Kindes (inkl. Subtree) - pass path-based IDs
+        const childHeights = children.map((child, index) => {
+            const childPathId = `${parentPathId}-${index}`;
+            return this.calculateSubtreeHeight(child, childLevel, childPathId);
+        });
         const totalHeight = childHeights.reduce((sum, h) => sum + h, 0);
 
         // Start Y-Position (zentriert um Parent)
@@ -493,12 +502,16 @@ class MindmapView {
             const childHeight = childHeights[index];
             const finalY = currentY + childHeight / 2;
 
+            // Generate stable path-based ID for child (parent path + child index)
+            const childPathId = `${parentPathId}-${index}`;
+
             this.renderNode(
                 child, childX, finalY, childLevel,
                 { x: parentX, y: parentY },
                 startAngle, endAngle,
                 parentColor, // Pass parent color for inheritance
-                parentId // Pass parent ID for line drawing
+                parentId, // Pass parent ID for line drawing
+                childPathId // Pass path-based ID for stable identification
             );
 
             // Nächste Y-Position
@@ -581,20 +594,20 @@ class MindmapView {
      * Node Click Handler
      */
     handleNodeClick(node, uniqueId) {
-        // Track active node using uniqueId to handle duplicate IDs
+        // Track active node using uniqueId (path-based) to handle duplicate node.ids
         this.activeNodeId = uniqueId;
         this.selectedNode = node; // Store for sidebar toggle
 
         if (node.children && node.children.length > 0) {
-            if (this.expandedNodes.has(node.id)) {
-                // Collapse: Auch alle Kinder schließen
-                this.collapseNode(node);
+            if (this.expandedNodes.has(uniqueId)) {
+                // Collapse: Auch alle Kinder schließen (use path-based ID)
+                this.collapseNodeByPath(uniqueId);
             } else {
-                this.expandedNodes.add(node.id);
+                this.expandedNodes.add(uniqueId);
             }
 
             // Use smooth render with fade transition
-            this.smoothRender(node.id).then(() => {
+            this.smoothRender(uniqueId).then(() => {
                 // Update sidebar and breadcrumbs after render completes
                 if (this.detailPanel.classList.contains('open')) {
                     this.showDetail(node, this.activeNodeId);
@@ -661,13 +674,35 @@ class MindmapView {
     }
 
     /**
-     * Node und alle Kinder schließen
+     * Node und alle Kinder schließen (by path-based ID)
+     * Removes all paths that start with the given pathId
+     */
+    collapseNodeByPath(pathId) {
+        // Remove this node and all descendants (paths starting with this pathId)
+        const toRemove = [];
+        for (const id of this.expandedNodes) {
+            if (id === pathId || id.startsWith(pathId + '-')) {
+                toRemove.push(id);
+            }
+        }
+        toRemove.forEach(id => this.expandedNodes.delete(id));
+    }
+
+    /**
+     * Node und alle Kinder schließen (legacy - kept for compatibility)
      */
     collapseNode(node) {
-        this.expandedNodes.delete(node.id);
-        if (node.children) {
-            node.children.forEach(child => this.collapseNode(child));
+        // This method is kept for compatibility but should use path-based collapse
+        // Find all expanded paths that correspond to this node
+        const toRemove = [];
+        for (const id of this.expandedNodes) {
+            // Check if this is a path for the given node (ends with the node.id segment)
+            const segments = id.split('-');
+            if (segments.includes(node.id)) {
+                toRemove.push(id);
+            }
         }
+        toRemove.forEach(id => this.expandedNodes.delete(id));
     }
 
     /**
@@ -730,6 +765,8 @@ class MindmapView {
     showDetail(node, currentUniqueId = null) {
         // Store reference to current node for child navigation
         this.currentDetailNode = node;
+        // Store current pathId for generating child pathIds
+        this.currentDetailPathId = currentUniqueId;
 
         // Hide top breadcrumb bar when sidebar is open
         this.breadcrumbBar.classList.add('hidden');
@@ -794,13 +831,16 @@ class MindmapView {
             html += `<h3>Unterelemente</h3><div class="panel-children">`;
             // Get parent color for inheritance
             const parentColor = node.color || null;
-            node.children.forEach(child => {
+            const parentPathId = currentUniqueId || 'root';
+            node.children.forEach((child, index) => {
                 // Child uses its own color or inherits from parent
                 const childColor = child.color || parentColor;
                 const colorStyle = childColor ? `border-left: 3px solid ${childColor}; background: linear-gradient(90deg, ${childColor}22 0%, transparent 100%);` : '';
                 const colorAttr = childColor ? `data-color="${escapeHtml(childColor)}"` : '';
+                // Include path-based ID for the child
+                const childPathId = `${parentPathId}-${index}`;
                 html += `
-                    <div class="panel-child-item" data-id="${escapeHtml(child.id)}" data-label="${escapeHtml(child.label)}" ${colorAttr} style="${colorStyle}">
+                    <div class="panel-child-item" data-id="${escapeHtml(child.id)}" data-path-id="${escapeHtml(childPathId)}" data-index="${index}" data-label="${escapeHtml(child.label)}" ${colorAttr} style="${colorStyle}">
                         <span>${escapeHtml(child.label)}</span>
                     </div>
                 `;
@@ -828,10 +868,11 @@ class MindmapView {
         // Child click handler - navigate to child node
         this.panelContent.querySelectorAll('.panel-child-item').forEach(item => {
             item.addEventListener('click', () => {
-                const childId = item.dataset.id;
-                const child = node.children.find(c => c.id === childId);
+                const childIndex = parseInt(item.dataset.index);
+                const childPathId = item.dataset.pathId;
+                const child = node.children[childIndex];
                 if (child) {
-                    this.navigateToNode(node, child);
+                    this.navigateToNode(node, child, currentUniqueId, childPathId);
                 }
             });
         });
@@ -845,14 +886,14 @@ class MindmapView {
                     // Navigate to this node
                     this.selectedNode = pathItem.node;
 
-                    // Expand path to this node, collapse everything else
+                    // Expand path to this node, collapse everything else (use path-based uniqueId)
                     this.expandedNodes.clear();
                     for (let i = 0; i <= index; i++) {
-                        this.expandedNodes.add(this.nodePath[i].id);
+                        this.expandedNodes.add(this.nodePath[i].uniqueId);
                     }
 
-                    // Smooth render and center on selected node
-                    this.smoothRender(pathItem.id).then(() => {
+                    // Smooth render and center on selected node (use path-based uniqueId)
+                    this.smoothRender(pathItem.uniqueId).then(() => {
                         this.updateBreadcrumbs();
                         // Update sidebar with the selected node
                         this.showDetail(pathItem.node, this.activeNodeId);
@@ -864,13 +905,15 @@ class MindmapView {
 
     /**
      * Navigate to a child node from sidebar click
+     * @param {string} parentPathId - Parent's path-based ID
+     * @param {string} childPathId - Child's path-based ID
      */
-    navigateToNode(parentNode, childNode) {
-        // Expand parent to show child
-        this.expandedNodes.add(parentNode.id);
+    navigateToNode(parentNode, childNode, parentPathId, childPathId) {
+        // Expand parent to show child (use path-based ID)
+        this.expandedNodes.add(parentPathId);
 
-        // Smooth render and center on child
-        this.smoothRender(childNode.id).then(() => {
+        // Smooth render and center on child (use path-based ID)
+        this.smoothRender(childPathId).then(() => {
             // Show child's detail panel
             this.showDetail(childNode, this.activeNodeId);
         });
@@ -1215,10 +1258,13 @@ class MindmapView {
     }
 
     expandAll() {
-        const addAll = (node) => {
-            this.expandedNodes.add(node.id);
+        // Recursively add all path-based IDs
+        const addAll = (node, pathId = 'root') => {
+            this.expandedNodes.add(pathId);
             if (node.children) {
-                node.children.forEach(child => addAll(child));
+                node.children.forEach((child, index) => {
+                    addAll(child, `${pathId}-${index}`);
+                });
             }
         };
         addAll(this.buildData());
@@ -1354,18 +1400,16 @@ class MindmapView {
 
     /**
      * Find path from root to a node, including inherited colors
-     * Uses position counter to match exact uniqueId (handles duplicate node IDs)
+     * Uses path-based IDs for stable identification
      * Only traverses expanded nodes to match render traversal order
      */
-    findPathToNode(targetId, node = null, path = [], parentColor = null, counter = { value: 0 }) {
+    findPathToNode(targetId, node = null, path = [], parentColor = null, pathId = 'root') {
         if (!node) {
             node = this.buildData();
-            counter = { value: 0 }; // Reset counter for fresh search
         }
 
-        // Generate uniqueId the same way renderNode does (using counter as nodePositions.size)
-        const uniqueId = `${node.id}-${counter.value}`;
-        counter.value++;
+        // Use path-based uniqueId (same as renderNode)
+        const uniqueId = pathId;
 
         // Inherit color from parent if not set
         const nodeColor = node.color || parentColor;
@@ -1377,9 +1421,11 @@ class MindmapView {
         }
 
         // Only recurse into expanded nodes (same as renderNode)
-        if (node.children && this.expandedNodes.has(node.id)) {
-            for (const child of node.children) {
-                const result = this.findPathToNode(targetId, child, currentPath, nodeColor, counter);
+        if (node.children && this.expandedNodes.has(uniqueId)) {
+            for (let i = 0; i < node.children.length; i++) {
+                const child = node.children[i];
+                const childPathId = `${pathId}-${i}`;
+                const result = this.findPathToNode(targetId, child, currentPath, nodeColor, childPathId);
                 if (result) return result;
             }
         }
@@ -1413,14 +1459,14 @@ class MindmapView {
                     // Navigate to this node
                     this.selectedNode = pathItem.node;
 
-                    // Expand path to this node, collapse everything else
+                    // Expand path to this node, collapse everything else (use path-based uniqueId)
                     this.expandedNodes.clear();
                     for (let i = 0; i <= index; i++) {
-                        this.expandedNodes.add(this.nodePath[i].id);
+                        this.expandedNodes.add(this.nodePath[i].uniqueId);
                     }
 
-                    // Smooth render and center on selected node
-                    this.smoothRender(pathItem.id).then(() => {
+                    // Smooth render and center on selected node (use path-based uniqueId)
+                    this.smoothRender(pathItem.uniqueId).then(() => {
                         this.updateBreadcrumbs();
 
                         // Update sidebar if open
