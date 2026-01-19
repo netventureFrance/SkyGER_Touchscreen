@@ -1782,30 +1782,6 @@ body.fullscreen .fullscreen-hint {
     background: transparent;
 }
 
-/* Active node pulse indicator */
-.minimap-active-pulse {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-cyan);
-    background: transparent;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    animation: minimapPulse 2s ease-in-out infinite;
-}
-
-@keyframes minimapPulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0.5;
-    }
-}
-
 /* Hide minimap on mobile */
 @media (max-width: 768px) {
     .minimap {

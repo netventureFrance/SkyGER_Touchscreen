@@ -1711,30 +1711,20 @@ class MindmapView {
         });
 
         // Draw nodes (using pos.x for consistency with viewport)
-        let activeNodePos = null;
         this.nodePositions.forEach((pos, nodeId) => {
             const x = pos.x * scale + offsetX;
             const y = pos.y * scale + offsetY;
-            const isActive = nodeId === this.activeNodeId;
             const nodeColor = pos.color || '#00a0d2';
-
-            // Store active node position for pulse overlay
-            if (isActive) {
-                activeNodePos = { x, y, color: nodeColor };
-            }
 
             // Node dot
             ctx.beginPath();
-            ctx.arc(x, y, isActive ? 4 : 2.5, 0, Math.PI * 2);
+            ctx.arc(x, y, 2.5, 0, Math.PI * 2);
             ctx.fillStyle = nodeColor;
             ctx.fill();
         });
 
         // Update viewport rectangle
         this.updateMinimapViewport();
-
-        // Update active node pulse overlay
-        this.updateMinimapActiveIndicator(activeNodePos);
     }
 
     /**
@@ -1765,31 +1755,6 @@ class MindmapView {
         this.minimapViewport.style.top = `${Math.max(0, y)}px`;
         this.minimapViewport.style.width = `${Math.min(w, bounds.width - Math.max(0, x))}px`;
         this.minimapViewport.style.height = `${Math.min(h, bounds.height - Math.max(0, y))}px`;
-    }
-
-    /**
-     * Update the pulsing active indicator on the minimap
-     */
-    updateMinimapActiveIndicator(activePos) {
-        // Get or create the pulse element
-        let pulse = this.minimapContent.querySelector('.minimap-active-pulse');
-
-        if (!activePos) {
-            if (pulse) pulse.style.display = 'none';
-            return;
-        }
-
-        if (!pulse) {
-            pulse = document.createElement('div');
-            pulse.className = 'minimap-active-pulse';
-            this.minimapContent.appendChild(pulse);
-        }
-
-        pulse.style.display = 'block';
-        pulse.style.left = `${activePos.x}px`;
-        pulse.style.top = `${activePos.y}px`;
-        pulse.style.borderColor = activePos.color;
-        pulse.style.boxShadow = `0 0 8px ${activePos.color}`;
     }
 
     /**
