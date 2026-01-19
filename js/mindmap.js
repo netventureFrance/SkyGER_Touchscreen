@@ -1520,19 +1520,7 @@ class MindmapView {
      * Setup minimap canvas and event listeners
      */
     setupMinimap() {
-        if (!this.minimapCanvas || !this.minimapCtx) return;
-
-        // Set canvas size
-        const rect = this.minimapContent.getBoundingClientRect();
-        this.minimapCanvas.width = rect.width * 2; // 2x for retina
-        this.minimapCanvas.height = rect.height * 2;
-        this.minimapCtx.scale(2, 2);
-
-        // Calculate scale factor
-        this.minimapScale = Math.min(
-            rect.width / this.canvasWidth,
-            rect.height / this.canvasHeight
-        );
+        if (!this.minimapCanvas) return;
 
         // Toggle button
         const toggleBtn = document.getElementById('minimapToggle');
@@ -1551,8 +1539,11 @@ class MindmapView {
         // Update on scroll
         this.viewport.addEventListener('scroll', () => this.updateMinimapViewport());
 
-        // Initial render (delayed for collapsed state)
-        setTimeout(() => this.updateMinimap(), 100);
+        // Only initialize canvas if not collapsed
+        if (!this.minimap.classList.contains('collapsed')) {
+            this.initMinimapCanvas();
+            setTimeout(() => this.updateMinimap(), 100);
+        }
     }
 
     /**
@@ -1567,10 +1558,29 @@ class MindmapView {
             toggleBtn.textContent = isCollapsed ? '+' : '−';
         }
 
-        // Update minimap when expanding
+        // Reinitialize and update minimap when expanding
         if (!isCollapsed) {
-            setTimeout(() => this.updateMinimap(), 100);
+            setTimeout(() => {
+                this.initMinimapCanvas();
+                this.updateMinimap();
+            }, 150);
         }
+    }
+
+    /**
+     * Initialize minimap canvas size and scale
+     */
+    initMinimapCanvas() {
+        if (!this.minimapCanvas || !this.minimapContent) return;
+
+        const rect = this.minimapContent.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        // Reset canvas
+        this.minimapCanvas.width = rect.width * 2; // 2x for retina
+        this.minimapCanvas.height = rect.height * 2;
+        this.minimapCtx = this.minimapCanvas.getContext('2d');
+        this.minimapCtx.scale(2, 2);
     }
 
     /**
