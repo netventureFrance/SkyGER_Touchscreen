@@ -974,13 +974,13 @@ body.fullscreen .fullscreen-hint {
    ============================================ */
 
 .mindmap-node {
-    animation: nodeAppear 0.4s ease backwards;
+    animation: nodeAppear 0.15s ease backwards;
 }
 
 @keyframes nodeAppear {
     from {
         opacity: 0;
-        transform: translateY(-50%) scale(0.8);
+        transform: translateY(-50%) scale(0.95);
     }
     to {
         opacity: 1;
@@ -990,13 +990,13 @@ body.fullscreen .fullscreen-hint {
 
 /* Left-side nodes animation */
 .mindmap-node.direction-left {
-    animation: nodeAppearLeft 0.4s ease backwards;
+    animation: nodeAppearLeft 0.15s ease backwards;
 }
 
 @keyframes nodeAppearLeft {
     from {
         opacity: 0;
-        transform: translateX(-100%) translateY(-50%) scale(0.8);
+        transform: translateX(-100%) translateY(-50%) scale(0.95);
     }
     to {
         opacity: 1;
