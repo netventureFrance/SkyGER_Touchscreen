@@ -1641,7 +1641,7 @@ body.fullscreen .fullscreen-hint {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 200px;
+    width: 280px;
     background: rgba(10, 22, 40, 0.95);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -1653,7 +1653,7 @@ body.fullscreen .fullscreen-hint {
 }
 
 .minimap.collapsed {
-    width: 120px;
+    width: 110px;
 }
 
 .minimap.collapsed .minimap-content {
@@ -1697,7 +1697,7 @@ body.fullscreen .fullscreen-hint {
 
 .minimap-content {
     position: relative;
-    height: 150px;
+    height: 200px;
     overflow: hidden;
 }
 

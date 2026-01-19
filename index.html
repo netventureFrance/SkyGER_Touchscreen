@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="header-center">
-            <h1 class="page-title" title="Tastenkürzel:&#10;Ctrl+K = Suche&#10;I = Info-Panel&#10;F = Vollbild&#10;ESC = Schließen&#10;Ctrl+Scroll = Zoom&#10;← → = Bilder navigieren">Interaktive Mindmap <span class="version-number" id="versionNumber"></span></h1>
+            <h1 class="page-title" title="Tastenkürzel:&#10;Ctrl+K = Suche&#10;M = Minimap&#10;I = Info-Panel&#10;F = Vollbild&#10;ESC = Schließen&#10;Ctrl+Scroll = Zoom&#10;← → = Bilder navigieren">Interaktive Mindmap <span class="version-number" id="versionNumber"></span></h1>
         </div>
         <div class="header-right">
             <!-- Search -->
@@ -147,11 +147,11 @@
 
     </main>
 
-    <!-- Minimap -->
-    <div class="minimap" id="minimap" title="Klicken zum Navigieren">
+    <!-- Minimap (collapsed by default) -->
+    <div class="minimap collapsed" id="minimap" title="Klicken zum Navigieren (M)">
         <div class="minimap-header">
             <span>Übersicht</span>
-            <button class="minimap-toggle" id="minimapToggle" title="Minimap ein-/ausblenden">−</button>
+            <button class="minimap-toggle" id="minimapToggle" title="Minimap ein-/ausblenden (M)">+</button>
         </div>
         <div class="minimap-content" id="minimapContent">
             <canvas id="minimapCanvas"></canvas>

@@ -201,6 +201,7 @@ class MindmapView {
             if (!isTyping) {
                 if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
                 if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+                if (e.key === 'm' || e.key === 'M') this.toggleMinimap();
             }
         });
 
@@ -1536,10 +1537,7 @@ class MindmapView {
         // Toggle button
         const toggleBtn = document.getElementById('minimapToggle');
         if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                this.minimap.classList.toggle('collapsed');
-                toggleBtn.textContent = this.minimap.classList.contains('collapsed') ? '+' : '−';
-            });
+            toggleBtn.addEventListener('click', () => this.toggleMinimap());
         }
 
         // Click on minimap to navigate
@@ -1553,8 +1551,26 @@ class MindmapView {
         // Update on scroll
         this.viewport.addEventListener('scroll', () => this.updateMinimapViewport());
 
-        // Initial render
-        this.updateMinimap();
+        // Initial render (delayed for collapsed state)
+        setTimeout(() => this.updateMinimap(), 100);
+    }
+
+    /**
+     * Toggle minimap visibility
+     */
+    toggleMinimap() {
+        if (!this.minimap) return;
+
+        const isCollapsed = this.minimap.classList.toggle('collapsed');
+        const toggleBtn = document.getElementById('minimapToggle');
+        if (toggleBtn) {
+            toggleBtn.textContent = isCollapsed ? '+' : '−';
+        }
+
+        // Update minimap when expanding
+        if (!isCollapsed) {
+            setTimeout(() => this.updateMinimap(), 100);
+        }
     }
 
     /**
