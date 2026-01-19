@@ -98,6 +98,9 @@ class MindmapView {
         // Search setup
         this.setupSearch();
 
+        // Deep linking setup
+        this.setupDeepLinking();
+
         // Zentrieren
         this.centerView();
 
@@ -619,6 +622,9 @@ class MindmapView {
         // Track active node using uniqueId (path-based) to handle duplicate node.ids
         this.activeNodeId = uniqueId;
         this.selectedNode = node; // Store for sidebar toggle
+
+        // Update URL for deep linking
+        this.updateUrl(uniqueId);
 
         if (node.children && node.children.length > 0) {
             if (this.expandedNodes.has(uniqueId)) {
@@ -1993,6 +1999,131 @@ class MindmapView {
     closeSearch() {
         this.searchResults.classList.remove('active');
         this.searchSelectedIndex = -1;
+    }
+
+    // ==================== DEEP LINKING ====================
+
+    /**
+     * Setup deep linking (URL parameters)
+     */
+    setupDeepLinking() {
+        // Handle initial URL parameters
+        this.handleUrlParams();
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.nodeId) {
+                this.navigateToPathId(e.state.nodeId, false); // Don't push state again
+            } else {
+                // Go back to root
+                this.navigateToPathId('root', false);
+            }
+        });
+    }
+
+    /**
+     * Handle URL parameters on page load
+     */
+    handleUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        const nodeParam = params.get('node');
+
+        if (nodeParam) {
+            // Delay to ensure everything is loaded
+            setTimeout(() => {
+                this.navigateToPathId(nodeParam, false);
+            }, 300);
+        }
+    }
+
+    /**
+     * Navigate to a node by its pathId
+     */
+    navigateToPathId(pathId, pushState = true) {
+        // Find the node data for this pathId
+        const nodeData = this.findNodeByPathId(pathId);
+        if (!nodeData) {
+            console.warn('Node not found for pathId:', pathId);
+            return;
+        }
+
+        // Expand path to this node
+        this.expandedNodes.clear();
+        this.expandedNodes.add('root');
+
+        // Build path of pathIds to expand
+        const pathParts = pathId.split('-');
+        let currentPath = 'root';
+        for (let i = 1; i < pathParts.length; i++) {
+            currentPath += '-' + pathParts[i];
+            // Expand parent nodes
+            const parentPath = pathParts.slice(0, i + 1).join('-');
+            if (i < pathParts.length - 1) {
+                this.expandedNodes.add(parentPath);
+            }
+        }
+        // Expand direct parent
+        if (pathParts.length > 1) {
+            const parentPath = pathParts.slice(0, -1).join('-');
+            this.expandedNodes.add(parentPath);
+        }
+
+        // Set active node
+        this.activeNodeId = pathId;
+        this.selectedNode = nodeData.node;
+
+        // Update URL if requested
+        if (pushState) {
+            this.updateUrl(pathId);
+        }
+
+        // Render and center
+        this.smoothRender(pathId).then(() => {
+            this.updateBreadcrumbs();
+        });
+    }
+
+    /**
+     * Find a node by its pathId
+     */
+    findNodeByPathId(pathId, node = null, currentPathId = 'root') {
+        if (!node) {
+            node = this.buildData();
+        }
+
+        if (currentPathId === pathId) {
+            return { node, pathId: currentPathId };
+        }
+
+        if (node.children) {
+            for (let i = 0; i < node.children.length; i++) {
+                const childPathId = `${currentPathId}-${i}`;
+                const result = this.findNodeByPathId(pathId, node.children[i], childPathId);
+                if (result) return result;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Update URL with current node
+     */
+    updateUrl(pathId) {
+        const url = new URL(window.location);
+
+        if (pathId && pathId !== 'root') {
+            url.searchParams.set('node', pathId);
+        } else {
+            url.searchParams.delete('node');
+        }
+
+        // Push to history
+        window.history.pushState(
+            { nodeId: pathId },
+            '',
+            url.toString()
+        );
     }
 }
 
