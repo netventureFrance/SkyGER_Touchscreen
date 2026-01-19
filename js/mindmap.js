@@ -36,9 +36,9 @@ class MindmapView {
         this.searchClear = document.getElementById('searchClear');
         this.searchSelectedIndex = -1;
 
-        // Canvas Größe (larger to accommodate expanded trees at high zoom)
-        this.canvasWidth = 10000;
-        this.canvasHeight = 8000;
+        // Canvas Größe (will be adjusted dynamically based on content)
+        this.canvasWidth = 20000;
+        this.canvasHeight = 16000;
         this.centerX = this.canvasWidth / 2;
         this.centerY = this.canvasHeight / 2;
 
@@ -289,11 +289,61 @@ class MindmapView {
         // Render nodes with fixed distances
         this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
+        // Adjust canvas size if needed
+        this.adjustCanvasSize();
+
         // Draw lines after short delay
         setTimeout(() => this.drawLines(), 50);
 
         // Update minimap
         setTimeout(() => this.updateMinimap(), 100);
+    }
+
+    /**
+     * Adjust canvas size to fit all nodes with padding
+     */
+    adjustCanvasSize() {
+        if (this.nodePositions.size === 0) return;
+
+        // Find bounds of all nodes
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        this.nodePositions.forEach((pos) => {
+            minX = Math.min(minX, pos.x);
+            minY = Math.min(minY, pos.y);
+            maxX = Math.max(maxX, pos.x);
+            maxY = Math.max(maxY, pos.y);
+        });
+
+        // Add padding (nodes need space for their width/height)
+        const padding = 1000;
+        const requiredWidth = (maxX - minX) + padding * 2;
+        const requiredHeight = (maxY - minY) + padding * 2;
+
+        // Only resize if content exceeds current size
+        // We need the center to stay at centerX, centerY
+        const neededLeft = this.centerX - (this.centerX - minX) - padding;
+        const neededTop = this.centerY - (this.centerY - minY) - padding;
+        const neededRight = maxX + padding;
+        const neededBottom = maxY + padding;
+
+        let needsResize = false;
+
+        if (neededLeft < 0 || neededTop < 0 || neededRight > this.canvasWidth || neededBottom > this.canvasHeight) {
+            // Calculate new canvas size to fit all content
+            const newWidth = Math.max(this.canvasWidth, neededRight - Math.min(0, neededLeft) + padding);
+            const newHeight = Math.max(this.canvasHeight, neededBottom - Math.min(0, neededTop) + padding);
+
+            this.canvasWidth = newWidth;
+            this.canvasHeight = newHeight;
+
+            // Update CSS
+            this.canvas.style.minWidth = `${newWidth}px`;
+            this.canvas.style.minHeight = `${newHeight}px`;
+
+            needsResize = true;
+        }
+
+        return needsResize;
     }
 
     /**
@@ -320,6 +370,9 @@ class MindmapView {
                 this.nodePositions.clear();
                 if (this.nodeWidthCache) this.nodeWidthCache.clear();
                 this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
+
+                // Adjust canvas size if needed
+                this.adjustCanvasSize();
 
                 // Draw lines after nodes are in DOM
                 requestAnimationFrame(() => {

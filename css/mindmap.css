@@ -458,8 +458,8 @@ body.fullscreen .fullscreen-hint {
 
 .mindmap-canvas {
     position: relative;
-    min-width: 10000px;
-    min-height: 8000px;
+    min-width: 20000px;
+    min-height: 16000px;
     transform-origin: top left;
     transition: transform 0.3s ease, opacity 0.15s ease;
 }
