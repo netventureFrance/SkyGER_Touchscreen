@@ -1666,12 +1666,12 @@ class MindmapView {
         // Clear canvas
         ctx.clearRect(0, 0, width, height);
 
-        // Calculate bounds of all nodes
+        // Calculate bounds based on node positions (matches canvas scroll coordinates)
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         this.nodePositions.forEach((pos) => {
-            minX = Math.min(minX, pos.x - 100);
+            minX = Math.min(minX, pos.x - 150);
             minY = Math.min(minY, pos.y - 30);
-            maxX = Math.max(maxX, pos.x + 100);
+            maxX = Math.max(maxX, pos.x + 150);
             maxY = Math.max(maxY, pos.y + 30);
         });
 
@@ -1694,7 +1694,7 @@ class MindmapView {
         // Store for viewport calculations
         this.minimapBounds = { minX, minY, maxX, maxY, scale, offsetX, offsetY, width, height };
 
-        // Draw lines first (with node colors)
+        // Draw lines (using pos.x for consistency with viewport coordinates)
         ctx.lineWidth = 1;
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentId) {
@@ -1710,7 +1710,7 @@ class MindmapView {
             }
         });
 
-        // Draw nodes (with actual colors)
+        // Draw nodes (using pos.x for consistency with viewport)
         let activeNodePos = null;
         this.nodePositions.forEach((pos, nodeId) => {
             const x = pos.x * scale + offsetX;
@@ -1723,7 +1723,7 @@ class MindmapView {
                 activeNodePos = { x, y, color: nodeColor };
             }
 
-            // Node dot - use actual node color
+            // Node dot
             ctx.beginPath();
             ctx.arc(x, y, isActive ? 4 : 2.5, 0, Math.PI * 2);
             ctx.fillStyle = nodeColor;
