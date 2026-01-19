@@ -642,8 +642,8 @@ body.fullscreen .fullscreen-hint {
 }
 
 .mindmap-node.root .node-label {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 /* Level 1 Nodes */
@@ -654,7 +654,7 @@ body.fullscreen .fullscreen-hint {
 }
 
 .mindmap-node.level-1 .node-label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -667,7 +667,7 @@ body.fullscreen .fullscreen-hint {
 
 .mindmap-node.level-2 .node-label,
 .mindmap-node.level-3 .node-label {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .mindmap-node.level-3 .mindmap-node-box {
@@ -1005,12 +1005,11 @@ body.fullscreen .fullscreen-hint {
         padding: 10px 18px;
     }
 
-    .mindmap-node.root .node-label {
-        font-size: 12px;
-    }
-
     .mindmap-node-box {
         padding: 8px 12px;
+    }
+
+    .mindmap-node .node-label {
         font-size: 11px;
     }
 
@@ -1054,7 +1053,7 @@ body.fullscreen .fullscreen-hint {
         padding: 8px 14px;
     }
 
-    .mindmap-node.root .node-label {
+    .mindmap-node .node-label {
         font-size: 10px;
     }
 }
