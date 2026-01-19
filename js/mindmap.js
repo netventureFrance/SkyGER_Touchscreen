@@ -493,6 +493,13 @@ class MindmapView {
         if (this.expandedNodes.has(uniqueId)) {
             boxEl.classList.add('expanded');
         }
+        // Side-specific expansion classes for dual-side nodes
+        if (this.expandedNodes.has(uniqueId + ':L')) {
+            boxEl.classList.add('expanded-left');
+        }
+        if (this.expandedNodes.has(uniqueId + ':R')) {
+            boxEl.classList.add('expanded-right');
+        }
 
         // Highlight active node (use uniqueId to avoid duplicate ID issues)
         if (this.activeNodeId === uniqueId) {
@@ -526,11 +533,20 @@ class MindmapView {
             const hasBothSides = leftCount > 0 && rightCount > 0;
 
             if (hasBothSides) {
+                // Mark as dual-side node for special handling
+                boxEl.dataset.dualSide = 'true';
+
                 // Show indicators on both sides
                 // Left indicator
                 const leftToggle = document.createElement('div');
                 leftToggle.className = 'node-toggle left-indicator';
                 leftToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
+
+                // Left toggle click handler - toggle only left side
+                leftToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleSideToggle(node, uniqueId, 'left');
+                });
 
                 const leftCountEl = document.createElement('span');
                 leftCountEl.className = 'node-count left-indicator';
@@ -549,8 +565,20 @@ class MindmapView {
                 rightToggle.className = 'node-toggle';
                 rightToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
 
+                // Right toggle click handler - toggle only right side
+                rightToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleSideToggle(node, uniqueId, 'right');
+                });
+
                 boxEl.appendChild(rightCountEl);
                 boxEl.appendChild(rightToggle);
+
+                // Label click handler - toggle both sides
+                labelEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleDualSideToggle(node, uniqueId);
+                });
             } else {
                 // Single side - show indicator on appropriate side
                 const countEl = document.createElement('span');
@@ -590,8 +618,14 @@ class MindmapView {
         this.nodesContainer.appendChild(nodeEl);
 
         // Kinder rendern (wenn erweitert)
-        if (node.children && node.children.length > 0 && this.expandedNodes.has(uniqueId)) {
-            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId, nodeDirection);
+        // For dual-side nodes, check if either side is expanded
+        const isDualSide = boxEl.dataset.dualSide === 'true';
+        const isExpanded = isDualSide
+            ? (this.expandedNodes.has(uniqueId + ':L') || this.expandedNodes.has(uniqueId + ':R'))
+            : this.expandedNodes.has(uniqueId);
+
+        if (node.children && node.children.length > 0 && isExpanded) {
+            this.renderChildren(node, x, y, level, startAngle, endAngle, nodeColor, uniqueId, nodeDirection, isDualSide);
         }
     }
 
@@ -618,8 +652,9 @@ class MindmapView {
      * Kinder-Nodes rendern - Links oder Rechts basierend auf direction
      * @param {string} parentPathId - Parent's path-based ID for generating child pathIds
      * @param {string} inheritedDirection - Direction inherited from parent ('left' or null)
+     * @param {boolean} isDualSide - Whether parent is a dual-side node
      */
-    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null, inheritedDirection = null) {
+    renderChildren(parentNode, parentX, parentY, parentLevel, startAngle, endAngle, parentColor = null, parentId = null, inheritedDirection = null, isDualSide = false) {
         const children = parentNode.children;
         const childLevel = parentLevel + 1;
 
@@ -628,6 +663,10 @@ class MindmapView {
 
         // Fixed distance - must be larger than widest node + gap
         const distance = 450;
+
+        // For dual-side nodes, check which sides are expanded
+        const renderLeft = isDualSide ? this.expandedNodes.has(parentId + ':L') : true;
+        const renderRight = isDualSide ? this.expandedNodes.has(parentId + ':R') : true;
 
         // Separate children by direction
         // Children inherit parent's direction unless they specify their own
@@ -642,8 +681,8 @@ class MindmapView {
             }
         });
 
-        // Render right children
-        if (rightChildren.length > 0) {
+        // Render right children (only if right side is expanded for dual-side nodes)
+        if (rightChildren.length > 0 && renderRight) {
             const rightHeights = rightChildren.map(({ child, index }) => {
                 const childPathId = `${parentPathId}-${index}`;
                 return this.calculateSubtreeHeight(child, childLevel, childPathId);
@@ -669,8 +708,8 @@ class MindmapView {
             });
         }
 
-        // Render left children
-        if (leftChildren.length > 0) {
+        // Render left children (only if left side is expanded for dual-side nodes)
+        if (leftChildren.length > 0 && renderLeft) {
             const leftHeights = leftChildren.map(({ child, index }) => {
                 const childPathId = `${parentPathId}-${index}`;
                 return this.calculateSubtreeHeight(child, childLevel, childPathId);
@@ -857,6 +896,94 @@ class MindmapView {
             // Smooth center for leaf nodes
             setTimeout(() => this.centerView(), 50);
         }
+    }
+
+    /**
+     * Handle side-specific toggle for dual-side nodes
+     * @param {string} side - 'left' or 'right'
+     */
+    handleSideToggle(node, uniqueId, side) {
+        // Track active node
+        this.activeNodeId = uniqueId;
+        this.selectedNode = node;
+        this.updateUrl(uniqueId);
+
+        const sideKey = uniqueId + ':' + (side === 'left' ? 'L' : 'R');
+
+        if (this.expandedNodes.has(sideKey)) {
+            // Collapse this side - also collapse children on this side
+            this.collapseSide(uniqueId, side);
+        } else {
+            // Expand this side
+            this.expandedNodes.add(sideKey);
+        }
+
+        // Use smooth render with fade transition
+        this.smoothRender(uniqueId).then(() => {
+            if (this.detailPanel.classList.contains('open')) {
+                this.showDetail(node, this.activeNodeId);
+            }
+            this.updateBreadcrumbs();
+        });
+    }
+
+    /**
+     * Handle dual-side toggle (label click) - toggles both sides together
+     */
+    handleDualSideToggle(node, uniqueId) {
+        // Track active node
+        this.activeNodeId = uniqueId;
+        this.selectedNode = node;
+        this.updateUrl(uniqueId);
+
+        const leftKey = uniqueId + ':L';
+        const rightKey = uniqueId + ':R';
+        const leftExpanded = this.expandedNodes.has(leftKey);
+        const rightExpanded = this.expandedNodes.has(rightKey);
+
+        if (leftExpanded || rightExpanded) {
+            // At least one side is expanded - collapse both
+            this.collapseSide(uniqueId, 'left');
+            this.collapseSide(uniqueId, 'right');
+        } else {
+            // Both collapsed - expand both
+            this.expandedNodes.add(leftKey);
+            this.expandedNodes.add(rightKey);
+        }
+
+        // Use smooth render with fade transition
+        this.smoothRender(uniqueId).then(() => {
+            if (this.detailPanel.classList.contains('open')) {
+                this.showDetail(node, this.activeNodeId);
+            }
+            this.updateBreadcrumbs();
+        });
+    }
+
+    /**
+     * Collapse a specific side of a dual-side node and its children
+     */
+    collapseSide(uniqueId, side) {
+        const sideKey = uniqueId + ':' + (side === 'left' ? 'L' : 'R');
+        this.expandedNodes.delete(sideKey);
+
+        // Also collapse any children that were on this side
+        // Children of a dual-side node will have paths starting with uniqueId-X
+        // We need to identify which children are on which side
+        const toRemove = [];
+        for (const id of this.expandedNodes) {
+            if (id.startsWith(uniqueId + '-') && !id.includes(':')) {
+                // This is a child path - check if it's on the side being collapsed
+                // We need to know the child index and check the direction
+                // For simplicity, we'll remove all child expansions and let re-render handle it
+                toRemove.push(id);
+            }
+            // Also remove any side-specific keys for children
+            if (id.startsWith(uniqueId + '-') && id.includes(':')) {
+                toRemove.push(id);
+            }
+        }
+        toRemove.forEach(id => this.expandedNodes.delete(id));
     }
 
     /**
@@ -1487,11 +1614,29 @@ class MindmapView {
 
     expandAll() {
         // Recursively add all path-based IDs
-        const addAll = (node, pathId = 'root') => {
-            this.expandedNodes.add(pathId);
-            if (node.children) {
+        const addAll = (node, pathId = 'root', inheritedDirection = null) => {
+            if (node.children && node.children.length > 0) {
+                // Check if this is a dual-side node
+                let leftCount = 0, rightCount = 0;
+                node.children.forEach(child => {
+                    const childDir = child.direction || inheritedDirection;
+                    if (childDir === 'left') leftCount++;
+                    else rightCount++;
+                });
+
+                if (leftCount > 0 && rightCount > 0) {
+                    // Dual-side node - add both side keys
+                    this.expandedNodes.add(pathId + ':L');
+                    this.expandedNodes.add(pathId + ':R');
+                } else {
+                    // Single-side node - add regular key
+                    this.expandedNodes.add(pathId);
+                }
+
+                // Process children
                 node.children.forEach((child, index) => {
-                    addAll(child, `${pathId}-${index}`);
+                    const childDir = child.direction || inheritedDirection;
+                    addAll(child, `${pathId}-${index}`, childDir);
                 });
             }
         };

@@ -749,6 +749,21 @@ body.fullscreen .fullscreen-hint {
     stroke-width: 2;
 }
 
+/* Side-specific expansion for dual-side nodes */
+/* Left indicator shows border when left side is expanded */
+.mindmap-node-box.expanded-left .node-toggle.left-indicator svg circle {
+    fill: transparent;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* Right indicator shows border when right side is expanded */
+.mindmap-node-box.expanded-right .node-toggle:not(.left-indicator) svg circle {
+    fill: transparent;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
 /* Left-side node indicator positioning */
 .mindmap-node .node-toggle.left-indicator {
     margin-left: 0;
