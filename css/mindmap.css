@@ -1226,12 +1226,25 @@ body.fullscreen .fullscreen-hint {
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
+    /* Hide scrollbar on all browsers */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
 }
 
 .carousel-slides {
     position: relative;
     width: 100%;
     height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.carousel-slides::-webkit-scrollbar {
+    display: none;
 }
 
 .carousel-slide {
