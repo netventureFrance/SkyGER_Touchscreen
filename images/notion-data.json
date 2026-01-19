@@ -9,7 +9,7 @@
       "id": "touchscreen-sky-deutschland",
       "label": "TOUCHSCREEN SKY DEUTSCHLAND",
       "description": "",
-      "color": "#00A0D2",
+      "color": "#1FB6FF",
       "screenshots": [
         {
           "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/image-1.png",
@@ -21,7 +21,7 @@
           "id": "designs",
           "label": "DESIGNS",
           "description": "",
-          "color": "#00A0D2",
+          "color": "#FF8A1F",
           "screenshots": [],
           "children": [
             {
@@ -78,13 +78,13 @@
             },
             {
               "id": "match-plan",
-              "label": "MATCH PLAN ",
+              "label": "MATCH PLAN",
               "description": "",
               "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/match-plan/image-1.png",
-                  "name": "MATCH PLAN "
+                  "name": "MATCH PLAN"
                 }
               ],
               "children": []
@@ -95,7 +95,7 @@
           "id": "sky-sport-bundesliga",
           "label": "SKY SPORT BUNDESLIGA",
           "description": "",
-          "color": "#00A0D2",
+          "color": "#E5486A",
           "screenshots": [
             {
               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/image-1.png",
@@ -107,7 +107,7 @@
               "id": "spieltag",
               "label": "SPIELTAG",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/image-1.png",
@@ -247,17 +247,17 @@
                         },
                         {
                           "id": "spieler-statistk",
-                          "label": "SPIELER STATISTK ",
+                          "label": "SPIELER STATISTK",
                           "description": "",
                           "color": null,
                           "screenshots": [
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-1.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             },
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-2.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             }
                           ],
                           "children": []
@@ -541,17 +541,17 @@
                     },
                     {
                       "id": "spieler-statistk",
-                      "label": "SPIELER STATISTK ",
+                      "label": "SPIELER STATISTK",
                       "description": "",
                       "color": null,
                       "screenshots": [
                         {
                           "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-1.png",
-                          "name": "SPIELER STATISTK "
+                          "name": "SPIELER STATISTK"
                         },
                         {
                           "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-2.png",
-                          "name": "SPIELER STATISTK "
+                          "name": "SPIELER STATISTK"
                         }
                       ],
                       "children": []
@@ -804,7 +804,7 @@
               "id": "twitter",
               "label": "TWITTER",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/twitter/image-1.png",
@@ -825,7 +825,7 @@
               "id": "headlines",
               "label": "HEADLINES",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/headlines/image-1.png",
@@ -838,7 +838,7 @@
               "id": "live",
               "label": "LIVE",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/live/image-1.png",
@@ -851,7 +851,7 @@
               "id": "analyse",
               "label": "ANALYSE",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/image-1.png",
@@ -899,7 +899,7 @@
               "id": "multiview",
               "label": "MULTIVIEW",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/multiview/image-1.png",
@@ -912,7 +912,7 @@
               "id": "telestrator",
               "label": "TELESTRATOR",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/telestrator/image-1.png",
@@ -937,7 +937,7 @@
               "id": "liga-information",
               "label": "LIGA INFORMATION",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/image-1.png",
@@ -1440,17 +1440,17 @@
                         },
                         {
                           "id": "spieler-statistk",
-                          "label": "SPIELER STATISTK ",
+                          "label": "SPIELER STATISTK",
                           "description": "",
                           "color": null,
                           "screenshots": [
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-1.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             },
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/aufstellung/spieler-statistk/image-2.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             }
                           ],
                           "children": []
@@ -1658,7 +1658,7 @@
               "id": "tabelle",
               "label": "TABELLE",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [
                 {
                   "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/image-1.png",
@@ -1790,17 +1790,17 @@
                         },
                         {
                           "id": "spieler-statistk",
-                          "label": "SPIELER STATISTK ",
+                          "label": "SPIELER STATISTK",
                           "description": "",
                           "color": null,
                           "screenshots": [
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-1.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             },
                             {
                               "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/aufstellung/spieler-statistk/image-2.png",
-                              "name": "SPIELER STATISTK "
+                              "name": "SPIELER STATISTK"
                             }
                           ],
                           "children": []
@@ -2008,7 +2008,7 @@
               "id": "sidebar",
               "label": "SIDEBAR",
               "description": "",
-              "color": "#00A0D2",
+              "color": null,
               "screenshots": [],
               "children": [
                 {
@@ -2117,7 +2117,7 @@
           "id": "rcs-websteuerung",
           "label": "RCS WEBSTEUERUNG",
           "description": "",
-          "color": null,
+          "color": "#7B5CFF",
           "screenshots": [],
           "children": [
             {
@@ -2379,8 +2379,13 @@
           "id": "aki-paint",
           "label": "AKI PAINT",
           "description": "",
-          "color": null,
-          "screenshots": [],
+          "color": "#FF4FA3",
+          "screenshots": [
+            {
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/aki-paint/image-1.png",
+              "name": "AKI PAINT"
+            }
+          ],
           "children": []
         }
       ]
