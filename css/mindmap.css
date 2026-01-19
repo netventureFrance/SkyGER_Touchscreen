@@ -712,7 +712,7 @@ body.fullscreen .fullscreen-hint {
     margin-left: 8px;
     border: 1px solid rgba(0, 200, 255, 0.5);
     flex-shrink: 0;
-    cursor: pointer;
+    cursor: default;
 }
 
 /* Left-side node count positioning */
@@ -799,7 +799,7 @@ body.fullscreen .fullscreen-hint {
 
 /* Label hover effect for dual-side nodes */
 .mindmap-node-box[data-dual-side="true"] .node-label {
-    cursor: default;
+    cursor: pointer;
     transition: color 0.2s ease;
 }
 
