@@ -1387,18 +1387,30 @@ class MindmapView {
 
         // Only update if zoom actually changed
         if (this.zoom !== oldZoom) {
+            // Calculate center point before zoom to maintain position
+            const viewportCenterX = this.viewport.scrollLeft + this.viewport.clientWidth / 2;
+            const viewportCenterY = this.viewport.scrollTop + this.viewport.clientHeight / 2;
+            const canvasCenterX = viewportCenterX / oldZoom;
+            const canvasCenterY = viewportCenterY / oldZoom;
+
+            // Apply zoom transform
             this.canvas.style.transform = `scale(${this.zoom})`;
             const zoomText = `${Math.round(this.zoom * 100)}%`;
             document.getElementById('zoomLevel').textContent = zoomText;
-            // Also update fullscreen zoom display
             const fsZoomLevel = document.getElementById('fsZoomLevel');
             if (fsZoomLevel) fsZoomLevel.textContent = zoomText;
 
             // Redraw lines with correct measurements for new zoom
             this.drawLines();
 
-            // Recenter view after zoom change
-            setTimeout(() => this.centerView(), 50);
+            // Adjust scroll to keep the same canvas point centered
+            const newScrollX = canvasCenterX * this.zoom - this.viewport.clientWidth / 2;
+            const newScrollY = canvasCenterY * this.zoom - this.viewport.clientHeight / 2;
+            this.viewport.scrollLeft = Math.max(0, newScrollX);
+            this.viewport.scrollTop = Math.max(0, newScrollY);
+
+            // Update minimap viewport
+            this.updateMinimapViewport();
         }
     }
 
