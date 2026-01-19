@@ -797,6 +797,11 @@ body.fullscreen .fullscreen-hint {
     stroke-width: 2;
 }
 
+/* Dual-side node box should not show pointer on non-clickable areas */
+.mindmap-node-box[data-dual-side="true"] {
+    cursor: default;
+}
+
 /* Label hover effect for dual-side nodes */
 .mindmap-node-box[data-dual-side="true"] .node-label {
     cursor: pointer;
