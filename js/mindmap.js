@@ -509,33 +509,74 @@ class MindmapView {
         labelEl.className = 'node-label';
         labelEl.textContent = node.label;
 
-        // Create indicator elements if node has children
-        let toggleEl = null;
-        let countEl = null;
-        if (node.children && node.children.length > 0) {
-            countEl = document.createElement('span');
+        // For root node (level 0), show indicators on both sides if it has children on both sides
+        if (level === 0 && node.children && node.children.length > 0) {
+            // Count left and right children
+            let leftCount = 0;
+            let rightCount = 0;
+            node.children.forEach(child => {
+                if (child.direction === 'left') {
+                    leftCount++;
+                } else {
+                    rightCount++;
+                }
+            });
+
+            // Left indicator (if there are left children)
+            if (leftCount > 0) {
+                const leftToggle = document.createElement('div');
+                leftToggle.className = 'node-toggle left-indicator';
+                leftToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
+
+                const leftCountEl = document.createElement('span');
+                leftCountEl.className = 'node-count left-indicator';
+                leftCountEl.textContent = leftCount;
+
+                boxEl.appendChild(leftToggle);
+                boxEl.appendChild(leftCountEl);
+            }
+
+            // Label in the middle
+            boxEl.appendChild(labelEl);
+
+            // Right indicator (if there are right children)
+            if (rightCount > 0) {
+                const rightCountEl = document.createElement('span');
+                rightCountEl.className = 'node-count';
+                rightCountEl.textContent = rightCount;
+
+                const rightToggle = document.createElement('div');
+                rightToggle.className = 'node-toggle';
+                rightToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
+
+                boxEl.appendChild(rightCountEl);
+                boxEl.appendChild(rightToggle);
+            }
+        } else if (node.children && node.children.length > 0) {
+            // Non-root nodes: single indicator based on direction
+            const countEl = document.createElement('span');
             countEl.className = 'node-count';
             countEl.textContent = node.children.length;
 
-            // Circle indicator (filled when closed, border when open)
-            toggleEl = document.createElement('div');
+            const toggleEl = document.createElement('div');
             toggleEl.className = 'node-toggle';
-            // Circle SVG - CSS will handle filled vs border based on expanded state
             toggleEl.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
-        }
 
-        // For left-side nodes, prepend indicator and count before label
-        // For right-side nodes, append after label
-        if (nodeDirection === 'left' && toggleEl && countEl) {
-            toggleEl.classList.add('left-indicator');
-            countEl.classList.add('left-indicator');
-            boxEl.appendChild(toggleEl);
-            boxEl.appendChild(countEl);
-            boxEl.appendChild(labelEl);
+            // For left-side nodes, prepend indicator and count before label
+            if (nodeDirection === 'left') {
+                toggleEl.classList.add('left-indicator');
+                countEl.classList.add('left-indicator');
+                boxEl.appendChild(toggleEl);
+                boxEl.appendChild(countEl);
+                boxEl.appendChild(labelEl);
+            } else {
+                boxEl.appendChild(labelEl);
+                boxEl.appendChild(countEl);
+                boxEl.appendChild(toggleEl);
+            }
         } else {
+            // Leaf nodes: just the label
             boxEl.appendChild(labelEl);
-            if (countEl) boxEl.appendChild(countEl);
-            if (toggleEl) boxEl.appendChild(toggleEl);
         }
 
         // Events
