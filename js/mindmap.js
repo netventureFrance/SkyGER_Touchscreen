@@ -399,7 +399,7 @@ class MindmapView {
 
         // Node Element erstellen
         const nodeEl = document.createElement('div');
-        nodeEl.className = `mindmap-node level-${level} ${level === 0 ? 'root' : ''}`;
+        nodeEl.className = `mindmap-node level-${level} ${level === 0 ? 'root' : ''} ${nodeDirection === 'left' ? 'direction-left' : ''}`;
         nodeEl.dataset.id = uniqueId;
         nodeEl.style.left = `${x}px`;
         nodeEl.style.top = `${y}px`;
@@ -444,20 +444,33 @@ class MindmapView {
         labelEl.className = 'node-label';
         labelEl.textContent = node.label;
 
-        boxEl.appendChild(labelEl);
-
-        // Count Badge (wenn Kinder vorhanden)
+        // Create indicator elements if node has children
+        let toggleEl = null;
+        let countEl = null;
         if (node.children && node.children.length > 0) {
-            const countEl = document.createElement('span');
+            countEl = document.createElement('span');
             countEl.className = 'node-count';
             countEl.textContent = node.children.length;
-            boxEl.appendChild(countEl);
 
-            // Toggle Icon
-            const toggleEl = document.createElement('div');
+            // Circle indicator (filled when closed, border when open)
+            toggleEl = document.createElement('div');
             toggleEl.className = 'node-toggle';
-            toggleEl.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>`;
+            // Circle SVG - CSS will handle filled vs border based on expanded state
+            toggleEl.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
+        }
+
+        // For left-side nodes, prepend indicator and count before label
+        // For right-side nodes, append after label
+        if (nodeDirection === 'left' && toggleEl && countEl) {
+            toggleEl.classList.add('left-indicator');
+            countEl.classList.add('left-indicator');
             boxEl.appendChild(toggleEl);
+            boxEl.appendChild(countEl);
+            boxEl.appendChild(labelEl);
+        } else {
+            boxEl.appendChild(labelEl);
+            if (countEl) boxEl.appendChild(countEl);
+            if (toggleEl) boxEl.appendChild(toggleEl);
         }
 
         // Events

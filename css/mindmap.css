@@ -539,6 +539,11 @@ body.fullscreen .fullscreen-hint {
     z-index: 10;
 }
 
+/* Left-side nodes: right-align the box so connection is on the right edge */
+.mindmap-node.direction-left {
+    transform: translateX(-100%) translateY(-50%);
+}
+
 .mindmap-node-box {
     display: inline-flex;
     align-items: center;
@@ -706,15 +711,23 @@ body.fullscreen .fullscreen-hint {
     border-radius: 10px;
     margin-left: 8px;
     border: 1px solid rgba(0, 200, 255, 0.5);
+    flex-shrink: 0;
 }
 
-/* Toggle Indicator */
-.mindmap-node .node-toggle {
-    width: 16px;
-    height: 16px;
-    color: var(--text-muted);
-    transition: transform 0.3s ease;
+/* Left-side node count positioning */
+.mindmap-node .node-count.left-indicator {
     margin-left: 5px;
+    margin-right: 8px;
+}
+
+/* Toggle Indicator (Circle) */
+.mindmap-node .node-toggle {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    margin-left: 5px;
+    flex-shrink: 0;
 }
 
 .mindmap-node .node-toggle svg {
@@ -722,8 +735,24 @@ body.fullscreen .fullscreen-hint {
     height: 100%;
 }
 
-.mindmap-node-box.expanded .node-toggle {
-    transform: rotate(90deg);
+/* Filled circle when closed */
+.mindmap-node .node-toggle svg circle {
+    fill: currentColor;
+    stroke: currentColor;
+    transition: all 0.3s ease;
+}
+
+/* Border-only circle when expanded */
+.mindmap-node-box.expanded .node-toggle svg circle {
+    fill: transparent;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* Left-side node indicator positioning */
+.mindmap-node .node-toggle.left-indicator {
+    margin-left: 0;
+    margin-right: 5px;
 }
 
 
@@ -898,6 +927,22 @@ body.fullscreen .fullscreen-hint {
     to {
         opacity: 1;
         transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Left-side nodes animation */
+.mindmap-node.direction-left {
+    animation: nodeAppearLeft 0.4s ease backwards;
+}
+
+@keyframes nodeAppearLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) translateY(-50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-100%) translateY(-50%) scale(1);
     }
 }
 
