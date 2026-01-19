@@ -141,7 +141,7 @@ class MindmapView {
                     }
                     return null;
                 };
-                const touchNode = findNode(data, 'Touch Sport');
+                const touchNode = findNode(data, 'TOUCHSCREEN SKY DEUTSCHLAND');
                 if (touchNode) {
                     this.notionData = touchNode;
                     console.log('Loaded Notion data:', touchNode.children?.length, 'items');
