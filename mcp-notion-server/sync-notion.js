@@ -512,6 +512,7 @@ function generateDataStructure(item, basePath = '', depth = 0) {
         label: item.title || 'Untitled',
         description: item.description || '',
         color: item.color || null, // Notion background color
+        direction: item.direction || null, // 'left', 'right', or null
         screenshots: item.images.map((img, i) => {
             let ext = 'jpg';
             const urlLower = img.url.toLowerCase();
