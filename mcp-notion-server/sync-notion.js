@@ -468,8 +468,13 @@ async function downloadAllImages(item, basePath = '') {
             const filepath = join(folderPath, filename);
 
             try {
-                console.log(`  📥 ${currentPath}/${filename}`);
-                await downloadFile(img.url, filepath);
+                // Skip if file already exists (optimization)
+                if (existsSync(filepath)) {
+                    console.log(`  ✓ ${currentPath}/${filename} (cached)`);
+                } else {
+                    console.log(`  📥 ${currentPath}/${filename}`);
+                    await downloadFile(img.url, filepath);
+                }
 
                 results.push({
                     itemTitle: item.title,
