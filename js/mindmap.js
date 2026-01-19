@@ -1694,13 +1694,14 @@ class MindmapView {
         // Store for viewport calculations
         this.minimapBounds = { minX, minY, maxX, maxY, scale, offsetX, offsetY, width, height };
 
-        // Draw lines first
-        ctx.strokeStyle = 'rgba(0, 160, 210, 0.3)';
+        // Draw lines first (with node colors)
         ctx.lineWidth = 1;
         this.nodePositions.forEach((pos, nodeId) => {
             if (pos.parentId) {
                 const parentPos = this.nodePositions.get(pos.parentId);
                 if (parentPos) {
+                    const lineColor = pos.color || '#00a0d2';
+                    ctx.strokeStyle = this.hexToRgba(lineColor, 0.5);
                     ctx.beginPath();
                     ctx.moveTo(parentPos.x * scale + offsetX, parentPos.y * scale + offsetY);
                     ctx.lineTo(pos.x * scale + offsetX, pos.y * scale + offsetY);
@@ -1709,31 +1710,31 @@ class MindmapView {
             }
         });
 
-        // Draw nodes
+        // Draw nodes (with actual colors)
+        let activeNodePos = null;
         this.nodePositions.forEach((pos, nodeId) => {
             const x = pos.x * scale + offsetX;
             const y = pos.y * scale + offsetY;
             const isActive = nodeId === this.activeNodeId;
             const nodeColor = pos.color || '#00a0d2';
 
-            // Node dot
+            // Store active node position for pulse overlay
+            if (isActive) {
+                activeNodePos = { x, y, color: nodeColor };
+            }
+
+            // Node dot - use actual node color
             ctx.beginPath();
             ctx.arc(x, y, isActive ? 4 : 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? nodeColor : (pos.level === 0 ? '#00a0d2' : 'rgba(255, 255, 255, 0.6)');
+            ctx.fillStyle = nodeColor;
             ctx.fill();
-
-            // Active node ring
-            if (isActive) {
-                ctx.beginPath();
-                ctx.arc(x, y, 6, 0, Math.PI * 2);
-                ctx.strokeStyle = nodeColor;
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-            }
         });
 
         // Update viewport rectangle
         this.updateMinimapViewport();
+
+        // Update active node pulse overlay
+        this.updateMinimapActiveIndicator(activeNodePos);
     }
 
     /**
@@ -1763,6 +1764,49 @@ class MindmapView {
         this.minimapViewport.style.top = `${Math.max(0, y)}px`;
         this.minimapViewport.style.width = `${Math.min(w, bounds.width - x)}px`;
         this.minimapViewport.style.height = `${Math.min(h, bounds.height - y)}px`;
+    }
+
+    /**
+     * Update the pulsing active indicator on the minimap
+     */
+    updateMinimapActiveIndicator(activePos) {
+        // Get or create the pulse element
+        let pulse = this.minimapContent.querySelector('.minimap-active-pulse');
+
+        if (!activePos) {
+            if (pulse) pulse.style.display = 'none';
+            return;
+        }
+
+        if (!pulse) {
+            pulse = document.createElement('div');
+            pulse.className = 'minimap-active-pulse';
+            this.minimapContent.appendChild(pulse);
+        }
+
+        pulse.style.display = 'block';
+        pulse.style.left = `${activePos.x}px`;
+        pulse.style.top = `${activePos.y}px`;
+        pulse.style.borderColor = activePos.color;
+        pulse.style.boxShadow = `0 0 8px ${activePos.color}`;
+    }
+
+    /**
+     * Convert hex color to rgba
+     */
+    hexToRgba(hex, alpha) {
+        // Handle shorthand hex
+        let r, g, b;
+        if (hex.length === 4) {
+            r = parseInt(hex[1] + hex[1], 16);
+            g = parseInt(hex[2] + hex[2], 16);
+            b = parseInt(hex[3] + hex[3], 16);
+        } else {
+            r = parseInt(hex.slice(1, 3), 16);
+            g = parseInt(hex.slice(3, 5), 16);
+            b = parseInt(hex.slice(5, 7), 16);
+        }
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
     /**
