@@ -1663,8 +1663,16 @@ class MindmapView {
         const width = rect.width;
         const height = rect.height;
 
-        // Clear canvas
-        ctx.clearRect(0, 0, width, height);
+        // Reinitialize canvas if size changed
+        if (this.minimapCanvas.width !== rect.width * 2 || this.minimapCanvas.height !== rect.height * 2) {
+            this.initMinimapCanvas();
+        }
+
+        // Clear entire canvas (use canvas dimensions, not logical)
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, this.minimapCanvas.width, this.minimapCanvas.height);
+        ctx.restore();
 
         // Calculate bounds based on node positions (matches canvas scroll coordinates)
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -1716,9 +1724,10 @@ class MindmapView {
             const y = pos.y * scale + offsetY;
             const nodeColor = pos.color || '#00a0d2';
 
-            // Node dot
+            // Node dot - size based on level (root bigger)
+            const radius = pos.level === 0 ? 4 : 3;
             ctx.beginPath();
-            ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
             ctx.fillStyle = nodeColor;
             ctx.fill();
         });
