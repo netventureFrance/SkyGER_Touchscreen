@@ -44,6 +44,19 @@
           "children": []
         },
         {
+          "id": "formel-1",
+          "label": "Formel 1",
+          "description": "",
+          "color": null,
+          "screenshots": [
+            {
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touch-sport/formel-1/image-1.png",
+              "name": "Formel 1"
+            }
+          ],
+          "children": []
+        },
+        {
           "id": "sky-sport-design-bundesliga",
           "label": "Sky Sport Design Bundesliga",
           "description": "",
