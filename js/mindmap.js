@@ -30,6 +30,12 @@ class MindmapView {
         this.minimapViewport = document.getElementById('minimapViewport');
         this.minimapContent = document.getElementById('minimapContent');
 
+        // Search elements
+        this.searchInput = document.getElementById('searchInput');
+        this.searchResults = document.getElementById('searchResults');
+        this.searchClear = document.getElementById('searchClear');
+        this.searchSelectedIndex = -1;
+
         // Canvas Größe (larger to accommodate expanded trees at high zoom)
         this.canvasWidth = 10000;
         this.canvasHeight = 8000;
@@ -88,6 +94,9 @@ class MindmapView {
 
         // Minimap setup
         this.setupMinimap();
+
+        // Search setup
+        this.setupSearch();
 
         // Zentrieren
         this.centerView();
@@ -1714,6 +1723,276 @@ class MindmapView {
         if (this.minimapViewport) {
             this.minimapViewport.style.cursor = 'move';
         }
+    }
+
+    // ==================== SEARCH ====================
+
+    /**
+     * Setup search functionality
+     */
+    setupSearch() {
+        if (!this.searchInput) return;
+
+        // Build search index
+        this.buildSearchIndex();
+
+        // Input handler with debounce
+        let debounceTimer;
+        this.searchInput.addEventListener('input', (e) => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => this.handleSearch(e.target.value), 150);
+        });
+
+        // Clear button
+        if (this.searchClear) {
+            this.searchClear.addEventListener('click', () => {
+                this.searchInput.value = '';
+                this.closeSearch();
+                this.searchInput.focus();
+            });
+        }
+
+        // Keyboard navigation
+        this.searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                this.selectSearchResult(this.searchSelectedIndex + 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                this.selectSearchResult(this.searchSelectedIndex - 1);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                this.activateSearchResult();
+            } else if (e.key === 'Escape') {
+                this.closeSearch();
+                this.searchInput.blur();
+            }
+        });
+
+        // Focus/blur
+        this.searchInput.addEventListener('focus', () => {
+            if (this.searchInput.value.length >= 2) {
+                this.handleSearch(this.searchInput.value);
+            }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                this.closeSearch();
+            }
+        });
+
+        // Global shortcut Ctrl+K
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                this.searchInput.focus();
+                this.searchInput.select();
+            }
+        });
+    }
+
+    /**
+     * Build search index from all nodes
+     */
+    buildSearchIndex() {
+        this.searchIndex = [];
+        const data = this.buildData();
+
+        const indexNode = (node, path = [], pathIds = ['root'], parentColor = null) => {
+            const nodeColor = node.color || parentColor;
+            const pathId = pathIds[pathIds.length - 1];
+
+            this.searchIndex.push({
+                id: node.id,
+                pathId: pathId,
+                label: node.label,
+                path: [...path],
+                pathLabels: path.map(p => p.label),
+                color: nodeColor,
+                node: node
+            });
+
+            if (node.children) {
+                node.children.forEach((child, index) => {
+                    const childPathId = `${pathId}-${index}`;
+                    indexNode(
+                        child,
+                        [...path, { id: node.id, label: node.label }],
+                        [...pathIds, childPathId],
+                        nodeColor
+                    );
+                });
+            }
+        };
+
+        indexNode(data);
+    }
+
+    /**
+     * Handle search input
+     */
+    handleSearch(query) {
+        query = query.trim().toLowerCase();
+
+        if (query.length < 2) {
+            this.closeSearch();
+            return;
+        }
+
+        // Filter results
+        const results = this.searchIndex.filter(item =>
+            item.label.toLowerCase().includes(query)
+        ).slice(0, 10); // Limit to 10 results
+
+        this.displaySearchResults(results, query);
+    }
+
+    /**
+     * Display search results
+     */
+    displaySearchResults(results, query) {
+        if (results.length === 0) {
+            this.searchResults.innerHTML = `
+                <div class="search-no-results">Keine Ergebnisse für "${escapeHtml(query)}"</div>
+            `;
+            this.searchResults.classList.add('active');
+            return;
+        }
+
+        let html = '';
+        results.forEach((result, index) => {
+            const pathStr = result.pathLabels.length > 0
+                ? result.pathLabels.join(' › ')
+                : 'Root';
+
+            const colorDot = result.color
+                ? `<span class="color-dot" style="background: ${escapeHtml(result.color)}"></span>`
+                : '';
+
+            // Highlight matching text
+            const highlightedLabel = result.label.replace(
+                new RegExp(`(${escapeHtml(query)})`, 'gi'),
+                '<mark>$1</mark>'
+            );
+
+            html += `
+                <div class="search-result-item" data-index="${index}" data-path-id="${escapeHtml(result.pathId)}">
+                    <div class="search-result-title">${colorDot}${highlightedLabel}</div>
+                    <div class="search-result-path">${escapeHtml(pathStr)}</div>
+                </div>
+            `;
+        });
+
+        html += `
+            <div class="search-hint">
+                <kbd>↑</kbd> <kbd>↓</kbd> Navigieren · <kbd>Enter</kbd> Auswählen · <kbd>Esc</kbd> Schließen
+            </div>
+        `;
+
+        this.searchResults.innerHTML = html;
+        this.searchResults.classList.add('active');
+        this.searchSelectedIndex = -1;
+        this.currentSearchResults = results;
+
+        // Click handlers
+        this.searchResults.querySelectorAll('.search-result-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.dataset.index);
+                this.searchSelectedIndex = index;
+                this.activateSearchResult();
+            });
+        });
+    }
+
+    /**
+     * Select a search result by index
+     */
+    selectSearchResult(index) {
+        const items = this.searchResults.querySelectorAll('.search-result-item');
+        if (items.length === 0) return;
+
+        // Wrap around
+        if (index < 0) index = items.length - 1;
+        if (index >= items.length) index = 0;
+
+        // Update selection
+        items.forEach((item, i) => {
+            item.classList.toggle('selected', i === index);
+        });
+
+        this.searchSelectedIndex = index;
+
+        // Scroll into view
+        items[index].scrollIntoView({ block: 'nearest' });
+    }
+
+    /**
+     * Activate the selected search result
+     */
+    activateSearchResult() {
+        if (!this.currentSearchResults || this.searchSelectedIndex < 0) {
+            // If nothing selected but we have results, select first
+            if (this.currentSearchResults && this.currentSearchResults.length > 0) {
+                this.searchSelectedIndex = 0;
+            } else {
+                return;
+            }
+        }
+
+        const result = this.currentSearchResults[this.searchSelectedIndex];
+        if (!result) return;
+
+        // Close search
+        this.closeSearch();
+
+        // Navigate to the node
+        this.navigateToSearchResult(result);
+    }
+
+    /**
+     * Navigate to a search result
+     */
+    navigateToSearchResult(result) {
+        // Expand path to this node
+        this.expandedNodes.clear();
+        this.expandedNodes.add('root');
+
+        // Build path of pathIds to expand
+        const pathParts = result.pathId.split('-');
+        let currentPath = 'root';
+        for (let i = 1; i < pathParts.length; i++) {
+            currentPath += '-' + pathParts[i];
+            // Expand parent (all except the last one which is the target)
+            if (i < pathParts.length) {
+                this.expandedNodes.add(currentPath.split('-').slice(0, -1).join('-') || 'root');
+            }
+        }
+        // Also expand direct parent
+        if (pathParts.length > 1) {
+            const parentPath = pathParts.slice(0, -1).join('-');
+            this.expandedNodes.add(parentPath);
+        }
+
+        // Set active node and selected node
+        this.activeNodeId = result.pathId;
+        this.selectedNode = result.node;
+
+        // Render and center
+        this.smoothRender(result.pathId).then(() => {
+            this.updateBreadcrumbs();
+            // Open sidebar with this node
+            this.showDetail(result.node, this.activeNodeId);
+        });
+    }
+
+    /**
+     * Close search results
+     */
+    closeSearch() {
+        this.searchResults.classList.remove('active');
+        this.searchSelectedIndex = -1;
     }
 }
 

@@ -48,9 +48,21 @@
             </div>
         </div>
         <div class="header-center">
-            <h1 class="page-title" title="Tastenkürzel:&#10;I = Info-Panel&#10;F = Vollbild&#10;ESC = Schließen&#10;Ctrl+Scroll = Zoom&#10;← → = Bilder navigieren">Interaktive Mindmap <span class="version-number" id="versionNumber"></span></h1>
+            <h1 class="page-title" title="Tastenkürzel:&#10;Ctrl+K = Suche&#10;I = Info-Panel&#10;F = Vollbild&#10;ESC = Schließen&#10;Ctrl+Scroll = Zoom&#10;← → = Bilder navigieren">Interaktive Mindmap <span class="version-number" id="versionNumber"></span></h1>
         </div>
         <div class="header-right">
+            <!-- Search -->
+            <div class="search-container" id="searchContainer">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Suchen... (Ctrl+K)" autocomplete="off">
+                    <button class="search-clear" id="searchClear" title="Löschen">✕</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
             <div class="mindmap-controls" role="toolbar" aria-label="Mindmap Steuerung">
                 <button class="control-btn" id="expandAllBtn" title="Alle aufklappen" aria-label="Alle Knoten aufklappen">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
