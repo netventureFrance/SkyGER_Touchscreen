@@ -308,23 +308,34 @@ class MindmapView {
 
             // Wait for fade out, then render
             setTimeout(() => {
-                this.render();
-
-                // Update activeNodeId if provided (already a path-based ID)
+                // Update activeNodeId if provided (before render so centering works)
                 if (pathId) {
                     this.activeNodeId = pathId;
                 }
 
-                // Draw lines and prepare view
-                this.drawLines();
+                // Render nodes (this populates nodePositions)
+                const data = this.buildData();
+                this.nodesContainer.innerHTML = '';
+                this.linesContainer.innerHTML = '';
+                this.nodePositions.clear();
+                if (this.nodeWidthCache) this.nodeWidthCache.clear();
+                this.renderNode(data, this.centerX, this.centerY, 0, null, 0, 360);
 
-                // Center without smooth scroll (we'll animate the fade instead)
-                this.centerViewInstant();
-
-                // Fade back in
+                // Draw lines after nodes are in DOM
                 requestAnimationFrame(() => {
-                    this.canvas.classList.remove('transitioning');
-                    resolve();
+                    this.drawLines();
+
+                    // Center view
+                    this.centerViewInstant();
+
+                    // Update minimap
+                    this.updateMinimap();
+
+                    // Fade back in
+                    requestAnimationFrame(() => {
+                        this.canvas.classList.remove('transitioning');
+                        resolve();
+                    });
                 });
             }, 150); // Match CSS transition time
         });
