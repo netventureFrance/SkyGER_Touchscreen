@@ -190,12 +190,18 @@ class MindmapView {
 
         // Keyboard
         document.addEventListener('keydown', (e) => {
+            // Ignore shortcuts when typing in input fields
+            const isTyping = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+
             if (e.key === 'Escape') {
                 // Browser handles ESC for fullscreen, just close panel if not fullscreen
                 if (!document.fullscreenElement) this.closePanel();
             }
-            if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
-            if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+            // Only trigger shortcuts when not typing
+            if (!isTyping) {
+                if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
+                if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+            }
         });
 
         // Sync state when browser exits fullscreen (e.g., user presses ESC)
