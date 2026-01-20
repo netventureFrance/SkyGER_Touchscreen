@@ -115,7 +115,7 @@
             {
               "id": "spieltag",
               "label": "SPIELTAG",
-              "description": "",
+              "description": "ANZEIGE DER TORSCHÜTZEN\nEIN- UND AUSBLENDEN EINZELNER SPIELTAGE\nVERTIKALES SCROLLEN DER GRAFIK",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -133,33 +133,6 @@
                 }
               ],
               "children": [
-                {
-                  "id": "torschuetzen-koennen-angezeigt-werden",
-                  "label": "TORSCHÜTZEN KÖNNEN ANGEZEIGT WERDEN",
-                  "description": "",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "die-einzelnen-tage-koennen-ein-und-ausgeblendet",
-                  "label": "DIE EINZELNEN TAGE KÖNNEN EIN- UND AUSGEBLENDET WERDEN",
-                  "description": "",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "die-grafik-kann-hoch-und-runter-gescrollt-werden",
-                  "label": "DIE GRAFIK KANN HOCH UND RUNTER GESCROLLT WERDEN",
-                  "description": "",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": []
-                },
                 {
                   "id": "clubprofile",
                   "label": "CLUBPROFILE",
