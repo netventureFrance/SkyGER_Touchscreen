@@ -115,7 +115,7 @@
             {
               "id": "spieltag",
               "label": "SPIELTAG",
-              "description": "",
+              "description": "TORSCHÜTZEN KÖNNEN ANGEZEIGT WERDEN\nDIE EINZELNEN TAGE KÖNEN EIN- UND AUSGEBLENDET WERDEN \nDIE GRAFIK KANN HOCH UND RUNTER GESCROLLT WERDEN",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -365,19 +365,19 @@
                           "children": []
                         },
                         {
-                          "id": "durchschnittliche-position",
-                          "label": "DURCHSCHNITTLICHE POSITION",
+                          "id": "durchschnittliche-positionen",
+                          "label": "DURCHSCHNITTLICHE POSITIONEN",
                           "description": "",
                           "color": null,
                           "direction": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durchschnittliche-position/image-1.png",
-                              "name": "DURCHSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durchschnittliche-positionen/image-1.png",
+                              "name": "DURCHSCHNITTLICHE POSITIONEN"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durchschnittliche-position/image-2.png",
-                              "name": "DURCHSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durchschnittliche-positionen/image-2.png",
+                              "name": "DURCHSCHNITTLICHE POSITIONEN"
                             }
                           ],
                           "children": []
@@ -576,19 +576,19 @@
                       "children": []
                     },
                     {
-                      "id": "spieler-statistk",
-                      "label": "SPIELER STATISTK",
+                      "id": "spieler-statistik",
+                      "label": "SPIELER STATISTIK",
                       "description": "",
                       "color": null,
                       "direction": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-1.png",
-                          "name": "SPIELER STATISTK"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistik/image-1.png",
+                          "name": "SPIELER STATISTIK"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-2.png",
-                          "name": "SPIELER STATISTK"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistik/image-2.png",
+                          "name": "SPIELER STATISTIK"
                         }
                       ],
                       "children": []
