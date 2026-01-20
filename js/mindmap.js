@@ -114,6 +114,9 @@ class MindmapView {
         // Zeit
         this.updateTime();
         setInterval(() => this.updateTime(), 1000);
+
+        // Version check every 60 seconds
+        setInterval(() => this.checkForNewVersion(), 60000);
     }
 
     async loadVersion() {
@@ -121,6 +124,12 @@ class MindmapView {
             const response = await fetch('version.json');
             if (response.ok) {
                 const version = await response.json();
+                // Store current version for comparison
+                this.currentVersion = {
+                    major: version.major,
+                    minor: version.minor,
+                    patch: version.patch || 0
+                };
                 const versionStr = `V. ${version.major}.${version.minor}.${version.patch || 0}`;
                 const versionEl = document.getElementById('versionNumber');
                 if (versionEl) {
@@ -130,6 +139,67 @@ class MindmapView {
         } catch (e) {
             console.log('Could not load version.json');
         }
+    }
+
+    async checkForNewVersion() {
+        if (!this.currentVersion) return;
+
+        try {
+            // Add cache-busting parameter to ensure fresh fetch
+            const response = await fetch(`version.json?t=${Date.now()}`);
+            if (response.ok) {
+                const serverVersion = await response.json();
+                const serverPatch = serverVersion.patch || 0;
+
+                // Compare versions
+                const isNewer =
+                    serverVersion.major > this.currentVersion.major ||
+                    (serverVersion.major === this.currentVersion.major &&
+                     serverVersion.minor > this.currentVersion.minor) ||
+                    (serverVersion.major === this.currentVersion.major &&
+                     serverVersion.minor === this.currentVersion.minor &&
+                     serverPatch > this.currentVersion.patch);
+
+                if (isNewer) {
+                    this.showVersionNotification(serverVersion);
+                }
+            }
+        } catch (e) {
+            // Silent fail - don't disrupt user
+        }
+    }
+
+    showVersionNotification(newVersion) {
+        // Don't show multiple times
+        if (document.getElementById('versionNotification')) return;
+
+        const notification = document.createElement('div');
+        notification.id = 'versionNotification';
+        notification.className = 'version-notification';
+        notification.innerHTML = `
+            <div class="version-notification-content">
+                <span class="version-notification-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </span>
+                <span class="version-notification-text">
+                    Neue Version ${newVersion.major}.${newVersion.minor}.${newVersion.patch || 0} verfügbar!
+                </span>
+                <button class="version-notification-btn" onclick="location.reload()">
+                    Neu laden
+                </button>
+                <button class="version-notification-close" onclick="this.parentElement.parentElement.remove()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(notification);
     }
 
     async loadNotionData() {
