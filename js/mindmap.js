@@ -2458,22 +2458,56 @@ class MindmapView {
     navigateToSearchResult(result) {
         // Expand path to this node
         this.expandedNodes.clear();
-        this.expandedNodes.add('root');
 
-        // Build path of pathIds to expand
+        // Build path of pathIds to expand, handling dual-side nodes
         const pathParts = result.pathId.split('-');
-        let currentPath = 'root';
-        for (let i = 1; i < pathParts.length; i++) {
-            currentPath += '-' + pathParts[i];
-            // Expand parent (all except the last one which is the target)
-            if (i < pathParts.length) {
-                this.expandedNodes.add(currentPath.split('-').slice(0, -1).join('-') || 'root');
+        const data = this.buildData();
+
+        // Helper to check if a node is dual-side and get the side for a child index
+        const getDualSideKey = (node, childIndex, inheritedDirection) => {
+            if (!node.children || node.children.length === 0) return null;
+
+            // Count left and right children
+            let leftCount = 0, rightCount = 0;
+            node.children.forEach(child => {
+                const childDir = child.direction || inheritedDirection;
+                if (childDir === 'left') leftCount++;
+                else rightCount++;
+            });
+
+            // If dual-side, determine which side this child is on
+            if (leftCount > 0 && rightCount > 0) {
+                const child = node.children[childIndex];
+                const childDir = child.direction || inheritedDirection;
+                return childDir === 'left' ? ':L' : ':R';
             }
-        }
-        // Also expand direct parent
-        if (pathParts.length > 1) {
-            const parentPath = pathParts.slice(0, -1).join('-');
-            this.expandedNodes.add(parentPath);
+            return null;
+        };
+
+        // Traverse the path and expand each parent correctly
+        let currentNode = data;
+        let currentPath = 'root';
+        let inheritedDirection = null;
+
+        for (let i = 1; i < pathParts.length; i++) {
+            const childIndex = parseInt(pathParts[i]);
+
+            // Check if current node is dual-side
+            const sideKey = getDualSideKey(currentNode, childIndex, inheritedDirection);
+
+            if (sideKey) {
+                // Dual-side node - add both sides to ensure proper expansion
+                this.expandedNodes.add(currentPath + ':L');
+                this.expandedNodes.add(currentPath + ':R');
+            } else {
+                // Regular node
+                this.expandedNodes.add(currentPath);
+            }
+
+            // Move to child
+            currentNode = currentNode.children[childIndex];
+            inheritedDirection = currentNode.direction || inheritedDirection;
+            currentPath += '-' + childIndex;
         }
 
         // Set active node and selected node
