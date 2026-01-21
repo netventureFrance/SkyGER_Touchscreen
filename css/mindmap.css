@@ -801,51 +801,12 @@ body.fullscreen .fullscreen-hint {
 /* Dual-side node box should not show pointer on non-clickable areas */
 .mindmap-node-box[data-dual-side="true"] {
     cursor: default;
-    padding: 0;
-}
-
-/* Side containers for extended click areas */
-.node-side {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    padding: 10px 12px;
-    margin: 0;
-    border-radius: 25px 0 0 25px;
-    transition: background 0.2s ease;
-}
-
-.node-side-left {
-    border-radius: 25px 0 0 25px;
-    padding-left: 18px;
-}
-
-.node-side-right {
-    border-radius: 0 25px 25px 0;
-    padding-right: 18px;
-}
-
-.node-side:hover {
-    background: rgba(0, 200, 255, 0.15);
-}
-
-/* Remove margin adjustments from elements inside side containers */
-.node-side .node-toggle.left-indicator {
-    margin-right: 0;
-    margin-left: 0;
-}
-
-.node-side .node-count.left-indicator {
-    margin-left: 0;
-    margin-right: 0;
 }
 
 /* Label hover effect for dual-side nodes */
 .mindmap-node-box[data-dual-side="true"] .node-label {
     cursor: pointer;
     transition: color 0.2s ease;
-    padding: 10px 8px;
 }
 
 .mindmap-node-box[data-dual-side="true"] .node-label:hover {
@@ -2146,28 +2107,6 @@ body.fullscreen .minimap {
     .mindmap-node-box {
         padding: 12px 16px !important;
         min-height: 44px;
-    }
-
-    /* Dual-side nodes have padding on side containers, not the box */
-    .mindmap-node-box[data-dual-side="true"] {
-        padding: 0 !important;
-    }
-
-    .mindmap-node-box[data-dual-side="true"] .node-side {
-        padding: 12px 14px;
-        min-height: 44px;
-    }
-
-    .mindmap-node-box[data-dual-side="true"] .node-side-left {
-        padding-left: 16px;
-    }
-
-    .mindmap-node-box[data-dual-side="true"] .node-side-right {
-        padding-right: 16px;
-    }
-
-    .mindmap-node-box[data-dual-side="true"] .node-label {
-        padding: 12px 8px;
     }
 
     .mindmap-node.root .mindmap-node-box {
