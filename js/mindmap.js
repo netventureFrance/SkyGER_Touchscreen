@@ -1362,6 +1362,12 @@ class MindmapView {
         this.panelContent.innerHTML = html;
         this.detailPanel.classList.add('open');
 
+        // Scroll sidebar breadcrumb to show the end (most recent items)
+        const panelBreadcrumb = this.panelContent.querySelector('.panel-breadcrumb');
+        if (panelBreadcrumb) {
+            panelBreadcrumb.scrollLeft = panelBreadcrumb.scrollWidth;
+        }
+
         // Highlight active sidebar item if matches current node
         this.updateSidebarHighlight(currentUniqueId);
 
@@ -1993,6 +1999,9 @@ class MindmapView {
 
         // Build and update top bar breadcrumb using shared method
         this.breadcrumbContainer.innerHTML = this.buildBreadcrumbHtml(path);
+
+        // Scroll breadcrumb to show the end (most recent items)
+        this.breadcrumbContainer.scrollLeft = this.breadcrumbContainer.scrollWidth;
 
         // Add click handlers for top bar breadcrumb
         this.breadcrumbContainer.querySelectorAll('.breadcrumb-item:not(.active)').forEach(item => {

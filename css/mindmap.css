@@ -206,12 +206,6 @@
     /* Hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
-    /* Right-align: show end of breadcrumb when overflowing */
-    direction: rtl;
-}
-
-.breadcrumb-container > * {
-    direction: ltr;
 }
 
 .breadcrumb-container::-webkit-scrollbar {
@@ -269,12 +263,6 @@
     /* Hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
-    /* Right-align: show end of breadcrumb when overflowing */
-    direction: rtl;
-}
-
-.panel-breadcrumb > * {
-    direction: ltr;
 }
 
 .panel-breadcrumb::-webkit-scrollbar {
