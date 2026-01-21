@@ -2553,6 +2553,20 @@
             }
           ],
           "children": []
+        },
+        {
+          "id": "infos",
+          "label": "INFOS",
+          "description": "",
+          "color": "#E5486A",
+          "direction": "left",
+          "screenshots": [
+            {
+              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/infos/image-1.png",
+              "name": "INFOS"
+            }
+          ],
+          "children": []
         }
       ]
     }
