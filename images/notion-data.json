@@ -136,7 +136,7 @@
                 {
                   "id": "clubprofile",
                   "label": "CLUBPROFILE",
-                  "description": "",
+                  "description": "VERSCHIEDENE INFORMATIONEN KÖNNEN ÜBER DIE RCS-WEBSTEUERUNG ANGELEGT WERDEN.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -181,7 +181,7 @@
                     {
                       "id": "vergleich",
                       "label": "VERGLEICH",
-                      "description": "",
+                      "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -207,7 +207,7 @@
                     {
                       "id": "aufstellung",
                       "label": "AUFSTELLUNG",
-                      "description": "",
+                      "description": "POSITIONEN SIND FREI VERSCHIEBBAR.\nDIE RESET-FUNKTION SETZT ALLES ZURÜCK.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -220,7 +220,7 @@
                         {
                           "id": "reservebank",
                           "label": "RESERVEBANK",
-                          "description": "",
+                          "description": "SPIELER KÖNNEN EIN- UND AUSGEWECHSELT WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -238,7 +238,7 @@
                         {
                           "id": "highlight-funktion",
                           "label": "HIGHLIGHT FUNKTION",
-                          "description": "",
+                          "description": "HIGHLIGHTS MEHRERER SPIELER GLEICHZEITIG MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -252,7 +252,7 @@
                         {
                           "id": "laufweg-spieler",
                           "label": "LAUFWEG SPIELER",
-                          "description": "",
+                          "description": "DURCH DAS BEWEGEN EINES SPIELERS KANN DER LAUFWEG NACHGEZEICHNET WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -266,7 +266,7 @@
                         {
                           "id": "spieler-statistk",
                           "label": "SPIELER STATISTK",
-                          "description": "",
+                          "description": "BEI SPIELERSTATISTIKEN WERDEN TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONSTATISTIK.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -284,7 +284,7 @@
                         {
                           "id": "spieler-vergleich",
                           "label": "SPIELER VERGLEICH",
-                          "description": "",
+                          "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -349,7 +349,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -367,7 +367,7 @@
                         {
                           "id": "durchschnittliche-positionen",
                           "label": "DURCHSCHNITTLICHE POSITIONEN",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -385,7 +385,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -407,7 +407,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -425,7 +425,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -439,7 +439,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -457,7 +457,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -471,7 +471,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -493,7 +493,7 @@
                 {
                   "id": "vergleich",
                   "label": "VERGLEICH",
-                  "description": "",
+                  "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -519,7 +519,7 @@
                 {
                   "id": "aufstellung",
                   "label": "AUFSTELLUNG",
-                  "description": "",
+                  "description": "POSITIONEN SIND FREI VERSCHIEBBAR.\nDIE RESET-FUNKTION SETZT ALLES ZURÜCK.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -532,7 +532,7 @@
                     {
                       "id": "reservebank",
                       "label": "RESERVEBANK",
-                      "description": "",
+                      "description": "SPIELER KÖNNEN EIN- UND AUSGEWECHSELT WERDEN.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -550,7 +550,7 @@
                     {
                       "id": "highlight-funktion",
                       "label": "HIGHLIGHT FUNKTION",
-                      "description": "",
+                      "description": "HIGHLIGHTS MEHRERER SPIELER GLEICHZEITIG MÖGLICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -564,7 +564,7 @@
                     {
                       "id": "laufweg-spieler",
                       "label": "LAUFWEG SPIELER",
-                      "description": "",
+                      "description": "DURCH DAS BEWEGEN EINES SPIELERS KANN DER LAUFWEG NACHGEZEICHNET WERDEN.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -576,19 +576,19 @@
                       "children": []
                     },
                     {
-                      "id": "spieler-statistik",
-                      "label": "SPIELER STATISTIK",
-                      "description": "",
+                      "id": "spieler-statistk",
+                      "label": "SPIELER STATISTK",
+                      "description": "BEI SPIELERSTATISTIKEN WERDEN TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONSTATISTIK.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistik/image-1.png",
-                          "name": "SPIELER STATISTIK"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-1.png",
+                          "name": "SPIELER STATISTK"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistik/image-2.png",
-                          "name": "SPIELER STATISTIK"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistk/image-2.png",
+                          "name": "SPIELER STATISTK"
                         }
                       ],
                       "children": []
@@ -596,7 +596,7 @@
                     {
                       "id": "spieler-vergleich",
                       "label": "SPIELER VERGLEICH",
-                      "description": "",
+                      "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -670,7 +670,7 @@
                     {
                       "id": "aufstellungseditor",
                       "label": "AUFSTELLUNGSEDITOR",
-                      "description": "",
+                      "description": "Mit Drag-and-Drop kann die Aufstellung frei gestaltet werden.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -711,7 +711,7 @@
                     {
                       "id": "aktionszone",
                       "label": "AKTIONSZONE",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -727,19 +727,19 @@
                       "children": []
                     },
                     {
-                      "id": "durschnittliche-position",
-                      "label": "DURSCHNITTLICHE POSITION",
-                      "description": "",
+                      "id": "durchschnittliche-position",
+                      "label": "DURCHSCHNITTLICHE POSITION",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-1.png",
-                          "name": "DURSCHNITTLICHE POSITION"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durchschnittliche-position/image-1.png",
+                          "name": "DURCHSCHNITTLICHE POSITION"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-2.png",
-                          "name": "DURSCHNITTLICHE POSITION"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durchschnittliche-position/image-2.png",
+                          "name": "DURCHSCHNITTLICHE POSITION"
                         }
                       ],
                       "children": []
@@ -747,7 +747,7 @@
                     {
                       "id": "touch-map",
                       "label": "TOUCH MAP",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -769,7 +769,7 @@
                     {
                       "id": "pass-map",
                       "label": "PASS MAP",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -787,7 +787,7 @@
                     {
                       "id": "angriffszone",
                       "label": "ANGRIFFSZONE",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -801,7 +801,7 @@
                     {
                       "id": "shot-plot",
                       "label": "SHOT PLOT",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -819,7 +819,7 @@
                     {
                       "id": "tackle-map",
                       "label": "TACKLE MAP",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -833,7 +833,7 @@
                     {
                       "id": "heat-map",
                       "label": "HEAT MAP",
-                      "description": "",
+                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -877,7 +877,7 @@
             {
               "id": "headlines",
               "label": "HEADLINES",
-              "description": "",
+              "description": "VERSCHIEDENE INFORMATIONEN KÖNNEN ÜBER DIE RCS-WEBSTEUERUNG ANGELEGT WERDEN.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -905,7 +905,7 @@
             {
               "id": "analyse",
               "label": "ANALYSE",
-              "description": "",
+              "description": "VOR- & ZURÜCKSPULEN MÖGLICH.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -918,7 +918,7 @@
                 {
                   "id": "clip",
                   "label": "CLIP",
-                  "description": "",
+                  "description": "AUSWAHL ZWISCHEN MEHREREN CLIPS.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -956,7 +956,7 @@
             {
               "id": "multiview",
               "label": "MULTIVIEW",
-              "description": "",
+              "description": "ANZAHL DER FENSTER KANN ÜBER DIE ARC-WEBSTEUERUNG EINGESTELLT WERDEN.\nFENSTER KÖNNEN GROß UND KLEIN GEFAHREN WERDEN.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -970,7 +970,7 @@
             {
               "id": "telestrator",
               "label": "TELESTRATOR",
-              "description": "",
+              "description": "VOR- & ZURÜCKSPULEN MÖGLICH.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -1408,7 +1408,7 @@
                 {
                   "id": "clubprofile",
                   "label": "CLUBPROFILE",
-                  "description": "",
+                  "description": "VERSCHIEDENE INFORMATIONEN KÖNNEN ÜBER DIE RCS-WEBSTEUERUNG ANGELEGT WERDEN.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -1453,7 +1453,7 @@
                     {
                       "id": "vergleich",
                       "label": "VERGLEICH",
-                      "description": "",
+                      "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -1479,7 +1479,7 @@
                     {
                       "id": "aufstellung",
                       "label": "AUFSTELLUNG",
-                      "description": "",
+                      "description": "POSITIONEN SIND FREI VERSCHIEBBAR.\nDIE RESET-FUNKTION SETZT ALLES ZURÜCK.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -1492,7 +1492,7 @@
                         {
                           "id": "reservebank",
                           "label": "RESERVEBANK",
-                          "description": "",
+                          "description": "SPIELER KÖNNEN EIN- UND AUSGEWECHSELT WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1510,7 +1510,7 @@
                         {
                           "id": "highlight-funktion",
                           "label": "HIGHLIGHT FUNKTION",
-                          "description": "",
+                          "description": "HIGHLIGHTS MEHRERER SPIELER GLEICHZEITIG MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1524,7 +1524,7 @@
                         {
                           "id": "laufweg-spieler",
                           "label": "LAUFWEG SPIELER",
-                          "description": "",
+                          "description": "DURCH DAS BEWEGEN EINES SPIELERS KANN DER LAUFWEG NACHGEZEICHNET WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1538,7 +1538,7 @@
                         {
                           "id": "spieler-statistk",
                           "label": "SPIELER STATISTK",
-                          "description": "",
+                          "description": "BEI SPIELERSTATISTIKEN WERDEN TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONSTATISTIK.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1556,7 +1556,7 @@
                         {
                           "id": "spieler-vergleich",
                           "label": "SPIELER VERGLEICH",
-                          "description": "",
+                          "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1621,7 +1621,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1637,19 +1637,19 @@
                           "children": []
                         },
                         {
-                          "id": "durschnittliche-position",
-                          "label": "DURSCHNITTLICHE POSITION",
-                          "description": "",
+                          "id": "durchschnittliche-position",
+                          "label": "DURCHSCHNITTLICHE POSITION",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-1.png",
-                              "name": "DURSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durchschnittliche-position/image-1.png",
+                              "name": "DURCHSCHNITTLICHE POSITION"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durschnittliche-position/image-2.png",
-                              "name": "DURSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/fahrplan/analyse/durchschnittliche-position/image-2.png",
+                              "name": "DURCHSCHNITTLICHE POSITION"
                             }
                           ],
                           "children": []
@@ -1657,7 +1657,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1679,7 +1679,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1697,7 +1697,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1711,7 +1711,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1729,7 +1729,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1743,7 +1743,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1780,7 +1780,7 @@
                 {
                   "id": "clubprofile",
                   "label": "CLUBPROFILE",
-                  "description": "",
+                  "description": "VERSCHIEDENE INFORMATIONEN KÖNNEN ÜBER DIE RCS-WEBSTEUERUNG ANGELEGT WERDEN.",
                   "color": null,
                   "direction": null,
                   "screenshots": [
@@ -1825,7 +1825,7 @@
                     {
                       "id": "vergleich",
                       "label": "VERGLEICH",
-                      "description": "",
+                      "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -1851,7 +1851,7 @@
                     {
                       "id": "aufstellung",
                       "label": "AUFSTELLUNG",
-                      "description": "",
+                      "description": "POSITIONEN SIND FREI VERSCHIEBBAR.\nDIE RESET-FUNKTION SETZT ALLES ZURÜCK.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -1864,7 +1864,7 @@
                         {
                           "id": "reservebank",
                           "label": "RESERVEBANK",
-                          "description": "",
+                          "description": "SPIELER KÖNNEN EIN- UND AUSGEWECHSELT WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1882,7 +1882,7 @@
                         {
                           "id": "highlight-funktion",
                           "label": "HIGHLIGHT FUNKTION",
-                          "description": "",
+                          "description": "HIGHLIGHTS MEHRERER SPIELER GLEICHZEITIG MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1896,7 +1896,7 @@
                         {
                           "id": "laufweg-spieler",
                           "label": "LAUFWEG SPIELER",
-                          "description": "",
+                          "description": "DURCH DAS BEWEGEN EINES SPIELERS KANN DER LAUFWEG NACHGEZEICHNET WERDEN.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1910,7 +1910,7 @@
                         {
                           "id": "spieler-statistk",
                           "label": "SPIELER STATISTK",
-                          "description": "",
+                          "description": "BEI SPIELERSTATISTIKEN WERDEN TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONSTATISTIK.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1928,7 +1928,7 @@
                         {
                           "id": "spieler-vergleich",
                           "label": "SPIELER VERGLEICH",
-                          "description": "",
+                          "description": "BEIM SPIELERVERGLEICH WERDEN AKTUELL AUCH DIE TEAMLOGOS GENUTZT.\nUMSCHALTEN ZWISCHEN SPIEL- UND SAISONVERGLEICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1993,7 +1993,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2009,19 +2009,19 @@
                           "children": []
                         },
                         {
-                          "id": "durschnittliche-position",
-                          "label": "DURSCHNITTLICHE POSITION",
-                          "description": "",
+                          "id": "durchschnittliche-positionen",
+                          "label": "DURCHSCHNITTLICHE POSITIONEN",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-1.png",
-                              "name": "DURSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durchschnittliche-positionen/image-1.png",
+                              "name": "DURCHSCHNITTLICHE POSITIONEN"
                             },
                             {
-                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durschnittliche-position/image-2.png",
-                              "name": "DURSCHNITTLICHE POSITION"
+                              "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/fahrplan/analyse/durchschnittliche-positionen/image-2.png",
+                              "name": "DURCHSCHNITTLICHE POSITIONEN"
                             }
                           ],
                           "children": []
@@ -2029,7 +2029,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2051,7 +2051,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2069,7 +2069,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2083,7 +2083,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2101,7 +2101,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2115,7 +2115,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "",
+                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2146,7 +2146,7 @@
               "children": [
                 {
                   "id": "settings",
-                  "label": "Settings",
+                  "label": "SETTINGS",
                   "description": "",
                   "color": null,
                   "direction": null,
@@ -2154,7 +2154,7 @@
                   "children": [
                     {
                       "id": "preferences",
-                      "label": "Preferences",
+                      "label": "PREFERENCES",
                       "description": "",
                       "color": null,
                       "direction": null,
@@ -2162,8 +2162,8 @@
                       "children": [
                         {
                           "id": "formation",
-                          "label": "Formation",
-                          "description": "Formation Type\n-  Automatic\n- Predicted\n- Official\nWelche Aufstellung er generell benutzen soll, grundeinstellung ist Automatic\n\nShow Score\n- Off\n- On\nEin und ausschalten der Ergebniss in der Aufstellung",
+                          "label": "FORMATION",
+                          "description": "Formation Type\n-  Automatic\n- Predicted\n- Official\nWelche Aufstellung er generell benutzen soll, Grundeinstellung ist Automatic\n\nShow Score\n- Off\n- On\nEin- und Ausschalten der Ergebnisse in der Aufstellung",
                           "color": null,
                           "direction": null,
                           "screenshots": [],
@@ -2171,8 +2171,8 @@
                         },
                         {
                           "id": "standings",
-                          "label": "Standings",
-                          "description": "Start at Top\nStart at bottom\nBeim Aufruf der Tabelle, soll er die 1.Seite oder die 2.Seite aufrufen",
+                          "label": "STANDINGS",
+                          "description": "Start at Top\nStart at Bottom\nBeim Aufruf der Tabelle soll er die 1.Seite oder die 2.Seite aufrufen",
                           "color": null,
                           "direction": null,
                           "screenshots": [],
@@ -2180,8 +2180,8 @@
                         },
                         {
                           "id": "match-up",
-                          "label": "Match up",
-                          "description": "leer\n- by week \n- by day\nDie Aufteilung der einzelnen Tage auf eine oder mehrere Seiten von einem Spieltag\n\nShow Score\n- Ergebnisse ein und ausschalten\n\n",
+                          "label": "MATCH UP",
+                          "description": "leer\n- by week \n- by day\nDie Aufteilung der einzelnen Tage auf eine oder mehrere Seiten von einem Spieltag\n\nShow Score\n- Ergebnisse ein- und ausschalten\n\n",
                           "color": null,
                           "direction": null,
                           "screenshots": [],
@@ -2189,7 +2189,7 @@
                         },
                         {
                           "id": "debug",
-                          "label": "Debug",
+                          "label": "DEBUG",
                           "description": "Oben rechts ist ein kleines Fenster mit einer Debug Information",
                           "color": null,
                           "direction": null,
@@ -2198,8 +2198,8 @@
                         },
                         {
                           "id": "colorbar",
-                          "label": "Colorbar",
-                          "description": "Colorbar wird im fullscreen eingeblendet",
+                          "label": "COLORBAR",
+                          "description": "Colorbar wird im Fullscreen eingeblendet",
                           "color": null,
                           "direction": null,
                           "screenshots": [],
@@ -2207,8 +2207,8 @@
                         },
                         {
                           "id": "watermark",
-                          "label": "Watermark",
-                          "description": "Es wird keine Watermark eingeblendet",
+                          "label": "WATERMARK",
+                          "description": "Es wird kein Watermark eingeblendet",
                           "color": null,
                           "direction": null,
                           "screenshots": [],
@@ -2218,8 +2218,8 @@
                     },
                     {
                       "id": "shows",
-                      "label": "Shows",
-                      "description": "Kann man die Show wird geladen (funktioniert nicht, muss am Start der engine angewählt werden)\n\nBundesliga\nChampionsleague\nPremier League\nAustrian Bundesliga\nGeneric",
+                      "label": "SHOWS",
+                      "description": "Kann man die Show wird geladen (funktioniert nicht, muss am Start der Engine angewählt werden)\n\nBundesliga\nChampions League\nPremier League\nAustrian Bundesliga\nGeneric",
                       "color": null,
                       "direction": null,
                       "screenshots": [],
@@ -2227,8 +2227,8 @@
                     },
                     {
                       "id": "modes",
-                      "label": "Modes",
-                      "description": "Normal\nBookmark\nHide Nav (IPAD) \n\nunbekannte Fuktion",
+                      "label": "MODES",
+                      "description": "Normal\nBookmark\nHide Nav (IPAD) \n\nunbekannte Funktion",
                       "color": null,
                       "direction": null,
                       "screenshots": [],
@@ -2238,17 +2238,17 @@
                 },
                 {
                   "id": "datensaetze",
-                  "label": "Datensätze",
-                  "description": "von Opta:\nAustrian Bundesliga\nChampions LEague\nUEFA Championsleague Qualifying\nPremier League\nBundesliga\nUEFA Europa League\nUEFA European Championship Finals\nUEFA Conference League Qualifying\nUEFA Conference League\nDFB Pokal\n2.Bundesliga\n\nSport Tec: 1. & 2. Bundesliga\n",
+                  "label": "DATENSÄTZE",
+                  "description": "von Opta:\nAustrian Bundesliga\nChampions League\nUEFA Champions League Qualifying\nPremier League\nBundesliga\nUEFA Europa League\nUEFA European Championship Finals\nUEFA Conference League Qualifying\nUEFA Conference League\nDFB Pokal\n2. Bundesliga\n\nSport Tec: 1. und 2. Bundesliga\n",
                   "color": null,
                   "direction": null,
                   "screenshots": [],
                   "children": []
                 },
                 {
-                  "id": "book-marks",
-                  "label": "Book Marks",
-                  "description": "ADD           EDIT\ndie muss auf die Seite navigieren und auf book mark add klicken",
+                  "id": "bookmarks",
+                  "label": "BOOKMARKS",
+                  "description": "ADD           EDIT\ndie muss auf die Seite navigieren und auf bookmark add klicken",
                   "color": null,
                   "direction": null,
                   "screenshots": [],
@@ -2503,19 +2503,19 @@
                       "children": []
                     },
                     {
-                      "id": "vanues",
-                      "label": "VANUES",
+                      "id": "venues",
+                      "label": "VENUES",
                       "description": "",
                       "color": null,
                       "direction": null,
                       "screenshots": [
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/vanues/image-1.png",
-                          "name": "VANUES"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/venues/image-1.png",
+                          "name": "VENUES"
                         },
                         {
-                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/vanues/image-2.png",
-                          "name": "VANUES"
+                          "url": "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/venues/image-2.png",
+                          "name": "VENUES"
                         }
                       ],
                       "children": []
