@@ -717,21 +717,9 @@ class MindmapView {
                 boxEl.appendChild(rightCountEl);
                 boxEl.appendChild(rightToggle);
 
-                // Label click handler - toggle both sides
-                labelEl.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.handleDualSideToggle(node, uniqueId);
-                });
-
-                // Label hover - highlight both indicators
-                labelEl.addEventListener('mouseenter', () => {
-                    leftToggle.classList.add('hover-highlight');
-                    rightToggle.classList.add('hover-highlight');
-                });
-                labelEl.addEventListener('mouseleave', () => {
-                    leftToggle.classList.remove('hover-highlight');
-                    rightToggle.classList.remove('hover-highlight');
-                });
+                // Store toggle references for hover effects
+                boxEl._leftToggle = leftToggle;
+                boxEl._rightToggle = rightToggle;
             } else {
                 // Single side - show indicator on appropriate side
                 const countEl = document.createElement('span');
@@ -760,12 +748,27 @@ class MindmapView {
             boxEl.appendChild(labelEl);
         }
 
-        // Events
+        // Events - for dual-side nodes, box click toggles both sides
         boxEl.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.handleNodeClick(node, uniqueId);
+            if (boxEl.dataset.dualSide === 'true') {
+                this.handleDualSideToggle(node, uniqueId);
+            } else {
+                this.handleNodeClick(node, uniqueId);
+            }
         });
 
+        // Hover effects for dual-side nodes - highlight both toggles
+        if (boxEl.dataset.dualSide === 'true') {
+            boxEl.addEventListener('mouseenter', () => {
+                if (boxEl._leftToggle) boxEl._leftToggle.classList.add('hover-highlight');
+                if (boxEl._rightToggle) boxEl._rightToggle.classList.add('hover-highlight');
+            });
+            boxEl.addEventListener('mouseleave', () => {
+                if (boxEl._leftToggle) boxEl._leftToggle.classList.remove('hover-highlight');
+                if (boxEl._rightToggle) boxEl._rightToggle.classList.remove('hover-highlight');
+            });
+        }
 
         nodeEl.appendChild(boxEl);
         this.nodesContainer.appendChild(nodeEl);

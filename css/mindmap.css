@@ -798,19 +798,9 @@ body.fullscreen .fullscreen-hint {
     stroke-width: 2;
 }
 
-/* Dual-side node box should not show pointer on non-clickable areas */
+/* Dual-side node box - whole surface is clickable to toggle both sides */
 .mindmap-node-box[data-dual-side="true"] {
-    cursor: default;
-}
-
-/* Label hover effect for dual-side nodes */
-.mindmap-node-box[data-dual-side="true"] .node-label {
     cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.mindmap-node-box[data-dual-side="true"] .node-label:hover {
-    color: var(--accent-primary);
 }
 
 
