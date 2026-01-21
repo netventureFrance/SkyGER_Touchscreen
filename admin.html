@@ -386,7 +386,7 @@
         const contentStats = document.getElementById('contentStats');
 
         // Store current version for next version calculation
-        let currentVersion = { major: 1, minor: 0, patch: 0 };
+        let currentVersion = { major: 1, minor: 0 };
 
         // Check if already logged in
         if (sessionStorage.getItem('adminAuth') === VALID_HASH) {
@@ -434,7 +434,7 @@
                 if (versionRes.ok) {
                     const version = await versionRes.json();
                     currentVersion = version;
-                    versionDisplay.textContent = `V. ${version.major}.${version.minor}.${version.patch || 0}`;
+                    versionDisplay.textContent = `V. ${version.major}.${version.minor}`;
                 }
 
                 // Load notion data for stats
@@ -466,14 +466,10 @@
             return { items, images };
         }
 
-        // Calculate next version (patch +1, or minor +1 if patch >= 99)
+        // Calculate next version (minor +1, or major +1 if minor >= 99)
         function getNextVersion(v) {
             const next = { ...v };
-            next.patch = (next.patch || 0) + 1;
-            if (next.patch >= 100) {
-                next.patch = 0;
-                next.minor = (next.minor || 0) + 1;
-            }
+            next.minor = (next.minor || 0) + 1;
             if (next.minor >= 100) {
                 next.minor = 0;
                 next.major = (next.major || 1) + 1;
@@ -482,7 +478,7 @@
         }
 
         function formatVersion(v) {
-            return `${v.major}.${v.minor}.${v.patch || 0}`;
+            return `${v.major}.${v.minor}`;
         }
 
         // Sync handler

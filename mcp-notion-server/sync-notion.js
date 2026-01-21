@@ -603,13 +603,13 @@ async function main() {
     const versionPath = join(__dirname, '..', 'version.json');
     try {
         const version = JSON.parse(readFileSync(versionPath, 'utf8'));
-        version.patch = (version.patch || 0) + 1;
-        if (version.patch >= 100) {
-            version.patch = 0;
-            version.minor = (version.minor || 0) + 1;
+        version.minor = (version.minor || 0) + 1;
+        if (version.minor >= 100) {
+            version.minor = 0;
+            version.major = (version.major || 1) + 1;
         }
         writeFileSync(versionPath, JSON.stringify(version, null, 2) + '\n');
-        console.log(`\n📦 Version updated to ${version.major}.${version.minor}.${version.patch}`);
+        console.log(`\n📦 Version updated to ${version.major}.${version.minor}`);
     } catch (e) {
         console.log(`\n⚠️ Could not update version: ${e.message}`);
     }

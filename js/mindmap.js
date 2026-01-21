@@ -127,10 +127,9 @@ class MindmapView {
                 // Store current version for comparison
                 this.currentVersion = {
                     major: version.major,
-                    minor: version.minor,
-                    patch: version.patch || 0
+                    minor: version.minor
                 };
-                const versionStr = `V. ${version.major}.${version.minor}.${version.patch || 0}`;
+                const versionStr = `V. ${version.major}.${version.minor}`;
                 const versionEl = document.getElementById('versionNumber');
                 if (versionEl) {
                     versionEl.textContent = versionStr;
@@ -149,16 +148,12 @@ class MindmapView {
             const response = await fetch(`version.json?t=${Date.now()}`);
             if (response.ok) {
                 const serverVersion = await response.json();
-                const serverPatch = serverVersion.patch || 0;
 
                 // Compare versions
                 const isNewer =
                     serverVersion.major > this.currentVersion.major ||
                     (serverVersion.major === this.currentVersion.major &&
-                     serverVersion.minor > this.currentVersion.minor) ||
-                    (serverVersion.major === this.currentVersion.major &&
-                     serverVersion.minor === this.currentVersion.minor &&
-                     serverPatch > this.currentVersion.patch);
+                     serverVersion.minor > this.currentVersion.minor);
 
                 if (isNewer) {
                     this.showVersionNotification(serverVersion);
@@ -186,7 +181,7 @@ class MindmapView {
                     </svg>
                 </span>
                 <span class="version-notification-text">
-                    Neue Version ${newVersion.major}.${newVersion.minor}.${newVersion.patch || 0} verfügbar!
+                    Neue Version ${newVersion.major}.${newVersion.minor} verfügbar!
                 </span>
                 <button class="version-notification-btn" onclick="location.reload()">
                     Neu laden

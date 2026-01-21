@@ -15,14 +15,8 @@ const versionPath = join(__dirname, '..', 'version.json');
 try {
     const version = JSON.parse(readFileSync(versionPath, 'utf8'));
 
-    // Increment patch version
-    version.patch = (version.patch || 0) + 1;
-
-    // Roll over to minor if patch reaches 100
-    if (version.patch >= 100) {
-        version.patch = 0;
-        version.minor = (version.minor || 0) + 1;
-    }
+    // Increment minor version
+    version.minor = (version.minor || 0) + 1;
 
     // Roll over to major if minor reaches 100
     if (version.minor >= 100) {
@@ -31,7 +25,7 @@ try {
     }
 
     writeFileSync(versionPath, JSON.stringify(version, null, 2) + '\n');
-    console.log(`✅ Version incremented to ${version.major}.${version.minor}.${version.patch}`);
+    console.log(`✅ Version incremented to ${version.major}.${version.minor}`);
 } catch (e) {
     console.error(`❌ Could not increment version: ${e.message}`);
     process.exit(1);
