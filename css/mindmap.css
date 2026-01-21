@@ -206,6 +206,12 @@
     /* Hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
+    /* Right-align: show end of breadcrumb when overflowing */
+    direction: rtl;
+}
+
+.breadcrumb-container > * {
+    direction: ltr;
 }
 
 .breadcrumb-container::-webkit-scrollbar {
@@ -252,6 +258,7 @@
 .panel-breadcrumb {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 6px;
     font-size: 11px;
     padding: 12px 0;
@@ -262,6 +269,12 @@
     /* Hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
+    /* Right-align: show end of breadcrumb when overflowing */
+    direction: rtl;
+}
+
+.panel-breadcrumb > * {
+    direction: ltr;
 }
 
 .panel-breadcrumb::-webkit-scrollbar {

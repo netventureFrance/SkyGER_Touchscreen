@@ -1392,8 +1392,7 @@ class MindmapView {
                     // Navigate to this node
                     this.selectedNode = pathItem.node;
 
-                    // Expand path to this node, collapse everything else (use path-based uniqueId)
-                    this.expandedNodes.clear();
+                    // Expand path to this node (keep other expanded nodes)
                     for (let i = 0; i <= index; i++) {
                         this.expandedNodes.add(this.nodePath[i].uniqueId);
                     }
@@ -2004,8 +2003,7 @@ class MindmapView {
                     // Navigate to this node
                     this.selectedNode = pathItem.node;
 
-                    // Expand path to this node, collapse everything else (use path-based uniqueId)
-                    this.expandedNodes.clear();
+                    // Expand path to this node (keep other expanded nodes)
                     for (let i = 0; i <= index; i++) {
                         this.expandedNodes.add(this.nodePath[i].uniqueId);
                     }
