@@ -558,8 +558,8 @@
                                 addLogEntry('Deploying to Netlify...', 'success');
                                 addLogEntry(`Next version: V. ${formatVersion(nextVersion)}`, 'success');
 
-                                // Start 45 second countdown for Netlify deploy
-                                startDeployCountdown(45);
+                                // Start 70 second countdown for Netlify deploy
+                                startDeployCountdown(70);
 
                                 lastSyncDisplay.textContent = new Date().toLocaleString('de-DE');
                                 saveSyncLog();
@@ -621,7 +621,7 @@
             statusBadge.className = 'status-badge online';
         }
 
-        // Netlify deploy countdown (typically ~45 seconds)
+        // Netlify deploy countdown (typically ~70 seconds)
         function startDeployCountdown(seconds) {
             let remaining = seconds;
             const countdownEntry = document.createElement('div');
