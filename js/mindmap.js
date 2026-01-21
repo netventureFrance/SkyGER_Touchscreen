@@ -635,28 +635,24 @@ class MindmapView {
                 // Mark as dual-side node for special handling
                 boxEl.dataset.dualSide = 'true';
 
-                // Show indicators on both sides
+                // Create left side container for extended click area
+                const leftSide = document.createElement('div');
+                leftSide.className = 'node-side node-side-left';
+
                 // Left indicator
                 const leftToggle = document.createElement('div');
                 leftToggle.className = 'node-toggle left-indicator';
                 leftToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
 
-                // Left toggle click handler - on mobile toggle both, on desktop toggle left only
-                leftToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (this.isMobile) {
-                        this.handleDualSideToggle(node, uniqueId);
-                    } else {
-                        this.handleSideToggle(node, uniqueId, 'left');
-                    }
-                });
-
                 const leftCountEl = document.createElement('span');
                 leftCountEl.className = 'node-count left-indicator';
                 leftCountEl.textContent = leftCount;
 
-                // Left count click handler - on mobile toggle both, on desktop toggle left only
-                leftCountEl.addEventListener('click', (e) => {
+                leftSide.appendChild(leftToggle);
+                leftSide.appendChild(leftCountEl);
+
+                // Left side click handler - on mobile toggle both, on desktop toggle left only
+                leftSide.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (this.isMobile) {
                         this.handleDualSideToggle(node, uniqueId);
@@ -665,17 +661,20 @@ class MindmapView {
                     }
                 });
 
-                // Left count hover - highlight left indicator
-                leftCountEl.addEventListener('mouseenter', () => {
+                // Left side hover - highlight left indicator
+                leftSide.addEventListener('mouseenter', () => {
                     leftToggle.classList.add('hover-highlight');
                 });
-                leftCountEl.addEventListener('mouseleave', () => {
+                leftSide.addEventListener('mouseleave', () => {
                     leftToggle.classList.remove('hover-highlight');
                 });
 
-                boxEl.appendChild(leftToggle);
-                boxEl.appendChild(leftCountEl);
+                boxEl.appendChild(leftSide);
                 boxEl.appendChild(labelEl);
+
+                // Create right side container for extended click area
+                const rightSide = document.createElement('div');
+                rightSide.className = 'node-side node-side-right';
 
                 // Right indicator
                 const rightCountEl = document.createElement('span');
@@ -686,8 +685,11 @@ class MindmapView {
                 rightToggle.className = 'node-toggle';
                 rightToggle.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg>`;
 
-                // Right toggle click handler - on mobile toggle both, on desktop toggle right only
-                rightToggle.addEventListener('click', (e) => {
+                rightSide.appendChild(rightCountEl);
+                rightSide.appendChild(rightToggle);
+
+                // Right side click handler - on mobile toggle both, on desktop toggle right only
+                rightSide.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (this.isMobile) {
                         this.handleDualSideToggle(node, uniqueId);
@@ -696,26 +698,15 @@ class MindmapView {
                     }
                 });
 
-                // Right count click handler - on mobile toggle both, on desktop toggle right only
-                rightCountEl.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (this.isMobile) {
-                        this.handleDualSideToggle(node, uniqueId);
-                    } else {
-                        this.handleSideToggle(node, uniqueId, 'right');
-                    }
-                });
-
-                // Right count hover - highlight right indicator
-                rightCountEl.addEventListener('mouseenter', () => {
+                // Right side hover - highlight right indicator
+                rightSide.addEventListener('mouseenter', () => {
                     rightToggle.classList.add('hover-highlight');
                 });
-                rightCountEl.addEventListener('mouseleave', () => {
+                rightSide.addEventListener('mouseleave', () => {
                     rightToggle.classList.remove('hover-highlight');
                 });
 
-                boxEl.appendChild(rightCountEl);
-                boxEl.appendChild(rightToggle);
+                boxEl.appendChild(rightSide);
 
                 // Label click handler - toggle both sides
                 labelEl.addEventListener('click', (e) => {
