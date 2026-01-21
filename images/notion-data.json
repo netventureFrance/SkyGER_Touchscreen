@@ -115,7 +115,7 @@
             {
               "id": "spieltag",
               "label": "SPIELTAG",
-              "description": "ANZEIGE DER TORSCHÜTZEN - \nEIN- UND AUSBLENDEN EINZELNER SPIELTAGE - \nVERTIKALES SCROLLEN DER GRAFIK",
+              "description": "ANZEIGE DER TORSCHÜTZEN. \nEIN- UND AUSBLENDEN EINZELNER SPIELTAGE. \nVERTIKALES SCROLLEN DER GRAFIK.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -349,7 +349,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -367,7 +367,7 @@
                         {
                           "id": "durchschnittliche-positionen",
                           "label": "DURCHSCHNITTLICHE POSITIONEN",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG UND TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -385,7 +385,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -407,7 +407,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -425,7 +425,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -439,7 +439,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -457,7 +457,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -471,7 +471,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -670,7 +670,7 @@
                     {
                       "id": "aufstellungseditor",
                       "label": "AUFSTELLUNGSEDITOR",
-                      "description": "Mit Drag-and-Drop kann die Aufstellung frei gestaltet werden.",
+                      "description": "MIT DRAG-AND-DROP KANN DIE AUFSTELLUNG FREI GESTALTET WERDEN. ",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -711,7 +711,7 @@
                     {
                       "id": "aktionszone",
                       "label": "AKTIONSZONE",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -729,7 +729,7 @@
                     {
                       "id": "durchschnittliche-position",
                       "label": "DURCHSCHNITTLICHE POSITION",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG UND TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -747,7 +747,7 @@
                     {
                       "id": "touch-map",
                       "label": "TOUCH MAP",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -769,7 +769,7 @@
                     {
                       "id": "pass-map",
                       "label": "PASS MAP",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -787,7 +787,7 @@
                     {
                       "id": "angriffszone",
                       "label": "ANGRIFFSZONE",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -801,7 +801,7 @@
                     {
                       "id": "shot-plot",
                       "label": "SHOT PLOT",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -819,7 +819,7 @@
                     {
                       "id": "tackle-map",
                       "label": "TACKLE MAP",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -833,7 +833,7 @@
                     {
                       "id": "heat-map",
                       "label": "HEAT MAP",
-                      "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
+                      "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                       "color": null,
                       "direction": null,
                       "screenshots": [
@@ -905,7 +905,7 @@
             {
               "id": "analyse",
               "label": "ANALYSE",
-              "description": "VOR- & ZURÜCKSPULEN MÖGLICH.",
+              "description": "VOR- UND ZURÜCKSPULEN MÖGLICH.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -970,7 +970,7 @@
             {
               "id": "telestrator",
               "label": "TELESTRATOR",
-              "description": "VOR- & ZURÜCKSPULEN MÖGLICH.",
+              "description": "VOR- UND ZURÜCKSPULEN MÖGLICH.",
               "color": null,
               "direction": null,
               "screenshots": [
@@ -1621,7 +1621,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1639,7 +1639,7 @@
                         {
                           "id": "durchschnittliche-position",
                           "label": "DURCHSCHNITTLICHE POSITION",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG UND TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1657,7 +1657,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1679,7 +1679,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1697,7 +1697,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1711,7 +1711,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1729,7 +1729,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1743,7 +1743,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -1993,7 +1993,7 @@
                         {
                           "id": "aktionszone",
                           "label": "AKTIONSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2011,7 +2011,7 @@
                         {
                           "id": "durchschnittliche-positionen",
                           "label": "DURCHSCHNITTLICHE POSITIONEN",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nVERGLEICH ZWISCHEN STARTAUFSTELLUNG & TATSÄCHLICHER AUFSTELLUNG.\nVERGLEICH DER BEIDEN TEAMS.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2029,7 +2029,7 @@
                         {
                           "id": "touch-map",
                           "label": "TOUCH MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2051,7 +2051,7 @@
                         {
                           "id": "pass-map",
                           "label": "PASS MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2069,7 +2069,7 @@
                         {
                           "id": "angriffszone",
                           "label": "ANGRIFFSZONE",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2083,7 +2083,7 @@
                         {
                           "id": "shot-plot",
                           "label": "SHOT PLOT",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2101,7 +2101,7 @@
                         {
                           "id": "tackle-map",
                           "label": "TACKLE MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER ODER DER GESAMTEN MANNSCHAFT.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2115,7 +2115,7 @@
                         {
                           "id": "heat-map",
                           "label": "HEAT MAP",
-                          "description": "ERSTE & ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
+                          "description": "ERSTE UND ZWEITE HALBZEIT SOWIE GESAMTE SPIELZEIT MÖGLICH.\nWERTE EINZELNER SPIELER.",
                           "color": null,
                           "direction": null,
                           "screenshots": [
@@ -2133,126 +2133,6 @@
                       ]
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "id": "sidebar",
-              "label": "SIDEBAR",
-              "description": "",
-              "color": null,
-              "direction": null,
-              "screenshots": [],
-              "children": [
-                {
-                  "id": "settings",
-                  "label": "SETTINGS",
-                  "description": "",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": [
-                    {
-                      "id": "preferences",
-                      "label": "PREFERENCES",
-                      "description": "",
-                      "color": null,
-                      "direction": null,
-                      "screenshots": [],
-                      "children": [
-                        {
-                          "id": "formation",
-                          "label": "FORMATION",
-                          "description": "Formation Type\n-  Automatic\n- Predicted\n- Official\nWelche Aufstellung er generell benutzen soll, Grundeinstellung ist Automatic\n\nShow Score\n- Off\n- On\nEin- und Ausschalten der Ergebnisse in der Aufstellung",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        },
-                        {
-                          "id": "standings",
-                          "label": "STANDINGS",
-                          "description": "Start at Top\nStart at Bottom\nBeim Aufruf der Tabelle soll er die 1.Seite oder die 2.Seite aufrufen",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        },
-                        {
-                          "id": "match-up",
-                          "label": "MATCH UP",
-                          "description": "leer\n- by week \n- by day\nDie Aufteilung der einzelnen Tage auf eine oder mehrere Seiten von einem Spieltag\n\nShow Score\n- Ergebnisse ein- und ausschalten\n\n",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        },
-                        {
-                          "id": "debug",
-                          "label": "DEBUG",
-                          "description": "Oben rechts ist ein kleines Fenster mit einer Debug Information",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        },
-                        {
-                          "id": "colorbar",
-                          "label": "COLORBAR",
-                          "description": "Colorbar wird im Fullscreen eingeblendet",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        },
-                        {
-                          "id": "watermark",
-                          "label": "WATERMARK",
-                          "description": "Es wird kein Watermark eingeblendet",
-                          "color": null,
-                          "direction": null,
-                          "screenshots": [],
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "id": "shows",
-                      "label": "SHOWS",
-                      "description": "Kann man die Show wird geladen (funktioniert nicht, muss am Start der Engine angewählt werden)\n\nBundesliga\nChampions League\nPremier League\nAustrian Bundesliga\nGeneric",
-                      "color": null,
-                      "direction": null,
-                      "screenshots": [],
-                      "children": []
-                    },
-                    {
-                      "id": "modes",
-                      "label": "MODES",
-                      "description": "Normal\nBookmark\nHide Nav (IPAD) \n\nunbekannte Funktion",
-                      "color": null,
-                      "direction": null,
-                      "screenshots": [],
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "id": "datensaetze",
-                  "label": "DATENSÄTZE",
-                  "description": "von Opta:\nAustrian Bundesliga\nChampions League\nUEFA Champions League Qualifying\nPremier League\nBundesliga\nUEFA Europa League\nUEFA European Championship Finals\nUEFA Conference League Qualifying\nUEFA Conference League\nDFB Pokal\n2. Bundesliga\n\nSport Tec: 1. und 2. Bundesliga\n",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": []
-                },
-                {
-                  "id": "bookmarks",
-                  "label": "BOOKMARKS",
-                  "description": "ADD           EDIT\ndie muss auf die Seite navigieren und auf bookmark add klicken",
-                  "color": null,
-                  "direction": null,
-                  "screenshots": [],
-                  "children": []
                 }
               ]
             }
