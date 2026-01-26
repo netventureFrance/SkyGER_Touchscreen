@@ -45,7 +45,7 @@ class BookView {
             if (node.screenshots && node.screenshots.length > 0) {
                 node.screenshots.forEach((screenshot, idx) => {
                     pages.push({
-                        image: screenshot.src || screenshot,
+                        image: screenshot.url || screenshot.src || screenshot,
                         label: node.label,
                         description: node.description || '',
                         color: node.color,
@@ -449,7 +449,7 @@ class BookView {
         // Update image
         const imageContainer = document.getElementById('bookViewImageContainer');
         if (page.image) {
-            const imageSrc = page.image.startsWith('http') ? page.image : `images/${page.image}`;
+            const imageSrc = page.image.startsWith('http') || page.image.startsWith('images/') ? page.image : `images/${page.image}`;
             imageContainer.innerHTML = `
                 <img src="${escapeHtml(imageSrc)}"
                      alt="${escapeHtml(page.label)}"
@@ -639,7 +639,7 @@ class BookView {
         const page = this.pages[this.currentPage];
         if (!page || !page.image) return;
 
-        const imageSrc = page.image.startsWith('http') ? page.image : `images/${page.image}`;
+        const imageSrc = page.image.startsWith('http') || page.image.startsWith('images/') ? page.image : `images/${page.image}`;
 
         // Use mindmap's lightbox method
         this.mindmapView.openLightbox([{
