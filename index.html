@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mindmap.css">
+    <link rel="stylesheet" href="css/bookview.css">
 </head>
 <body>
     <!-- Gepunktetes Hintergrundmuster -->
@@ -122,6 +123,13 @@
                         <line x1="3" y1="21" x2="10" y2="14"/>
                     </svg>
                     <span>Vollbild</span>
+                </button>
+                <button class="control-btn" id="bookViewBtn" title="Buch-Ansicht (B)" aria-label="Buch-Ansicht oeffnen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    <span>Buch</span>
                 </button>
             </div>
         </div>
@@ -242,6 +250,7 @@
     </footer>
 
     <script src="js/data.js"></script>
+    <script src="js/bookview.js"></script>
     <script src="js/mindmap.js"></script>
 </body>
 </html>

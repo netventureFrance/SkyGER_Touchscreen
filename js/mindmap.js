@@ -117,6 +117,13 @@ class MindmapView {
 
         // Version check every 60 seconds
         setInterval(() => this.checkForNewVersion(), 60000);
+
+        // Initialize Book View
+        this.bookView = new BookView(this);
+        this.setupBookViewButton();
+
+        // Check URL for book view params
+        this.bookView.checkURLParams();
     }
 
     async loadVersion() {
@@ -270,6 +277,7 @@ class MindmapView {
                 if (e.key === 'i' || e.key === 'I') this.toggleSidebar();
                 if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
                 if (e.key === 'm' || e.key === 'M') this.toggleMinimap();
+                if (e.key === 'b' || e.key === 'B') this.openBookView();
             }
         });
 
@@ -1945,6 +1953,25 @@ class MindmapView {
             if (span) {
                 span.textContent = this.isFullscreen ? 'Beenden' : 'Vollbild';
             }
+        }
+    }
+
+    /**
+     * Setup Book View button click handler
+     */
+    setupBookViewButton() {
+        const btn = document.getElementById('bookViewBtn');
+        if (btn) {
+            btn.addEventListener('click', () => this.openBookView());
+        }
+    }
+
+    /**
+     * Open Book View
+     */
+    openBookView() {
+        if (this.bookView) {
+            this.bookView.open();
         }
     }
 
