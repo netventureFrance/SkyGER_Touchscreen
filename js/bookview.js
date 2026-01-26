@@ -34,13 +34,14 @@ class BookView {
         const pages = [];
         const data = this.mindmapView.buildData();
 
-        const traverse = (node, breadcrumb = [], inheritedColor = null) => {
+        const traverse = (node, breadcrumb = [], inheritedColor = null, pathId = 'root') => {
             // Inherit color from parent if not set (same as mindmap tree)
             const nodeColor = node.color || inheritedColor;
 
             const currentBreadcrumb = [...breadcrumb, {
                 label: node.label,
                 id: node.id,
+                pathId: pathId,
                 color: nodeColor
             }];
 
@@ -54,15 +55,17 @@ class BookView {
                         color: nodeColor,
                         breadcrumb: currentBreadcrumb,
                         nodeId: node.id,
+                        pathId: pathId,
                         screenshotIndex: idx
                     });
                 });
             }
 
-            // Traverse children with inherited color
+            // Traverse children with inherited color and pathId
             if (node.children && node.children.length > 0) {
-                node.children.forEach(child => {
-                    traverse(child, currentBreadcrumb, nodeColor);
+                node.children.forEach((child, index) => {
+                    const childPathId = `${pathId}-${index}`;
+                    traverse(child, currentBreadcrumb, nodeColor, childPathId);
                 });
             }
         };
@@ -87,10 +90,37 @@ class BookView {
     }
 
     /**
-     * Open the book view
-     * @param {number} startPage - Optional page to start at (0-indexed)
+     * Find page index by pathId (tree position)
+     * Returns the first page that matches or is a child of the given pathId
      */
-    open(startPage = 0) {
+    findPageByPathId(pathId) {
+        // First try exact match
+        for (let i = 0; i < this.pages.length; i++) {
+            if (this.pages[i].pathId === pathId) {
+                return i;
+            }
+        }
+        // Then try to find a page that is a child of this pathId
+        for (let i = 0; i < this.pages.length; i++) {
+            if (this.pages[i].pathId.startsWith(pathId + '-')) {
+                return i;
+            }
+        }
+        // Finally check breadcrumb for matching pathId
+        for (let i = 0; i < this.pages.length; i++) {
+            const inBreadcrumb = this.pages[i].breadcrumb.some(crumb => crumb.pathId === pathId);
+            if (inBreadcrumb) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Open the book view
+     * @param {number|string} startPageOrPathId - Page index (0-indexed) or pathId from tree
+     */
+    open(startPageOrPathId = null) {
         // Extract screenshots
         this.pages = this.extractAllScreenshots();
 
@@ -102,6 +132,18 @@ class BookView {
         // Create container if needed
         if (!this.container) {
             this.createContainer();
+        }
+
+        // Determine starting page
+        let startPage = 0;
+        if (typeof startPageOrPathId === 'number') {
+            startPage = startPageOrPathId;
+        } else if (typeof startPageOrPathId === 'string') {
+            // It's a pathId from the tree
+            startPage = this.findPageByPathId(startPageOrPathId);
+        } else if (this.mindmapView.activeNodeId) {
+            // Use current active node from tree
+            startPage = this.findPageByPathId(this.mindmapView.activeNodeId);
         }
 
         // Set starting page
@@ -132,6 +174,9 @@ class BookView {
     close() {
         if (!this.isOpen) return;
 
+        // Get current page's pathId before closing
+        const currentPathId = this.pages[this.currentPage]?.pathId;
+
         // Hide thumbnails if open
         this.closeThumbnails();
 
@@ -156,6 +201,11 @@ class BookView {
 
         // Show mindmap elements
         document.body.classList.remove('book-view-active');
+
+        // Navigate tree to the current page's node
+        if (currentPathId && this.mindmapView.navigateToPathId) {
+            this.mindmapView.navigateToPathId(currentPathId, false);
+        }
     }
 
     /**
@@ -537,7 +587,7 @@ class BookView {
 
             // Add click handler to navigate to first screenshot of this section
             crumb.addEventListener('click', () => {
-                const pageIndex = this.findFirstPageOfSection(item.id);
+                const pageIndex = item.pathId ? this.findPageByPathId(item.pathId) : this.findFirstPageOfSection(item.id);
                 this.goToPage(pageIndex);
             });
 
