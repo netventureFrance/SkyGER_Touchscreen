@@ -46,41 +46,62 @@ const anthropic = new Anthropic({
 
 const SCREENSHOTS_DIR = join(__dirname, '..', 'images', 'screenshots');
 const CACHE_FILE = join(__dirname, '..', 'images', 'screenshot-analysis.json');
+const NOTION_DATA_FILE = join(__dirname, '..', 'images', 'notion-data.json');
 
 // Supported image formats
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
 
 /**
- * Get all screenshot files recursively
+ * Extract all screenshot URLs from notion-data.json recursively
  */
-function getAllScreenshots(dir, baseDir = dir) {
+function extractScreenshotUrls(node, urls = []) {
+    if (node.screenshots && Array.isArray(node.screenshots)) {
+        for (const screenshot of node.screenshots) {
+            if (screenshot.url) {
+                urls.push(screenshot.url);
+            }
+        }
+    }
+    if (node.children && Array.isArray(node.children)) {
+        for (const child of node.children) {
+            extractScreenshotUrls(child, urls);
+        }
+    }
+    return urls;
+}
+
+/**
+ * Get all screenshot files from notion-data.json (only images actually used)
+ */
+function getAllScreenshots() {
     const files = [];
 
     try {
-        const entries = readdirSync(dir);
+        // Load notion-data.json to get only referenced images
+        const notionData = JSON.parse(readFileSync(NOTION_DATA_FILE, 'utf-8'));
+        const urls = extractScreenshotUrls(notionData);
 
-        for (const entry of entries) {
-            const fullPath = join(dir, entry);
-            const stat = statSync(fullPath);
+        for (const url of urls) {
+            const absolutePath = join(__dirname, '..', url);
 
-            if (stat.isDirectory()) {
-                files.push(...getAllScreenshots(fullPath, baseDir));
-            } else if (stat.isFile()) {
-                const ext = entry.toLowerCase().slice(entry.lastIndexOf('.'));
-                if (IMAGE_EXTENSIONS.includes(ext)) {
-                    files.push({
-                        absolutePath: fullPath,
-                        relativePath: relative(baseDir, fullPath),
-                        localPath: 'images/screenshots/' + relative(baseDir, fullPath),
-                        filename: entry,
-                        size: stat.size,
-                        modified: stat.mtime.toISOString(),
-                    });
-                }
+            if (existsSync(absolutePath)) {
+                const stat = statSync(absolutePath);
+                const filename = url.split('/').pop();
+
+                files.push({
+                    absolutePath: absolutePath,
+                    relativePath: url.replace('images/screenshots/', ''),
+                    localPath: url,
+                    filename: filename,
+                    size: stat.size,
+                    modified: stat.mtime.toISOString(),
+                });
+            } else {
+                console.log(`  ⚠️ File not found: ${url}`);
             }
         }
     } catch (e) {
-        console.error(`Error reading directory ${dir}:`, e.message);
+        console.error(`Error loading notion-data.json:`, e.message);
     }
 
     return files;
@@ -246,9 +267,9 @@ function delay(ms) {
 async function main() {
     console.log('🔄 Screenshot Analysis with Claude Vision\n');
 
-    // Get all screenshots
-    console.log('📂 Scanning for screenshots...');
-    const screenshots = getAllScreenshots(SCREENSHOTS_DIR);
+    // Get all screenshots from notion-data.json
+    console.log('📂 Loading screenshots from notion-data.json...');
+    const screenshots = getAllScreenshots();
     console.log(`   Found ${screenshots.length} screenshots\n`);
 
     if (screenshots.length === 0) {
