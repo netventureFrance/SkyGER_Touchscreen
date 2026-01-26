@@ -2677,25 +2677,57 @@ class MindmapView {
             return;
         }
 
-        // Expand path to this node
+        // Expand path to this node, handling dual-side nodes
         this.expandedNodes.clear();
-        this.expandedNodes.add('root');
 
-        // Build path of pathIds to expand
+        // Traverse the tree to find and expand all ancestors
         const pathParts = pathId.split('-');
-        let currentPath = 'root';
-        for (let i = 1; i < pathParts.length; i++) {
-            currentPath += '-' + pathParts[i];
-            // Expand parent nodes
-            const parentPath = pathParts.slice(0, i + 1).join('-');
-            if (i < pathParts.length - 1) {
-                this.expandedNodes.add(parentPath);
+        const rootData = this.buildData();
+        let currentNode = rootData;
+        let currentPathId = 'root';
+        let inheritedDirection = null;
+
+        // Always expand root - check if it's dual-side
+        this.expandedNodes.add('root');
+        if (this.isDualSideNode(rootData)) {
+            // Determine which side the target is on
+            if (pathParts.length > 1) {
+                const childIndex = parseInt(pathParts[1], 10);
+                const child = rootData.children[childIndex];
+                const childDir = child?.direction || inheritedDirection;
+                if (childDir === 'left') {
+                    this.expandedNodes.add('root:L');
+                } else {
+                    this.expandedNodes.add('root:R');
+                }
             }
         }
-        // Expand direct parent
-        if (pathParts.length > 1) {
-            const parentPath = pathParts.slice(0, -1).join('-');
-            this.expandedNodes.add(parentPath);
+
+        // Expand each node along the path
+        for (let i = 1; i < pathParts.length; i++) {
+            const childIndex = parseInt(pathParts[i], 10);
+            if (!currentNode.children || !currentNode.children[childIndex]) break;
+
+            currentNode = currentNode.children[childIndex];
+            inheritedDirection = currentNode.direction || inheritedDirection;
+            currentPathId = pathParts.slice(0, i + 1).join('-');
+
+            // Only expand if not the final target node
+            if (i < pathParts.length - 1) {
+                this.expandedNodes.add(currentPathId);
+
+                // Handle dual-side nodes
+                if (this.isDualSideNode(currentNode)) {
+                    const nextChildIndex = parseInt(pathParts[i + 1], 10);
+                    const nextChild = currentNode.children[nextChildIndex];
+                    const nextChildDir = nextChild?.direction || inheritedDirection;
+                    if (nextChildDir === 'left') {
+                        this.expandedNodes.add(currentPathId + ':L');
+                    } else {
+                        this.expandedNodes.add(currentPathId + ':R');
+                    }
+                }
+            }
         }
 
         // Set active node
@@ -2711,6 +2743,27 @@ class MindmapView {
         this.smoothRender(pathId).then(() => {
             this.updateBreadcrumbs();
         });
+    }
+
+    /**
+     * Check if a node has children on both left and right sides
+     */
+    isDualSideNode(node) {
+        if (!node.children || node.children.length === 0) return false;
+
+        let hasLeft = false;
+        let hasRight = false;
+
+        for (const child of node.children) {
+            if (child.direction === 'left') {
+                hasLeft = true;
+            } else {
+                hasRight = true;
+            }
+            if (hasLeft && hasRight) return true;
+        }
+
+        return false;
     }
 
     /**
