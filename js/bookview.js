@@ -181,7 +181,9 @@ class BookView {
         if (!this.isOpen) return;
 
         // Get current page's pathId before closing
-        const currentPathId = this.pages[this.currentPage]?.pathId;
+        const currentPage = this.pages[this.currentPage];
+        const currentPathId = currentPage?.pathId;
+        console.log('BookView close - currentPage:', this.currentPage, 'pathId:', currentPathId, 'page:', currentPage);
 
         // Hide thumbnails if open
         this.closeThumbnails();
@@ -209,8 +211,15 @@ class BookView {
         document.body.classList.remove('book-view-active');
 
         // Navigate tree to the current page's node
-        if (currentPathId && this.mindmapView.navigateToPathId) {
-            this.mindmapView.navigateToPathId(currentPathId, false);
+        if (currentPathId) {
+            console.log('BookView: Navigating tree to pathId:', currentPathId);
+            if (this.mindmapView.navigateToPathId) {
+                this.mindmapView.navigateToPathId(currentPathId, false);
+            } else {
+                console.error('navigateToPathId method not found on mindmapView');
+            }
+        } else {
+            console.warn('BookView: No pathId found for current page');
         }
     }
 
