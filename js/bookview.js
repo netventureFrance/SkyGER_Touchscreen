@@ -88,11 +88,15 @@ class BookView {
      * @param {number} startPage - Optional page to start at (0-indexed)
      */
     open(startPage = 0) {
+        console.log('BookView.open() called');
+
         // Extract screenshots
         this.pages = this.extractAllScreenshots();
+        console.log('Found pages:', this.pages.length);
 
         if (this.pages.length === 0) {
             console.warn('No screenshots found for book view');
+            alert('Keine Screenshots gefunden');
             return;
         }
 
