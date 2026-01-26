@@ -121,7 +121,7 @@ class BookView {
      * @param {number|string} startPageOrPathId - Page index (0-indexed) or pathId from tree
      */
     open(startPageOrPathId = null) {
-        // Extract screenshots
+        // Always extract fresh screenshots (data may have changed)
         this.pages = this.extractAllScreenshots();
 
         if (this.pages.length === 0) {
@@ -129,10 +129,16 @@ class BookView {
             return;
         }
 
-        // Create container if needed
-        if (!this.container) {
-            this.createContainer();
+        // Always recreate container to ensure fresh data/version
+        if (this.container) {
+            this.container.remove();
+            this.container = null;
         }
+        if (this.thumbnailsContainer) {
+            this.thumbnailsContainer.remove();
+            this.thumbnailsContainer = null;
+        }
+        this.createContainer();
 
         // Determine starting page
         let startPage = 0;
@@ -275,16 +281,15 @@ class BookView {
         this.container.id = 'bookView';
         this.container.className = 'book-view';
 
+        // Get version from mindmap
+        const versionEl = document.getElementById('versionNumber');
+        const versionText = versionEl ? versionEl.textContent : '';
+
         this.container.innerHTML = `
             <div class="book-view-header">
                 <div class="book-view-header-left">
-                    <button class="book-view-close" id="bookViewClose" title="Schliessen (ESC)">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        <span>Schliessen</span>
-                    </button>
+                    <span class="book-view-title-text">Buch-Ansicht</span>
+                    <span class="book-view-version">${versionText}</span>
                 </div>
                 <div class="book-view-header-center">
                     <button class="book-view-nav-btn" id="bookViewPrev" title="Vorherige Seite">
@@ -310,6 +315,13 @@ class BookView {
                             <rect x="14" y="14" width="7" height="7"/>
                         </svg>
                         <span>Uebersicht</span>
+                    </button>
+                    <button class="book-view-close" id="bookViewClose" title="Zurueck zur Baumansicht (ESC)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"/>
+                            <polyline points="12 19 5 12 12 5"/>
+                        </svg>
+                        <span>Baum</span>
                     </button>
                 </div>
             </div>
