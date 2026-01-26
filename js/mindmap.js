@@ -2671,8 +2671,10 @@ class MindmapView {
      * Navigate to a node by its pathId
      */
     navigateToPathId(pathId, pushState = true) {
+        console.log('navigateToPathId called with:', pathId);
         // Find the node data for this pathId
         const nodeData = this.findNodeByPathId(pathId);
+        console.log('findNodeByPathId result:', nodeData);
         if (!nodeData) {
             console.warn('Node not found for pathId:', pathId);
             return;
