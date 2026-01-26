@@ -34,11 +34,14 @@ class BookView {
         const pages = [];
         const data = this.mindmapView.buildData();
 
-        const traverse = (node, breadcrumb = []) => {
+        const traverse = (node, breadcrumb = [], inheritedColor = null) => {
+            // Inherit color from parent if not set (same as mindmap tree)
+            const nodeColor = node.color || inheritedColor;
+
             const currentBreadcrumb = [...breadcrumb, {
                 label: node.label,
                 id: node.id,
-                color: node.color
+                color: nodeColor
             }];
 
             // Add screenshots from this node
@@ -48,7 +51,7 @@ class BookView {
                         image: screenshot.url || screenshot.src || screenshot,
                         label: node.label,
                         description: node.description || '',
-                        color: node.color,
+                        color: nodeColor,
                         breadcrumb: currentBreadcrumb,
                         nodeId: node.id,
                         screenshotIndex: idx
@@ -56,10 +59,10 @@ class BookView {
                 });
             }
 
-            // Traverse children
+            // Traverse children with inherited color
             if (node.children && node.children.length > 0) {
                 node.children.forEach(child => {
-                    traverse(child, currentBreadcrumb);
+                    traverse(child, currentBreadcrumb, nodeColor);
                 });
             }
         };
@@ -88,15 +91,11 @@ class BookView {
      * @param {number} startPage - Optional page to start at (0-indexed)
      */
     open(startPage = 0) {
-        console.log('BookView.open() called');
-
         // Extract screenshots
         this.pages = this.extractAllScreenshots();
-        console.log('Found pages:', this.pages.length);
 
         if (this.pages.length === 0) {
             console.warn('No screenshots found for book view');
-            alert('Keine Screenshots gefunden');
             return;
         }
 
@@ -530,6 +529,11 @@ class BookView {
             const crumb = document.createElement('span');
             crumb.className = 'book-view-breadcrumb-item';
             crumb.textContent = item.label;
+
+            // Apply color if available
+            if (item.color && item.color.startsWith('#')) {
+                crumb.style.color = item.color;
+            }
 
             // Add click handler to navigate to first screenshot of this section
             crumb.addEventListener('click', () => {

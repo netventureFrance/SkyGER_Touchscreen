@@ -1961,12 +1961,8 @@ class MindmapView {
      */
     setupBookViewButton() {
         const btn = document.getElementById('bookViewBtn');
-        console.log('setupBookViewButton - btn found:', !!btn);
         if (btn) {
-            btn.addEventListener('click', () => {
-                console.log('Book View button clicked');
-                this.openBookView();
-            });
+            btn.addEventListener('click', () => this.openBookView());
         }
     }
 
@@ -1974,7 +1970,6 @@ class MindmapView {
      * Open Book View
      */
     openBookView() {
-        console.log('openBookView called, bookView exists:', !!this.bookView);
         if (this.bookView) {
             this.bookView.open();
         }
