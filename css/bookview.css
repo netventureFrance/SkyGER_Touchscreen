@@ -2,14 +2,14 @@
    BOOK VIEW - Full-screen paginated screenshot viewer
    ============================================ */
 
-/* Main Container */
+/* Main Container - z-index 9999 to work above fullscreen mode */
 .book-view {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 500;
+    z-index: 9999;
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     display: flex;
     flex-direction: column;
@@ -352,7 +352,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 550;
+    z-index: 10000;
     background: rgba(2, 8, 16, 0.95);
     backdrop-filter: blur(10px);
     display: flex;

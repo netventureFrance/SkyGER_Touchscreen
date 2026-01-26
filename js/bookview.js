@@ -181,9 +181,7 @@ class BookView {
         if (!this.isOpen) return;
 
         // Get current page's pathId before closing
-        const currentPage = this.pages[this.currentPage];
-        const currentPathId = currentPage?.pathId;
-        console.log('BookView close - currentPage:', this.currentPage, 'pathId:', currentPathId, 'page:', currentPage);
+        const currentPathId = this.pages[this.currentPage]?.pathId;
 
         // Hide thumbnails if open
         this.closeThumbnails();
@@ -211,15 +209,8 @@ class BookView {
         document.body.classList.remove('book-view-active');
 
         // Navigate tree to the current page's node
-        if (currentPathId) {
-            console.log('BookView: Navigating tree to pathId:', currentPathId);
-            if (this.mindmapView.navigateToPathId) {
-                this.mindmapView.navigateToPathId(currentPathId, false);
-            } else {
-                console.error('navigateToPathId method not found on mindmapView');
-            }
-        } else {
-            console.warn('BookView: No pathId found for current page');
+        if (currentPathId && this.mindmapView.navigateToPathId) {
+            this.mindmapView.navigateToPathId(currentPathId, false);
         }
     }
 
@@ -676,13 +667,22 @@ class BookView {
             }
             thumb.dataset.index = index;
 
+            // Apply color border if available
+            if (page.color && page.color.startsWith('#')) {
+                thumb.style.borderColor = page.color;
+                thumb.style.boxShadow = `0 0 10px ${page.color}44`;
+            }
+
             const imageSrc = page.image ?
-                (page.image.startsWith('http') ? page.image : `images/${page.image}`) :
+                (page.image.startsWith('http') || page.image.startsWith('images/') ? page.image : `images/${page.image}`) :
                 '';
+
+            // Create label with color
+            const labelStyle = page.color && page.color.startsWith('#') ? `style="color: ${page.color}"` : '';
 
             thumb.innerHTML = `
                 ${imageSrc ? `<img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(page.label)}" loading="lazy">` : ''}
-                <div class="book-view-thumbnail-label">${escapeHtml(page.label)}</div>
+                <div class="book-view-thumbnail-label" ${labelStyle}>${escapeHtml(page.label)}</div>
                 <div class="book-view-thumbnail-number">${index + 1}</div>
             `;
 
