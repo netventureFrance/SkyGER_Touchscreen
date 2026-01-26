@@ -47,16 +47,21 @@ class BookView {
 
             // Add screenshots from this node
             if (node.screenshots && node.screenshots.length > 0) {
+                const totalScreenshots = node.screenshots.length;
                 node.screenshots.forEach((screenshot, idx) => {
                     pages.push({
                         image: screenshot.url || screenshot.src || screenshot,
+                        screenshotName: screenshot.name || '',
                         label: node.label,
                         description: node.description || '',
                         color: nodeColor,
                         breadcrumb: currentBreadcrumb,
                         nodeId: node.id,
                         pathId: pathId,
-                        screenshotIndex: idx
+                        screenshotIndex: idx,
+                        totalScreenshots: totalScreenshots,
+                        // Parent section info (last breadcrumb item before current)
+                        parentSection: breadcrumb.length > 0 ? breadcrumb[breadcrumb.length - 1] : null
                     });
                 });
             }
@@ -336,12 +341,23 @@ class BookView {
                         <!-- Breadcrumb will be inserted here -->
                     </div>
                     <h2 class="book-view-title" id="bookViewTitle">Title</h2>
+                    <div class="book-view-section-badge" id="bookViewSectionBadge"></div>
                     <div class="book-view-description" id="bookViewDescription">
                         Description
                     </div>
-                    <div class="book-view-filename">
-                        <div class="book-view-filename-label">Bild:</div>
-                        <div class="book-view-filename-value" id="bookViewFilename">filename.png</div>
+                    <div class="book-view-meta">
+                        <div class="book-view-meta-item" id="bookViewScreenshotInfo">
+                            <span class="book-view-meta-label">Bild:</span>
+                            <span class="book-view-meta-value" id="bookViewScreenshotCount"></span>
+                        </div>
+                        <div class="book-view-meta-item">
+                            <span class="book-view-meta-label">Datei:</span>
+                            <span class="book-view-meta-value book-view-filename" id="bookViewFilename">filename.png</span>
+                        </div>
+                        <div class="book-view-meta-item" id="bookViewPathItem">
+                            <span class="book-view-meta-label">Pfad:</span>
+                            <span class="book-view-meta-value book-view-path" id="bookViewPath"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -554,18 +570,54 @@ class BookView {
             titleEl.classList.remove('colored');
         }
 
+        // Update section badge (parent section)
+        const badgeEl = document.getElementById('bookViewSectionBadge');
+        if (page.parentSection && page.parentSection.label !== page.label) {
+            badgeEl.textContent = page.parentSection.label;
+            badgeEl.style.display = 'inline-block';
+            if (page.parentSection.color && page.parentSection.color.startsWith('#')) {
+                badgeEl.style.borderColor = page.parentSection.color;
+                badgeEl.style.color = page.parentSection.color;
+            } else {
+                badgeEl.style.borderColor = '';
+                badgeEl.style.color = '';
+            }
+        } else {
+            badgeEl.style.display = 'none';
+        }
+
         // Update description
         const descEl = document.getElementById('bookViewDescription');
         if (page.description) {
-            descEl.textContent = page.description;
+            // Replace newlines with <br> for proper formatting
+            descEl.innerHTML = escapeHtml(page.description).replace(/\n/g, '<br>');
             descEl.style.display = 'block';
         } else {
             descEl.style.display = 'none';
         }
 
+        // Update screenshot count (e.g., "2 von 3" for this node)
+        const screenshotCountEl = document.getElementById('bookViewScreenshotCount');
+        if (page.totalScreenshots > 1) {
+            screenshotCountEl.textContent = `${page.screenshotIndex + 1} von ${page.totalScreenshots}`;
+        } else {
+            screenshotCountEl.textContent = '1';
+        }
+
         // Update filename
         const filename = page.image ? page.image.split('/').pop() : '-';
         document.getElementById('bookViewFilename').textContent = filename;
+
+        // Update path (folder structure from image URL)
+        const pathEl = document.getElementById('bookViewPath');
+        if (page.image) {
+            // Extract folder path, remove 'images/screenshots/' prefix and filename
+            const fullPath = page.image.replace(/^images\/screenshots\//, '').replace(/\/[^/]+$/, '');
+            pathEl.textContent = fullPath || '-';
+            document.getElementById('bookViewPathItem').style.display = '';
+        } else {
+            document.getElementById('bookViewPathItem').style.display = 'none';
+        }
 
         // Update progress bar
         const progress = ((this.currentPage + 1) / this.pages.length) * 100;
