@@ -10,7 +10,9 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "sync": "node sync-notion.js"
+    "sync": "node sync-notion.js",
+    "analyze": "node analyze-screenshots.js",
+    "write-to-notion": "node write-to-notion.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.0",

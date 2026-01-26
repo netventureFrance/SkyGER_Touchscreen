@@ -54,6 +54,7 @@ class BookView {
                         screenshotName: screenshot.name || '',
                         label: node.label,
                         description: node.description || '',
+                        dataFields: node.dataFields || null, // AI-extracted data
                         color: nodeColor,
                         breadcrumb: currentBreadcrumb,
                         nodeId: node.id,
@@ -345,6 +346,9 @@ class BookView {
                     <div class="book-view-description" id="bookViewDescription">
                         Description
                     </div>
+                    <div class="book-view-data-fields" id="bookViewDataFields">
+                        <!-- AI-extracted data will be inserted here -->
+                    </div>
                     <div class="book-view-meta">
                         <div class="book-view-meta-item" id="bookViewScreenshotInfo">
                             <span class="book-view-meta-label">Bild:</span>
@@ -594,6 +598,38 @@ class BookView {
             descEl.style.display = 'block';
         } else {
             descEl.style.display = 'none';
+        }
+
+        // Update data fields (AI-extracted data)
+        const dataFieldsEl = document.getElementById('bookViewDataFields');
+        if (page.dataFields) {
+            let html = '<div class="book-view-data-header">📊 KI-Analyse</div>';
+
+            if (page.dataFields.screenPurpose) {
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">Beschreibung:</span>
+                    <span class="book-view-data-value">${escapeHtml(page.dataFields.screenPurpose)}</span>
+                </div>`;
+            }
+
+            if (page.dataFields.extractedText && page.dataFields.extractedText.length > 0) {
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">Erkannter Text:</span>
+                    <span class="book-view-data-value">${page.dataFields.extractedText.map(t => escapeHtml(t)).join(', ')}</span>
+                </div>`;
+            }
+
+            if (page.dataFields.uiElements && page.dataFields.uiElements.length > 0) {
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">UI-Elemente:</span>
+                    <span class="book-view-data-value">${page.dataFields.uiElements.map(e => escapeHtml(e)).join(', ')}</span>
+                </div>`;
+            }
+
+            dataFieldsEl.innerHTML = html;
+            dataFieldsEl.style.display = 'block';
+        } else {
+            dataFieldsEl.style.display = 'none';
         }
 
         // Update screenshot count (e.g., "2 von 3" for this node)

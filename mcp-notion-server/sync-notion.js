@@ -224,6 +224,77 @@ function getBlockText(block) {
 }
 
 /**
+ * Parse [data]...[/data] annotations from text
+ * Returns { cleanText: string, dataFields: object|null }
+ */
+function parseDataAnnotations(text) {
+    if (!text) return { cleanText: '', dataFields: null };
+
+    // Check if text contains [data] blocks
+    const dataMatch = text.match(/\[data\]([\s\S]*?)\[\/data\]/);
+    if (!dataMatch) {
+        return { cleanText: text, dataFields: null };
+    }
+
+    // Extract content between [data] tags
+    const dataContent = dataMatch[1].trim();
+
+    // Parse the fields
+    const dataFields = {
+        extractedText: [],
+        uiElements: [],
+        screenPurpose: '',
+    };
+
+    // Parse each line - looking for **Label:** Value format
+    const lines = dataContent.split('\n');
+    for (const line of lines) {
+        const trimmed = line.trim();
+
+        // Erkannter Text (Extracted Text)
+        const textMatch = trimmed.match(/\*\*Erkannter Text:\*\*\s*(.*)/);
+        if (textMatch) {
+            dataFields.extractedText = textMatch[1].split(',').map(s => s.trim()).filter(Boolean);
+            continue;
+        }
+
+        // UI-Elemente (UI Elements)
+        const uiMatch = trimmed.match(/\*\*UI-Elemente:\*\*\s*(.*)/);
+        if (uiMatch) {
+            dataFields.uiElements = uiMatch[1].split(',').map(s => s.trim()).filter(Boolean);
+            continue;
+        }
+
+        // Beschreibung (Description / Screen Purpose)
+        const descMatch = trimmed.match(/\*\*Beschreibung:\*\*\s*(.*)/);
+        if (descMatch) {
+            dataFields.screenPurpose = descMatch[1].trim();
+            continue;
+        }
+    }
+
+    // Remove [data] block from text to get clean description
+    const cleanText = text.replace(/\[data\][\s\S]*?\[\/data\]/g, '').trim();
+
+    // Only return dataFields if we found actual content
+    const hasData = dataFields.extractedText.length > 0 ||
+                    dataFields.uiElements.length > 0 ||
+                    dataFields.screenPurpose;
+
+    return {
+        cleanText,
+        dataFields: hasData ? dataFields : null,
+    };
+}
+
+/**
+ * Check if text is a [data] block (for filtering in description)
+ */
+function isDataBlock(text) {
+    return text && text.trim().startsWith('[data]');
+}
+
+/**
  * Process blocks recursively - find structure
  */
 async function processBlocks(blocks, parentItem, depth = 0) {
@@ -317,13 +388,39 @@ async function processBlocks(blocks, parentItem, depth = 0) {
                 await processBlocks(childBlocks, newItem, depth + 1);
             }
         }
-        // Paragraphs - add as description to parent
+        // Paragraphs - add as description to parent (handle [data] blocks)
         else if (type === 'paragraph' && text) {
-            console.log(`${indent}  ¶ ${text.substring(0, 50)}...`);
-            if (!parentItem.description) {
-                parentItem.description = text;
+            // Check if this is a [data] block
+            if (isDataBlock(text)) {
+                const { dataFields } = parseDataAnnotations(text);
+                if (dataFields) {
+                    console.log(`${indent}  📊 Data block found`);
+                    // Store dataFields on parent item
+                    if (!parentItem.dataFields) {
+                        parentItem.dataFields = dataFields;
+                    } else {
+                        // Merge with existing dataFields
+                        parentItem.dataFields.extractedText = [
+                            ...parentItem.dataFields.extractedText,
+                            ...dataFields.extractedText,
+                        ];
+                        parentItem.dataFields.uiElements = [
+                            ...parentItem.dataFields.uiElements,
+                            ...dataFields.uiElements,
+                        ];
+                        if (dataFields.screenPurpose && !parentItem.dataFields.screenPurpose) {
+                            parentItem.dataFields.screenPurpose = dataFields.screenPurpose;
+                        }
+                    }
+                }
             } else {
-                parentItem.description += '\n' + text;
+                // Regular paragraph - add to description
+                console.log(`${indent}  ¶ ${text.substring(0, 50)}...`);
+                if (!parentItem.description) {
+                    parentItem.description = text;
+                } else {
+                    parentItem.description += '\n' + text;
+                }
             }
         }
         // Images
@@ -531,6 +628,11 @@ function generateDataStructure(item, basePath = '', depth = 0) {
         }),
         children: item.children.map(child => generateDataStructure(child, currentPath, depth + 1))
     };
+
+    // Add dataFields if present (from [data] annotations)
+    if (item.dataFields) {
+        result.dataFields = item.dataFields;
+    }
 
     return result;
 }
