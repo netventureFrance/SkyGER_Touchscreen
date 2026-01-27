@@ -159,14 +159,16 @@ async function generatePDF() {
         const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
         // Footer dimensions
-        const footerHeight = 22;
+        const footerHeight = 25;
+        const contentTop = PAGE_HEIGHT - 50;
+        const contentBottom = footerHeight + 5;
 
-        // Draw light gray content background (above footer)
+        // Draw light gray content background (full width, above footer)
         page.drawRectangle({
             x: MARGIN,
-            y: footerHeight + 10,
+            y: contentBottom,
             width: PAGE_WIDTH - MARGIN * 2,
-            height: PAGE_HEIGHT - footerHeight - MARGIN - 50,
+            height: contentTop - contentBottom,
             color: lightGray
         });
 
@@ -248,9 +250,9 @@ async function generatePDF() {
             }
         }
 
-        // Metadata on right side
-        const metaX = PAGE_WIDTH - 145;
-        let metaY = PAGE_HEIGHT - 60;
+        // Metadata on right side (inside gray area)
+        const metaX = PAGE_WIDTH - MARGIN - 110;
+        let metaY = contentTop - 15;
 
         // Vorlage section
         page.drawText('Vorlage:', {
@@ -298,63 +300,61 @@ async function generatePDF() {
             }
         }
 
-        // Footer bar with two diagonal separators
-        const orangeEnd = PAGE_WIDTH * 0.58;
-        const diag1Width = 25;  // First diagonal width
-        const grayStart = orangeEnd + diag1Width;
-        const grayEnd = PAGE_WIDTH - 50;
-        const diag2Width = 20;  // Second diagonal width
+        // Footer bar layout
+        const orangeEnd = PAGE_WIDTH * 0.56;
+        const diag1Width = 20;
+        const grayStart = orangeEnd;
+        const grayEnd = PAGE_WIDTH - 45;
+        const diag2Width = 15;
+        const fh = footerHeight;
 
-        // White/light background for page number area
+        // Draw full footer background (white)
         page.drawRectangle({
-            x: grayEnd,
-            y: 0,
-            width: PAGE_WIDTH - grayEnd,
-            height: footerHeight,
-            color: rgb(0.95, 0.95, 0.95)
+            x: 0, y: 0,
+            width: PAGE_WIDTH,
+            height: fh,
+            color: rgb(0.96, 0.96, 0.96)
         });
 
-        // Gray middle section
+        // Gray middle section (covers from orange end to page number area)
         page.drawRectangle({
-            x: grayStart,
-            y: 0,
+            x: grayStart, y: 0,
             width: grayEnd - grayStart + diag2Width,
-            height: footerHeight,
+            height: fh,
             color: footerGray
         });
 
-        // Second diagonal (gray to white) - pointing right
-        const diag2Path = `M ${grayEnd} 0 L ${grayEnd + diag2Width} 0 L ${grayEnd + diag2Width} ${footerHeight} Z`;
-        page.drawSvgPath(diag2Path, { x: 0, y: 0, color: rgb(0.95, 0.95, 0.95) });
-
         // Orange section
         page.drawRectangle({
-            x: 0,
-            y: 0,
-            width: orangeEnd,
-            height: footerHeight,
+            x: 0, y: 0,
+            width: orangeEnd + diag1Width,
+            height: fh,
             color: orangeColor
         });
 
-        // First diagonal (orange to gray) - pointing right
-        const diag1Path = `M ${orangeEnd} 0 L ${orangeEnd} ${footerHeight} L ${orangeEnd + diag1Width} ${footerHeight} Z`;
-        page.drawSvgPath(diag1Path, { x: 0, y: 0, color: orangeColor });
+        // First diagonal cut (gray over orange) - creates angled edge
+        const d1 = `M ${orangeEnd} 0 L ${orangeEnd + diag1Width} 0 L ${orangeEnd + diag1Width} ${fh} Z`;
+        page.drawSvgPath(d1, { x: 0, y: 0, color: footerGray });
+
+        // Second diagonal cut (white over gray)
+        const d2 = `M ${grayEnd} 0 L ${grayEnd + diag2Width} 0 L ${grayEnd + diag2Width} ${fh} Z`;
+        page.drawSvgPath(d2, { x: 0, y: 0, color: rgb(0.96, 0.96, 0.96) });
 
         // Footer title
         page.drawText('SKY SUPER TOUCH - DOKUMENTATION', {
             x: 12,
-            y: 7,
+            y: 8,
             size: 9,
             font: fontBold,
             color: rgb(1, 1, 1)
         });
 
-        // Logo on footer (bigger)
+        // Logo on footer
         if (logoImage) {
-            const footerLogoDims = logoImage.scale(0.08);
+            const footerLogoDims = logoImage.scale(0.07);
             page.drawImage(logoImage, {
-                x: grayStart + 10,
-                y: (footerHeight - footerLogoDims.height) / 2,
+                x: grayStart + diag1Width + 8,
+                y: (fh - footerLogoDims.height) / 2,
                 width: footerLogoDims.width,
                 height: footerLogoDims.height
             });
@@ -362,17 +362,17 @@ async function generatePDF() {
 
         // netventure.tv
         page.drawText('netventure.tv', {
-            x: grayStart + 45,
-            y: 6,
+            x: grayStart + diag1Width + 40,
+            y: 8,
             size: 10,
             font: fontBold,
             color: rgb(0.4, 0.4, 0.4)
         });
 
-        // Page number (on white section)
+        // Page number
         page.drawText(`${i + 1}`, {
-            x: PAGE_WIDTH - 25,
-            y: 7,
+            x: PAGE_WIDTH - 22,
+            y: 8,
             size: 9,
             font: font,
             color: rgb(0.5, 0.5, 0.5)
