@@ -356,21 +356,21 @@ async function generatePDF() {
             color: rgb(1, 1, 1)
         });
 
-        // Logo + netventure.tv tightly together
-        const logoX = orangeEnd + diag1Width + 8;
+        // Logo + netventure.tv tightly together (no gap)
+        const logoX = orangeEnd + diag1Width + 10;
         if (logoImage) {
-            const footerLogoDims = logoImage.scale(0.065);
+            const footerLogoDims = logoImage.scale(0.055);
             page.drawImage(logoImage, {
                 x: logoX,
                 y: (fh - footerLogoDims.height) / 2,
                 width: footerLogoDims.width,
                 height: footerLogoDims.height
             });
-            // Text immediately after logo (1px gap)
+            // Text touching logo (no gap)
             page.drawText('netventure.tv', {
-                x: logoX + footerLogoDims.width + 1,
+                x: logoX + footerLogoDims.width - 1,
                 y: 8,
-                size: 11,
+                size: 10,
                 font: fontBold,
                 color: rgb(0.45, 0.45, 0.45)
             });
@@ -521,10 +521,10 @@ async function generatePDF() {
         color: rgb(1, 1, 1)
     });
 
-    // Logo + netventure.tv on gray section
-    const cfLogoX = cfOrangeEnd + cfDiag1 + 8;
+    // Logo + netventure.tv on gray section (no gap)
+    const cfLogoX = cfOrangeEnd + cfDiag1 + 10;
     if (logoImage) {
-        const cfLogoDims = logoImage.scale(0.09);
+        const cfLogoDims = logoImage.scale(0.07);
         contactPage.drawImage(logoImage, {
             x: cfLogoX,
             y: (contactFooterH - cfLogoDims.height) / 2,
@@ -532,9 +532,9 @@ async function generatePDF() {
             height: cfLogoDims.height
         });
         contactPage.drawText('netventure.tv', {
-            x: cfLogoX + cfLogoDims.width + 1,
+            x: cfLogoX + cfLogoDims.width - 1,
             y: 20,
-            size: 13,
+            size: 12,
             font: fontBold,
             color: rgb(0.45, 0.45, 0.45)
         });
