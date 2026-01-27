@@ -155,6 +155,82 @@
     height: 16px;
 }
 
+.book-view-pdf-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: #f0a040;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-view-pdf-btn:hover {
+    background: var(--box-bg-hover);
+    box-shadow: 0 0 15px rgba(240, 160, 64, 0.3);
+    border-color: rgba(240, 160, 64, 0.5);
+}
+
+.book-view-pdf-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* PDF Progress Overlay */
+.pdf-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.pdf-progress-content {
+    background: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px 50px;
+    text-align: center;
+    min-width: 300px;
+}
+
+.pdf-progress-title {
+    font-size: 18px;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+}
+
+.pdf-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.pdf-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), #f0a040);
+    border-radius: 4px;
+    transition: width 0.2s ease;
+    width: 0%;
+}
+
+.pdf-progress-text {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
 /* Content Area */
 .book-view-content {
     flex: 1;
