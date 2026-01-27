@@ -336,6 +336,7 @@ class BookView {
         this.container.innerHTML = `
             <div class="book-view-header">
                 <div class="book-view-header-left">
+                    <img src="images/netventure-logo.png" alt="netventure" class="book-view-logo">
                     <span class="book-view-title-text">Buch-Ansicht</span>
                     <span class="book-view-version">${versionText}</span>
                 </div>

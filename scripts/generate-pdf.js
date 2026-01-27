@@ -332,82 +332,135 @@ async function generatePDF() {
     console.log('\nAdding contact page...');
     const contactPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
-    // Logo on contact page
+    // Orange color for CI
+    const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
+
+    // KONTAKT heading (right aligned)
+    contactPage.drawText('KONTAKT', {
+        x: PAGE_WIDTH - MARGIN - 80,
+        y: PAGE_HEIGHT - 60,
+        size: 20,
+        font: fontBold,
+        color: rgb(0.2, 0.2, 0.2)
+    });
+
+    // Contact 1: Burak Serc
+    let contactY = PAGE_HEIGHT - 140;
+    contactPage.drawText('Burak Serc', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 14,
+        font: fontBold,
+        color: orangeColor
+    });
+    contactY -= 18;
+    contactPage.drawText('mobile +172 769 76 33', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 10,
+        font: font,
+        color: rgb(0.3, 0.3, 0.3)
+    });
+    contactY -= 14;
+    contactPage.drawText('b.serc@netventure.tv', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 10,
+        font: font,
+        color: rgb(0.3, 0.3, 0.3)
+    });
+
+    // Contact 2: Birnur Yildirim
+    contactY -= 40;
+    contactPage.drawText('Birnur Yildirim', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 14,
+        font: fontBold,
+        color: orangeColor
+    });
+    contactY -= 18;
+    contactPage.drawText('mobile +49 172 - 829 06 04', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 10,
+        font: font,
+        color: rgb(0.3, 0.3, 0.3)
+    });
+    contactY -= 14;
+    contactPage.drawText('b.yildirim@netventure.tv', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 10,
+        font: font,
+        color: rgb(0.3, 0.3, 0.3)
+    });
+
+    // Company name (right aligned)
+    contactY -= 50;
+    contactPage.drawText('netventure production GmbH', {
+        x: PAGE_WIDTH - MARGIN - 180,
+        y: contactY,
+        size: 12,
+        font: fontBold,
+        color: rgb(0.3, 0.3, 0.3)
+    });
+
+    // Footer info line
+    const footerInfoY = 100;
+    contactPage.drawText('Einsteinufer 63-65 . D-10587 Berlin . office +49 30 34 38 38 30 . www.netventure.tv . mobile +49 170 226 81 02', {
+        x: PAGE_WIDTH / 2 - 250,
+        y: footerInfoY,
+        size: 8,
+        font: font,
+        color: rgb(0.4, 0.4, 0.4)
+    });
+
+    // Orange footer bar
+    contactPage.drawRectangle({
+        x: 0,
+        y: 30,
+        width: PAGE_WIDTH,
+        height: 50,
+        color: orangeColor
+    });
+
+    // Footer text on orange bar
+    contactPage.drawText('VIELEN DANK FUR IHRE AUFMERKSAMKEIT', {
+        x: MARGIN,
+        y: 50,
+        size: 14,
+        font: fontBold,
+        color: rgb(1, 1, 1)
+    });
+
+    // Logo on orange footer bar (right side)
     if (logoImage) {
-        const logoDims = logoImage.scale(0.3);
+        const logoDims = logoImage.scale(0.15);
         contactPage.drawImage(logoImage, {
-            x: PAGE_WIDTH / 2 - logoDims.width / 2,
-            y: PAGE_HEIGHT - 100,
+            x: PAGE_WIDTH - MARGIN - logoDims.width - 50,
+            y: 35,
             width: logoDims.width,
             height: logoDims.height
         });
     }
 
-    // Contact title
-    contactPage.drawText('KONTAKTIEREN SIE UNS', {
-        x: PAGE_WIDTH / 2 - 100,
-        y: PAGE_HEIGHT - 200,
-        size: 24,
+    // netventure.tv text next to logo
+    contactPage.drawText('netventure.tv', {
+        x: PAGE_WIDTH - MARGIN - 45,
+        y: 50,
+        size: 12,
         font: fontBold,
-        color: rgb(0, 0.6, 0.8)
-    });
-
-    // Company name
-    contactPage.drawText('netventure GmbH', {
-        x: PAGE_WIDTH / 2 - 60,
-        y: PAGE_HEIGHT - 260,
-        size: 16,
-        font: fontBold,
-        color: rgb(0.2, 0.2, 0.2)
-    });
-
-    // Address
-    const addressLines = [
-        'Einsteinufer 63-65',
-        '10587 Berlin - Deutschland',
-        '',
-        '+49 30 3438383 0',
-        '',
-        'info@netventure.tv'
-    ];
-
-    let contactY = PAGE_HEIGHT - 300;
-    for (const line of addressLines) {
-        contactPage.drawText(line, {
-            x: PAGE_WIDTH / 2 - 70,
-            y: contactY,
-            size: 12,
-            font: font,
-            color: rgb(0.3, 0.3, 0.3)
-        });
-        contactY -= 20;
-    }
-
-    // Website link (prominent)
-    contactPage.drawText('www.netventure.tv', {
-        x: PAGE_WIDTH / 2 - 70,
-        y: contactY - 20,
-        size: 14,
-        font: fontBold,
-        color: rgb(0, 0.6, 0.8)
+        color: rgb(1, 1, 1)
     });
 
     // Page number on contact page
-    contactPage.drawText(`Seite ${pages.length + 1} / ${pages.length + 1}`, {
-        x: PAGE_WIDTH - MARGIN - 70,
-        y: MARGIN,
-        size: 8,
+    contactPage.drawText(`${pages.length + 1}`, {
+        x: PAGE_WIDTH - MARGIN - 10,
+        y: 50,
+        size: 10,
         font: font,
-        color: rgb(0.6, 0.6, 0.6)
-    });
-
-    // Version on contact page
-    contactPage.drawText(`V. ${versionString}`, {
-        x: MARGIN,
-        y: MARGIN,
-        size: 8,
-        font: font,
-        color: rgb(0.6, 0.6, 0.6)
+        color: rgb(1, 1, 1)
     });
 
     console.log('\n\n💾 Saving PDF...');
