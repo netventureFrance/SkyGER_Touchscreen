@@ -289,12 +289,12 @@ async function generatePDF() {
             }
         }
 
-        // Draw logo in top right
+        // Draw logo in top right (small)
         if (logoImage) {
-            const logoDims = logoImage.scale(0.4);
+            const logoDims = logoImage.scale(0.12);
             page.drawImage(logoImage, {
                 x: PAGE_WIDTH - MARGIN - logoDims.width,
-                y: PAGE_HEIGHT - MARGIN - 5,
+                y: PAGE_HEIGHT - MARGIN - logoDims.height + 5,
                 width: logoDims.width,
                 height: logoDims.height
             });
@@ -332,12 +332,12 @@ async function generatePDF() {
     console.log('\nAdding contact page...');
     const contactPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
-    // Logo on contact page (larger)
+    // Logo on contact page
     if (logoImage) {
-        const logoDims = logoImage.scale(1);
+        const logoDims = logoImage.scale(0.3);
         contactPage.drawImage(logoImage, {
             x: PAGE_WIDTH / 2 - logoDims.width / 2,
-            y: PAGE_HEIGHT - 120,
+            y: PAGE_HEIGHT - 100,
             width: logoDims.width,
             height: logoDims.height
         });
