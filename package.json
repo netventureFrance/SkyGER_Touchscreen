@@ -14,6 +14,7 @@
     "analyze": "node mcp-notion-server/analyze-screenshots.js",
     "merge-analysis": "node mcp-notion-server/merge-analysis.js",
     "sync-metadata": "node mcp-notion-server/sync-metadata.js",
+    "generate-pdf": "node scripts/generate-pdf.js",
     "version:bump": "node scripts/increment-version.js",
     "lint": "eslint js/*.js",
     "lint:fix": "eslint js/*.js --fix",
@@ -32,6 +33,7 @@
   "dependencies": {
     "@notionhq/client": "^2.2.14",
     "dotenv": "^16.3.1",
+    "pdf-lib": "^1.17.1",
     "sharp": "^0.34.5"
   },
   "devDependencies": {

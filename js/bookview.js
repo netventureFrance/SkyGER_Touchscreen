@@ -493,7 +493,7 @@ class BookView {
 
         // PDF button
         document.getElementById('bookViewPdfBtn').addEventListener('click', () => {
-            this.generatePDF();
+            this.downloadPDF();
         });
     }
 
@@ -898,140 +898,30 @@ class BookView {
     }
 
     /**
-     * Generate PDF of all screenshots
+     * Download pre-generated PDF documentation
      */
-    async generatePDF() {
-        // Check if jsPDF is available
-        if (typeof window.jspdf === 'undefined') {
-            alert('PDF-Bibliothek wird geladen...');
-            return;
-        }
+    async downloadPDF() {
+        // Get version from page
+        const versionEl = document.getElementById('versionNumber');
+        const versionText = versionEl ? versionEl.textContent.replace('V. ', '') : 'latest';
 
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-            orientation: 'landscape',
-            unit: 'mm',
-            format: 'a4'
-        });
+        // Try versioned file first, fall back to latest
+        const versionedUrl = `pdf/Sky-Touchscreen-Dokumentation-v${versionText}.pdf`;
+        const latestUrl = 'pdf/Sky-Touchscreen-Dokumentation-latest.pdf';
 
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const margin = 10;
-        const imageWidth = pageWidth - (margin * 2) - 80; // Leave space for info
-        const imageHeight = pageHeight - (margin * 2) - 20;
-
-        // Show progress
-        const progressEl = document.createElement('div');
-        progressEl.className = 'pdf-progress';
-        progressEl.innerHTML = `
-            <div class="pdf-progress-content">
-                <div class="pdf-progress-title">PDF wird erstellt...</div>
-                <div class="pdf-progress-bar"><div class="pdf-progress-fill"></div></div>
-                <div class="pdf-progress-text">0 / ${this.pages.length}</div>
-            </div>
-        `;
-        document.body.appendChild(progressEl);
-
-        const progressFill = progressEl.querySelector('.pdf-progress-fill');
-        const progressText = progressEl.querySelector('.pdf-progress-text');
-
+        // Check if versioned file exists
         try {
-            for (let i = 0; i < this.pages.length; i++) {
-                const page = this.pages[i];
-
-                // Update progress
-                const percent = ((i + 1) / this.pages.length) * 100;
-                progressFill.style.width = `${percent}%`;
-                progressText.textContent = `${i + 1} / ${this.pages.length}`;
-
-                // Add new page (except for first)
-                if (i > 0) {
-                    pdf.addPage();
-                }
-
-                // Load and add image
-                if (page.image) {
-                    try {
-                        const img = await this.loadImage(page.image);
-                        const imgAspect = img.width / img.height;
-                        let drawWidth = imageWidth;
-                        let drawHeight = drawWidth / imgAspect;
-
-                        if (drawHeight > imageHeight) {
-                            drawHeight = imageHeight;
-                            drawWidth = drawHeight * imgAspect;
-                        }
-
-                        pdf.addImage(img, 'PNG', margin, margin + 15, drawWidth, drawHeight);
-                    } catch (e) {
-                        console.log(`Could not load image ${i + 1}:`, e.message);
-                    }
-                }
-
-                // Add title
-                pdf.setFontSize(14);
-                pdf.setTextColor(40, 40, 40);
-                pdf.text(page.label || 'Untitled', margin, margin + 10);
-
-                // Add breadcrumb path
-                const breadcrumbText = page.breadcrumb.map(b => b.label).join(' > ');
-                pdf.setFontSize(8);
-                pdf.setTextColor(120, 120, 120);
-                pdf.text(breadcrumbText, margin, margin + 5);
-
-                // Add metadata on right side
-                const metadata = this.getScreenshotMetadata(page.imageUrl);
-                const infoX = pageWidth - 75;
-                let infoY = margin + 20;
-
-                pdf.setFontSize(9);
-                pdf.setTextColor(80, 80, 80);
-
-                if (metadata) {
-                    if (metadata.templateGruppe) {
-                        pdf.text(`Vorlage: ${metadata.templateGruppe}`, infoX, infoY);
-                        infoY += 5;
-                    }
-                    if (metadata.apiFelder) {
-                        pdf.setFontSize(7);
-                        const apiLines = pdf.splitTextToSize(`API: ${metadata.apiFelder}`, 65);
-                        pdf.text(apiLines, infoX, infoY);
-                        infoY += apiLines.length * 4;
-                    }
-                }
-
-                // Add page number
-                pdf.setFontSize(8);
-                pdf.setTextColor(150, 150, 150);
-                pdf.text(`Seite ${i + 1} / ${this.pages.length}`, pageWidth - margin - 25, pageHeight - margin);
-
-                // Small delay to allow UI update
-                await new Promise(resolve => setTimeout(resolve, 10));
+            const response = await fetch(versionedUrl, { method: 'HEAD' });
+            if (response.ok) {
+                window.open(versionedUrl, '_blank');
+                return;
             }
-
-            // Save PDF
-            const date = new Date().toISOString().split('T')[0];
-            pdf.save(`Sky-Touchscreen-Dokumentation-${date}.pdf`);
-
-        } catch (error) {
-            console.error('PDF generation error:', error);
-            alert('Fehler bei der PDF-Erstellung: ' + error.message);
-        } finally {
-            progressEl.remove();
+        } catch (e) {
+            // Fall through to latest
         }
-    }
 
-    /**
-     * Load image as promise
-     */
-    loadImage(src) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = () => resolve(img);
-            img.onerror = () => reject(new Error(`Failed to load: ${src}`));
-            img.src = src;
-        });
+        // Fall back to latest
+        window.open(latestUrl, '_blank');
     }
 }
 
