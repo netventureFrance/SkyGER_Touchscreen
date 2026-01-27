@@ -28,43 +28,14 @@ class BookView {
         this.container = null;
         this.thumbnailsContainer = null;
 
-        // Screenshot analysis data (loaded from screenshot-analysis.json)
-        this.screenshotAnalysis = null;
         // Screenshot metadata (loaded from screenshot-metadata.json)
         this.screenshotMetadata = null;
-        this.dataLoaded = this.loadAllData();
+        this.dataLoaded = this.loadScreenshotMetadata();
 
         // Bind methods
         this.handleKeydown = this.handleKeydown.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
-    }
-
-    /**
-     * Load all screenshot data (analysis + metadata)
-     */
-    async loadAllData() {
-        await Promise.all([
-            this.loadScreenshotAnalysis(),
-            this.loadScreenshotMetadata(),
-        ]);
-    }
-
-    /**
-     * Load screenshot analysis data from JSON file
-     */
-    async loadScreenshotAnalysis() {
-        try {
-            const response = await fetch('images/screenshot-analysis.json');
-            if (response.ok) {
-                const data = await response.json();
-                this.screenshotAnalysis = data.analyses || {};
-                console.log(`Loaded analysis for ${Object.keys(this.screenshotAnalysis).length} screenshots`);
-            }
-        } catch (e) {
-            console.log('Screenshot analysis not available:', e.message);
-            this.screenshotAnalysis = {};
-        }
     }
 
     /**
@@ -82,14 +53,6 @@ class BookView {
             console.log('Screenshot metadata not available:', e.message);
             this.screenshotMetadata = {};
         }
-    }
-
-    /**
-     * Get analysis data for a specific screenshot
-     */
-    getScreenshotAnalysis(imageUrl) {
-        if (!this.screenshotAnalysis || !imageUrl) return null;
-        return this.screenshotAnalysis[imageUrl] || null;
     }
 
     /**
@@ -679,20 +642,18 @@ class BookView {
             descEl.style.display = 'none';
         }
 
-        // Update data fields (technical metadata + AI analysis)
+        // Update data fields (technical metadata from Notion database)
         const dataFieldsEl = document.getElementById('bookViewDataFields');
         const metadata = this.getScreenshotMetadata(page.imageUrl);
-        const analysis = this.getScreenshotAnalysis(page.imageUrl);
 
         let html = '';
 
-        // Technical metadata from Notion database (priority)
         if (metadata) {
             html += '<div class="book-view-data-header">🔧 Technische Details</div>';
 
             if (metadata.templateGruppe) {
                 html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">Template:</span>
+                    <span class="book-view-data-label">Vorlage:</span>
                     <span class="book-view-data-value book-view-tag">${escapeHtml(metadata.templateGruppe)}</span>
                 </div>`;
             }
@@ -719,32 +680,6 @@ class BookView {
                 html += `<div class="book-view-data-item">
                     <span class="book-view-data-label">Status:</span>
                     <span class="book-view-data-value ${statusClass}">${escapeHtml(metadata.status)}</span>
-                </div>`;
-            }
-        }
-
-        // AI analysis (secondary)
-        if (analysis && analysis.success) {
-            html += '<div class="book-view-data-header" style="margin-top: 12px;">📊 KI-Analyse</div>';
-
-            if (analysis.screenPurpose) {
-                html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">Beschreibung:</span>
-                    <span class="book-view-data-value">${escapeHtml(analysis.screenPurpose)}</span>
-                </div>`;
-            }
-
-            if (analysis.extractedText && analysis.extractedText.length > 0) {
-                html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">Erkannter Text:</span>
-                    <span class="book-view-data-value">${analysis.extractedText.map(t => escapeHtml(t)).join(', ')}</span>
-                </div>`;
-            }
-
-            if (analysis.uiElements && analysis.uiElements.length > 0) {
-                html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">UI-Elemente:</span>
-                    <span class="book-view-data-value">${analysis.uiElements.map(e => escapeHtml(e)).join(', ')}</span>
                 </div>`;
             }
         }
