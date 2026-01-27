@@ -127,6 +127,22 @@ async function generatePDF() {
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
+    // Load and embed netventure logo
+    let logoImage = null;
+    const logoPath = join(projectRoot, 'images/netventure-logo.png');
+    if (existsSync(logoPath)) {
+        try {
+            const logoBuffer = await sharp(logoPath)
+                .resize(120, null, { withoutEnlargement: true, fit: 'inside' })
+                .png()
+                .toBuffer();
+            logoImage = await pdfDoc.embedPng(logoBuffer);
+            console.log('Logo loaded successfully');
+        } catch (e) {
+            console.log('Could not load logo:', e.message);
+        }
+    }
+
     // Process pages
     for (let i = 0; i < pages.length; i++) {
         const pageData = pages[i];
@@ -273,9 +289,20 @@ async function generatePDF() {
             }
         }
 
+        // Draw logo in top right
+        if (logoImage) {
+            const logoDims = logoImage.scale(0.4);
+            page.drawImage(logoImage, {
+                x: PAGE_WIDTH - MARGIN - logoDims.width,
+                y: PAGE_HEIGHT - MARGIN - 5,
+                width: logoDims.width,
+                height: logoDims.height
+            });
+        }
+
         // Draw page number
-        page.drawText(`Seite ${i + 1} / ${pages.length}`, {
-            x: PAGE_WIDTH - MARGIN - 60,
+        page.drawText(`Seite ${i + 1} / ${pages.length + 1}`, {
+            x: PAGE_WIDTH - MARGIN - 70,
             y: MARGIN,
             size: 8,
             font: font,
@@ -290,7 +317,98 @@ async function generatePDF() {
             font: font,
             color: rgb(0.6, 0.6, 0.6)
         });
+
+        // Draw website URL
+        page.drawText('www.netventure.tv', {
+            x: PAGE_WIDTH / 2 - 40,
+            y: MARGIN,
+            size: 8,
+            font: font,
+            color: rgb(0, 0.6, 0.8)
+        });
     }
+
+    // Add contact page at the end
+    console.log('\nAdding contact page...');
+    const contactPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+
+    // Logo on contact page (larger)
+    if (logoImage) {
+        const logoDims = logoImage.scale(1);
+        contactPage.drawImage(logoImage, {
+            x: PAGE_WIDTH / 2 - logoDims.width / 2,
+            y: PAGE_HEIGHT - 120,
+            width: logoDims.width,
+            height: logoDims.height
+        });
+    }
+
+    // Contact title
+    contactPage.drawText('KONTAKTIEREN SIE UNS', {
+        x: PAGE_WIDTH / 2 - 100,
+        y: PAGE_HEIGHT - 200,
+        size: 24,
+        font: fontBold,
+        color: rgb(0, 0.6, 0.8)
+    });
+
+    // Company name
+    contactPage.drawText('netventure GmbH', {
+        x: PAGE_WIDTH / 2 - 60,
+        y: PAGE_HEIGHT - 260,
+        size: 16,
+        font: fontBold,
+        color: rgb(0.2, 0.2, 0.2)
+    });
+
+    // Address
+    const addressLines = [
+        'Einsteinufer 63-65',
+        '10587 Berlin - Deutschland',
+        '',
+        '+49 30 3438383 0',
+        '',
+        'info@netventure.tv'
+    ];
+
+    let contactY = PAGE_HEIGHT - 300;
+    for (const line of addressLines) {
+        contactPage.drawText(line, {
+            x: PAGE_WIDTH / 2 - 70,
+            y: contactY,
+            size: 12,
+            font: font,
+            color: rgb(0.3, 0.3, 0.3)
+        });
+        contactY -= 20;
+    }
+
+    // Website link (prominent)
+    contactPage.drawText('www.netventure.tv', {
+        x: PAGE_WIDTH / 2 - 70,
+        y: contactY - 20,
+        size: 14,
+        font: fontBold,
+        color: rgb(0, 0.6, 0.8)
+    });
+
+    // Page number on contact page
+    contactPage.drawText(`Seite ${pages.length + 1} / ${pages.length + 1}`, {
+        x: PAGE_WIDTH - MARGIN - 70,
+        y: MARGIN,
+        size: 8,
+        font: font,
+        color: rgb(0.6, 0.6, 0.6)
+    });
+
+    // Version on contact page
+    contactPage.drawText(`V. ${versionString}`, {
+        x: MARGIN,
+        y: MARGIN,
+        size: 8,
+        font: font,
+        color: rgb(0.6, 0.6, 0.6)
+    });
 
     console.log('\n\n💾 Saving PDF...');
 
@@ -312,7 +430,7 @@ async function generatePDF() {
     console.log(`\n✅ PDF generated successfully!`);
     console.log(`   File: ${outputPath}`);
     console.log(`   Size: ${sizeMB} MB`);
-    console.log(`   Pages: ${pages.length}`);
+    console.log(`   Pages: ${pages.length + 1} (including contact page)`);
 }
 
 // Run
