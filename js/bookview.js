@@ -20,10 +20,40 @@ class BookView {
         this.container = null;
         this.thumbnailsContainer = null;
 
+        // Screenshot analysis data (loaded from screenshot-analysis.json)
+        this.screenshotAnalysis = null;
+        this.loadScreenshotAnalysis();
+
         // Bind methods
         this.handleKeydown = this.handleKeydown.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    }
+
+    /**
+     * Load screenshot analysis data from JSON file
+     */
+    async loadScreenshotAnalysis() {
+        try {
+            const response = await fetch('images/screenshot-analysis.json');
+            if (response.ok) {
+                const data = await response.json();
+                this.screenshotAnalysis = data.analyses || {};
+                console.log(`Loaded analysis for ${Object.keys(this.screenshotAnalysis).length} screenshots`);
+            }
+        } catch (e) {
+            console.log('Screenshot analysis not available:', e.message);
+            this.screenshotAnalysis = {};
+        }
+    }
+
+    /**
+     * Get analysis data for a specific screenshot
+     */
+    getScreenshotAnalysis(imageUrl) {
+        if (!this.screenshotAnalysis || !imageUrl) return null;
+        // The analysis uses the same path format as the image URL
+        return this.screenshotAnalysis[imageUrl] || null;
     }
 
     /**
@@ -49,12 +79,14 @@ class BookView {
             if (node.screenshots && node.screenshots.length > 0) {
                 const totalScreenshots = node.screenshots.length;
                 node.screenshots.forEach((screenshot, idx) => {
+                    const imageUrl = screenshot.url || screenshot.src || screenshot;
                     pages.push({
-                        image: screenshot.url || screenshot.src || screenshot,
+                        image: imageUrl,
                         screenshotName: screenshot.name || '',
                         label: node.label,
                         description: node.description || '',
-                        dataFields: node.dataFields || null, // AI-extracted data
+                        // Store image URL for analysis lookup (done at render time)
+                        imageUrl: imageUrl,
                         color: nodeColor,
                         breadcrumb: currentBreadcrumb,
                         nodeId: node.id,
@@ -600,29 +632,31 @@ class BookView {
             descEl.style.display = 'none';
         }
 
-        // Update data fields (AI-extracted data)
+        // Update data fields (AI-extracted data from per-screenshot analysis)
         const dataFieldsEl = document.getElementById('bookViewDataFields');
-        if (page.dataFields) {
+        const analysis = this.getScreenshotAnalysis(page.imageUrl);
+
+        if (analysis && analysis.success) {
             let html = '<div class="book-view-data-header">📊 KI-Analyse</div>';
 
-            if (page.dataFields.screenPurpose) {
+            if (analysis.screenPurpose) {
                 html += `<div class="book-view-data-item">
                     <span class="book-view-data-label">Beschreibung:</span>
-                    <span class="book-view-data-value">${escapeHtml(page.dataFields.screenPurpose)}</span>
+                    <span class="book-view-data-value">${escapeHtml(analysis.screenPurpose)}</span>
                 </div>`;
             }
 
-            if (page.dataFields.extractedText && page.dataFields.extractedText.length > 0) {
+            if (analysis.extractedText && analysis.extractedText.length > 0) {
                 html += `<div class="book-view-data-item">
                     <span class="book-view-data-label">Erkannter Text:</span>
-                    <span class="book-view-data-value">${page.dataFields.extractedText.map(t => escapeHtml(t)).join(', ')}</span>
+                    <span class="book-view-data-value">${analysis.extractedText.map(t => escapeHtml(t)).join(', ')}</span>
                 </div>`;
             }
 
-            if (page.dataFields.uiElements && page.dataFields.uiElements.length > 0) {
+            if (analysis.uiElements && analysis.uiElements.length > 0) {
                 html += `<div class="book-view-data-item">
                     <span class="book-view-data-label">UI-Elemente:</span>
-                    <span class="book-view-data-value">${page.dataFields.uiElements.map(e => escapeHtml(e)).join(', ')}</span>
+                    <span class="book-view-data-value">${analysis.uiElements.map(e => escapeHtml(e)).join(', ')}</span>
                 </div>`;
             }
 
