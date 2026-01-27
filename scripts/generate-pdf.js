@@ -349,25 +349,33 @@ async function generatePDF() {
             color: rgb(1, 1, 1)
         });
 
-        // Logo on footer
+        // Logo + netventure.tv together
+        const logoX = grayStart + diag1Width + 12;
         if (logoImage) {
             const footerLogoDims = logoImage.scale(0.07);
             page.drawImage(logoImage, {
-                x: grayStart + diag1Width + 8,
+                x: logoX,
                 y: (fh - footerLogoDims.height) / 2,
                 width: footerLogoDims.width,
                 height: footerLogoDims.height
             });
+            // Text right next to logo
+            page.drawText('netventure.tv', {
+                x: logoX + footerLogoDims.width + 3,
+                y: 8,
+                size: 10,
+                font: fontBold,
+                color: rgb(0.4, 0.4, 0.4)
+            });
+        } else {
+            page.drawText('netventure.tv', {
+                x: logoX,
+                y: 8,
+                size: 10,
+                font: fontBold,
+                color: rgb(0.4, 0.4, 0.4)
+            });
         }
-
-        // netventure.tv
-        page.drawText('netventure.tv', {
-            x: grayStart + diag1Width + 40,
-            y: 8,
-            size: 10,
-            font: fontBold,
-            color: rgb(0.4, 0.4, 0.4)
-        });
 
         // Page number
         page.drawText(`${i + 1}`, {
