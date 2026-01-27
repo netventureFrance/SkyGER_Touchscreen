@@ -22,7 +22,7 @@ class BookView {
 
         // Screenshot analysis data (loaded from screenshot-analysis.json)
         this.screenshotAnalysis = null;
-        this.loadScreenshotAnalysis();
+        this.analysisLoaded = this.loadScreenshotAnalysis();
 
         // Bind methods
         this.handleKeydown = this.handleKeydown.bind(this);
@@ -158,7 +158,10 @@ class BookView {
      * Open the book view
      * @param {number|string} startPageOrPathId - Page index (0-indexed) or pathId from tree
      */
-    open(startPageOrPathId = null) {
+    async open(startPageOrPathId = null) {
+        // Ensure analysis data is loaded before displaying
+        await this.analysisLoaded;
+
         // Always extract fresh screenshots (data may have changed)
         this.pages = this.extractAllScreenshots();
 
