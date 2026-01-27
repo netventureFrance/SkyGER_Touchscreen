@@ -289,42 +289,75 @@ async function generatePDF() {
             }
         }
 
-        // Draw logo in top right (small)
+        // Footer bar - Orange section (left) with diagonal cut
+        const footerHeight = 25;
+        const orangeWidth = PAGE_WIDTH * 0.62;
+        const diagonalWidth = 35;
+        const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
+        const grayColor = rgb(0.88, 0.88, 0.88);
+
+        // Draw gray background first (full width)
+        page.drawRectangle({
+            x: 0,
+            y: 0,
+            width: PAGE_WIDTH,
+            height: footerHeight,
+            color: grayColor
+        });
+
+        // Draw orange rectangle (main part)
+        page.drawRectangle({
+            x: 0,
+            y: 0,
+            width: orangeWidth,
+            height: footerHeight,
+            color: orangeColor
+        });
+
+        // Draw diagonal using SVG path (triangle to extend orange)
+        const diagonalPath = `M ${orangeWidth} 0 L ${orangeWidth} ${footerHeight} L ${orangeWidth + diagonalWidth} ${footerHeight} Z`;
+        page.drawSvgPath(diagonalPath, {
+            x: 0,
+            y: 0,
+            color: orangeColor
+        });
+
+        // Title text on orange bar
+        page.drawText('SKY SUPER TOUCH - DOKUMENTATION', {
+            x: 15,
+            y: 8,
+            size: 11,
+            font: fontBold,
+            color: rgb(1, 1, 1)
+        });
+
+        // Logo on gray section
         if (logoImage) {
-            const logoDims = logoImage.scale(0.12);
+            const footerLogoDims = logoImage.scale(0.06);
             page.drawImage(logoImage, {
-                x: PAGE_WIDTH - MARGIN - logoDims.width,
-                y: PAGE_HEIGHT - MARGIN - logoDims.height + 5,
-                width: logoDims.width,
-                height: logoDims.height
+                x: orangeWidth + diagonalWidth + 20,
+                y: (footerHeight - footerLogoDims.height) / 2,
+                width: footerLogoDims.width,
+                height: footerLogoDims.height
             });
         }
 
-        // Draw page number
-        page.drawText(`Seite ${i + 1} / ${pages.length + 1}`, {
-            x: PAGE_WIDTH - MARGIN - 70,
-            y: MARGIN,
-            size: 8,
-            font: font,
-            color: rgb(0.6, 0.6, 0.6)
+        // netventure.tv text
+        page.drawText('netventure.tv', {
+            x: orangeWidth + diagonalWidth + 55,
+            y: 8,
+            size: 11,
+            font: fontBold,
+            color: rgb(0.4, 0.4, 0.4)
         });
 
-        // Draw version
-        page.drawText(`V. ${versionString}`, {
-            x: MARGIN,
-            y: MARGIN,
-            size: 8,
+        // Page number on far right
+        page.drawText(`${i + 1}`, {
+            x: PAGE_WIDTH - 25,
+            y: 8,
+            size: 10,
             font: font,
-            color: rgb(0.6, 0.6, 0.6)
-        });
-
-        // Draw website URL
-        page.drawText('www.netventure.tv', {
-            x: PAGE_WIDTH / 2 - 40,
-            y: MARGIN,
-            size: 8,
-            font: font,
-            color: rgb(0, 0.6, 0.8)
+            color: rgb(0.5, 0.5, 0.5)
         });
     }
 
