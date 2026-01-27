@@ -11,6 +11,8 @@
     "functions": "netlify functions:serve",
     "setup-db": "node scripts/setup-notion-db.js",
     "sync-notion": "node mcp-notion-server/sync-notion.js",
+    "analyze": "node mcp-notion-server/analyze-screenshots.js",
+    "merge-analysis": "node mcp-notion-server/merge-analysis.js",
     "version:bump": "node scripts/increment-version.js",
     "lint": "eslint js/*.js",
     "lint:fix": "eslint js/*.js --fix",
