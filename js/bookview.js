@@ -22,12 +22,24 @@ class BookView {
 
         // Screenshot analysis data (loaded from screenshot-analysis.json)
         this.screenshotAnalysis = null;
-        this.analysisLoaded = this.loadScreenshotAnalysis();
+        // Screenshot metadata (loaded from screenshot-metadata.json)
+        this.screenshotMetadata = null;
+        this.dataLoaded = this.loadAllData();
 
         // Bind methods
         this.handleKeydown = this.handleKeydown.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    }
+
+    /**
+     * Load all screenshot data (analysis + metadata)
+     */
+    async loadAllData() {
+        await Promise.all([
+            this.loadScreenshotAnalysis(),
+            this.loadScreenshotMetadata(),
+        ]);
     }
 
     /**
@@ -48,12 +60,36 @@ class BookView {
     }
 
     /**
+     * Load screenshot metadata from Notion database export
+     */
+    async loadScreenshotMetadata() {
+        try {
+            const response = await fetch('images/screenshot-metadata.json');
+            if (response.ok) {
+                const data = await response.json();
+                this.screenshotMetadata = data.metadata || {};
+                console.log(`Loaded metadata for ${Object.keys(this.screenshotMetadata).length} screenshots`);
+            }
+        } catch (e) {
+            console.log('Screenshot metadata not available:', e.message);
+            this.screenshotMetadata = {};
+        }
+    }
+
+    /**
      * Get analysis data for a specific screenshot
      */
     getScreenshotAnalysis(imageUrl) {
         if (!this.screenshotAnalysis || !imageUrl) return null;
-        // The analysis uses the same path format as the image URL
         return this.screenshotAnalysis[imageUrl] || null;
+    }
+
+    /**
+     * Get metadata for a specific screenshot
+     */
+    getScreenshotMetadata(imageUrl) {
+        if (!this.screenshotMetadata || !imageUrl) return null;
+        return this.screenshotMetadata[imageUrl] || null;
     }
 
     /**
@@ -159,8 +195,8 @@ class BookView {
      * @param {number|string} startPageOrPathId - Page index (0-indexed) or pathId from tree
      */
     async open(startPageOrPathId = null) {
-        // Ensure analysis data is loaded before displaying
-        await this.analysisLoaded;
+        // Ensure all data is loaded before displaying
+        await this.dataLoaded;
 
         // Always extract fresh screenshots (data may have changed)
         this.pages = this.extractAllScreenshots();
@@ -635,12 +671,53 @@ class BookView {
             descEl.style.display = 'none';
         }
 
-        // Update data fields (AI-extracted data from per-screenshot analysis)
+        // Update data fields (technical metadata + AI analysis)
         const dataFieldsEl = document.getElementById('bookViewDataFields');
+        const metadata = this.getScreenshotMetadata(page.imageUrl);
         const analysis = this.getScreenshotAnalysis(page.imageUrl);
 
+        let html = '';
+
+        // Technical metadata from Notion database (priority)
+        if (metadata) {
+            html += '<div class="book-view-data-header">🔧 Technische Details</div>';
+
+            if (metadata.templateGruppe) {
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">Template:</span>
+                    <span class="book-view-data-value book-view-tag">${escapeHtml(metadata.templateGruppe)}</span>
+                </div>`;
+            }
+
+            if (metadata.apiFelder) {
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">API-Felder:</span>
+                    <span class="book-view-data-value book-view-code">${escapeHtml(metadata.apiFelder)}</span>
+                </div>`;
+            }
+
+            if (metadata.tage !== null) {
+                const tageText = metadata.tage === 1 ? '1 Tag' : `${metadata.tage} Tage`;
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">Aufwand:</span>
+                    <span class="book-view-data-value">${tageText}</span>
+                </div>`;
+            }
+
+            if (metadata.status) {
+                const statusClass = metadata.status === 'Fertig' ? 'status-done' :
+                                   metadata.status === 'In Arbeit' ? 'status-progress' :
+                                   metadata.status === 'Blockiert' ? 'status-blocked' : '';
+                html += `<div class="book-view-data-item">
+                    <span class="book-view-data-label">Status:</span>
+                    <span class="book-view-data-value ${statusClass}">${escapeHtml(metadata.status)}</span>
+                </div>`;
+            }
+        }
+
+        // AI analysis (secondary)
         if (analysis && analysis.success) {
-            let html = '<div class="book-view-data-header">📊 KI-Analyse</div>';
+            html += '<div class="book-view-data-header" style="margin-top: 12px;">📊 KI-Analyse</div>';
 
             if (analysis.screenPurpose) {
                 html += `<div class="book-view-data-item">
@@ -662,7 +739,9 @@ class BookView {
                     <span class="book-view-data-value">${analysis.uiElements.map(e => escapeHtml(e)).join(', ')}</span>
                 </div>`;
             }
+        }
 
+        if (html) {
             dataFieldsEl.innerHTML = html;
             dataFieldsEl.style.display = 'block';
         } else {

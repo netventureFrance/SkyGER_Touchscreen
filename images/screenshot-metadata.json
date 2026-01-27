@@ -1,0 +1,681 @@
+{
+  "syncedAt": "2026-01-27T07:07:49.358Z",
+  "count": 75,
+  "metadata": {
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/geschossene-tore/image-1.png": {
+      "name": "GESCHOSSENE TORE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.goalsScored, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/angriffszone/image-1.png": {
+      "name": "ANGRIFFSZONE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "team.id, attackingZones[], zone.left, zone.center, zone.right, zone.percentage",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/image-1.png": {
+      "name": "SOCCER",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SPORTS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "sport.type, sport.config, sport.dataProvider",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/gehaltene-baelle/image-1.png": {
+      "name": "GEHALTENE BÄLLE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.saves, player.cleanSheets, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/tackles/image-1.png": {
+      "name": "TACKLES",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.tacklesTotal, team.tacklesWon, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/data-time/image-1.png": {
+      "name": "DATA/TIME",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "system.date, system.time, system.timezone, system.format",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/analyse/durschnittliche-position/image-1.png": {
+      "name": "DURSCHNITTLICHE POSITION",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "team.id, averagePositions[], player.id, player.avgX, player.avgY",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/spielzeit/image-1.png": {
+      "name": "SPIELZEIT",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.minutesPlayed, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/champions-league/image-1.png": {
+      "name": "CHAMPIONS LEAGUE",
+      "sektion": "DESIGNS",
+      "kategorie": "CHAMPIONS LEAGUE",
+      "templateGruppe": "Theme",
+      "apiFelder": "theme.name, theme.primaryColor, theme.logo, competition.name, competition.logo",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/laufweg-spieler/image-1.png": {
+      "name": "LAUFWEG SPIELER",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "player.id, player.runningPath[], path.x, path.y, path.timestamp, path.speed",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/vergleich/image-1.png": {
+      "name": "VERGLEICH",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Statistik",
+      "apiFelder": "match.homeTeam, match.awayTeam, comparison.stats[], stat.name, stat.homeValue, stat.awayValue, stat.unit",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/image-1.png": {
+      "name": "LIGA INFORMATION",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Liga",
+      "apiFelder": "competition.id, competition.name, competition.country, competition.season, competition.teams[], competition.topScorer",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/pass-map/image-1.png": {
+      "name": "PASS MAP",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "team.id, passes[], pass.from, pass.to, pass.startX, pass.startY, pass.endX, pass.endY, pass.successful, pass.isAssist",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/image-1.png": {
+      "name": "ANALYSE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "match.id, analysis.type, analysis.timeRange, analysis.team, analysis.player",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/paesse/image-1.png": {
+      "name": "PÄSSE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.passesTotal, team.passAccuracy, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/image-1.png": {
+      "name": "FAHRPLAN",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Spielplan",
+      "apiFelder": "team.id, team.name, team.logo, team.upcomingMatches[], team.recentResults[], match.opponent, match.date, match.isHome",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellungseditor/image-1.png": {
+      "name": "AUFSTELLUNGSEDITOR",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "editor.mode, editor.selectedPlayer, editor.formations[], formation.name, formation.positions[]",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/zweikampf/image-1.png": {
+      "name": "ZWEIKAMPF",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.duelsWon, player.duelsTotal, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/image-1.png": {
+      "name": "SPIELTAG",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Spielplan",
+      "apiFelder": "matchDay.number, matchDay.matches[], match.homeTeam, match.awayTeam, match.score, match.status, match.kickoffTime, match.venue",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/torversuche/image-1.png": {
+      "name": "TORVERSUCHE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.shots, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/heat-map/image-1.png": {
+      "name": "HEAT MAP",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "player.id, team.id, heatmap.data[][], heatmap.intensity, heatmap.timeRange",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/labels/image-1.png": {
+      "name": "LABELS",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SPORTS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "labels[], label.key, label.value, label.language",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/teams/image-1.png": {
+      "name": "TEAMS",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Team",
+      "apiFelder": "teams[], team.id, team.name, team.logo, team.stadium, team.manager",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/sponsor/image-1.png": {
+      "name": "SPONSOR",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "sponsors[], sponsor.name, sponsor.logo, sponsor.position, sponsor.active",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/generic/image-1.png": {
+      "name": "GENERIC",
+      "sektion": "DESIGNS",
+      "kategorie": "GENERIC",
+      "templateGruppe": "Theme",
+      "apiFelder": "theme.name, theme.primaryColor, theme.secondaryColor, theme.logo, theme.backgroundImage",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/telestrator/image-1.png": {
+      "name": "TELESTRATOR",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "ANALYSE",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "drawing.tools[], tool.type, tool.color, tool.size, drawing.elements[], element.points[]",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/image-1.png": {
+      "name": "TOUCHSCREEN SKY DEUTSCHLAND",
+      "sektion": "Sonstige",
+      "kategorie": "",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "app.version, app.environment, user.permissions",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/schuesse/image-1.png": {
+      "name": "SCHÜSSE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.shots, team.accuracy, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/chances-created/image-1.png": {
+      "name": "CHANCES CREATED",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.chancesCreated, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/navigation/image-1.png": {
+      "name": "NAVIGATION",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "nav.items[], nav.item.label, nav.item.icon, nav.item.route, nav.item.enabled",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/tore/image-1.png": {
+      "name": "TORE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.goals, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/touch-map/image-1.png": {
+      "name": "TOUCH MAP",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "player.id, player.touches[], touch.x, touch.y, touch.minute, touch.action, touch.outcome",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/durchschnittliche-positionen/image-1.png": {
+      "name": "DURCHSCHNITTLICHE POSITIONEN",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "team.id, averagePositions[], player.id, player.avgX, player.avgY, player.name",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/twitter/image-1.png": {
+      "name": "TWITTER",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "TWITTER",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "tweet.id, tweet.author, tweet.text, tweet.timestamp, tweet.likes, tweet.retweets, tweet.mediaUrl",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/highlight-funktion/image-1.png": {
+      "name": "HIGHLIGHT FUNKTION",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "player.id, player.highlighted, highlight.color, highlight.animation",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/headlines/image-1.png": {
+      "name": "HEADLINES",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "headline.text, headline.team1, headline.team2, headline.logo1, headline.logo2, headline.style",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/reservebank/image-1.png": {
+      "name": "RESERVEBANK",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "team.substitutes[], player.id, player.name, player.number, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/vanues/image-1.png": {
+      "name": "VANUES",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SPORTS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "venues[], venue.id, venue.name, venue.city, venue.capacity, venue.image",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/shot-plot/image-1.png": {
+      "name": "SHOT PLOT",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "team.id, shots[], shot.x, shot.y, shot.player, shot.outcome (goal|saved|blocked|miss), shot.xG",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/freistoss/image-1.png": {
+      "name": "FREISTOSS",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.freeKicks, player.goals, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/teamstatistik/image-1.png": {
+      "name": "TEAMSTATISTIK",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Statistik",
+      "apiFelder": "team.id, team.stats.goalsScored, team.stats.goalsConceded, team.stats.wins, team.stats.draws, team.stats.losses, team.stats.cleanSheets, team.stats.possession",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/show-info/image-1.png": {
+      "name": "SHOW INFO",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "show.id, show.name, show.description, show.startTime, show.endTime",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/premiere-league/image-1.png": {
+      "name": "PREMIERE LEAGUE",
+      "sektion": "DESIGNS",
+      "kategorie": "PREMIERE LEAGUE",
+      "templateGruppe": "Theme",
+      "apiFelder": "theme.name, theme.primaryColor, theme.logo, competition.name, competition.logo",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/aufstellung/spieler-statistik/image-1.png": {
+      "name": "SPIELER STATISTIK",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Statistik",
+      "apiFelder": "player.id, player.name, player.stats.goals, player.stats.assists, player.stats.minutes, player.stats.passAccuracy, player.stats.tackles",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/flanken/image-1.png": {
+      "name": "FLANKEN",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.crossesTotal, team.crossAccuracy, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/tackle-map/image-1.png": {
+      "name": "TACKLE MAP",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "team.id, tackles[], tackle.x, tackle.y, tackle.player, tackle.successful, tackle.minute",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/image-1.png": {
+      "name": "SHOWS",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "shows[], show.id, show.name, show.competition, show.active",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/analyse/clip/image-1.png": {
+      "name": "CLIP",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "ANALYSE",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "clip.id, clip.url, clip.startTime, clip.endTime, clip.title, clip.tags[]",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/europa-league-conference-league/image-1.png": {
+      "name": "EUROPA LEAGUE & CONFERENCE LEAGUE",
+      "sektion": "DESIGNS",
+      "kategorie": "EUROPA LEAGUE & CONFERENCE LEAGUE",
+      "templateGruppe": "Theme",
+      "apiFelder": "theme.name, theme.primaryColor, theme.logo, competition.name, competition.logo",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/karten/image-1.png": {
+      "name": "KARTEN",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.yellowCards, team.redCards, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/display/image-1.png": {
+      "name": "DISPLAY",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "display.resolution, display.brightness, display.colorMode, display.output",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/tabelle/image-1.png": {
+      "name": "TABELLE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "TABELLE",
+      "templateGruppe": "Liga",
+      "apiFelder": "standings[], team.position, team.name, team.logo, team.played, team.won, team.drawn, team.lost, team.goalsFor, team.goalsAgainst, team.goalDifference, team.points",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/social-media/image-1.png": {
+      "name": "SOCIAL MEDIA",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "social.twitter, social.facebook, social.instagram, social.hashtag",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/image-1.png": {
+      "name": "AUFSTELLUNG",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "match.id, team.formation, team.startingXI[], player.id, player.name, player.number, player.position, player.positionX, player.positionY",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/live/image-1.png": {
+      "name": "LIVE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIVE",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "stream.url, stream.status, stream.quality, overlay.enabled",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/passing/image-1.png": {
+      "name": "PASSING",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], player.name, player.team, player.passes, player.accuracy, player.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/multiview/image-1.png": {
+      "name": "MULTIVIEW",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "streams[], stream.id, stream.url, stream.label, stream.position (1-4), stream.active",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/clubprofile/image-1.png": {
+      "name": "CLUBPROFILE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Team",
+      "apiFelder": "team.id, team.name, team.logo, team.founded, team.stadium, team.capacity, team.manager, team.country",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-vergleich/image-1.png": {
+      "name": "SPIELER VERGLEICH",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Statistik",
+      "apiFelder": "player1.id, player2.id, comparison.stats[], stat.name, stat.player1Value, stat.player2Value",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/aki-paint/image-1.png": {
+      "name": "AKI PAINT",
+      "sektion": "AKI PAINT",
+      "kategorie": "",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "canvas.width, canvas.height, tools[], tool.type, tool.color, tool.size, elements[], element.type, element.points[]",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/virtueller-ball/image-1.png": {
+      "name": "VIRTUELLER BALL",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "ball.x, ball.y, ball.visible, ball.animation",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/settings/rights/image-1.png": {
+      "name": "RIGHTS",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "rights[], right.name, right.enabled, right.competition",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/schussversuche/image-1.png": {
+      "name": "SCHUSSVERSUCHE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Sonstige",
+      "apiFelder": "rankings[], team.name, team.shotsTotal, team.shotsOnTarget, team.position",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/headlines/image-1.png": {
+      "name": "HEADLINES",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "HEADLINES",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "headline.text, headline.team1, headline.team2, headline.logo1, headline.logo2, headline.style",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/sports/soccer/teams/image-1.png": {
+      "name": "TEAMS",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SPORTS",
+      "templateGruppe": "Team",
+      "apiFelder": "teams[], team.id, team.name, team.logo, team.stadium, team.manager",
+      "tage": 1,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/analyse/aktionszone/image-1.png": {
+      "name": "AKTIONSZONE",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Analyse",
+      "apiFelder": "team.id, actionZones[], zone.area, zone.actions, zone.percentage",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/multiview/image-1.png": {
+      "name": "MULTIVIEW",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "MULTIVIEW",
+      "templateGruppe": "Broadcast",
+      "apiFelder": "streams[], stream.id, stream.url, stream.label, stream.position (1-4), stream.active",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/spieler-statistk/image-1.png": {
+      "name": "SPIELER STATISTK",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Spieler",
+      "apiFelder": "player.id, player.name, player.stats.goals, player.stats.assists, player.stats.minutes, player.stats.passAccuracy, player.stats.shotsOnTarget",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-teams/image-1.png": {
+      "name": "TOP TEAMS",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Team",
+      "apiFelder": "rankings[], team.id, team.name, team.logo, team.stat, ranking.category",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/rcs-websteuerung/shows/content/bookmarks/image-1.png": {
+      "name": "BOOKMARKS",
+      "sektion": "RCS WEBSTEUERUNG",
+      "kategorie": "SHOWS",
+      "templateGruppe": "Websteuerung",
+      "apiFelder": "bookmarks[], bookmark.id, bookmark.name, bookmark.route, bookmark.icon",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/fahrplan/aufstellung/aufstellung-team-einzel/image-1.png": {
+      "name": "AUFSTELLUNG TEAM EINZEL",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "team.id, team.formation, team.players[], player.position, player.positionX, player.positionY",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/designs/match-plan/image-1.png": {
+      "name": "MATCH PLAN",
+      "sektion": "DESIGNS",
+      "kategorie": "MATCH PLAN",
+      "templateGruppe": "Theme",
+      "apiFelder": "theme.name, theme.layout, competition.matchPlanStyle",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/spieltag/taktik/aufstellung-einzelner-partien/image-1.png": {
+      "name": "AUFSTELLUNG EINZELNER PARTIEN",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "SPIELTAG",
+      "templateGruppe": "Aufstellung",
+      "apiFelder": "match.id, match.homeFormation, match.awayFormation, match.homeLineup[], match.awayLineup[]",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/image-1.png": {
+      "name": "SKY SPORT BUNDESLIGA",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "",
+      "templateGruppe": "Liga",
+      "apiFelder": "competition.id, competition.name, competition.season, competition.logo",
+      "tage": 0.5,
+      "status": "Offen"
+    },
+    "images/screenshots/sky-sport-supertouch-dokumentation/touchscreen-sky-deutschland/sky-sport-bundesliga/liga-information/top-spieler/image-1.png": {
+      "name": "TOP SPIELER",
+      "sektion": "SKY SPORT BUNDESLIGA",
+      "kategorie": "LIGA INFORMATION",
+      "templateGruppe": "Spieler",
+      "apiFelder": "rankings[], player.id, player.name, player.team, player.stat, ranking.category",
+      "tage": 0.5,
+      "status": "Offen"
+    }
+  }
+}

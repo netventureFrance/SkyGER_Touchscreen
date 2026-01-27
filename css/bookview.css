@@ -345,6 +345,40 @@
     color: var(--text-muted);
 }
 
+.book-view-data-value.book-view-tag {
+    display: inline-block;
+    background: rgba(0, 200, 180, 0.15);
+    color: rgba(0, 200, 180, 0.9);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.book-view-data-value.book-view-code {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: block;
+    margin-top: 4px;
+    word-break: break-word;
+    color: #f0a040;
+}
+
+.book-view-data-value.status-done {
+    color: #4ade80;
+}
+
+.book-view-data-value.status-progress {
+    color: #fbbf24;
+}
+
+.book-view-data-value.status-blocked {
+    color: #f87171;
+}
+
 /* Meta Information */
 .book-view-meta {
     margin-top: auto;

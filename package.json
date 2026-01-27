@@ -13,6 +13,7 @@
     "sync-notion": "node mcp-notion-server/sync-notion.js",
     "analyze": "node mcp-notion-server/analyze-screenshots.js",
     "merge-analysis": "node mcp-notion-server/merge-analysis.js",
+    "sync-metadata": "node mcp-notion-server/sync-metadata.js",
     "version:bump": "node scripts/increment-version.js",
     "lint": "eslint js/*.js",
     "lint:fix": "eslint js/*.js --fix",
