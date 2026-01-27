@@ -664,24 +664,6 @@ class BookView {
                     <span class="book-view-data-value book-view-code">${escapeHtml(metadata.apiFelder)}</span>
                 </div>`;
             }
-
-            if (metadata.tage !== null) {
-                const tageText = metadata.tage === 1 ? '1 Tag' : `${metadata.tage} Tage`;
-                html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">Aufwand:</span>
-                    <span class="book-view-data-value">${tageText}</span>
-                </div>`;
-            }
-
-            if (metadata.status) {
-                const statusClass = metadata.status === 'Fertig' ? 'status-done' :
-                                   metadata.status === 'In Arbeit' ? 'status-progress' :
-                                   metadata.status === 'Blockiert' ? 'status-blocked' : '';
-                html += `<div class="book-view-data-item">
-                    <span class="book-view-data-label">Status:</span>
-                    <span class="book-view-data-value ${statusClass}">${escapeHtml(metadata.status)}</span>
-                </div>`;
-            }
         }
 
         if (html) {
