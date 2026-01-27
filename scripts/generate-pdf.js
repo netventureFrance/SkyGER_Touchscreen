@@ -143,6 +143,11 @@ async function generatePDF() {
         }
     }
 
+    // CI Colors
+    const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
+    const lightGray = rgb(0.95, 0.95, 0.95);
+    const footerGray = rgb(0.88, 0.88, 0.88);
+
     // Process pages
     for (let i = 0; i < pages.length; i++) {
         const pageData = pages[i];
@@ -150,38 +155,51 @@ async function generatePDF() {
 
         process.stdout.write(`\r${progress} Processing: ${pageData.label.substring(0, 50).padEnd(50)}...`);
 
-        // Create page
+        // Create page with white background
         const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
-        // Draw breadcrumb
-        const breadcrumbText = sanitizeText(pageData.breadcrumb.join(' > '));
-        page.drawText(breadcrumbText.substring(0, 120), {
+        // Footer dimensions
+        const footerHeight = 22;
+
+        // Draw light gray content background (above footer)
+        page.drawRectangle({
             x: MARGIN,
-            y: PAGE_HEIGHT - MARGIN,
-            size: 8,
+            y: footerHeight + 10,
+            width: PAGE_WIDTH - MARGIN * 2,
+            height: PAGE_HEIGHT - footerHeight - MARGIN - 50,
+            color: lightGray
+        });
+
+        // Draw breadcrumb (above gray area)
+        const breadcrumbText = sanitizeText(pageData.breadcrumb.join(' > '));
+        page.drawText(breadcrumbText.substring(0, 140), {
+            x: MARGIN,
+            y: PAGE_HEIGHT - 18,
+            size: 7,
             font: font,
             color: rgb(0.5, 0.5, 0.5)
         });
 
-        // Draw title
+        // Draw title (bold, black)
         page.drawText(sanitizeText(pageData.label), {
             x: MARGIN,
-            y: PAGE_HEIGHT - MARGIN - 18,
-            size: 14,
+            y: PAGE_HEIGHT - 38,
+            size: 16,
             font: fontBold,
             color: rgb(0.1, 0.1, 0.1)
         });
 
         // Load and embed image
         const imageBuffer = await loadAndResizeImage(pageData.image);
+        let imageEndX = MARGIN;
         if (imageBuffer) {
             try {
                 const pngImage = await pdfDoc.embedPng(imageBuffer);
                 const imgDims = pngImage.scale(1);
 
-                // Calculate dimensions to fit in available space
-                const availableWidth = PAGE_WIDTH - MARGIN * 2 - 150; // Leave space for metadata
-                const availableHeight = PAGE_HEIGHT - MARGIN * 2 - 40;
+                // Calculate dimensions - leave space for metadata on right
+                const availableWidth = PAGE_WIDTH - MARGIN * 2 - 160;
+                const availableHeight = PAGE_HEIGHT - footerHeight - 80;
 
                 let drawWidth = imgDims.width;
                 let drawHeight = imgDims.height;
@@ -198,10 +216,30 @@ async function generatePDF() {
                     drawHeight *= scale;
                 }
 
+                const imgX = MARGIN + 5;
+                const imgY = footerHeight + 20;
+                imageEndX = imgX + drawWidth;
+
+                // Draw blue corner decoration (top-left of image)
+                page.drawRectangle({
+                    x: imgX - 3,
+                    y: imgY + drawHeight - 20,
+                    width: 3,
+                    height: 20,
+                    color: rgb(0, 0.4, 0.7)
+                });
+                page.drawRectangle({
+                    x: imgX - 3,
+                    y: imgY + drawHeight - 3,
+                    width: 20,
+                    height: 3,
+                    color: rgb(0, 0.4, 0.7)
+                });
+
                 // Draw image
                 page.drawImage(pngImage, {
-                    x: MARGIN,
-                    y: PAGE_HEIGHT - MARGIN - 35 - drawHeight,
+                    x: imgX,
+                    y: imgY,
                     width: drawWidth,
                     height: drawHeight
                 });
@@ -210,102 +248,70 @@ async function generatePDF() {
             }
         }
 
-        // Draw metadata on right side
-        const metaX = PAGE_WIDTH - 140;
-        let metaY = PAGE_HEIGHT - MARGIN - 40;
+        // Metadata on right side
+        const metaX = PAGE_WIDTH - 145;
+        let metaY = PAGE_HEIGHT - 60;
 
-        // Screenshot info
-        if (pageData.totalScreenshots > 1) {
-            page.drawText(`Bild ${pageData.screenshotIndex + 1} / ${pageData.totalScreenshots}`, {
-                x: metaX,
-                y: metaY,
-                size: 9,
-                font: font,
-                color: rgb(0.4, 0.4, 0.4)
-            });
-            metaY -= 15;
-        }
+        // Vorlage section
+        page.drawText('Vorlage:', {
+            x: metaX,
+            y: metaY,
+            size: 8,
+            font: fontBold,
+            color: rgb(0.4, 0.4, 0.4)
+        });
+        metaY -= 12;
 
-        // Metadata from Notion
         const pageMeta = metadata[pageData.image];
-        if (pageMeta) {
-            if (pageMeta.templateGruppe) {
-                page.drawText('Vorlage:', {
+        const vorlageText = pageMeta?.templateGruppe ? sanitizeText(pageMeta.templateGruppe) : 'Sonstige';
+        page.drawText(vorlageText.substring(0, 18), {
+            x: metaX,
+            y: metaY,
+            size: 8,
+            font: font,
+            color: orangeColor
+        });
+        metaY -= 25;
+
+        // API-Felder section
+        page.drawText('API-Felder:', {
+            x: metaX,
+            y: metaY,
+            size: 8,
+            font: fontBold,
+            color: rgb(0.4, 0.4, 0.4)
+        });
+        metaY -= 12;
+
+        if (pageMeta?.apiFelder) {
+            const apiText = sanitizeText(pageMeta.apiFelder);
+            const apiFields = apiText.split(/[,\n]+/).map(s => s.trim()).filter(s => s);
+            for (const field of apiFields.slice(0, 8)) {
+                page.drawText(field.substring(0, 20), {
                     x: metaX,
                     y: metaY,
-                    size: 8,
-                    font: fontBold,
-                    color: rgb(0.3, 0.3, 0.3)
-                });
-                metaY -= 12;
-                page.drawText(sanitizeText(pageMeta.templateGruppe).substring(0, 20), {
-                    x: metaX,
-                    y: metaY,
-                    size: 8,
+                    size: 7,
                     font: font,
                     color: rgb(0.4, 0.4, 0.4)
                 });
-                metaY -= 20;
-            }
-
-            if (pageMeta.apiFelder) {
-                page.drawText('API-Felder:', {
-                    x: metaX,
-                    y: metaY,
-                    size: 8,
-                    font: fontBold,
-                    color: rgb(0.3, 0.3, 0.3)
-                });
-                metaY -= 12;
-
-                // Split API fields into lines
-                const apiText = sanitizeText(pageMeta.apiFelder);
-                const words = apiText.split(/[,\s]+/);
-                let line = '';
-                for (const word of words) {
-                    if ((line + word).length > 18) {
-                        page.drawText(line.trim(), {
-                            x: metaX,
-                            y: metaY,
-                            size: 7,
-                            font: font,
-                            color: rgb(0.4, 0.4, 0.4)
-                        });
-                        metaY -= 10;
-                        line = word + ' ';
-                    } else {
-                        line += word + ' ';
-                    }
-                }
-                if (line.trim()) {
-                    page.drawText(line.trim(), {
-                        x: metaX,
-                        y: metaY,
-                        size: 7,
-                        font: font,
-                        color: rgb(0.4, 0.4, 0.4)
-                    });
-                }
+                metaY -= 10;
             }
         }
 
-        // Footer bar - Orange section (left) with diagonal cut
-        const footerHeight = 25;
-        const orangeWidth = PAGE_WIDTH * 0.62;
-        const diagonalWidth = 35;
-        const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
-        const grayColor = rgb(0.88, 0.88, 0.88);
+        // Footer bar
+        const orangeWidth = PAGE_WIDTH * 0.60;
+        const diagonalWidth = 30;
 
-        // Draw gray background first (full width)
+        // Gray footer background
         page.drawRectangle({
             x: 0,
             y: 0,
             width: PAGE_WIDTH,
             height: footerHeight,
-            color: grayColor
+            color: footerGray
         });
 
-        // Draw orange rectangle (main part)
+        // Orange section
         page.drawRectangle({
             x: 0,
             y: 0,
@@ -314,48 +320,44 @@ async function generatePDF() {
             color: orangeColor
         });
 
-        // Draw diagonal using SVG path (triangle to extend orange)
+        // Diagonal
         const diagonalPath = `M ${orangeWidth} 0 L ${orangeWidth} ${footerHeight} L ${orangeWidth + diagonalWidth} ${footerHeight} Z`;
-        page.drawSvgPath(diagonalPath, {
-            x: 0,
-            y: 0,
-            color: orangeColor
-        });
+        page.drawSvgPath(diagonalPath, { x: 0, y: 0, color: orangeColor });
 
-        // Title text on orange bar
+        // Footer title
         page.drawText('SKY SUPER TOUCH - DOKUMENTATION', {
-            x: 15,
-            y: 8,
-            size: 11,
+            x: 12,
+            y: 7,
+            size: 9,
             font: fontBold,
             color: rgb(1, 1, 1)
         });
 
-        // Logo on gray section
+        // Logo on footer
         if (logoImage) {
-            const footerLogoDims = logoImage.scale(0.06);
+            const footerLogoDims = logoImage.scale(0.05);
             page.drawImage(logoImage, {
-                x: orangeWidth + diagonalWidth + 20,
+                x: orangeWidth + diagonalWidth + 15,
                 y: (footerHeight - footerLogoDims.height) / 2,
                 width: footerLogoDims.width,
                 height: footerLogoDims.height
             });
         }
 
-        // netventure.tv text
+        // netventure.tv
         page.drawText('netventure.tv', {
-            x: orangeWidth + diagonalWidth + 55,
-            y: 8,
-            size: 11,
+            x: orangeWidth + diagonalWidth + 45,
+            y: 7,
+            size: 9,
             font: fontBold,
             color: rgb(0.4, 0.4, 0.4)
         });
 
-        // Page number on far right
+        // Page number
         page.drawText(`${i + 1}`, {
-            x: PAGE_WIDTH - 25,
-            y: 8,
-            size: 10,
+            x: PAGE_WIDTH - 20,
+            y: 7,
+            size: 9,
             font: font,
             color: rgb(0.5, 0.5, 0.5)
         });
@@ -364,9 +366,6 @@ async function generatePDF() {
     // Add contact page at the end
     console.log('\nAdding contact page...');
     const contactPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-
-    // Orange color for CI
-    const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
 
     // KONTAKT heading (right aligned)
     contactPage.drawText('KONTAKT', {
