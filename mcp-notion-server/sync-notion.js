@@ -13,8 +13,15 @@ import http from 'http';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Load .env
+// Load environment variables (process.env for Netlify, .env file for local)
 function loadEnv() {
+    // First check if required vars are in process.env (Netlify)
+    if (process.env.NOTION_TOKEN) {
+        console.log('Using environment variables from process.env');
+        return process.env;
+    }
+
+    // Fall back to .env file (local development)
     try {
         const envPath = join(__dirname, '..', '.env');
         const envContent = readFileSync(envPath, 'utf-8');
@@ -25,9 +32,11 @@ function loadEnv() {
                 vars[key.trim()] = valueParts.join('=').trim();
             }
         });
+        console.log('Using environment variables from .env file');
         return vars;
     } catch (e) {
         console.error('Could not load .env file:', e.message);
+        console.error('Set NOTION_TOKEN and NOTION_PAGE_ID in environment or create .env file');
         process.exit(1);
     }
 }

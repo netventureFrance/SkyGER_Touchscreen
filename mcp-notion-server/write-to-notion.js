@@ -12,8 +12,14 @@ import { dirname, join, basename } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Load environment variables
+// Load environment variables (process.env for CI/Netlify, .env file for local)
 function loadEnv() {
+    // First check if required vars are in process.env
+    if (process.env.NOTION_TOKEN) {
+        return process.env;
+    }
+
+    // Fall back to .env file (local development)
     try {
         const envPath = join(__dirname, '..', '.env');
         const envContent = readFileSync(envPath, 'utf-8');
