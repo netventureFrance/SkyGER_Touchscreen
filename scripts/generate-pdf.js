@@ -300,88 +300,87 @@ async function generatePDF() {
             }
         }
 
-        // Footer bar layout
-        const orangeEnd = PAGE_WIDTH * 0.56;
-        const diag1Width = 20;
-        const grayStart = orangeEnd;
-        const grayEnd = PAGE_WIDTH - 45;
-        const diag2Width = 15;
+        // Footer bar layout matching PDF template
         const fh = footerHeight;
+        const orangeEnd = PAGE_WIDTH * 0.62;
+        const diag1Width = 35;  // Diagonal width for orange->gray transition
+        const grayEnd = PAGE_WIDTH - 60;
+        const diag2Width = 25;  // Diagonal width for gray->white transition
 
-        // Draw full footer background (white)
+        // 1. White/light background (full width)
         page.drawRectangle({
             x: 0, y: 0,
             width: PAGE_WIDTH,
             height: fh,
-            color: rgb(0.96, 0.96, 0.96)
+            color: rgb(1, 1, 1)
         });
 
-        // Gray middle section (covers from orange end to page number area)
+        // 2. Gray section
         page.drawRectangle({
-            x: grayStart, y: 0,
-            width: grayEnd - grayStart + diag2Width,
+            x: orangeEnd - diag1Width, y: 0,
+            width: grayEnd - orangeEnd + diag1Width + diag2Width,
             height: fh,
             color: footerGray
         });
 
-        // Orange section
+        // 3. Orange section (main rectangle)
         page.drawRectangle({
             x: 0, y: 0,
-            width: orangeEnd + diag1Width,
+            width: orangeEnd,
             height: fh,
             color: orangeColor
         });
 
-        // First diagonal cut (gray over orange) - creates angled edge
-        const d1 = `M ${orangeEnd} 0 L ${orangeEnd + diag1Width} 0 L ${orangeEnd + diag1Width} ${fh} Z`;
-        page.drawSvgPath(d1, { x: 0, y: 0, color: footerGray });
+        // 4. Orange diagonal extension (triangle pointing right-up)
+        const orangeDiag = `M ${orangeEnd} 0 L ${orangeEnd} ${fh} L ${orangeEnd + diag1Width} ${fh} Z`;
+        page.drawSvgPath(orangeDiag, { x: 0, y: 0, color: orangeColor });
 
-        // Second diagonal cut (white over gray)
-        const d2 = `M ${grayEnd} 0 L ${grayEnd + diag2Width} 0 L ${grayEnd + diag2Width} ${fh} Z`;
-        page.drawSvgPath(d2, { x: 0, y: 0, color: rgb(0.96, 0.96, 0.96) });
+        // 5. White diagonal cut over gray (creates second angled edge)
+        const whiteDiag = `M ${grayEnd} 0 L ${grayEnd + diag2Width} ${fh} L ${PAGE_WIDTH} ${fh} L ${PAGE_WIDTH} 0 Z`;
+        page.drawSvgPath(whiteDiag, { x: 0, y: 0, color: rgb(1, 1, 1) });
+
+        // 6. White diagonal line (thin separator)
+        page.drawLine({
+            start: { x: grayEnd + 2, y: 0 },
+            end: { x: grayEnd + diag2Width + 2, y: fh },
+            thickness: 2,
+            color: rgb(1, 1, 1)
+        });
 
         // Footer title
-        page.drawText('SKY SUPER TOUCH - DOKUMENTATION', {
-            x: 12,
-            y: 8,
-            size: 9,
+        page.drawText('SKY SUPER TOUCH', {
+            x: 15,
+            y: 9,
+            size: 11,
             font: fontBold,
             color: rgb(1, 1, 1)
         });
 
-        // Logo + netventure.tv together
-        const logoX = grayStart + diag1Width + 12;
+        // Logo + netventure.tv tightly together
+        const logoX = orangeEnd + diag1Width + 8;
         if (logoImage) {
-            const footerLogoDims = logoImage.scale(0.07);
+            const footerLogoDims = logoImage.scale(0.065);
             page.drawImage(logoImage, {
                 x: logoX,
                 y: (fh - footerLogoDims.height) / 2,
                 width: footerLogoDims.width,
                 height: footerLogoDims.height
             });
-            // Text right next to logo
+            // Text immediately after logo (1px gap)
             page.drawText('netventure.tv', {
-                x: logoX + footerLogoDims.width + 3,
+                x: logoX + footerLogoDims.width + 1,
                 y: 8,
-                size: 10,
+                size: 11,
                 font: fontBold,
-                color: rgb(0.4, 0.4, 0.4)
-            });
-        } else {
-            page.drawText('netventure.tv', {
-                x: logoX,
-                y: 8,
-                size: 10,
-                font: fontBold,
-                color: rgb(0.4, 0.4, 0.4)
+                color: rgb(0.45, 0.45, 0.45)
             });
         }
 
         // Page number
         page.drawText(`${i + 1}`, {
-            x: PAGE_WIDTH - 22,
-            y: 8,
-            size: 9,
+            x: PAGE_WIDTH - 25,
+            y: 9,
+            size: 10,
             font: font,
             color: rgb(0.5, 0.5, 0.5)
         });
@@ -391,133 +390,155 @@ async function generatePDF() {
     console.log('\nAdding contact page...');
     const contactPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
+    // Contact page footer height
+    const contactFooterH = 55;
+
+    // Light gray background for content area
+    contactPage.drawRectangle({
+        x: MARGIN,
+        y: contactFooterH + 10,
+        width: PAGE_WIDTH - MARGIN * 2,
+        height: PAGE_HEIGHT - contactFooterH - MARGIN - 20,
+        color: lightGray
+    });
+
     // KONTAKT heading (right aligned)
     contactPage.drawText('KONTAKT', {
-        x: PAGE_WIDTH - MARGIN - 80,
-        y: PAGE_HEIGHT - 60,
-        size: 20,
+        x: PAGE_WIDTH - MARGIN - 85,
+        y: PAGE_HEIGHT - 70,
+        size: 22,
         font: fontBold,
-        color: rgb(0.2, 0.2, 0.2)
+        color: rgb(0.25, 0.25, 0.25)
     });
 
-    // Contact 1: Burak Serc
-    let contactY = PAGE_HEIGHT - 140;
+    // Contact 1: Burak Serc (right aligned)
+    const contactX = PAGE_WIDTH - MARGIN - 30;
+    let contactY = PAGE_HEIGHT - 160;
+
     contactPage.drawText('Burak Serc', {
-        x: PAGE_WIDTH - MARGIN - 180,
+        x: contactX - 120,
         y: contactY,
-        size: 14,
+        size: 13,
         font: fontBold,
         color: orangeColor
     });
-    contactY -= 18;
+    contactY -= 16;
     contactPage.drawText('mobile +172 769 76 33', {
-        x: PAGE_WIDTH - MARGIN - 180,
+        x: contactX - 120,
         y: contactY,
-        size: 10,
+        size: 9,
         font: font,
-        color: rgb(0.3, 0.3, 0.3)
+        color: rgb(0.4, 0.4, 0.4)
     });
-    contactY -= 14;
+    contactY -= 13;
     contactPage.drawText('b.serc@netventure.tv', {
-        x: PAGE_WIDTH - MARGIN - 180,
+        x: contactX - 120,
         y: contactY,
-        size: 10,
-        font: font,
-        color: rgb(0.3, 0.3, 0.3)
-    });
-
-    // Contact 2: Birnur Yildirim
-    contactY -= 40;
-    contactPage.drawText('Birnur Yildirim', {
-        x: PAGE_WIDTH - MARGIN - 180,
-        y: contactY,
-        size: 14,
-        font: fontBold,
-        color: orangeColor
-    });
-    contactY -= 18;
-    contactPage.drawText('mobile +49 172 - 829 06 04', {
-        x: PAGE_WIDTH - MARGIN - 180,
-        y: contactY,
-        size: 10,
-        font: font,
-        color: rgb(0.3, 0.3, 0.3)
-    });
-    contactY -= 14;
-    contactPage.drawText('b.yildirim@netventure.tv', {
-        x: PAGE_WIDTH - MARGIN - 180,
-        y: contactY,
-        size: 10,
-        font: font,
-        color: rgb(0.3, 0.3, 0.3)
-    });
-
-    // Company name (right aligned)
-    contactY -= 50;
-    contactPage.drawText('netventure production GmbH', {
-        x: PAGE_WIDTH - MARGIN - 180,
-        y: contactY,
-        size: 12,
-        font: fontBold,
-        color: rgb(0.3, 0.3, 0.3)
-    });
-
-    // Footer info line
-    const footerInfoY = 100;
-    contactPage.drawText('Einsteinufer 63-65 . D-10587 Berlin . office +49 30 34 38 38 30 . www.netventure.tv . mobile +49 170 226 81 02', {
-        x: PAGE_WIDTH / 2 - 250,
-        y: footerInfoY,
-        size: 8,
+        size: 9,
         font: font,
         color: rgb(0.4, 0.4, 0.4)
     });
 
-    // Orange footer bar
-    contactPage.drawRectangle({
-        x: 0,
-        y: 30,
-        width: PAGE_WIDTH,
-        height: 50,
+    // Contact 2: Birnur Yildirim
+    contactY -= 35;
+    contactPage.drawText('Birnur Yildirim', {
+        x: contactX - 120,
+        y: contactY,
+        size: 13,
+        font: fontBold,
+        color: orangeColor
+    });
+    contactY -= 16;
+    contactPage.drawText('mobile +49 172 - 829 06 04', {
+        x: contactX - 120,
+        y: contactY,
+        size: 9,
+        font: font,
+        color: rgb(0.4, 0.4, 0.4)
+    });
+    contactY -= 13;
+    contactPage.drawText('b.yildirim@netventure.tv', {
+        x: contactX - 120,
+        y: contactY,
+        size: 9,
+        font: font,
+        color: rgb(0.4, 0.4, 0.4)
+    });
+
+    // Company name
+    contactY -= 45;
+    contactPage.drawText('netventure production GmbH', {
+        x: contactX - 175,
+        y: contactY,
+        size: 11,
+        font: fontBold,
         color: orangeColor
     });
 
-    // Footer text on orange bar
+    // Footer info line (centered)
+    contactPage.drawText('Einsteinufer 63-65 . D-10587 Berlin . office +49 30 34 38 38 30 . www.netventure.tv . mobile +49 170 226 81 02', {
+        x: PAGE_WIDTH / 2 - 220,
+        y: contactFooterH + 30,
+        size: 7,
+        font: font,
+        color: rgb(0.45, 0.45, 0.45)
+    });
+
+    // Contact page footer - same style as regular pages but with different text
+    const cfOrangeEnd = PAGE_WIDTH * 0.62;
+    const cfDiag1 = 35;
+    const cfGrayEnd = PAGE_WIDTH - 60;
+    const cfDiag2 = 25;
+
+    // White background
+    contactPage.drawRectangle({ x: 0, y: 0, width: PAGE_WIDTH, height: contactFooterH, color: rgb(1, 1, 1) });
+
+    // Gray section
+    contactPage.drawRectangle({
+        x: cfOrangeEnd - cfDiag1, y: 0,
+        width: cfGrayEnd - cfOrangeEnd + cfDiag1 + cfDiag2,
+        height: contactFooterH,
+        color: footerGray
+    });
+
+    // Orange section
+    contactPage.drawRectangle({ x: 0, y: 0, width: cfOrangeEnd, height: contactFooterH, color: orangeColor });
+
+    // Orange diagonal
+    const cfOrangeDiag = `M ${cfOrangeEnd} 0 L ${cfOrangeEnd} ${contactFooterH} L ${cfOrangeEnd + cfDiag1} ${contactFooterH} Z`;
+    contactPage.drawSvgPath(cfOrangeDiag, { x: 0, y: 0, color: orangeColor });
+
+    // White diagonal cut
+    const cfWhiteDiag = `M ${cfGrayEnd} 0 L ${cfGrayEnd + cfDiag2} ${contactFooterH} L ${PAGE_WIDTH} ${contactFooterH} L ${PAGE_WIDTH} 0 Z`;
+    contactPage.drawSvgPath(cfWhiteDiag, { x: 0, y: 0, color: rgb(1, 1, 1) });
+
+    // Footer text
     contactPage.drawText('VIELEN DANK FUR IHRE AUFMERKSAMKEIT', {
-        x: MARGIN,
-        y: 50,
-        size: 14,
+        x: 15,
+        y: 20,
+        size: 13,
         font: fontBold,
         color: rgb(1, 1, 1)
     });
 
-    // Logo on orange footer bar (right side)
+    // Logo + netventure.tv on gray section
+    const cfLogoX = cfOrangeEnd + cfDiag1 + 8;
     if (logoImage) {
-        const logoDims = logoImage.scale(0.15);
+        const cfLogoDims = logoImage.scale(0.09);
         contactPage.drawImage(logoImage, {
-            x: PAGE_WIDTH - MARGIN - logoDims.width - 50,
-            y: 35,
-            width: logoDims.width,
-            height: logoDims.height
+            x: cfLogoX,
+            y: (contactFooterH - cfLogoDims.height) / 2,
+            width: cfLogoDims.width,
+            height: cfLogoDims.height
+        });
+        contactPage.drawText('netventure.tv', {
+            x: cfLogoX + cfLogoDims.width + 1,
+            y: 20,
+            size: 13,
+            font: fontBold,
+            color: rgb(0.45, 0.45, 0.45)
         });
     }
-
-    // netventure.tv text next to logo
-    contactPage.drawText('netventure.tv', {
-        x: PAGE_WIDTH - MARGIN - 45,
-        y: 50,
-        size: 12,
-        font: fontBold,
-        color: rgb(1, 1, 1)
-    });
-
-    // Page number on contact page
-    contactPage.drawText(`${pages.length + 1}`, {
-        x: PAGE_WIDTH - MARGIN - 10,
-        y: 50,
-        size: 10,
-        font: font,
-        color: rgb(1, 1, 1)
-    });
 
     console.log('\n\n💾 Saving PDF...');
 
