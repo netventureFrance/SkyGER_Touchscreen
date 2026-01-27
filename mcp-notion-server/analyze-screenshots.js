@@ -6,9 +6,14 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
+import sharp from 'sharp';
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join, relative } from 'path';
+
+// Maximum file size for Claude Vision API
+// Base64 encoding adds ~33%, so 3.5MB raw → ~4.7MB base64 (under 5MB limit)
+const MAX_IMAGE_SIZE = 3.5 * 1024 * 1024;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -158,16 +163,77 @@ function getMediaType(filename) {
 }
 
 /**
+ * Resize image if it's too large for Claude Vision API
+ * Returns base64 string and media type
+ */
+async function prepareImage(filePath, fileSize) {
+    // If file is small enough, just read it directly
+    if (fileSize <= MAX_IMAGE_SIZE) {
+        const imageBuffer = readFileSync(filePath);
+        return {
+            base64: imageBuffer.toString('base64'),
+            mediaType: getMediaType(filePath),
+            resized: false,
+        };
+    }
+
+    // Resize large images
+    console.log(`    📐 Resizing large image (${(fileSize / 1024 / 1024).toFixed(1)}MB)...`);
+
+    try {
+        // Get image metadata to determine resize strategy
+        const metadata = await sharp(filePath).metadata();
+        const { width, height } = metadata;
+
+        // Calculate new dimensions - reduce to fit under size limit
+        // Start with 50% reduction, adjust if needed
+        let scale = 0.5;
+        let resizedBuffer;
+
+        // Try progressively smaller sizes until we're under the limit
+        for (let attempt = 0; attempt < 4; attempt++) {
+            const newWidth = Math.round(width * scale);
+            const newHeight = Math.round(height * scale);
+
+            resizedBuffer = await sharp(filePath)
+                .resize(newWidth, newHeight, { fit: 'inside' })
+                .jpeg({ quality: 85 }) // Convert to JPEG for better compression
+                .toBuffer();
+
+            if (resizedBuffer.length <= MAX_IMAGE_SIZE) {
+                console.log(`    ✓ Resized to ${newWidth}x${newHeight} (${(resizedBuffer.length / 1024 / 1024).toFixed(1)}MB)`);
+                break;
+            }
+
+            scale *= 0.7; // Reduce further
+        }
+
+        return {
+            base64: resizedBuffer.toString('base64'),
+            mediaType: 'image/jpeg',
+            resized: true,
+        };
+    } catch (error) {
+        console.log(`    ⚠️ Could not resize: ${error.message}`);
+        // Fall back to original (might fail at API level)
+        const imageBuffer = readFileSync(filePath);
+        return {
+            base64: imageBuffer.toString('base64'),
+            mediaType: getMediaType(filePath),
+            resized: false,
+        };
+    }
+}
+
+/**
  * Analyze a single screenshot with Claude Vision
  */
 async function analyzeScreenshot(file) {
     console.log(`  🔍 Analyzing: ${file.relativePath}`);
 
     try {
-        // Read image as base64
-        const imageBuffer = readFileSync(file.absolutePath);
-        const base64Image = imageBuffer.toString('base64');
-        const mediaType = getMediaType(file.filename);
+        // Prepare image (resize if needed)
+        const { base64: base64Image, mediaType } = await prepareImage(file.absolutePath, file.size);
 
         // Call Claude Vision API
         const response = await anthropic.messages.create({

@@ -1204,7 +1204,18 @@
                               "22",
                               "23",
                               "24",
-                              "49"
+                              "49",
+                              "BURKE",
+                              "ANSAH",
+                              "JEONG",
+                              "KOHN",
+                              "KEMLEIN",
+                              "KHEDIRA",
+                              "HABERER",
+                              "Lette",
+                              "QUERFELD",
+                              "DOEKHI",
+                              "RØNNOW"
                             ],
                             "uiElements": [
                               "Score panel showing final result",
@@ -1215,7 +1226,15 @@
                               "Green goalkeeper indicator (Union Berlin)",
                               "Yellow goalkeeper indicator (RB Leipzig)",
                               "Navigation menu on left side",
-                              "Blue header bar with team information"
+                              "Blue header bar with team information",
+                              "Team logos",
+                              "Score panel",
+                              "Football pitch diagram",
+                              "Player position markers with numbers",
+                              "Player name labels",
+                              "Formation visualization",
+                              "Sky Sport interface elements",
+                              "Menu buttons on sides"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt die durchschnittlichen Spielerpositionen beider Mannschaften während des Bundesligaspiels zwischen Union Berlin und RB Leipzig, das 3:1 endete."
                           }
@@ -1247,7 +1266,20 @@
                               "3-1",
                               "RB LEIPZIG",
                               "FREDERIK RØNNOW - 38 BALLBERÜHRUNGEN",
-                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN"
+                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN",
+                              "TOUCH MAP",
+                              "1 FC UNION BERLIN",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KOHN"
                             ],
                             "uiElements": [
                               "Score panel with team names and final score",
@@ -1259,7 +1291,15 @@
                               "Score panel with team logos",
                               "Football pitch diagram",
                               "Ball touch visualization with white dots",
-                              "Navigation menu on left side"
+                              "Navigation menu on left side",
+                              "Scoreboard header",
+                              "Touch map visualization",
+                              "Soccer field outline",
+                              "Team lineups on left and right sides",
+                              "Team logos",
+                              "Player name lists",
+                              "Central circle and penalty areas",
+                              "Close buttons (X) in corners"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt eine taktische Analyse der Ballberührungen von Torhüter Frederik Rønnow während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig."
                           }
@@ -1289,7 +1329,18 @@
                               "RB LEIPZIG - 2. HALBZEIT - 265 PÄSSE",
                               "ANGEKOMMEN (208)",
                               "FEHLPÄSSE (53)",
-                              "TORSCHUSSVORLAGE (4)"
+                              "TORSCHUSSVORLAGE (4)",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KOHN"
                             ],
                             "uiElements": [
                               "Scoreboard header with team logos",
@@ -1297,7 +1348,14 @@
                               "Football pitch outline",
                               "Statistics legend",
                               "Sky Sport interface navigation icons",
-                              "Team crests for Union Berlin and RB Leipzig"
+                              "Team crests for Union Berlin and RB Leipzig",
+                              "Scoreboard with team logos",
+                              "Football pitch diagram with pass visualization",
+                              "Player roster panels on left and right sides",
+                              "Pass statistics with green and red arrows",
+                              "Color-coded pass success/failure indicators",
+                              "Match statistics overlay",
+                              "Sky Sports broadcast interface"
                             ],
                             "screenPurpose": "Diese Grafik zeigt eine Pass-Analyse von RB Leipzig aus der zweiten Halbzeit des Spiels gegen Union Berlin, mit erfolgreichen Pässen in Grün und Fehlpässen in Rot dargestellt."
                           }
@@ -1361,7 +1419,18 @@
                               "TOR (1)",
                               "VORBEI (2)",
                               "PARADEN (0)",
-                              "ABGEBLOCKT (2)"
+                              "ABGEBLOCKT (2)",
+                              "1 RÖNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Score display panel with team logos",
@@ -1370,7 +1439,13 @@
                               "Color-coded legend for different shot types",
                               "Navigation menu on left side",
                               "Navigation menu on right side",
-                              "Blue gradient background with dotted pattern"
+                              "Blue gradient background with dotted pattern",
+                              "Spielstand-Panel mit Vereinslogos",
+                              "Fußballfeld-Grafik mit farbigen Pfeilen",
+                              "Seitliche Spielerlisten",
+                              "Statistik-Legende mit farbcodierten Kategorien",
+                              "Sky Sport Rahmen-Design",
+                              "Torschuss-Visualisierung auf dem Spielfeld"
                             ],
                             "screenPurpose": "Eine taktische Analyse der Schussstatistiken von RB Leipzig in der zweiten Halbzeit des Spiels gegen Union Berlin mit grafischer Darstellung auf dem Spielfeld."
                           }
@@ -1428,19 +1503,68 @@
                               "1. FC UNION BERLIN",
                               "3-1",
                               "RB LEIPZIG",
-                              "WILLI ORBÁN"
+                              "WILLI ORBÁN",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Spielstand-Panel mit Vereinslogos",
                               "Fußballfeld-Heatmap mit Positionsdaten",
                               "Spielername-Banner",
                               "Seitliche Navigationsleiste",
-                              "Sky Sport Bundesliga Interface"
+                              "Sky Sport Bundesliga Interface",
+                              "Spielergebnis-Panel mit Vereinslogos",
+                              "Heatmap-Darstellung auf dem Spielfeld",
+                              "Spielerliste links und rechts",
+                              "Fußballfeld-Grafik mit weißen Linien",
+                              "Farbkodierte Aktivitätszonen (grün und rot)",
+                              "Sky Sport Sendedesign mit blauem Rahmen"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt eine Heatmap der Spielerpositionen von Willi Orbán während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit dem Endstand 3-1."
                           }
                         }
-                      ]
+                      ],
+                      "dataFields": {
+                        "extractedText": [
+                          "1. FC UNION BERLIN",
+                          "3-1",
+                          "RB LEIPZIG",
+                          "AKTIONSZONE",
+                          "24.0%",
+                          "50.9%",
+                          "25.1%",
+                          "BALLBESITZ",
+                          "36.5%",
+                          "63.5%",
+                          "ANALYSE",
+                          "DURCHSCHNITTLICHE POSITIONEN",
+                          "TOUCH MAP",
+                          "PASS MAP",
+                          "ANGRIFFSZONEN",
+                          "SHOT PLOT",
+                          "TACKLE MAP",
+                          "HEAT MAP"
+                        ],
+                        "uiElements": [
+                          "Scoreboard header with team logos",
+                          "Football pitch diagram with zone divisions",
+                          "Left sidebar navigation menu",
+                          "Right sidebar navigation menu",
+                          "Percentage statistics overlay on pitch zones",
+                          "Ball possession statistics bar",
+                          "Team zone activity percentages"
+                        ],
+                        "screenPurpose": "Diese Bildschirmansicht zeigt die Aktionszonen-Analyse des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit einer 3-1 Endstand, dargestellt auf einem Fußballfeld mit prozentualen Verteilungen der Spielaktivitäten in verschiedenen Feldbereichen."
+                      }
                     }
                   ],
                   "dataFields": {
@@ -2426,7 +2550,50 @@
                           "9 BAKAYOKO",
                           "49 DIOMANDE",
                           "36 WERNER",
-                          "27 GOMIS"
+                          "27 GOMIS",
+                          "KRAL",
+                          "6",
+                          "KENLEIN",
+                          "33",
+                          "KRÁL",
+                          "41",
+                          "OGBEMUDIA",
+                          "32",
+                          "MAJSTORVIC",
+                          "42",
+                          "KOSAK KING",
+                          "47",
+                          "SEIML",
+                          "44",
+                          "KAMPL",
+                          "21",
+                          "SKARKE",
+                          "15",
+                          "ROTHE",
+                          "24",
+                          "SKOV",
+                          "SCHLAGER",
+                          "20",
+                          "OLDENBÖRGGL",
+                          "19",
+                          "HABERER",
+                          "BAUMGARTNER",
+                          "13",
+                          "SCHÄFER",
+                          "5",
+                          "DOEKHI",
+                          "SEIWALD",
+                          "11",
+                          "JEONG",
+                          "3",
+                          "HAIDARA",
+                          "8",
+                          "KHEDIRA",
+                          "4",
+                          "Leite",
+                          "7",
+                          "NUSA",
+                          "BANZUZI"
                         ],
                         "uiElements": [
                           "Team logos",
@@ -2452,7 +2619,12 @@
                           "Left sidebar navigation menu",
                           "Right sidebar navigation menu",
                           "Team formation layout (Union Berlin left side, RB Leipzig right side)",
-                          "Central circle and penalty areas on field diagram"
+                          "Central circle and penalty areas on field diagram",
+                          "Team logos (FC Union Berlin and RB Leipzig)",
+                          "Football pitch tactical diagram",
+                          "Formation layout visualization",
+                          "Left sidebar with navigation icons",
+                          "Right sidebar with navigation icons"
                         ],
                         "screenPurpose": "Diese Bildschirmansicht zeigt die Mannschaftsaufstellungen beider Teams für das Bundesliga-Spiel zwischen Union Berlin und RB Leipzig mit dem Endstand 3-1."
                       }
@@ -2565,7 +2737,18 @@
                           "22",
                           "23",
                           "24",
-                          "49"
+                          "49",
+                          "BURKE",
+                          "ANSAH",
+                          "JEONG",
+                          "KOHN",
+                          "KEMLEIN",
+                          "KHEDIRA",
+                          "HABERER",
+                          "Leite",
+                          "QUERFELD",
+                          "DOEKHI",
+                          "RØNNOW"
                         ],
                         "uiElements": [
                           "Score panel showing final result",
@@ -2576,7 +2759,15 @@
                           "Yellow goalkeeper marker (RB Leipzig)",
                           "Average position heat maps for both teams",
                           "Navigation menu on left side",
-                          "Blue Sky Sports branding/background"
+                          "Blue Sky Sports branding/background",
+                          "Score panel with team logos",
+                          "Two football field diagrams showing player positions",
+                          "Player position dots with jersey numbers",
+                          "Player name labels",
+                          "Goalkeeper position highlighted in green",
+                          "Team formation visualization",
+                          "Sky Sport interface elements",
+                          "Navigation icons on left and right sides"
                         ],
                         "screenPurpose": "Diese Grafik zeigt die durchschnittlichen Spielerpositionen beider Mannschaften während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig, das 3:1 endete."
                       }
@@ -2608,7 +2799,20 @@
                           "3-1",
                           "RB LEIPZIG",
                           "FREDERIK RØNNOW - 38 BALLBERÜHRUNGEN",
-                          "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN"
+                          "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN",
+                          "TOUCH MAP",
+                          "1 FC UNION BERLIN",
+                          "1 RÖNNOW",
+                          "4 Leite",
+                          "5 DOEKHI",
+                          "6 KEMLEIN",
+                          "7 BURKE",
+                          "8 KHEDIRA",
+                          "10 ANSAH",
+                          "11 JEONG",
+                          "14 QUERFELD",
+                          "19 HABERER",
+                          "39 KOHN"
                         ],
                         "uiElements": [
                           "Team logos (Union Berlin and RB Leipzig)",
@@ -2622,7 +2826,13 @@
                           "Football pitch diagram with white dots",
                           "Blue header bar",
                           "Team crests (Union Berlin and RB Leipzig)",
-                          "Touch map visualization"
+                          "Touch map visualization",
+                          "Score panel header with team logos",
+                          "Football pitch diagram with white outline",
+                          "Player roster lists on left and right sides",
+                          "Touch map visualization overlay",
+                          "Sky Sport broadcast interface",
+                          "Close buttons (X) in corners"
                         ],
                         "screenPurpose": "Diese Grafik zeigt die Ballberührungen von Torhüter Frederik Rønnow während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit dem Endstand 3-1."
                       }
@@ -2652,7 +2862,18 @@
                           "RB LEIPZIG - 2. HALBZEIT - 265 PÄSSE",
                           "ANGEKOMMEN (208)",
                           "FEHLPÄSSE (53)",
-                          "TORSCHUSSVORLAGE (4)"
+                          "TORSCHUSSVORLAGE (4)",
+                          "RØNNOW",
+                          "Lotte",
+                          "DOEKHI",
+                          "KEMLEIN",
+                          "BURKE",
+                          "KHEDIRA",
+                          "ANSAH",
+                          "JEONG",
+                          "QUERFELD",
+                          "HABERER",
+                          "KÖHN"
                         ],
                         "uiElements": [
                           "Score panel with team logos",
@@ -2660,7 +2881,11 @@
                           "Pass map visualization with green and red arrows",
                           "Statistics overlay",
                           "Navigation sidebar with icons",
-                          "Team crests (Union Berlin and RB Leipzig)"
+                          "Team crests (Union Berlin and RB Leipzig)",
+                          "Player roster panels on left and right sides",
+                          "Statistics header with pass completion data",
+                          "Football pitch diagram overlay",
+                          "Pass direction indicators (successful passes in green, failed passes in red)"
                         ],
                         "screenPurpose": "Diese Bildschirmansicht zeigt eine Passmap-Analyse von RB Leipzig aus der zweiten Halbzeit des Bundesliga-Spiels gegen Union Berlin mit detaillierten Passing-Statistiken."
                       }
@@ -2723,7 +2948,19 @@
                           "TOR (1)",
                           "VORBEI (2)",
                           "PARADEN (0)",
-                          "ABGEBLOCKT (2)"
+                          "ABGEBLOCKT (2)",
+                          "1 FC UNION BERLIN",
+                          "1 RØNNOW",
+                          "4 Leite",
+                          "5 DOEKHI",
+                          "6 KEMLEIN",
+                          "7 BURKE",
+                          "8 KHEDIRA",
+                          "10 ANSAH",
+                          "11 JEONG",
+                          "14 QUERFELD",
+                          "19 HABERER",
+                          "39 KÖHN"
                         ],
                         "uiElements": [
                           "Team logos (Union Berlin and RB Leipzig)",
@@ -2731,7 +2968,13 @@
                           "Football pitch diagram with penalty area",
                           "Colored arrows showing shot statistics (green, red, white, blue)",
                           "Sky Sport interface elements on sides",
-                          "Statistical overlay on pitch visualization"
+                          "Statistical overlay on pitch visualization",
+                          "Scoreboard header with team logos",
+                          "Football pitch diagram with tactical arrows",
+                          "Player roster panels on left and right sides",
+                          "Statistics legend with colored arrows",
+                          "Match statistics display",
+                          "Sky Sport broadcast frame with corner graphics"
                         ],
                         "screenPurpose": "Diese Bildschirmansicht zeigt eine taktische Analyse der Torschüsse von RB Leipzig in der zweiten Halbzeit des Spiels gegen Union Berlin mit farbcodierten Pfeilen auf dem Spielfeld."
                       }
@@ -2789,7 +3032,18 @@
                           "1. FC UNION BERLIN",
                           "3-1",
                           "RB LEIPZIG",
-                          "WILLI ORBÁN"
+                          "WILLI ORBÁN",
+                          "1 RØNNOW",
+                          "4 Leite",
+                          "5 DOEKHI",
+                          "6 KEMLEIN",
+                          "7 BURKE",
+                          "8 KHEDIRA",
+                          "10 ANSAH",
+                          "11 JEONG",
+                          "14 QUERFELD",
+                          "19 HABERER",
+                          "39 KÖHN"
                         ],
                         "uiElements": [
                           "Score panel with team logos",
@@ -2798,12 +3052,52 @@
                           "Navigation icons on left and right sides",
                           "Sky Sport broadcast frame",
                           "Color-coded zone visualization",
-                          "Football field outline with center circle"
+                          "Football field outline with center circle",
+                          "Scoreboard header with team names and final score",
+                          "Player roster list on left side",
+                          "Player roster list on right side",
+                          "Team logos (Union Berlin and RB Leipzig)",
+                          "Player name display in center",
+                          "Close buttons (X) in top corners"
                         ],
                         "screenPurpose": "Diese Bildschirmansicht zeigt eine Heatmap-Analyse von Willi Orbán während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig."
                       }
                     }
-                  ]
+                  ],
+                  "dataFields": {
+                    "extractedText": [
+                      "1. FC UNION BERLIN",
+                      "3-1",
+                      "RB LEIPZIG",
+                      "AKTIONSZONE",
+                      "24.0%",
+                      "50.9%",
+                      "25.1%",
+                      "BALLBESITZ",
+                      "36.5%",
+                      "63.5%",
+                      "ANALYSE",
+                      "DURCHSCHNITTLICHE POSITIONEN",
+                      "TOUCH MAP",
+                      "PASS MAP",
+                      "ANGRIFFSZONEN",
+                      "SHOT PLOT",
+                      "TACKLE MAP",
+                      "HEAT MAP"
+                    ],
+                    "uiElements": [
+                      "Team logos",
+                      "Score display panel",
+                      "Football pitch diagram",
+                      "Statistics overlay",
+                      "Navigation menu (left side)",
+                      "Analysis menu (right side)",
+                      "Zone percentage displays",
+                      "Ball possession statistics",
+                      "Interactive field visualization"
+                    ],
+                    "screenPurpose": "Zeigt die Aktionszone-Analyse des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit Ballbesitz-Statistiken und Feldaufteilung in verschiedene Spielzonen."
+                  }
                 }
               ],
               "dataFields": {
@@ -3075,7 +3369,11 @@
                       "POKU",
                       "SCOUTINGFEED",
                       "Fr Feb 28 16:01:01 2025",
-                      "Planiere der Photovoltaikbranche"
+                      "Planiere der Photovoltaikbranche",
+                      "04:48",
+                      "ADLIOBA",
+                      "Stark im Service. Stark im Griff.",
+                      "scpungfeed"
                     ],
                     "uiElements": [
                       "Spielstand-Anzeige oben",
@@ -3090,7 +3388,15 @@
                       "Bandenwerbung",
                       "Video-Player-Interface mit Steuerelementen",
                       "Seitliche Navigationsleisten",
-                      "Watermark 'SCOUTINGFEED'"
+                      "Watermark 'SCOUTINGFEED'",
+                      "Scoreboard panel showing team names and score",
+                      "Game timer display",
+                      "Player name labels with circles highlighting players on field",
+                      "Tactical analysis arrows and markings",
+                      "Stadium crowd in background",
+                      "Advertising boards around pitch",
+                      "Video player interface controls on sides",
+                      "Broadcast overlay graphics"
                     ],
                     "screenPurpose": "Taktische Analyse eines Bundesliga-Spiels zwischen Augsburg und Leverkusen mit eingeblendeten Spielzügen und Spielernamen zur Demonstration einer Spielsituation."
                   }
@@ -3193,7 +3499,10 @@
                   "POKU",
                   "SCOUTINGFEED",
                   "WWK",
-                  "Fr Feb 28 16:01:20 2025"
+                  "Fr Feb 28 16:01:20 2025",
+                  "04:48",
+                  "SCHICK",
+                  "TAPIOBA"
                 ],
                 "uiElements": [
                   "Bundesliga-Logo mit rotem Hintergrund und weißer Spielerfigur",
@@ -3212,7 +3521,13 @@
                   "Video-Player-Interface mit Steuerelementen",
                   "Seitliche Toolbars mit verschiedenen Icons",
                   "Zeitstempel oben rechts und links",
-                  "Watermark unten rechts"
+                  "Watermark unten rechts",
+                  "Score panel showing team names and current score",
+                  "Game timer display",
+                  "Player name labels with connecting arrows",
+                  "Video player control interface on left and right sides",
+                  "Tactical analysis overlay with player movement arrows",
+                  "Sky Sports broadcast graphics"
                 ],
                 "screenPurpose": "Diese Bildschirmansicht zeigt die Einführung oder den Übergang zum Analyse-Segment einer Bundesliga-Übertragung von Sky Sport Deutschland."
               }
@@ -3946,7 +4261,50 @@
                           "name": "CHANCES CREATED"
                         }
                       ],
-                      "children": []
+                      "children": [],
+                      "dataFields": {
+                        "extractedText": [
+                          "TOP SPIELER - CHANCES CREATED",
+                          "TORSCHUSSVORL.",
+                          "ASSISTS",
+                          "TORE",
+                          "DAVID RAUM RBL",
+                          "43",
+                          "1",
+                          "2",
+                          "ROMANO SCHMID SVW",
+                          "42",
+                          "4",
+                          "MICHAEL OLISE BAY",
+                          "34",
+                          "8",
+                          "6",
+                          "CHRISTOPHER TRIMMEL",
+                          "31",
+                          "0",
+                          "BILAL EL KHANNOUSS VFB",
+                          "29",
+                          "3",
+                          "LUIS DÍAZ BAY",
+                          "27",
+                          "7",
+                          "ALEJANDRO GRIMALDO LEV",
+                          "ARIJON IBRAHIMOVIC",
+                          "JOSHUA KIMMICH BAY",
+                          "26",
+                          "JEAN-LUC DOMPÉ"
+                        ],
+                        "uiElements": [
+                          "Bundesliga logo",
+                          "Tabellenkopf mit drei Spalten (Torschussvorlagen, Assists, Tore)",
+                          "Rangliste mit 10 Spielern",
+                          "Vereinslogos neben Spielernamen",
+                          "Nummerierte Positionen (1-9)",
+                          "Statistikspalten mit Zahlenwerten",
+                          "Dunkler Hintergrund mit blauen Akzenten"
+                        ],
+                        "screenPurpose": "Diese Statistik-Übersicht zeigt die Top-Spieler der Bundesliga nach erstellten Torchancen, sortiert nach Torschussvorlagen mit zusätzlichen Daten zu Assists und Toren."
+                      }
                     },
                     {
                       "id": "passing",
@@ -4514,7 +4872,24 @@
                       "KARTEN",
                       "TACKLES",
                       "ZWEIKAMPF",
-                      "FREISTOSS"
+                      "FREISTOSS",
+                      "TOP SPIELER - FREISTOSS",
+                      "SCHÜSSE",
+                      "AUFS TOR",
+                      "ANDREJ KRAMARIC TSG",
+                      "0",
+                      "LOVRO MAJER WOB",
+                      "ANTONIO NUSA RBL",
+                      "LOIS OPENDA RBL",
+                      "MATHIAS PEREIRA LAGE",
+                      "ALEXANDER PRASS TSG",
+                      "CAMERON PUERTAS SVW",
+                      "LEOPOLD QUERFELD",
+                      "ROCCO REITZ BMG",
+                      "GIOVANNI REYNA BMG",
+                      "18",
+                      "GEHALTENE BAELLE",
+                      "SPIELZEIT"
                     ],
                     "uiElements": [
                       "Bundesliga Logo",
@@ -4525,9 +4900,16 @@
                       "Statistik-Spalten mit Zahlenwerten",
                       "Prozentangaben in der rechten Spalte",
                       "Blaue Kopfzeile",
-                      "Dunkler Hintergrund mit Punktmuster"
+                      "Dunkler Hintergrund mit Punktmuster",
+                      "Bundesliga logo",
+                      "Data table with player statistics",
+                      "Left sidebar navigation menu",
+                      "Team logos next to player names",
+                      "Column headers for statistics",
+                      "Player ranking list",
+                      "Statistical categories filter menu"
                     ],
-                    "screenPurpose": ""
+                    "screenPurpose": "Diese Bildschirmansicht zeigt die Top-Spieler der Bundesliga in der Kategorie Freistöße mit ihren Statistiken zu Schüssen, Schüssen aufs Tor und Toren. Es handelt sich um eine Rangliste der besten Freistoßschützen der Liga."
                   }
                 },
                 {
@@ -6047,7 +6429,18 @@
                               "22",
                               "23",
                               "24",
-                              "49"
+                              "49",
+                              "BURKE",
+                              "ANSAH",
+                              "JEONG",
+                              "KOHN",
+                              "KEMLEIN",
+                              "KHEDIRA",
+                              "HABERER",
+                              "Leite",
+                              "QUERFELD",
+                              "DOEKHI",
+                              "RØNNOW"
                             ],
                             "uiElements": [
                               "Scoreboard header with team logos",
@@ -6057,7 +6450,15 @@
                               "Green goalkeeper box (Union Berlin)",
                               "Yellow goalkeeper box (RB Leipzig)",
                               "Navigation sidebar with icons",
-                              "Team crests/logos"
+                              "Team crests/logos",
+                              "Score panel showing final result",
+                              "Team logos (Union Berlin and RB Leipzig)",
+                              "Football pitch diagram with player positions",
+                              "Player position indicators with jersey numbers",
+                              "Player name labels",
+                              "Header bar with match information",
+                              "Side navigation menu",
+                              "Broadcast graphics overlay"
                             ],
                             "screenPurpose": "Diese Grafik zeigt die durchschnittlichen Spielerpositionen beider Mannschaften während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig (Endstand 3:1)."
                           }
@@ -6089,7 +6490,20 @@
                               "3-1",
                               "RB LEIPZIG",
                               "FREDERIK RØNNOW - 38 BALLBERÜHRUNGEN",
-                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN"
+                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN",
+                              "TOUCH MAP",
+                              "1 FC UNION BERLIN",
+                              "1 RÖNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KOHN"
                             ],
                             "uiElements": [
                               "Scoreline header with team logos",
@@ -6102,7 +6516,13 @@
                               "Soccer field diagram with white dots",
                               "Blue navigation sidebar with icons",
                               "Team crests/logos",
-                              "Statistical visualization overlay"
+                              "Statistical visualization overlay",
+                              "Football pitch diagram with white lines",
+                              "Player roster list on left side",
+                              "Player roster list on right side",
+                              "Touch map visualization overlay",
+                              "Team logos (Union Berlin and RB Leipzig)",
+                              "Close buttons (X) in corners"
                             ],
                             "screenPurpose": "Zeigt eine taktische Analyse der Ballberührungen von Frederik Rønnow während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig."
                           }
@@ -6132,7 +6552,18 @@
                               "RB LEIPZIG - 2. HALBZEIT - 265 PÄSSE",
                               "ANGEKOMMEN (208)",
                               "FEHLPÄSSE (53)",
-                              "TORSCHUSSVORLAGE (4)"
+                              "TORSCHUSSVORLAGE (4)",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Score panel with team logos",
@@ -6141,7 +6572,13 @@
                               "Statistics bar with pass completion data",
                               "Team logos (Union Berlin and RB Leipzig)",
                               "Navigation menu on left side",
-                              "Pass direction arrows overlay on field"
+                              "Pass direction arrows overlay on field",
+                              "Scoreboard header with team logos",
+                              "Pass map visualization with green and red arrows",
+                              "Player roster panels on left and right sides",
+                              "Statistics panel showing pass completion data",
+                              "Football pitch diagram as background",
+                              "Color-coded pass direction indicators"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt eine Passanalyse von RB Leipzig aus der zweiten Halbzeit, mit einer visuellen Darstellung aller Pässe auf dem Spielfeld während des Bundesliga-Spiels gegen Union Berlin."
                           }
@@ -6205,7 +6642,18 @@
                               "TOR (1)",
                               "VORBEI (2)",
                               "PARADEN (0)",
-                              "ABGEBLOCKT (2)"
+                              "ABGEBLOCKT (2)",
+                              "1 RÖNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Team logos (Union Berlin and RB Leipzig)",
@@ -6214,7 +6662,13 @@
                               "Shot tracking visualization with colored arrows",
                               "Statistics legend with color coding",
                               "Navigation icons on left and right sides",
-                              "Blue gradient background with dotted pattern"
+                              "Blue gradient background with dotted pattern",
+                              "Scoreboard panel showing team names and final score",
+                              "Player lineup tables on left and right sides",
+                              "Football pitch diagram in center",
+                              "Shot trajectory visualization with colored arrows",
+                              "Statistical legend with colored indicators",
+                              "Match statistics header bar"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt eine taktische Analyse der Torschüsse von RB Leipzig im Spiel gegen Union Berlin, mit einer grafischen Darstellung der Schussverteilung auf dem Spielfeld."
                           }
@@ -6272,7 +6726,18 @@
                               "1. FC UNION BERLIN",
                               "3-1",
                               "RB LEIPZIG",
-                              "WILLI ORBÁN"
+                              "WILLI ORBÁN",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KOHN"
                             ],
                             "uiElements": [
                               "Score panel with team logos",
@@ -6281,12 +6746,53 @@
                               "Navigation icons on left and right sides",
                               "Team crests (Union Berlin and RB Leipzig)",
                               "Center circle marking",
-                              "Goal areas outlined"
+                              "Goal areas outlined",
+                              "Scoreboard header with team logos",
+                              "Heat map overlay on football pitch",
+                              "Player roster panels on left and right sides",
+                              "Football pitch diagram with penalty areas and center circle",
+                              "Player position grid overlay",
+                              "Team logo for Union Berlin",
+                              "Team logo for RB Leipzig",
+                              "Sky Sport broadcast frame with blue borders"
                             ],
                             "screenPurpose": "Zeigt eine Heatmap-Analyse der Spielerpositionen von Willi Orbán während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig."
                           }
                         }
-                      ]
+                      ],
+                      "dataFields": {
+                        "extractedText": [
+                          "1. FC UNION BERLIN",
+                          "3-1",
+                          "RB LEIPZIG",
+                          "AKTIONSZONE",
+                          "24.0%",
+                          "50.9%",
+                          "25.1%",
+                          "BALLBESITZ",
+                          "36.5%",
+                          "63.5%",
+                          "ANALYSE",
+                          "DURCHSCHNITTLICHE POSITIONEN",
+                          "TOUCH MAP",
+                          "PASS MAP",
+                          "ANGRIFFSZONEN",
+                          "SHOT PLOT",
+                          "TACKLE MAP",
+                          "HEAT MAP"
+                        ],
+                        "uiElements": [
+                          "Scoreboard panel with team logos",
+                          "Football pitch diagram with zones",
+                          "Action zone percentages overlay",
+                          "Ball possession statistics bar",
+                          "Left sidebar navigation menu",
+                          "Right sidebar navigation menu",
+                          "Team crests/logos",
+                          "Pitch visualization with zone divisions"
+                        ],
+                        "screenPurpose": "Diese Bildschirmansicht zeigt eine taktische Analyse des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit Aktionszonen-Statistiken und Ballbesitz-Verteilung auf dem Spielfeld."
+                      }
                     }
                   ],
                   "dataFields": {
@@ -7367,7 +7873,18 @@
                               "22",
                               "23",
                               "24",
-                              "49"
+                              "49",
+                              "BURKE",
+                              "ANSAH",
+                              "JEONG",
+                              "KOHN",
+                              "KEMLEIN",
+                              "KHEDIRA",
+                              "HABERER",
+                              "Lette",
+                              "QUERFELD",
+                              "DOEKHI",
+                              "RØNNOW"
                             ],
                             "uiElements": [
                               "Score panel with team names and final result",
@@ -7377,7 +7894,15 @@
                               "Green and yellow goalkeeper position indicators",
                               "Circular highlight areas showing player clustering",
                               "Navigation menu on left side",
-                              "Blue background with dotted pattern"
+                              "Blue background with dotted pattern",
+                              "Team logos",
+                              "Score display panel",
+                              "Football pitch diagram",
+                              "Player position markers with numbers",
+                              "Team formation layouts",
+                              "Header bar with team names and score",
+                              "Player name labels",
+                              "Average positions visualization"
                             ],
                             "screenPurpose": "Diese Grafik zeigt die durchschnittlichen Spielerpositionen beider Teams während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig, das 3-1 endete."
                           }
@@ -7409,7 +7934,20 @@
                               "3-1",
                               "RB LEIPZIG",
                               "FREDERIK RØNNOW - 38 BALLBERÜHRUNGEN",
-                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN"
+                              "1. FC UNION BERLIN - 540 BALLBERÜHRUNGEN",
+                              "TOUCH MAP",
+                              "1 FC UNION BERLIN",
+                              "1 RÖNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Score panel with team names and final score",
@@ -7423,7 +7961,14 @@
                               "Ball touch heatmap with white dots",
                               "Sky Sport broadcast frame",
                               "Navigation menu on left side",
-                              "Blue branded background"
+                              "Blue branded background",
+                              "Spielstand-Panel mit Vereinslogos",
+                              "Fußballfeld-Grafik mit weißen Linien",
+                              "Touch Map Überschrift",
+                              "Spielerlisten auf beiden Seiten",
+                              "Spielernummern und Namen",
+                              "Sky Sport Branding",
+                              "Schließen-Buttons (X) in den Ecken"
                             ],
                             "screenPurpose": "Diese Grafik zeigt eine taktische Analyse mit Spielerpositionen und Ballberührungen von Frederik Rønnow nach dem Bundesliga-Spiel zwischen Union Berlin und RB Leipzig."
                           }
@@ -7453,7 +7998,18 @@
                               "RB LEIPZIG - 2. HALBZEIT - 265 PÄSSE",
                               "ANGEKOMMEN (208)",
                               "FEHLPÄSSE (53)",
-                              "TORSCHUSSVORLAGE (4)"
+                              "TORSCHUSSVORLAGE (4)",
+                              "RØNNOW",
+                              "Leite",
+                              "DOEKHI",
+                              "KEMLEIN",
+                              "BURKE",
+                              "KHEDIRA",
+                              "ANSAH",
+                              "JEONG",
+                              "QUERFELD",
+                              "HABERER",
+                              "KÖHN"
                             ],
                             "uiElements": [
                               "Score panel with team logos",
@@ -7461,7 +8017,14 @@
                               "Pass map with green and red arrows",
                               "Statistics bar",
                               "Navigation icons on left and right sides",
-                              "Team crests (Union Berlin and RB Leipzig)"
+                              "Team crests (Union Berlin and RB Leipzig)",
+                              "Scoreboard panel with team logos",
+                              "Pass map visualization on football pitch",
+                              "Green arrows showing successful passes",
+                              "Red lines showing failed passes",
+                              "Player roster panels on left and right sides",
+                              "Statistics display with pass completion data",
+                              "Sky Sport broadcast interface frame"
                             ],
                             "screenPurpose": "Diese Grafik zeigt eine Passmap von RB Leipzig aus der zweiten Halbzeit mit erfolgreichen Pässen (grün) und Fehlpässen (rot) sowie die entsprechenden Statistiken."
                           }
@@ -7525,7 +8088,19 @@
                               "TOR (1)",
                               "VORBEI (2)",
                               "PARADEN (0)",
-                              "ABGEBLOCKT (2)"
+                              "ABGEBLOCKT (2)",
+                              "1 FC UNION BERLIN",
+                              "1 RÖNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMLEIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KOHN"
                             ],
                             "uiElements": [
                               "Spielstand-Panel mit Vereinslogos",
@@ -7533,7 +8108,13 @@
                               "Statistik-Legende mit farbigen Linien",
                               "Sky Sport Interface-Elemente",
                               "Torbereich-Visualisierung",
-                              "Schuss-Analyse-Grafik"
+                              "Schuss-Analyse-Grafik",
+                              "Scoreboard header with team logos",
+                              "Football pitch diagram with tactical arrows",
+                              "Player roster panels on left and right sides",
+                              "Statistics legend with colored arrows",
+                              "Match statistics display",
+                              "Sky Sport Germany interface frame"
                             ],
                             "screenPurpose": "Diese Bildschirmansicht zeigt eine Schussanalyse von RB Leipzig aus der zweiten Halbzeit des Bundesliga-Spiels gegen Union Berlin mit einer grafischen Darstellung der verschiedenen Schussarten im Torbereich."
                           }
@@ -7592,7 +8173,18 @@
                               "1. FC UNION BERLIN",
                               "3-1",
                               "RB LEIPZIG",
-                              "WILLI ORBÁN"
+                              "WILLI ORBÁN",
+                              "1 RØNNOW",
+                              "4 Leite",
+                              "5 DOEKHI",
+                              "6 KEMPELIN",
+                              "7 BURKE",
+                              "8 KHEDIRA",
+                              "10 ANSAH",
+                              "11 JEONG",
+                              "14 QUERFELD",
+                              "19 HABERER",
+                              "39 KÖHN"
                             ],
                             "uiElements": [
                               "Score panel with team names and final score",
@@ -7600,12 +8192,52 @@
                               "Player name banner",
                               "Heat map overlay on football pitch",
                               "Navigation menu icons on left and right sides",
-                              "Sky Sport broadcast interface elements"
+                              "Sky Sport broadcast interface elements",
+                              "Spielstand-Panel mit Vereinslogos",
+                              "Heatmap des Spielfelds",
+                              "Spieleraufstellung links",
+                              "Spieleraufstellung rechts",
+                              "Spielfeldvisualisierung",
+                              "Sky Sport Rahmen-Design",
+                              "Spielername-Header"
                             ],
                             "screenPurpose": "Zeigt eine Heatmap-Analyse der Spieleraktivität von Willi Orbán während des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit dem Endergebnis 3-1."
                           }
                         }
-                      ]
+                      ],
+                      "dataFields": {
+                        "extractedText": [
+                          "1. FC UNION BERLIN",
+                          "3-1",
+                          "RB LEIPZIG",
+                          "AKTIONSZONE",
+                          "24.0%",
+                          "50.9%",
+                          "25.1%",
+                          "BALLBESITZ",
+                          "36.5%",
+                          "63.5%",
+                          "ANALYSE",
+                          "DURCHSCHNITTLICHE POSITIONEN",
+                          "TOUCH MAP",
+                          "PASS MAP",
+                          "ANGRIFFSZONEN",
+                          "SHOT PLOT",
+                          "TACKLE MAP",
+                          "HEAT MAP"
+                        ],
+                        "uiElements": [
+                          "Scoreboard banner with team logos",
+                          "Football pitch diagram with percentage zones",
+                          "Left sidebar navigation menu",
+                          "Right sidebar menu",
+                          "Ball possession statistics bar",
+                          "Action zone visualization overlay",
+                          "Team crests/logos",
+                          "Field zone percentage indicators"
+                        ],
+                        "screenPurpose": "Diese Bildschirmansicht zeigt die Aktionszone-Analyse des Bundesliga-Spiels zwischen Union Berlin und RB Leipzig mit Ballbesitzverteilung und räumlicher Aktivität auf dem Spielfeld."
+                      }
                     }
                   ],
                   "dataFields": {
@@ -9065,7 +9697,32 @@
               "name": "AKI PAINT"
             }
           ],
-          "children": []
+          "children": [],
+          "dataFields": {
+            "extractedText": [
+              "ORACLE",
+              "TAG HEUER",
+              "Red Bull",
+              "AT&T",
+              "Honda",
+              "CLIP1",
+              "CLIP2",
+              "CLIP3",
+              "CLIP4",
+              "CLIP5",
+              "EXT"
+            ],
+            "uiElements": [
+              "Formula 1 car cockpit view",
+              "Video player controls with pause/play buttons",
+              "Multiple clip selection buttons at bottom",
+              "Side panel with various colored indicator buttons",
+              "Progress bar/timeline",
+              "Replay/rewind controls",
+              "Full screen interface"
+            ],
+            "screenPurpose": "Onboard-Kamera-Aufnahme aus dem Cockpit eines Formel-1-Rennwagens mit Video-Player-Interface zur Wiedergabe verschiedener Clips."
+          }
         },
         {
           "id": "infos",
