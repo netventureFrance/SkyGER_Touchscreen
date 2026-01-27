@@ -1,7 +1,6 @@
 [build]
-  # Static site - data is already committed to git
-  # Run 'npm run sync-notion' locally when Notion content changes
-  command = "echo 'Static site - no build needed'"
+  # Generate PDF documentation on each build
+  command = "npm run generate-pdf"
   publish = "."
 
 [build.environment]
