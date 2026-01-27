@@ -3,6 +3,14 @@
  * Full-screen paginated screenshot viewer
  */
 
+// Escape HTML to prevent XSS (defined here since bookview.js loads before mindmap.js)
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 class BookView {
     constructor(mindmapView) {
         this.mindmapView = mindmapView;
