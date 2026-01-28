@@ -127,22 +127,6 @@ async function generatePDF() {
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    // Load and embed netventure logo
-    let logoImage = null;
-    const logoPath = join(projectRoot, 'images/netventure-logo.png');
-    if (existsSync(logoPath)) {
-        try {
-            const logoBuffer = await sharp(logoPath)
-                .resize(120, null, { withoutEnlargement: true, fit: 'inside' })
-                .png()
-                .toBuffer();
-            logoImage = await pdfDoc.embedPng(logoBuffer);
-            console.log('Logo loaded successfully');
-        } catch (e) {
-            console.log('Could not load logo:', e.message);
-        }
-    }
-
     // CI Colors
     const orangeColor = rgb(0.91, 0.35, 0.14); // #E85923
     const lightGray = rgb(0.95, 0.95, 0.95);
@@ -170,16 +154,6 @@ async function generatePDF() {
             width: PAGE_WIDTH - MARGIN * 2,
             height: contentTop - contentBottom,
             color: lightGray
-        });
-
-        // Draw breadcrumb (above gray area)
-        const breadcrumbText = sanitizeText(pageData.breadcrumb.join(' > '));
-        page.drawText(breadcrumbText.substring(0, 140), {
-            x: MARGIN,
-            y: PAGE_HEIGHT - 18,
-            size: 7,
-            font: font,
-            color: rgb(0.5, 0.5, 0.5)
         });
 
         // Draw title (bold, black)
@@ -300,30 +274,19 @@ async function generatePDF() {
             }
         }
 
-        // Footer bar layout matching PDF template
+        // Footer bar - simple two-section layout
         const fh = footerHeight;
-        const orangeEnd = PAGE_WIDTH * 0.62;
-        const diag1Width = 35;  // Diagonal width for orange->gray transition
-        const grayEnd = PAGE_WIDTH - 60;
-        const diag2Width = 25;  // Diagonal width for gray->white transition
+        const orangeEnd = imageEndX + 5; // Align with right edge of image
 
-        // 1. White/light background (full width)
+        // 1. Gray section (right side, includes page number)
         page.drawRectangle({
-            x: 0, y: 0,
-            width: PAGE_WIDTH,
-            height: fh,
-            color: rgb(1, 1, 1)
-        });
-
-        // 2. Gray section
-        page.drawRectangle({
-            x: orangeEnd - diag1Width, y: 0,
-            width: grayEnd - orangeEnd + diag1Width + diag2Width,
+            x: orangeEnd, y: 0,
+            width: PAGE_WIDTH - orangeEnd,
             height: fh,
             color: footerGray
         });
 
-        // 3. Orange section (main rectangle)
+        // 2. Orange section (left side)
         page.drawRectangle({
             x: 0, y: 0,
             width: orangeEnd,
@@ -331,23 +294,7 @@ async function generatePDF() {
             color: orangeColor
         });
 
-        // 4. Orange diagonal extension (triangle pointing right-up)
-        const orangeDiag = `M ${orangeEnd} 0 L ${orangeEnd} ${fh} L ${orangeEnd + diag1Width} ${fh} Z`;
-        page.drawSvgPath(orangeDiag, { x: 0, y: 0, color: orangeColor });
-
-        // 5. White diagonal cut over gray (creates second angled edge)
-        const whiteDiag = `M ${grayEnd} 0 L ${grayEnd + diag2Width} ${fh} L ${PAGE_WIDTH} ${fh} L ${PAGE_WIDTH} 0 Z`;
-        page.drawSvgPath(whiteDiag, { x: 0, y: 0, color: rgb(1, 1, 1) });
-
-        // 6. White diagonal line (thin separator)
-        page.drawLine({
-            start: { x: grayEnd + 2, y: 0 },
-            end: { x: grayEnd + diag2Width + 2, y: fh },
-            thickness: 2,
-            color: rgb(1, 1, 1)
-        });
-
-        // Footer title
+        // Footer title on orange
         page.drawText('SKY SUPER TOUCH', {
             x: 15,
             y: 9,
@@ -356,27 +303,18 @@ async function generatePDF() {
             color: rgb(1, 1, 1)
         });
 
-        // Logo + netventure.tv tightly together (no gap)
-        const logoX = orangeEnd + diag1Width + 10;
-        if (logoImage) {
-            const footerLogoDims = logoImage.scale(0.055);
-            page.drawImage(logoImage, {
-                x: logoX,
-                y: (fh - footerLogoDims.height) / 2,
-                width: footerLogoDims.width,
-                height: footerLogoDims.height
-            });
-            // Text touching logo (no gap)
-            page.drawText('netventure.tv', {
-                x: logoX + footerLogoDims.width - 1,
-                y: 8,
-                size: 10,
-                font: fontBold,
-                color: rgb(0.45, 0.45, 0.45)
-            });
-        }
+        // Breadcrumb path in gray section (skip first element)
+        const pathParts = pageData.breadcrumb.slice(1); // Remove "TOUCHSCREEN SKY DEUTSCHLAND"
+        const breadcrumbText = sanitizeText(pathParts.join(' > '));
+        page.drawText(breadcrumbText.substring(0, 80), {
+            x: orangeEnd + 10,
+            y: 8,
+            size: 7,
+            font: font,
+            color: rgb(0.45, 0.45, 0.45)
+        });
 
-        // Page number
+        // Page number in gray section (right aligned)
         page.drawText(`${i + 1}`, {
             x: PAGE_WIDTH - 25,
             y: 9,
@@ -484,35 +422,21 @@ async function generatePDF() {
         color: rgb(0.45, 0.45, 0.45)
     });
 
-    // Contact page footer - same style as regular pages but with different text
-    const cfOrangeEnd = PAGE_WIDTH * 0.62;
-    const cfDiag1 = 35;
-    const cfGrayEnd = PAGE_WIDTH - 60;
-    const cfDiag2 = 25;
+    // Contact page footer - simple two-section layout
+    const cfOrangeEnd = PAGE_WIDTH * 0.55;
 
-    // White background
-    contactPage.drawRectangle({ x: 0, y: 0, width: PAGE_WIDTH, height: contactFooterH, color: rgb(1, 1, 1) });
-
-    // Gray section
+    // Gray section (right side)
     contactPage.drawRectangle({
-        x: cfOrangeEnd - cfDiag1, y: 0,
-        width: cfGrayEnd - cfOrangeEnd + cfDiag1 + cfDiag2,
+        x: cfOrangeEnd, y: 0,
+        width: PAGE_WIDTH - cfOrangeEnd,
         height: contactFooterH,
         color: footerGray
     });
 
-    // Orange section
+    // Orange section (left side)
     contactPage.drawRectangle({ x: 0, y: 0, width: cfOrangeEnd, height: contactFooterH, color: orangeColor });
 
-    // Orange diagonal
-    const cfOrangeDiag = `M ${cfOrangeEnd} 0 L ${cfOrangeEnd} ${contactFooterH} L ${cfOrangeEnd + cfDiag1} ${contactFooterH} Z`;
-    contactPage.drawSvgPath(cfOrangeDiag, { x: 0, y: 0, color: orangeColor });
-
-    // White diagonal cut
-    const cfWhiteDiag = `M ${cfGrayEnd} 0 L ${cfGrayEnd + cfDiag2} ${contactFooterH} L ${PAGE_WIDTH} ${contactFooterH} L ${PAGE_WIDTH} 0 Z`;
-    contactPage.drawSvgPath(cfWhiteDiag, { x: 0, y: 0, color: rgb(1, 1, 1) });
-
-    // Footer text
+    // Footer text on orange
     contactPage.drawText('VIELEN DANK FUR IHRE AUFMERKSAMKEIT', {
         x: 15,
         y: 20,
@@ -521,24 +445,14 @@ async function generatePDF() {
         color: rgb(1, 1, 1)
     });
 
-    // Logo + netventure.tv on gray section (no gap)
-    const cfLogoX = cfOrangeEnd + cfDiag1 + 10;
-    if (logoImage) {
-        const cfLogoDims = logoImage.scale(0.07);
-        contactPage.drawImage(logoImage, {
-            x: cfLogoX,
-            y: (contactFooterH - cfLogoDims.height) / 2,
-            width: cfLogoDims.width,
-            height: cfLogoDims.height
-        });
-        contactPage.drawText('netventure.tv', {
-            x: cfLogoX + cfLogoDims.width - 1,
-            y: 20,
-            size: 12,
-            font: fontBold,
-            color: rgb(0.45, 0.45, 0.45)
-        });
-    }
+    // netventure.tv text in gray section
+    contactPage.drawText('netventure.tv', {
+        x: cfOrangeEnd + 15,
+        y: 20,
+        size: 12,
+        font: fontBold,
+        color: rgb(0.45, 0.45, 0.45)
+    });
 
     console.log('\n\n💾 Saving PDF...');
 
