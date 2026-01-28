@@ -165,6 +165,17 @@ async function generatePDF() {
             color: rgb(0.1, 0.1, 0.1)
         });
 
+        // Draw breadcrumb path under title (skip first element)
+        const pathParts = pageData.breadcrumb.slice(1); // Remove "TOUCHSCREEN SKY DEUTSCHLAND"
+        const breadcrumbText = sanitizeText(pathParts.join(' > '));
+        page.drawText(breadcrumbText.substring(0, 120), {
+            x: MARGIN + 10,
+            y: PAGE_HEIGHT - 65,
+            size: 8,
+            font: font,
+            color: rgb(0.5, 0.5, 0.5)
+        });
+
         // Load and embed image
         const imageBuffer = await loadAndResizeImage(pageData.image);
         let imageEndX = MARGIN;
@@ -303,14 +314,12 @@ async function generatePDF() {
             color: rgb(1, 1, 1)
         });
 
-        // Breadcrumb path in gray section (skip first element)
-        const pathParts = pageData.breadcrumb.slice(1); // Remove "TOUCHSCREEN SKY DEUTSCHLAND"
-        const breadcrumbText = sanitizeText(pathParts.join(' > '));
-        page.drawText(breadcrumbText.substring(0, 80), {
+        // netventure.tv text in gray section
+        page.drawText('netventure.tv', {
             x: orangeEnd + 10,
             y: 8,
-            size: 7,
-            font: font,
+            size: 10,
+            font: fontBold,
             color: rgb(0.45, 0.45, 0.45)
         });
 
