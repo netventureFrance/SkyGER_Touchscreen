@@ -144,10 +144,10 @@ async function generatePDF() {
 
         // Footer dimensions
         const footerHeight = 25;
-        const contentTop = PAGE_HEIGHT - 50;
+        const contentTop = PAGE_HEIGHT - MARGIN;
         const contentBottom = footerHeight + 5;
 
-        // Draw light gray content background (full width, above footer)
+        // Draw light gray content background (full width, including title area)
         page.drawRectangle({
             x: MARGIN,
             y: contentBottom,
@@ -156,10 +156,10 @@ async function generatePDF() {
             color: lightGray
         });
 
-        // Draw title (bold, black)
+        // Draw title (bold, black) inside gray area
         page.drawText(sanitizeText(pageData.label), {
-            x: MARGIN,
-            y: PAGE_HEIGHT - 38,
+            x: MARGIN + 10,
+            y: PAGE_HEIGHT - 50,
             size: 16,
             font: fontBold,
             color: rgb(0.1, 0.1, 0.1)
